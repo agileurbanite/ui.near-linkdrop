@@ -6,6 +6,9 @@ export const theme = createMuiTheme({
       main: '#3d5afe',
       light: '#5870ff',
     },
+    // text: {
+    //   primary: 'rgba(0, 0, 0, 0.87)',
+    // },
   },
   colors: {
     dashboardGrey: '#989898',
@@ -14,14 +17,21 @@ export const theme = createMuiTheme({
     red: '#e40029',
   },
   overrides: {
+    MuiTypography: {
+      h3: {
+        fontSize: 24,
+        fontWeight: 700,
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
+    },
     MuiButton: {
       containedPrimary: {
         color: 'white',
-        boxShadow: '0 12px 24px 0 #00c08b3d',
-        padding: 16,
+        boxShadow: '0 12px 24px 0 #3d5afe3d',
+        padding: '16px 35px',
         borderRadius: 8,
-        fontWeight: 700,
-        letterSpacing: '1.25px',
+        fontWeight: 500,
+        letterSpacing: 1.25,
         lineHeight: 1.14,
       },
     },

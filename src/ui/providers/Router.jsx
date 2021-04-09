@@ -33,7 +33,8 @@ export const Router = ({ history, children }) => {
         history,
         location,
         match: computeRootMatch(location.pathname),
-      }}>
+      }}
+    >
       <HistoryContext.Provider value={history}>{children}</HistoryContext.Provider>
     </RouterContext.Provider>
   );

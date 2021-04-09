@@ -4,6 +4,7 @@ const styles = {
   container: {
     gridArea: 'c',
     color: 'white',
+    width: 'calc(100% - 24px)',
   },
 };
 

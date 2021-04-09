@@ -17,7 +17,8 @@ export const Popover = ({ children, isOpen, setOpen, button = {}, popover = {} }
         ref={buttonRef}
         onClick={onOpen}
         className={button.className}
-        variant={button.variant}>
+        variant={button.variant}
+      >
         {button.content}
       </Button>
       <MuiPopover
@@ -26,7 +27,8 @@ export const Popover = ({ children, isOpen, setOpen, button = {}, popover = {} }
         open={open}
         onClose={onClose}
         anchorOrigin={popover.anchorOrigin}
-        transformOrigin={popover.transformOrigin}>
+        transformOrigin={popover.transformOrigin}
+      >
         {children}
       </MuiPopover>
     </>

@@ -1,7 +1,7 @@
 import { Button, Paper, Divider } from '@material-ui/core';
 import { useStoreActions } from 'easy-peasy';
 import { useHistory } from 'react-router-dom';
-import { Near } from '../../../../../general/icons/Near';
+import { Near } from '../../../general/icons/Near';
 import { CopyToClipboard } from './CopyToClipboard/CopyToClipboard';
 import { OpenInExplorer } from './OpenInExplorer/OpenInExplorer';
 import { useStyles } from './Modal.styles';

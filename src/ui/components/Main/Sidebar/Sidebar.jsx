@@ -1,13 +1,25 @@
-// import { Divider } from '@material-ui/core';
-// import { Account } from './Account/Account';
+import { Link } from 'react-router-dom';
+import { Button, Divider, Typography } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
 import { Navigation } from './Navigation/Navigation';
+import { routes } from '../../../config/routes';
 import { useStyles } from './Sidebar.styles';
 
-export const Sidebar = ({ onToggleList }) => {
+export const Sidebar = () => {
   const classes = useStyles();
-  return <div className={classes.container}>dd</div>;
+  return (
+    <div className={classes.container}>
+      <Typography className={classes.balance} color="textPrimary">
+        1000.00 NEAR
+      </Typography>
+      <Link to={routes.createCampaign}>
+        <Button variant="contained" color="primary" className={classes.createCampaign}>
+          <Add className={classes.addIcon} />
+          New Campaign
+        </Button>
+      </Link>
+      <Divider className={classes.divider} />
+      <Navigation />
+    </div>
+  );
 };
-// {/*<Account onToggleList={onToggleList} />*/}
-// {/*<Divider className={classes.divider} />*/}
-// {/*<Navigation />*/}
-

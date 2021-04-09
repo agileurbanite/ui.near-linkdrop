@@ -1,25 +1,26 @@
-import { Dashboard, People } from '@material-ui/icons';
-import { routes, getRoute } from '../../../../config/routes';
+import { Tune } from '@material-ui/icons';
+import { Campaign } from '../../../general/icons/Campaign';
+import { routes } from '../../../../config/routes';
 
 const items = [
   {
-    name: 'Dashboard',
-    route: routes.dashboard,
-    getPath: getRoute.dashboard,
-    icon: Dashboard,
+    name: 'Campaigns',
+    to: routes.campaigns,
+    activeFor: [routes.campaigns, routes.campaign, routes.createCampaign],
+    icon: Campaign,
   },
   {
-    name: 'Members',
-    route: routes.members,
-    getPath: getRoute.members,
-    icon: People,
+    name: 'Settings',
+    to: '/settings',
+    activeFor: ['/settings'],
+    icon: Tune,
   },
 ];
 
 export const getItems = (match) =>
-  items.map(({ name, icon, getPath, route }) => ({
+  items.map(({ name, to, icon, activeFor }) => ({
     name,
     icon,
-    path: getPath(match.params.multisafeId),
-    isActive: route === match.path,
+    to,
+    isActive: activeFor.includes(match.path),
   }));

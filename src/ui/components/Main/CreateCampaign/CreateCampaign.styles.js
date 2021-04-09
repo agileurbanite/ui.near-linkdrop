@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = {
+const styles = (theme) => ({
   container: {
     height: '100%',
     display: 'grid',
@@ -18,13 +18,12 @@ const styles = {
     alignItems: 'center',
     borderBottom: '1px solid #00000020',
   },
-  noCampaigns: {
-    gridArea: 'b',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+  closeIcon: {
+    height: 36,
+    width: 36,
+    color: theme.palette.text.primary,
+    margin: '0 8px',
   },
-};
+});
 
-export const useStyles = makeStyles(styles, { name: 'Campaigns' });
+export const useStyles = makeStyles(styles, { name: 'CreateCampaign' });

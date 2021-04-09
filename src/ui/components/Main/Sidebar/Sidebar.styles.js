@@ -1,16 +1,29 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = {
+const styles = (theme) => ({
   container: {
     gridArea: 'a',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: 'rgba(0, 0, 0, 0.87)',
+    alignItems: 'center',
+    borderRight: '1px solid',
+    borderRightColor: theme.colors.dividerOnWhite,
+  },
+  balance: {
+    margin: '32px 0',
+    fontWeight: 500,
+  },
+  createCampaign: {
+    padding: '12px 26px',
+  },
+  addIcon: {
+    marginRight: 12,
   },
   divider: {
-    backgroundColor: '#434343',
+    width: 'calc(100% - 30px)',
+    backgroundColor: theme.colors.dividerOnWhite,
     marginTop: 24,
   },
-};
+});
 
 export const useStyles = makeStyles(styles, { name: 'Sidebar' });

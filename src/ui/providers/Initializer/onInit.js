@@ -1,5 +1,5 @@
-import { getDataBeforeRenderPage } from '../../../store/general/thunks/helpers/getDataBeforeRenderPage';
-import { setInitRoute } from './setInitRoute';
+// import { getDataBeforeRenderPage } from '../../../store/general/thunks/helpers/getDataBeforeRenderPage';
+// import { setInitRoute } from './setInitRoute';
 
 export const onInit = async (store, history, setInit) => {
   await store.persist.resolveRehydration();

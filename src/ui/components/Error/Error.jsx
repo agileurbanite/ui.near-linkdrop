@@ -15,7 +15,8 @@ export const Error = () => {
       className={classes.modal}
       open={isError}
       onClose={removeError}
-      BackdropProps={{ invisible: true }}>
+      BackdropProps={{ invisible: true }}
+    >
       <Paper className={classes.container} elevation={5}>
         <h2 className={classes.header}>Ooops...</h2>
         <p>{description}</p>

@@ -11,7 +11,7 @@ export const Navigation = () => {
   return (
     <div className={classes.container}>
       {items.map((item) => (
-        <Item key={item.path} item={item} />
+        <Item key={item.name} item={item} />
       ))}
     </div>
   );

@@ -2,10 +2,25 @@ import { makeStyles } from '@material-ui/core';
 
 const styles = {
   container: {
-    height: 'calc(100vh - 73px - 52px)', // height of topbar and footer
+    minHeight: 'calc(100vh - 73px)', // height of topbar
+    display: 'grid',
+    gridTemplateColumns: '256px auto',
+    gridTemplateRows: 'auto 52px',
+    gridTemplateAreas: `
+      'a b'
+      'a c'
+    `,
+  },
+  pages: {
+    gridArea: 'b',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+  },
+  pagesWrapper: {
+    width: 'calc(100% - 48px - 48px)',
+  },
+  footer: {
+    gridArea: 'c',
   },
 };
 
