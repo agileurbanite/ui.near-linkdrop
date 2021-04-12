@@ -6,9 +6,6 @@ export const theme = createMuiTheme({
       main: '#3d5afe',
       light: '#5870ff',
     },
-    // text: {
-    //   primary: 'rgba(0, 0, 0, 0.87)',
-    // },
   },
   colors: {
     dashboardGrey: '#989898',
@@ -34,6 +31,11 @@ export const theme = createMuiTheme({
         letterSpacing: 1.25,
         lineHeight: 1.14,
       },
+    },
+    MuiOutlinedInput: {
+      root: {
+        borderRadius: 8,
+      }
     },
   },
 });
