@@ -9,6 +9,6 @@ export const onDisconnect = thunk((_, payload, { getStoreActions }) => {
 
   resetState();
   localStorage.clear();
-  history.push(routes.welcome);
+  history.push(routes.connectWallet);
   onInitNear();
 });

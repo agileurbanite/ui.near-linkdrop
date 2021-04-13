@@ -10,7 +10,7 @@ export const Step2 = ({ setStep }) => {
         <Button variant="contained" color="primary" onClick={() => setStep(1)}>
           Back
         </Button>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" type="submit">
           Confirm
         </Button>
       </div>

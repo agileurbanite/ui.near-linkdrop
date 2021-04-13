@@ -7,15 +7,19 @@ import { useStyles } from './Form.styles';
 
 export const Form = () => {
   const [step, setStep] = useState(1);
-  const { control } = useForm();
+  const { control, handleSubmit } = useForm();
   const classes = useStyles();
 
+  const onSubmit = handleSubmit((values) => {
+    console.log(values);
+  });
+
   return (
-    <div className={classes.stepper}>
+    <form onSubmit={onSubmit} className={classes.stepper}>
       <Stepper activeStep={step}>
         <Step1 setStep={setStep} control={control} />
         <Step2 setStep={setStep} />
       </Stepper>
-    </div>
+    </form>
   );
 };

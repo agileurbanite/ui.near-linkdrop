@@ -16,7 +16,7 @@ export const onInitNear = thunk(async (_, __, { getStoreActions }) => {
     keyStore: new keyStores.BrowserLocalStorageKeyStore(),
   });
 
-  const wallet = new WalletConnection(near, 'multisafe');
+  const wallet = new WalletConnection(near, 'linkdrop');
 
   initNear({
     near,

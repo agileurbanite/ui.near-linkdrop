@@ -1,5 +1,5 @@
 // import { getDataBeforeRenderPage } from '../../../store/general/thunks/helpers/getDataBeforeRenderPage';
-// import { setInitRoute } from './setInitRoute';
+import { setInitRoute } from './setInitRoute';
 
 export const onInit = async (store, history, setInit) => {
   await store.persist.resolveRehydration();
@@ -8,7 +8,7 @@ export const onInit = async (store, history, setInit) => {
   await actions.general.onInitNear();
   // await actions.general.onHandleWalletRedirect({ history });
 
-  // setInitRoute(history, store);
+  setInitRoute(history, store);
 
   // await getDataBeforeRenderPage(actions, history, false);
   setInit(true);
