@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 const styles = {
   container: {
     width: 280,
+    borderRadius: 8,
   },
   account: {
     display: 'flex',

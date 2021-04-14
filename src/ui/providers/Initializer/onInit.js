@@ -1,4 +1,3 @@
-// import { getDataBeforeRenderPage } from '../../../store/general/thunks/helpers/getDataBeforeRenderPage';
 import { setInitRoute } from './setInitRoute';
 
 export const onInit = async (store, history, setInit) => {
@@ -6,10 +5,10 @@ export const onInit = async (store, history, setInit) => {
   const actions = store.getActions();
 
   await actions.general.onInitNear();
-  // await actions.general.onHandleWalletRedirect({ history });
+  await actions.general.onHandleWalletRedirect(history);
 
   setInitRoute(history, store);
 
-  // await getDataBeforeRenderPage(actions, history, false);
+  await actions.general.onLoadDataBeforeFirstRender(history);
   setInit(true);
 };

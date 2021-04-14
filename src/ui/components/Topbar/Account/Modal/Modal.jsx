@@ -2,7 +2,7 @@ import { Button, Paper, Divider } from '@material-ui/core';
 import { useStoreActions } from 'easy-peasy';
 import { useHistory } from 'react-router-dom';
 import { Near } from '../../../general/icons/Near';
-import { CopyToClipboard } from './CopyToClipboard/CopyToClipboard';
+import { CopyToClipboard } from '../../../general/CopyToClipboard/CopyToClipboard';
 import { OpenInExplorer } from './OpenInExplorer/OpenInExplorer';
 import { useStyles } from './Modal.styles';
 
@@ -19,7 +19,7 @@ export const Modal = ({ accountId }) => {
         <Near className={classes.nearIcon} />
         <span className={classes.accountId}>{accountId}</span>
         <div className={classes.tools}>
-          <CopyToClipboard accountId={accountId} />
+          <CopyToClipboard value={accountId} />
           <OpenInExplorer accountId={accountId} />
         </div>
       </div>

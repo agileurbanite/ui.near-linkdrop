@@ -9,7 +9,7 @@ export const onConnectToWallet = thunk(async (_, __, { getStoreState, getStoreAc
 
   await wallet.requestSignIn({
     successUrl: `${window.location.origin}${routes.campaigns}`,
-    failureUrl: `${window.location.origin}${routes.connectWallet}?error=true`,
+    failureUrl: `${window.location.origin}${routes.connectWallet}?errorCode=true`,
   });
 
   connectToWallet({

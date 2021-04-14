@@ -7,7 +7,7 @@ import { PositionalArgsError } from 'near-api-js/lib/utils/errors';
 import { PublicKey } from 'near-api-js/lib/utils';
 
 const MULTISIG_HAS_METHOD = 'add_request_and_confirm';
-const DEFAULT_FUNC_CALL_GAS = new BN('30000000000000');
+const DEFAULT_FUNC_CALL_GAS = new BN('3000000000000');
 
 export class ConnectedWalletAccount extends Account {
   walletConnection;
@@ -89,6 +89,13 @@ export class ConnectedWalletAccount extends Account {
       [functionCall(methodName, args, gas, amount)],
       callbackUrl,
     );
+  }
+
+  async multiFunctionCall(contractId, actions, callbackUrl) {
+    const _actions = actions.map(({ methodName, args, gas, deposit }) =>
+      functionCall(methodName, args, gas ?? DEFAULT_FUNC_CALL_GAS, deposit),
+    );
+    return this.signAndSendTransaction(contractId, _actions, callbackUrl);
   }
 
   /**

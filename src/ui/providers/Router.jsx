@@ -16,7 +16,7 @@ export const Router = ({ history, children }) => {
 
   useEffect(() => {
     const unlisten = history.listen(async (newLocation) => {
-      await onRouteChange({ history });
+      await onRouteChange(history);
       setLocation(newLocation);
     });
     setMounted(true);
