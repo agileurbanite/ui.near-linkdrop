@@ -2,7 +2,7 @@ export const initState = {
   list: [],
   map: {},
   pendingCampaign: {},
-  activeCampaignId: null,
+  campaign: {},
 };
 
 // const example = {

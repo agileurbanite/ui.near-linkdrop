@@ -93,7 +93,7 @@ export class ConnectedWalletAccount extends Account {
 
   async multiFunctionCall(contractId, actions, callbackUrl) {
     const _actions = actions.map(({ methodName, args, gas, deposit }) =>
-      functionCall(methodName, args, gas ?? DEFAULT_FUNC_CALL_GAS, deposit),
+      functionCall(methodName, args, gas, deposit),
     );
     return this.signAndSendTransaction(contractId, _actions, callbackUrl);
   }

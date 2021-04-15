@@ -2,8 +2,8 @@ import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipb
 import { config } from '../../../../../../near/config';
 import { useStyles } from './Link.styles';
 
-export const Link = ({ link: { publicKey, secretKey, order } }) => {
-  const classes = useStyles();
+export const Link = ({ link: { publicKey, secretKey, order, isActive } }) => {
+  const classes = useStyles(isActive);
   return (
     <div className={classes.container}>
       <span className={classes.order}>#{order}</span>

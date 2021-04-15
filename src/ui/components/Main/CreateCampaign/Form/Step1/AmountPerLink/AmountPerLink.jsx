@@ -10,7 +10,7 @@ export const AmountPerLink = ({ control }) => {
       control={control}
       name="amountPerLink"
       variant="outlined"
-      placeholder="Amount per link*"
+      label="Amount per link*"
       className={classes.textField}
       InputProps={{
         endAdornment: (

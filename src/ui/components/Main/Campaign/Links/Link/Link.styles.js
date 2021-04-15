@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = {
+const styles = (theme) => ({
   container: {
     height: 56,
     display: 'grid',
@@ -10,6 +10,7 @@ const styles = {
       'a b c d e'
     `,
     alignItems: 'center',
+    color: (isActive) => (isActive ? theme.palette.text.primary : theme.palette.text.disabled),
   },
   order: {
     gridArea: 'b',
@@ -20,6 +21,6 @@ const styles = {
   copyButton: {
     gridArea: 'e',
   },
-};
+});
 
 export const useStyles = makeStyles(styles, { name: 'Link' });

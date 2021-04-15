@@ -19,15 +19,15 @@ export const Step1 = ({ setStep, control }) => {
             name="name"
             variant="outlined"
             fullWidth
-            placeholder="Campaign name*"
             className={classes.name}
+            label="Campaign name*"
           />
           <AmountPerLink control={control} />
           <TextField
             control={control}
             name="totalLinks"
             variant="outlined"
-            placeholder="Total links to distribute*"
+            label="Total links to distribute*"
             className={classes.totalLinks}
           />
         </div>

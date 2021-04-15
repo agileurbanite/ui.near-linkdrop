@@ -5,6 +5,9 @@ const styles = {
     height: 160,
     width: 350,
     marginTop: 24,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 };
 
