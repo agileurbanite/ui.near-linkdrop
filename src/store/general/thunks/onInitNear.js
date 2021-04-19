@@ -9,11 +9,13 @@ export const onInitNear = thunk(async (_, __, { getStoreActions }) => {
   const actions = getStoreActions();
   const initNear = actions.general.initNear;
 
+  const keyStore = new keyStores.BrowserLocalStorageKeyStore();
+
   const near = await connect({
     networkId,
     nodeUrl,
     walletUrl,
-    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+    keyStore,
   });
 
   const wallet = new WalletConnection(near, 'linkdrop');
@@ -21,6 +23,7 @@ export const onInitNear = thunk(async (_, __, { getStoreActions }) => {
   initNear({
     near,
     wallet,
+    keyStore,
     user: {
       isConnected: wallet.isSignedIn(),
       accountId: wallet.getAccountId(),

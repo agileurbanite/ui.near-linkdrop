@@ -13,6 +13,7 @@ export const initState = {
   },
   entities: {
     near: null,
+    keyStore: null,
     wallet: null,
   },
 };

@@ -20,7 +20,6 @@ export const initState = {
 //         {
 //           publicKey: 'aa',
 //           secretKey: 'ddd',
-//           used: false,
 //         },
 //       ],
 //     },

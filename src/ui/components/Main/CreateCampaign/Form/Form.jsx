@@ -10,13 +10,7 @@ import { useStyles } from './Form.styles';
 export const Form = () => {
   const onCreateCampaign = useStoreActions((actions) => actions.campaigns.onCreateCampaign);
   const [step, setStep] = useState(1);
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      name: 'My awesome campaign',
-      amountPerLink: '1.1',
-      totalLinks: '2',
-    },
-  });
+  const { control, handleSubmit } = useForm();
   const classes = useStyles();
 
   const onSubmit = handleSubmit((values) => {
