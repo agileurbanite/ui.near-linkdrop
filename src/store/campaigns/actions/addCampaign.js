@@ -13,7 +13,7 @@ export const addCampaign = action((slice, payload) => {
     createdAt: new Date(),
     amountPerLink,
     totalLinks,
-    links: keys.map((key, index) => ({ ...key, used: false, order: index + 1 })),
+    links: keys.map((key, index) => ({ ...key, order: index + 1 })),
   };
   slice.pendingCampaign = {};
 });

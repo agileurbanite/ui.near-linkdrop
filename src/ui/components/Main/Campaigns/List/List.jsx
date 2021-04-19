@@ -5,9 +5,11 @@ export const List = ({ list, map }) => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      {list.map((campaignId) => (
-        <Campaign key={campaignId} campaign={map[campaignId]} />
-      ))}
+      <div className={classes.wrapper}>
+        {list
+          .map((campaignId) => <Campaign key={campaignId} campaign={map[campaignId]} />)
+          .reverse()}
+      </div>
     </div>
   );
 };

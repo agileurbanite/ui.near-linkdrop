@@ -39,13 +39,19 @@ export const onCreateCampaign = thunk(async (_, payload, { getStoreState, getSto
     totalLinks,
     keys,
   });
-
+  // 1500000000000000
+  // 300000000000000
   const txActions = keys.map(({ publicKey }) => ({
     methodName: 'send',
     args: { public_key: publicKey },
-    gas: new BN('30000000000000'),
+    gas: new BN('6000000000000'),
+    // gas: new BN('300000000000000'),
+      // 300000000000000
+      // 6000000000000
     deposit: amountPerLink,
   }));
 
   await wallet.account().multiFunctionCall('testnet', txActions, getCallbackUrl({ campaignId }));
 });
+// 297.74151
+// 299.74151

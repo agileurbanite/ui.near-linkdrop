@@ -1,9 +1,10 @@
 import { addPendingCampaign } from './addPendingCampaign';
 import { addCampaign } from './addCampaign';
-import { setActiveCampaignId } from './setActiveCampaignId';
+
+import { mountCampaign } from './mountCampaign';
 
 export const actions = {
   addPendingCampaign,
   addCampaign,
-  setActiveCampaignId,
+  mountCampaign,
 };

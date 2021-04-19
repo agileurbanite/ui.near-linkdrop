@@ -2,7 +2,7 @@ export const initState = {
   list: [],
   map: {},
   pendingCampaign: {},
-  activeCampaignId: null,
+  campaign: {},
 };
 
 // const example = {
@@ -20,7 +20,6 @@ export const initState = {
 //         {
 //           publicKey: 'aa',
 //           secretKey: 'ddd',
-//           used: false,
 //         },
 //       ],
 //     },

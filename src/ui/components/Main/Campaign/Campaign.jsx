@@ -8,8 +8,7 @@ import { routes } from '../../../config/routes';
 import { useStyles } from './Campaign.styles';
 
 export const Campaign = () => {
-  const activeCampaignId = useStoreState((store) => store.campaigns.activeCampaignId);
-  const campaign = useStoreState((store) => store.campaigns.map[activeCampaignId]);
+  const campaign = useStoreState((store) => store.campaigns.campaign);
   const classes = useStyles();
   return (
     <div className={classes.container}>
