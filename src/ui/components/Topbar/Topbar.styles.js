@@ -15,7 +15,6 @@ const styles = {
   logo: {
     gridArea: 'a',
     fontSize: 24,
-    textTransform: 'uppercase',
     alignSelf: 'center',
   },
   account: {

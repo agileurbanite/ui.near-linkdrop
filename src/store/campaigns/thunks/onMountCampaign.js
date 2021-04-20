@@ -10,12 +10,8 @@ export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getS
 
   const contract = new Contract(wallet.account(), 'testnet', { viewMethods: ['get_key_balance'] });
 
-  try {
-    const keys = await Promise.allSettled(
-      links.map(({ publicKey }) => contract.get_key_balance({ key: publicKey })),
-    );
-    mountCampaign({ campaignId, keys });
-  } catch (e) {
-    console.log(e);
-  }
+  const keys = await Promise.allSettled(
+    links.map(({ publicKey }) => contract.get_key_balance({ key: publicKey })),
+  );
+  mountCampaign({ campaignId, keys });
 });
