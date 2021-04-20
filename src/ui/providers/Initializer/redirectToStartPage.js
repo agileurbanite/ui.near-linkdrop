@@ -3,7 +3,7 @@ import { routes } from '../../config/routes';
 
 const { root, connectWallet, campaigns, createCampaign, campaign } = routes;
 
-export const setInitRoute = (history, _store) => {
+export const redirectToStartPage = (history, _store) => {
   const { replace } = history;
   const store = _store.getState();
   const isConnected = store.general.user.isConnected;

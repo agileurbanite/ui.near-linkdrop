@@ -7,8 +7,6 @@ import { Campaign } from './Campaign/Campaign';
 import { routes } from '../../config/routes';
 import { useStyles } from './Main.styles';
 
-const Settings = () => <div>Settings</div>;
-
 export const Main = () => {
   const classes = useStyles();
   return (
@@ -20,7 +18,6 @@ export const Main = () => {
             <Route exact path={routes.campaigns} component={Campaigns} />
             <Route exact path={routes.createCampaign} component={CreateCampaign} />
             <Route exact path={routes.campaign} component={Campaign} />
-            <Route exact path="/settings" component={Settings} />
           </Switch>
         </div>
       </div>

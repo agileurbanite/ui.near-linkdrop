@@ -13,7 +13,7 @@ export const App = () => (
       <Route exact path={routes.connectWallet} component={ConnectWallet} />
       <Route
         exact
-        path={[routes.campaigns, routes.campaign, routes.createCampaign, '/settings']}
+        path={[routes.campaigns, routes.campaign, routes.createCampaign]}
         component={Main}
       />
       <Route path="*" component={PageNotFound} />

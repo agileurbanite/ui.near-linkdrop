@@ -1,4 +1,4 @@
-import { setInitRoute } from './setInitRoute';
+import { redirectToStartPage } from './redirectToStartPage';
 
 export const onInit = async (store, history, setInit) => {
   await store.persist.resolveRehydration();
@@ -6,9 +6,7 @@ export const onInit = async (store, history, setInit) => {
 
   await actions.general.onInitNear();
   await actions.general.onHandleWalletRedirect(history);
-
-  setInitRoute(history, store);
-
+  redirectToStartPage(history, store);
   await actions.general.onLoadDataBeforeFirstRender(history);
   setInit(true);
 };

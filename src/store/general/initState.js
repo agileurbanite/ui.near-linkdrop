@@ -7,9 +7,7 @@ export const initState = {
   user: {
     isConnected: false,
     accountId: null,
-  },
-  selectors: {
-    hasCampaigns: false,
+    balance: null,
   },
   entities: {
     near: null,

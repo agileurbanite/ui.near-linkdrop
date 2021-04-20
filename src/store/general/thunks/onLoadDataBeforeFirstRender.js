@@ -3,5 +3,15 @@ import { getDataBeforeRenderPage } from './helpers/getDataBeforeRenderPage';
 
 export const onLoadDataBeforeFirstRender = thunk(async (_, history, { getStoreActions }) => {
   const actions = getStoreActions();
-  await getDataBeforeRenderPage(actions, history, false);
+  const onLoadAccountBalance = actions.general.onLoadAccountBalance;
+
+  await Promise.all([
+    onLoadAccountBalance(),
+    getDataBeforeRenderPage({
+      actions,
+      history,
+      withLoading: false,
+      shouldLoadAccountBalance: false,
+    }),
+  ]);
 });
