@@ -22,10 +22,6 @@ const styles = (theme) => ({
   publicKey: {
     gridArea: 'c',
   },
-  cancel: {
-    gridArea: 'd',
-    height: 24,
-  },
   copyButton: {
     gridArea: 'e',
     height: 24,

@@ -4,14 +4,16 @@ import { Account } from 'near-api-js';
 import { Contract } from '../../../near/api/Сontract';
 import { config } from '../../../near/config';
 
-export const onCancelLink = thunk(async (_, secretKey, { getStoreState }) => {
+export const onCancelLink = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
+  const { secretKey, setLoading, onClose } = payload;
   const store = getStoreState();
   const accountId = store.general.user.accountId;
   const near = store.general.entities.near;
   const keyStore = store.general.entities.keyStore;
+  const actions = getStoreActions();
+  const deactivateLink = actions.campaigns.deactivateLink;
 
-  console.log(secretKey);
-  console.log(keyStore);
+  setLoading(true);
 
   await keyStore.setKey(
     config.networkId,
@@ -19,19 +21,21 @@ export const onCancelLink = thunk(async (_, secretKey, { getStoreState }) => {
     KeyPairEd25519.fromString(secretKey),
   );
 
-  const acc = new Account(near.connection, 'testnet');
-  const contract = new Contract(acc, 'testnet', {
+  const account = new Account(near.connection, config.linkDropContractId);
+  const contract = new Contract(account, config.linkDropContractId, {
     changeMethods: ['claim'],
   });
 
   try {
-    const result = await contract.claim({
+    await contract.claim({
       payload: { account_id: accountId },
     });
-    console.log(result);
+    deactivateLink({ secretKey });
   } catch (e) {
     console.log(e);
   }
 
   await keyStore.removeKey(config.networkId, config.linkDropContractId);
+  onClose();
+  setLoading(false);
 });
