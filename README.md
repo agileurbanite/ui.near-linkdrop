@@ -3,7 +3,7 @@
 
 To start local development, follow these steps:
 
-- Clone repository - `git clone https://github.com/multi-safe/ui.multisafe.git`
+- Clone repository
 - Install all dependencies - `yarn install`
 - Checkout to the dev branch and create your own branch
 - Run project - `yarn start`
