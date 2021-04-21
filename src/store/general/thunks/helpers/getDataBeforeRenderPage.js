@@ -23,7 +23,7 @@ export const getDataBeforeRenderPage = async ({
 
   // We don't want to load balance twice if a user comes directly to the create campaign page because
   // we always load the balance before app initialization
-  ifRouteIs(createCampaign && shouldLoadAccountBalance) && (await onLoadAccountBalance());
+  if (ifRouteIs(createCampaign) && shouldLoadAccountBalance) await onLoadAccountBalance();
   ifRouteIs(campaign) && (await onMountCampaign(params.campaignId));
 
   withLoading && disableLoading();

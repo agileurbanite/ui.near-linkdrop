@@ -1,23 +1,30 @@
-import { IconButton } from '@material-ui/core';
-import { Cancel } from '@material-ui/icons';
-import { useStoreActions } from 'easy-peasy';
+import { Checkbox } from '@material-ui/core';
 import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
+import { CancelLink } from './CancelLink/CancelLink';
 import { config } from '../../../../../../near/config';
 import { useStyles } from './Link.styles';
 
-export const Link = ({ link: { publicKey, secretKey, order, isActive } }) => {
-  const onCancelLink = useStoreActions((actions) => actions.campaigns.onCancelLink);
+export const Link = ({
+  amountPerLink,
+  link: { publicKey, secretKey, order, isActive },
+  onSelect,
+  isSelected,
+}) => {
   const classes = useStyles(isActive);
-
-  const onClick = () => onCancelLink(secretKey);
 
   return (
     <div className={classes.container}>
+      <Checkbox
+        onChange={(e) => onSelect(publicKey, e.target.checked)}
+        className={classes.checkbox}
+        color="primary"
+        checked={isSelected}
+      />
       <span className={classes.order}>#{order}</span>
       <span className={classes.publicKey}>{publicKey}</span>
-      <IconButton className={classes.cancel} onClick={onClick}>
-        <Cancel />
-      </IconButton>
+      {isActive && (
+        <CancelLink secretKey={secretKey} amountPerLink={amountPerLink} />
+      )}
       <CopyToClipboard
         classNames={{ iconButton: classes.copyButton }}
         value={config.getCreateAccountAndClaimLink(secretKey)}

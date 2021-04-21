@@ -21,7 +21,7 @@ export const Campaign = () => {
         <Typography variant="h3">{campaign.name}</Typography>
       </div>
       <div className={classes.body}>
-        <Profile />
+        <Profile campaign={campaign} />
         <Links campaign={campaign} />
       </div>
     </div>

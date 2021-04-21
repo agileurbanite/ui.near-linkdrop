@@ -1,6 +1,7 @@
 import { thunk } from 'easy-peasy';
 import { routes } from '../../../ui/config/routes';
 
+// Temporary disabled and unused
 export const onDisconnect = thunk((_, payload, { getStoreActions }) => {
   const { history } = payload;
   const actions = getStoreActions();

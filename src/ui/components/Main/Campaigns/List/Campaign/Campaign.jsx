@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { Divider, Typography } from '@material-ui/core';
 import cn from 'classnames';
 import { More } from './More/More';
-import { getTotalAmount, getTime } from './getText';
+import { getTotalAmount, getTime } from '../../../../../utils/formatCampaignData';
 import { getRoute } from '../../../../../config/routes';
 import { useStyles } from './Campaign.styles';
 
