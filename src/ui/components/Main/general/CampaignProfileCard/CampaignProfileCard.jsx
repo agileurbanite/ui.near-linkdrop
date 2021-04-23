@@ -1,11 +1,8 @@
-import { AdditionalData } from './AdditionalData/AdditionalData';
 import { getTotalAmount } from '../../../../utils/formatCampaignData';
-import { useStyles } from './Profile.styles';
+import { useStyles } from './CampaignProfileCard.styles';
 
-export const Profile = ({ campaign }) => {
+export const CampaignProfileCard = ({ campaign: { name, icon, amountPerLink, totalLinks } }) => {
   const classes = useStyles();
-
-  const { name, icon, totalLinks, amountPerLink } = campaign;
   return (
     <div className={classes.container}>
       <div className={classes.emojiContainer}>
@@ -15,7 +12,6 @@ export const Profile = ({ campaign }) => {
       <span className={classes.balance}>{getTotalAmount(amountPerLink, totalLinks)}</span>
       <div className={classes.links}>{totalLinks} Links</div>
       <span className={classes.linksSubtitle}>Links to generate</span>
-      <AdditionalData campaign={campaign} />
     </div>
   );
 };

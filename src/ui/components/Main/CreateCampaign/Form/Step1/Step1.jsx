@@ -5,7 +5,7 @@ import { Info } from './Info/Info';
 import { emoji } from '../../../../../config/emoji';
 import { useStyles } from './Step1.styles';
 
-export const Step1 = ({ setStep, control }) => {
+export const Step1 = ({ setStep, control, accountId, balance }) => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -32,7 +32,7 @@ export const Step1 = ({ setStep, control }) => {
           />
         </div>
         <Divider className={classes.divider} />
-        <Info />
+        <Info accountId={accountId} balance={balance} />
       </div>
       <div className={classes.actions}>
         <Button

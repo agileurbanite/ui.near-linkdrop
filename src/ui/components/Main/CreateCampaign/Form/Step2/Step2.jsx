@@ -1,14 +1,23 @@
 import { Button } from '@material-ui/core';
+import { KeyboardArrowLeft } from '@material-ui/icons';
+import { Info } from './Info/Info';
+import { getCampaignData } from './getCampaignData';
+import { CampaignProfileCard } from '../../../general/CampaignProfileCard/CampaignProfileCard';
 import { useStyles } from './Step2.styles';
 
-export const Step2 = ({ setStep }) => {
+export const Step2 = ({ setStep, getValues, accountId, balance }) => {
   const classes = useStyles();
+
+  const campaignData = getCampaignData(getValues);
+
   return (
-    <div>
-      Component
+    <div className={classes.container}>
+      <CampaignProfileCard campaign={campaignData} />
+      <Info accountId={accountId} balance={balance} campaignData={campaignData} />
       <div className={classes.actions}>
-        <Button variant="contained" color="primary" onClick={() => setStep(1)}>
-          Back
+        <Button onClick={() => setStep(1)} className={classes.back}>
+          <KeyboardArrowLeft />
+          &nbsp;Back
         </Button>
         <Button variant="contained" color="primary" type="submit">
           Confirm

@@ -1,6 +1,6 @@
 import { Divider } from '@material-ui/core';
-import { getTime } from '../../../../../utils/formatCampaignData';
-import { formatNearBalance } from '../../../../../utils/format';
+import { getTime } from '../../../../utils/formatCampaignData';
+import { formatNearBalance } from '../../../../utils/format';
 import { useStyles } from './AdditionalData.styles';
 
 export const AdditionalData = ({ campaign }) => {

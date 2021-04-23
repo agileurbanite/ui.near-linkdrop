@@ -50,4 +50,4 @@ const styles = (theme) => ({
   },
 });
 
-export const useStyles = makeStyles(styles, { name: 'Profile' });
+export const useStyles = makeStyles(styles, { name: 'CampaignProfileCard' });

@@ -12,6 +12,7 @@ export const onCancelLink = thunk(async (_, payload, { getStoreState, getStoreAc
   const keyStore = store.general.entities.keyStore;
   const actions = getStoreActions();
   const deactivateLink = actions.campaigns.deactivateLink;
+  const onLoadAccountBalance = actions.general.onLoadAccountBalance;
 
   setLoading(true);
 
@@ -30,6 +31,7 @@ export const onCancelLink = thunk(async (_, payload, { getStoreState, getStoreAc
     await contract.claim({
       payload: { account_id: accountId },
     });
+    await onLoadAccountBalance();
     deactivateLink({ secretKey });
   } catch (e) {
     console.log(e);
