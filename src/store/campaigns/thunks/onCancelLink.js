@@ -34,6 +34,7 @@ export const onCancelLink = thunk(async (_, payload, { getStoreState, getStoreAc
     await onLoadAccountBalance();
     deactivateLink({ secretKey });
   } catch (e) {
+    // eslint-disable-next-line
     console.log(e);
   }
 

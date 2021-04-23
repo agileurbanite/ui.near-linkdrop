@@ -16,10 +16,10 @@ export const Form = () => {
 
   const { control, handleSubmit, getValues } = useForm({
     defaultValues: {
-      name: 'My campaign',
+      name: '',
       icon: emoji.foxMuzzle,
-      amountPerLink: '1.5',
-      totalLinks: '10',
+      amountPerLink: '',
+      totalLinks: '',
     },
   });
 

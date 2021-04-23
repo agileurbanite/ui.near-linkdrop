@@ -1,4 +1,5 @@
-import { getRoute } from '../../../../ui/config/routes';
+import { routes } from '../../../../ui/config/routes';
+import { notifications } from '../../../../ui/config/notifacations';
 
 export const handleCreateCampaign = (store, actions, { campaignId, errorCode }, replace) => {
   if (errorCode) {
@@ -12,5 +13,6 @@ export const handleCreateCampaign = (store, actions, { campaignId, errorCode }, 
   if (campaignId !== store.campaigns.pendingCampaign.campaignId) return;
 
   actions.campaigns.addCampaign({ campaignId });
-  replace(getRoute.campaign(campaignId));
+  actions.general.addNotification([notifications.successCreateCampaign, campaignId]);
+  replace(routes.campaigns);
 };

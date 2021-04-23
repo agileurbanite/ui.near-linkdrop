@@ -4,6 +4,7 @@ export const initState = {
     isError: false,
     description: '',
   },
+  notifications: {},
   user: {
     isConnected: false,
     accountId: null,
