@@ -7,20 +7,32 @@ const testnet = {
   linkDropContractId: 'testnet',
 };
 
+const mainnet = {
+  networkId: 'mainnet',
+  nodeUrl: 'https://rpc.mainnet.near.org',
+  walletUrl: 'https://wallet.near.org',
+  helperUrl: 'https://helper.mainnet.near.org',
+  explorerUrl: 'https://explorer.near.org/',
+  linkDropContractId: 'near',
+};
+
+const configs = {
+  testnet,
+  mainnet,
+};
+
 const createHelpers = (config) => ({
   getCheckAccountInExplorerUrl: (accountId) => `${config.explorerUrl}/accounts/${accountId}`,
   getCreateAccountAndClaimLink: (secretKey) =>
     `${config.walletUrl}/create/${config.linkDropContractId}/${secretKey}`,
 });
 
-//
-const getNearConfig = () => {
-  const config = testnet;
+const getNearConfig = (network) => {
+  const config = configs[network];
   return {
     ...config,
     ...createHelpers(config),
   };
 };
 
-// TODO pass the env variable to get the real config based on the env where it runs
-export const config = getNearConfig();
+export const config = getNearConfig(process.env.REACT_APP_NETWORK);

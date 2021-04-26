@@ -34,8 +34,10 @@
     "prettier": "^2.2.1"
   },
   "scripts": {
-    "start": "set PORT=3005 && react-scripts start",
+    "start-testnet": "set PORT=3005&&set REACT_APP_NETWORK=testnet&&react-scripts start",
+    "start-mainnet": "set PORT=4004&&set REACT_APP_NETWORK=mainnet&&react-scripts start",
     "build": "react-scripts build",
+    "build-mainnet": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/",
