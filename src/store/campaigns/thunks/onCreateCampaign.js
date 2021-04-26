@@ -1,4 +1,3 @@
-/* eslint-disable */
 import BN from 'bn.js';
 import { thunk } from 'easy-peasy';
 import { parseNearAmount } from 'near-api-js/lib/utils/format';
