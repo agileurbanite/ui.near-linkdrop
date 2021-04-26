@@ -2,6 +2,7 @@ import { TextField as MuiTextField } from '@material-ui/core';
 import { useController } from 'react-hook-form';
 
 export const TextField = ({
+  type,
   control,
   name,
   defaultValue = '',
@@ -18,6 +19,7 @@ export const TextField = ({
   const { field } = useController({ name, control, defaultValue });
   return (
     <MuiTextField
+      type={type}
       inputRef={field.ref}
       onChange={field.onChange}
       onBlur={field.onBlur}

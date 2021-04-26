@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Stepper } from './Stepper/Stepper';
 import { Step1 } from './Step1/Step1';
 import { Step2 } from './Step2/Step2';
+import { createCampaign } from '../../../../validation/createCampaign';
 import { emoji } from '../../../../config/emoji';
 import { useStyles } from './Form.styles';
 
@@ -21,6 +22,8 @@ export const Form = () => {
       amountPerLink: '',
       totalLinks: '',
     },
+    resolver: createCampaign,
+    mode: 'all',
   });
 
   const onSubmit = handleSubmit((values) => onCreateCampaign(values));
@@ -28,7 +31,13 @@ export const Form = () => {
   return (
     <form onSubmit={onSubmit} className={classes.stepper}>
       <Stepper activeStep={step}>
-        <Step1 setStep={setStep} control={control} accountId={accountId} balance={balance} />
+        <Step1
+          setStep={setStep}
+          control={control}
+          accountId={accountId}
+          balance={balance}
+          getValues={getValues}
+        />
         <Step2 setStep={setStep} getValues={getValues} accountId={accountId} balance={balance} />
       </Stepper>
     </form>

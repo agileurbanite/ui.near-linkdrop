@@ -3,7 +3,7 @@ import { TextField } from '../../../../general/TextField/TextField';
 import { Near } from '../../../../../general/icons/Near';
 import { useStyles } from './AmountPerLink.styles';
 
-export const AmountPerLink = ({ control }) => {
+export const AmountPerLink = ({ control, errors }) => {
   const classes = useStyles();
   return (
     <TextField
@@ -12,6 +12,7 @@ export const AmountPerLink = ({ control }) => {
       variant="outlined"
       label="Amount per link*"
       className={classes.textField}
+      InputLabelProps={{ shrink: true }}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
@@ -23,6 +24,8 @@ export const AmountPerLink = ({ control }) => {
           root: classes.textFieldInputRoot,
         },
       }}
+      error={Boolean(errors?.amountPerLink?.message)}
+      helperText={errors?.amountPerLink?.message}
     />
   );
 };

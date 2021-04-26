@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 const styles = {
   textField: {
-    width: '48%',
+    gridArea: 'b',
   },
   icon: {
     height: 20,

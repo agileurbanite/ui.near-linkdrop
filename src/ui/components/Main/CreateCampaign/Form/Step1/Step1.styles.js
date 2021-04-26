@@ -28,16 +28,21 @@ const styles = (theme) => ({
     fontSize: 72,
   },
   inputs: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: '48% 4% 48%',
+    gridTemplateRows: '100px 80px',
+    gridTemplateAreas: `
+      'a a a'
+      'b . c'
+    `,
     marginTop: 36,
   },
   name: {
-    marginBottom: 36,
+    gridArea: 'a',
   },
   totalLinks: {
-    width: '48%',
+    gridArea: 'c',
   },
   divider: {
     width: '100%',

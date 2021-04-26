@@ -1,4 +1,5 @@
 import { Button, Divider } from '@material-ui/core';
+import { useFormState } from 'react-hook-form';
 import { TextField } from '../../../general/TextField/TextField';
 import { AmountPerLink } from './AmountPerLink/AmountPerLink';
 import { Info } from './Info/Info';
@@ -6,7 +7,9 @@ import { emoji } from '../../../../../config/emoji';
 import { useStyles } from './Step1.styles';
 
 export const Step1 = ({ setStep, control, accountId, balance }) => {
+  const { errors, isDirty, isValid } = useFormState({ control });
   const classes = useStyles();
+  console.log(isValid, isDirty);
   return (
     <div className={classes.container}>
       <div className={classes.body}>
@@ -21,14 +24,19 @@ export const Step1 = ({ setStep, control, accountId, balance }) => {
             fullWidth
             className={classes.name}
             label="Campaign name*"
+            error={Boolean(errors?.name?.message)}
+            helperText={errors?.name?.message}
           />
-          <AmountPerLink control={control} />
+          <AmountPerLink control={control} errors={errors} />
           <TextField
             control={control}
             name="totalLinks"
             variant="outlined"
             label="Total links to distribute*"
             className={classes.totalLinks}
+            InputLabelProps={{ shrink: true }}
+            error={Boolean(errors?.totalLinks?.message)}
+            helperText={errors?.totalLinks?.message}
           />
         </div>
         <Divider className={classes.divider} />
@@ -38,8 +46,9 @@ export const Step1 = ({ setStep, control, accountId, balance }) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setStep(2)}
+          onClick={() => setStep(2) }
           className={classes.next}
+          disabled={!isValid}
         >
           Next
         </Button>
