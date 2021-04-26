@@ -5,6 +5,7 @@ import { parseNearAmount } from 'near-api-js/lib/utils/format';
 import { KeyPairEd25519 } from 'near-api-js/lib/utils';
 import { v4 as uuid } from 'uuid';
 import qs from 'query-string';
+import { config } from '../../../near/config';
 
 const getCallbackUrl = (queryParams) => `${window.location.href}?${qs.stringify(queryParams)}`;
 
@@ -22,14 +23,11 @@ export const onCreateCampaign = thunk(async (_, payload, { getStoreState, getSto
   const actions = getStoreActions();
   const addPendingCampaign = actions.campaigns.addPendingCampaign;
 
-  console.log(payload);
   const campaignId = uuid();
   const totalLinks = Number(payload.totalLinks);
   const amountPerLink = parseNearAmount(payload.amountPerLink);
 
   const keys = new Array(totalLinks).fill(0).map(() => getKeyPair());
-
-  console.log(keys);
 
   addPendingCampaign({
     campaignId,
@@ -46,12 +44,12 @@ export const onCreateCampaign = thunk(async (_, payload, { getStoreState, getSto
     args: { public_key: publicKey },
     gas: new BN('6000000000000'),
     // gas: new BN('300000000000000'),
-      // 300000000000000
-      // 6000000000000
+    // 300000000000000
+    // 6000000000000
     deposit: amountPerLink,
   }));
 
-  await wallet.account().multiFunctionCall('testnet', txActions, getCallbackUrl({ campaignId }));
+  await wallet
+    .account()
+    .multiFunctionCall(config.linkDropContractId, txActions, getCallbackUrl({ campaignId }));
 });
-// 297.74151
-// 299.74151

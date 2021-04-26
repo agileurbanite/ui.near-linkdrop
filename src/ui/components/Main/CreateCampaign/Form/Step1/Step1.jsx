@@ -7,9 +7,9 @@ import { emoji } from '../../../../../config/emoji';
 import { useStyles } from './Step1.styles';
 
 export const Step1 = ({ setStep, control, accountId, balance }) => {
-  const { errors, isDirty, isValid } = useFormState({ control });
+  const { errors, isValid } = useFormState({ control });
   const classes = useStyles();
-  console.log(isValid, isDirty);
+
   return (
     <div className={classes.container}>
       <div className={classes.body}>
