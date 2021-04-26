@@ -3,17 +3,17 @@ import { routes } from '../../../../ui/config/routes';
 
 const { campaign, createCampaign, campaigns } = routes;
 
-export const getDataBeforeRenderPage = async ({
-  actions,
-  history,
-  withLoading,
-}) => {
+export const getDataBeforeRenderPage = async ({ actions, history, withLoading }) => {
   const enableLoading = actions.general.enableLoading;
   const disableLoading = actions.general.disableLoading;
   const onLoadAccountBalance = actions.general.onLoadAccountBalance;
   const onMountCampaign = actions.campaigns.onMountCampaign;
 
-  const match = matchPath(history.location.pathname, [campaigns, campaign, createCampaign]);
+  const match = matchPath(history.location.pathname, {
+    path: [campaigns, campaign, createCampaign],
+    exact: true,
+  });
+
   if (!match) return;
 
   withLoading && enableLoading();
