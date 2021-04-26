@@ -12,7 +12,7 @@ const mainnet = {
   nodeUrl: 'https://rpc.mainnet.near.org',
   walletUrl: 'https://wallet.near.org',
   helperUrl: 'https://helper.mainnet.near.org',
-  explorerUrl: 'https://explorer.near.org/',
+  explorerUrl: 'https://explorer.near.org',
   linkDropContractId: 'near',
 };
 

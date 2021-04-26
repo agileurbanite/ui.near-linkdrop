@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const errors = {
   name: 'Campaign name length should be between 1 and 100 symbols',
-  amountPerLink: 'You should attach more than 1 NEAR',
+  amountPerLink: 'You should attach more than 1.01 NEAR',
   totalLinks: 'You should choose between 1 and 50 links',
 };
 
@@ -19,7 +19,7 @@ const schema = object().shape({
     .required(errors.amountPerLink)
     .matches(regex.decimalPositiveNumber, errors.amountPerLink)
     .test({
-      test: (value) => Number(value) > 1,
+      test: (value) => Number(value) >= 1.01,
       message: errors.amountPerLink,
     }),
 
