@@ -4,7 +4,7 @@ const styles = (theme) => ({
   container: {
     height: 160,
     width: 344,
-    margin: '24px 0',
+    marginTop: 24,
     display: 'grid',
     gridTemplateColumns: '24px 43px 13px 104px 13px auto 12px 24px',
     gridTemplateRows: '22px 18px 28px 20px 18px 18px',
@@ -26,6 +26,19 @@ const styles = (theme) => ({
         0px 4px 5px 0px rgb(0 0 0 / 14%),
         0px 1px 10px 0px rgb(0 0 0 / 12%)
       `,
+    },
+    '@media (min-width: 1065px)': {
+      '&:nth-child(2n)': {
+        marginLeft: 20,
+      },
+    },
+    '@media (min-width: 1440px)': {
+      '&:nth-child(2n)': {
+        marginLeft: 0,
+      },
+      '&:nth-child(3n + 2)': {
+        margin: '24px 24px 0 24px',
+      },
     },
   },
   icon: {

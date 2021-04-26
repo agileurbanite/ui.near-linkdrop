@@ -11,7 +11,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignContent: 'flex-start',
     '@media (min-width: 1065px)': {
       maxWidth: 713,
