@@ -1,5 +1,6 @@
 import { Switch, Route } from 'react-router-dom';
 import { Topbar } from './Topbar/Topbar';
+import { Caution } from './Caution/Caution';
 import { ConnectWallet } from './ConnectWallet/ConnectWallet';
 import { Main } from './Main/Main';
 import { PageNotFound } from './PageNotFound/PageNotFound';
@@ -8,6 +9,7 @@ import { routes } from '../config/routes';
 
 export const App = () => (
   <>
+    <Caution />
     <Topbar />
     <Switch>
       <Route exact path={routes.connectWallet} component={ConnectWallet} />

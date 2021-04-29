@@ -24,7 +24,7 @@ const styles = {
   },
   progress: {
     position: 'absolute',
-    top: '70px',
+    top: '120px',
     width: '100%',
   },
 };
