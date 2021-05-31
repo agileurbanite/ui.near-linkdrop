@@ -17,6 +17,7 @@ export const redirectToStartPage = (history, _store) => {
   const isInclude = (_routes) => _routes.includes(match.path);
 
   // Anon user
+  // TODO add create-account and restore-access
   if (!isConnected && isInclude([root, campaigns, createCampaign, campaign])) {
     replace(connectWallet);
   }

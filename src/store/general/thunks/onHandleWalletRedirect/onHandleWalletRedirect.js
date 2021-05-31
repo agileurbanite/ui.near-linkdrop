@@ -16,10 +16,9 @@ export const onHandleWalletRedirect = thunk(
 
     // If we don't have any query param just skip this function
     if (search === '') return;
+
     const queryParams = qs.parse(search);
-    const { errorCode } = queryParams;
-    // We want to remove all query params from url and keep it clean
-    replace(pathname);
+    replace(pathname);  // We want to remove all query params from url to keep it clean
 
     const match = matchPath(pathname, {
       path: [connectWallet, createCampaign],
@@ -28,16 +27,23 @@ export const onHandleWalletRedirect = thunk(
 
     const ifRouteIs = (route) => route === match?.path;
 
+    /**
+     * Redirect leads here if:
+     * 1. User got an error or deny connect on the wallet side - show modal with an error
+     * 2. User successfully connected his NEAR account with Linkdrop - check if his NEAR account
+     * has associated Linkdrop account, than redirect to Create Account or Restore Account
+     */
     if (ifRouteIs(connectWallet)) {
-      handleConnectWallet(actions, queryParams);
+      await handleConnectWallet({ actions, queryParams, replace });
       return;
     }
+
     if (ifRouteIs(createCampaign)) {
       handleCreateCampaign(state, actions, queryParams, replace);
       return;
     }
 
-    if (errorCode) {
+    if (queryParams.errorCode) {
       actions.general.setError({
         isError: true,
         description: 'Your transaction was not completed. Please try again',

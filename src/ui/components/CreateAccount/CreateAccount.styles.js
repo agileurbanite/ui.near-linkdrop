@@ -32,4 +32,4 @@ const styles = {
   },
 };
 
-export const useStyles = makeStyles(styles, { name: 'ConnectWallet' });
+export const useStyles = makeStyles(styles, { name: 'CreateAccount' });
