@@ -5,7 +5,7 @@ export const getCampaignData = (getValues) => {
   const { icon, name, amountPerLink, totalLinks } = getValues();
   // We may calculate the real fee in the future
   const nearPriceForCampaignCreation = new BN(parseNearAmount('0.05'));
-  const oneNearFeePerLink = new BN(parseNearAmount('1'));
+  const oneNearFeePerLink = new BN(parseNearAmount('0'));
   const _amountPerLink = new BN(parseNearAmount(amountPerLink));
   const _totalLinks = new BN(totalLinks);
 

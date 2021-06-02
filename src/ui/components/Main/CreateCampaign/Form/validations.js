@@ -19,7 +19,7 @@ const schema = object().shape({
     .required(errors.amountPerLink)
     .matches(regex.decimalPositiveNumber, errors.amountPerLink)
     .test({
-      test: (value) => Number(value) >= 1.01,
+      test: (value) => Number(value) >= 0.01,
       message: errors.amountPerLink,
     }),
 
@@ -27,7 +27,7 @@ const schema = object().shape({
     .required(errors.totalLinks)
     .matches(regex.integerPositiveNumber, errors.totalLinks)
     .test({ test: (value) => Number(value) > 0, message: errors.totalLinks })
-    .test({ test: (value) => Number(value) <= 50, message: errors.totalLinks }),
+    .test({ test: (value) => Number(value) <= 10000, message: errors.totalLinks }),
 });
 
-export const createCampaign = yupResolver(schema);
+export const validations = yupResolver(schema);

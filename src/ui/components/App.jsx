@@ -17,7 +17,12 @@ export const App = () => (
       <Route exact path={routes.createAccount} component={CreateAccount} />
       <Route
         exact
-        path={[routes.campaigns, routes.campaign, routes.createCampaign]}
+        path={[
+          routes.campaigns,
+          routes.campaign,
+          routes.createCampaign,
+          routes.completeCampaignCreation,
+        ]}
         component={Main}
       />
       <Route path="*" component={PageNotFound} />

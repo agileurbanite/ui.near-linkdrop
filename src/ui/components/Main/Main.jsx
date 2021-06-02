@@ -3,6 +3,7 @@ import { Footer } from '../Footer/Footer';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Campaigns } from './Campaigns/Campaigns';
 import { CreateCampaign } from './CreateCampaign/CreateCampaign';
+import { CompleteCampaignCreation } from './CompleteCampaignCreation/CompleteCampaignCreation';
 import { Campaign } from './Campaign/Campaign';
 import { routes } from '../../config/routes';
 import { useStyles } from './Main.styles';
@@ -17,6 +18,11 @@ export const Main = () => {
           <Switch>
             <Route exact path={routes.campaigns} component={Campaigns} />
             <Route exact path={routes.createCampaign} component={CreateCampaign} />
+            <Route
+              exact
+              path={routes.completeCampaignCreation}
+              component={CompleteCampaignCreation}
+            />
             <Route exact path={routes.campaign} component={Campaign} />
           </Switch>
         </div>

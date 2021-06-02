@@ -2,52 +2,50 @@ import BN from 'bn.js';
 import { thunk } from 'easy-peasy';
 import { parseNearAmount } from 'near-api-js/lib/utils/format';
 import { KeyPairEd25519 } from 'near-api-js/lib/utils';
+import { parseSeedPhrase } from 'near-seed-phrase';
 import { v4 as uuid } from 'uuid';
 import qs from 'query-string';
-import { config } from '../../../near/config';
+import { Contract } from '../../../near/api/Сontract';
+import { routes } from '../../../ui/config/routes';
 
-const getCallbackUrl = (queryParams) => `${window.location.href}?${qs.stringify(queryParams)}`;
+const userAccountId = 'dev-1622447237354-43095885940055';
+const mnemonic = 'leaf shop source fish rally length trial measure wise sponsor draft shadow';
+const { publicKey: pk, secretKey: sk } = parseSeedPhrase(mnemonic);
+console.log(pk, sk);
 
-const getKeyPair = () => {
-  const keyPair = KeyPairEd25519.fromRandom();
-  return {
-    publicKey: keyPair.publicKey.toString().replace('ed25519:', ''),
-    secretKey: keyPair.secretKey,
-  };
-};
-
+// TODO Rename to onStartCampaignCreation
 export const onCreateCampaign = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
+  const { name, icon, totalLinks, amountPerLink } = payload;
   const store = getStoreState();
   const wallet = store.general.entities.wallet;
   const actions = getStoreActions();
   const addPendingCampaign = actions.campaigns.addPendingCampaign;
 
-  const campaignId = uuid();
-  const totalLinks = Number(payload.totalLinks);
-  const amountPerLink = parseNearAmount(payload.amountPerLink);
+  // TODO Rename form fields totalLinks -> totalKeys
+  const totalKeys = Number(totalLinks);
+  const tokensPerKey = parseNearAmount(amountPerLink);
 
-  const keys = new Array(totalLinks).fill(0).map(() => getKeyPair());
-
-  addPendingCampaign({
-    campaignId,
-    name: payload.name,
-    icon: payload.icon,
-    amountPerLink,
-    totalLinks,
-    keys,
+  const userContract = new Contract(wallet.account(), userAccountId, {
+    changeMethods: ['create_near_campaign'],
   });
 
-  // We divide max gas limit per number of links
-  const gasPerAction = new BN('300000000000000').div(new BN(keys.length));
+  addPendingCampaign({
+    name,
+    icon,
+    tokensPerKey,
+    totalKeys,
+  });
 
-  const txActions = keys.map(({ publicKey }) => ({
-    methodName: 'send',
-    args: { public_key: publicKey },
-    gas: gasPerAction,
-    deposit: amountPerLink,
-  }));
-
-  await wallet
-    .account()
-    .multiFunctionCall(config.linkDropContractId, txActions, getCallbackUrl({ campaignId }));
+  await userContract.create_near_campaign({
+    payload: {
+      name,
+      public_key: pk,
+      tokens_per_key: tokensPerKey,
+    },
+    amount: parseNearAmount('100'), // TODO Calculate real amount for campaign
+    gas: new BN('300000000000000'),
+    callbackUrl: `${window.location.origin}${routes.createCampaign}?${qs.stringify({
+      name,
+    })}`,
+  });
 });

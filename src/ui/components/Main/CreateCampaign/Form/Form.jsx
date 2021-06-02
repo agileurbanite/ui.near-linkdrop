@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Stepper } from './Stepper/Stepper';
 import { Step1 } from './Step1/Step1';
 import { Step2 } from './Step2/Step2';
-import { createCampaign } from '../../../../validation/createCampaign';
+import { validations } from './validations';
 import { emoji } from '../../../../config/emoji';
 import { useStyles } from './Form.styles';
 
@@ -22,7 +22,7 @@ export const Form = () => {
       amountPerLink: '',
       totalLinks: '',
     },
-    resolver: createCampaign,
+    resolver: validations,
     mode: 'all',
   });
 

@@ -2,10 +2,10 @@ import { thunk } from 'easy-peasy';
 import { matchPath } from 'react-router';
 import qs from 'query-string';
 import { handleConnectWallet } from './handleConnectWallet';
-import { handleCreateCampaign } from './handleCreateCampaign';
+import { toCreateCampaign } from './toCreateCampaign';
 import { routes as routesConfig } from '../../../../ui/config/routes';
 
-const { connectWallet, createCampaign } = routesConfig;
+const { connectWallet, createCampaign, completeCampaignCreation } = routesConfig;
 
 export const onHandleWalletRedirect = thunk(
   async (_, history, { getStoreActions, getStoreState }) => {
@@ -39,7 +39,7 @@ export const onHandleWalletRedirect = thunk(
     }
 
     if (ifRouteIs(createCampaign)) {
-      handleCreateCampaign(state, actions, queryParams, replace);
+      toCreateCampaign(state, actions, queryParams, replace);
       return;
     }
 

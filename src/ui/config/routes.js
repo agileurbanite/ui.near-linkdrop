@@ -4,6 +4,7 @@ export const routes = {
   createAccount: '/create-account',
   campaigns: '/campaigns',
   createCampaign: '/create-campaign',
+  completeCampaignCreation: '/complete-campaign-creation',
   campaign: '/campaigns/:campaignId',
 };
 
