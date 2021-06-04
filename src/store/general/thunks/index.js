@@ -1,17 +1,11 @@
-import { onInitNear } from './onInitNear';
+import { onInitApp } from './onInitApp/onInitApp';
 import { onRouteChange } from './onRouteChange';
 import { onConnectToWallet } from './onConnectToWallet';
-import { onDisconnect } from './onDisconnect';
-import { onHandleWalletRedirect } from './onHandleWalletRedirect/onHandleWalletRedirect';
-import { onLoadDataBeforeFirstRender } from './onLoadDataBeforeFirstRender';
 import { onLoadAccountBalance } from './onLoadAccountBalance';
 
 export const thunks = {
-  onInitNear,
-  onRouteChange,
+  onInitApp,
   onConnectToWallet,
-  onDisconnect,
-  onHandleWalletRedirect,
-  onLoadDataBeforeFirstRender,
   onLoadAccountBalance,
+  onRouteChange,
 };

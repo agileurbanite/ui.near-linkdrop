@@ -1,14 +1,10 @@
-import { thunk } from 'easy-peasy';
 import { connect, keyStores } from 'near-api-js';
-import { WalletConnection } from '../../../near/api/WalletConnection';
-import { config } from '../../../near/config';
+import { WalletConnection } from '../../../../near/api/WalletConnection';
+import { config } from '../../../../near/config';
 
 const { networkId, nodeUrl, walletUrl } = config;
 
-export const onInitNear = thunk(async (_, __, { getStoreActions }) => {
-  const actions = getStoreActions();
-  const initNear = actions.general.initNear;
-
+export const getNearPack = async () => {
   const keyStore = new keyStores.BrowserLocalStorageKeyStore();
 
   const near = await connect({
@@ -20,7 +16,7 @@ export const onInitNear = thunk(async (_, __, { getStoreActions }) => {
 
   const wallet = new WalletConnection(near, 'linkdrop');
 
-  initNear({
+  return {
     near,
     wallet,
     keyStore,
@@ -28,5 +24,5 @@ export const onInitNear = thunk(async (_, __, { getStoreActions }) => {
       isConnected: wallet.isSignedIn(),
       accountId: wallet.getAccountId(),
     },
-  });
-});
+  };
+};

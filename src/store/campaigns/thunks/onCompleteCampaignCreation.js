@@ -39,45 +39,42 @@ export const createGenerateKey = (seedPhrase) => {
 };
 
 const generateKey = createGenerateKey(mnemonic);
-console.log(generateKey(1, 9999));
-export const onCompleteCampaignCreation = thunk(
-  async (_, __, { getStoreState, getStoreActions }) => {
-    const store = getStoreState();
-    const near = store.general.entities.near;
-    const keyStore = store.general.entities.keyStore;
-    const pendingCampaign = store.campaigns.pendingCampaign;
-    const actions = getStoreActions();
+// console.log(generateKey(1, 9999));
+export const onCompleteCampaignCreation = thunk(async (_, __, { getStoreState }) => {
+  const store = getStoreState();
+  const near = store.general.entities.near;
+  const keyStore = store.general.entities.keyStore;
+  const pendingCampaign = store.campaigns.pendingCampaign;
 
-    const campaignId = `${pendingCampaign.name}.${userAccountId}`;
+  const campaignId = `${pendingCampaign.name}.${userAccountId}`;
 
-    await keyStore.setKey('testnet', campaignId, KeyPairEd25519.fromString(sk));
+  await keyStore.setKey('testnet', campaignId, KeyPairEd25519.fromString(sk));
 
-    const account = new Account(near.connection, campaignId);
-    const campaign = new Contract(account, campaignId, {
-      changeMethods: ['add_keys'],
+  const account = new Account(near.connection, campaignId);
+  const campaign = new Contract(account, campaignId, {
+    changeMethods: ['add_keys'],
+  });
+
+  const allKeys = Array(pendingCampaign.totalKeys)
+    .fill(0)
+    .map((i, index) => generateKey(1, index).pk) // TODO start index from 1 not 0
+    .reduce(
+      (acc, elem) => {
+        const last = acc[acc.length - 1];
+        last.length < 50 ? last.push(elem) : acc.push([elem]);
+        return acc;
+      },
+      [[]],
+    );
+
+  let i = 0;
+  /* eslint-disable */
+  for (const keys of allKeys) {
+    await campaign.add_keys({
+      payload: { keys },
+      gas: new BN('300000000000000'),
     });
-
-    const allKeys = Array(pendingCampaign.totalKeys)
-      .fill(0)
-      .map((i, index) => generateKey(1, index).pk)// TODO start index from 1 not 0
-      .reduce(
-        (acc, elem) => {
-          const last = acc[acc.length - 1];
-          last.length < 50 ? last.push(elem) : acc.push([elem]);
-          return acc;
-        },
-        [[]],
-      );
-
-    let i = 0;
-    /* eslint-disable */
-    for (const keys of allKeys) {
-      await campaign.add_keys({
-        payload: { keys },
-        gas: new BN('300000000000000'),
-      });
-      i++;
-      console.log('Done chank №', i);
-    }
-  },
-);
+    i++;
+    console.log('Done chank №', i);
+  }
+});

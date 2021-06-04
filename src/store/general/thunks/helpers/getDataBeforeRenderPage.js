@@ -23,6 +23,7 @@ export const getDataBeforeRenderPage = async ({ actions, history, withLoading })
   // Probably we can load the account balance only when app started and if user redirect to the
   // create campaign page
   await onLoadAccountBalance();
+
   ifRouteIs(campaign) && (await onMountCampaign(params.campaignId));
 
   withLoading && disableLoading();

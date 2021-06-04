@@ -1,5 +1,4 @@
-import { routes } from '../../../../ui/config/routes';
-import { notifications } from '../../../../ui/config/notifacations';
+import { routes } from '../../../../../ui/config/routes';
 
 export const toCreateCampaign = (store, actions, { name, errorCode }, replace) => {
   if (errorCode) {

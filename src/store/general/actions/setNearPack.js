@@ -1,6 +1,6 @@
 import { action } from 'easy-peasy';
 
-export const initNear = action((state, payload) => {
+export const setNearPack = action((state, payload) => {
   const { near, keyStore, wallet, user } = payload;
 
   state.user = user;

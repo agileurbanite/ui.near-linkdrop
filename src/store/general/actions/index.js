@@ -1,4 +1,4 @@
-import { initNear } from './initNear';
+import { setNearPack } from './setNearPack';
 import { enableLoading } from './enableLoading';
 import { disableLoading } from './disableLoading';
 import { connectToWallet } from './connectToWallet';
@@ -9,7 +9,7 @@ import { addNotification } from './addNotification';
 import { removeNotification } from './removeNotification';
 
 export const actions = {
-  initNear,
+  setNearPack,
   enableLoading,
   disableLoading,
   connectToWallet,
