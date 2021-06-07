@@ -39,7 +39,7 @@
     "prettier": "^2.2.1"
   },
   "scripts": {
-    "start-testnet": "set PORT=3006&&set REACT_APP_NETWORK=testnet&&react-scripts start",
+    "start-testnet": "set PORT=30061&&set REACT_APP_NETWORK=testnet&&react-scripts start",
     "start-mainnet": "set PORT=4005&&set REACT_APP_NETWORK=mainnet&&react-scripts start",
     "build-testnet": "set REACT_APP_NETWORK=testnet&&react-scripts build",
     "build-mainnet": "set REACT_APP_NETWORK=mainnet&&react-scripts build",

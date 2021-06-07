@@ -7,6 +7,8 @@ import { removeError } from './removeError';
 import { setAccountBalance } from './setAccountBalance';
 import { addNotification } from './addNotification';
 import { removeNotification } from './removeNotification';
+import { setTemporaryData } from './setTemporaryData';
+import { clearTemporaryData } from './clearTemporaryData';
 
 export const actions = {
   setNearPack,
@@ -18,4 +20,6 @@ export const actions = {
   setAccountBalance,
   addNotification,
   removeNotification,
+  setTemporaryData,
+  clearTemporaryData,
 };

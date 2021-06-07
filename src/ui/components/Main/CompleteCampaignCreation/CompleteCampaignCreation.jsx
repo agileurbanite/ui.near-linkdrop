@@ -1,9 +1,6 @@
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import { useStoreActions } from 'easy-peasy';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Typography, IconButton } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
-import { routes } from '../../../config/routes';
+import { Typography } from '@material-ui/core';
 import { useStyles } from './CompleteCampaignCreation.styles';
 
 export const CompleteCampaignCreation = () => {

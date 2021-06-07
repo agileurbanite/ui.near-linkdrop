@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 export const routes = {
   // Technical
   root: '/',
@@ -14,4 +16,5 @@ export const routes = {
 
 export const getRoute = {
   campaign: (campaignId) => `/campaigns/${campaignId}`,
+  callbackUrl: (params) => `${window.location.origin}/redirect-from-wallet?${qs.stringify(params)}`,
 };

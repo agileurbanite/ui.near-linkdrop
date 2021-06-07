@@ -9,10 +9,14 @@ export const initState = {
     isConnected: false,
     accountId: null,
     balance: null,
+    linkdrop: {
+      accountId: null,
+    }
   },
   entities: {
     near: null,
     keyStore: null,
     wallet: null,
   },
+  temporary: {},
 };

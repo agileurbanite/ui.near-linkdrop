@@ -1,9 +1,7 @@
 import BN from 'bn.js';
 import { thunk } from 'easy-peasy';
 import { parseNearAmount } from 'near-api-js/lib/utils/format';
-import { KeyPairEd25519 } from 'near-api-js/lib/utils';
 import { parseSeedPhrase } from 'near-seed-phrase';
-import { v4 as uuid } from 'uuid';
 import qs from 'query-string';
 import { Contract } from '../../../near/api/Сontract';
 import { routes } from '../../../ui/config/routes';

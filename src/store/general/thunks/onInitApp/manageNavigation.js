@@ -16,7 +16,6 @@ export const manageNavigation = async (state, history) => {
   const isInclude = (_routes) => _routes.includes(match.path);
   // We check if user can reach /redirects-from-wallet in the processRedirectFromWallet module
   // Anon user
-  // TODO add create-account and restore-access and completeCampaignCreation
   if (!isConnected && isInclude([root, campaigns, createCampaign, campaign])) {
     replace(connectWallet);
   }
@@ -24,4 +23,8 @@ export const manageNavigation = async (state, history) => {
   if (isConnected && isInclude([root, connectWallet])) {
     replace(campaigns);
   }
+
+  // TODO add create-account and restore-access and completeCampaignCreation
+  // createAccount -> if user connected and linkdrop account doesnt exist
+  // restoreAccess -> if user connected and linkdrop account exist
 };

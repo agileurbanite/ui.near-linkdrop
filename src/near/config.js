@@ -5,6 +5,9 @@ const testnet = {
   helperUrl: 'https://helper.testnet.near.org',
   explorerUrl: 'https://explorer.testnet.near.org',
   linkDropContractId: 'testnet',
+  accounts: {
+    linkdrop: 'linkdrop.testnet',
+  },
 };
 
 const mainnet = {
@@ -23,8 +26,8 @@ const configs = {
 
 const createHelpers = (config) => ({
   getCheckAccountInExplorerUrl: (accountId) => `${config.explorerUrl}/accounts/${accountId}`,
-  getCreateAccountAndClaimLink: (secretKey) =>
-    `${config.walletUrl}/create/${config.linkDropContractId}/${secretKey}`,
+  getCreateAccountAndClaimLink: (secretKey, campaignAccountId) =>
+    `${config.walletUrl}/create/${campaignAccountId}/${secretKey}`,
 });
 
 const getNearConfig = (network) => {
