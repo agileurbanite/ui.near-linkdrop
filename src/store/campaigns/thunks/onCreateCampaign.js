@@ -8,8 +8,8 @@ import { routes } from '../../../ui/config/routes';
 
 const userAccountId = 'dev-1622447237354-43095885940055';
 const mnemonic = 'leaf shop source fish rally length trial measure wise sponsor draft shadow';
-const { publicKey: pk, secretKey: sk } = parseSeedPhrase(mnemonic);
-console.log(pk, sk);
+const { publicKey: pk } = parseSeedPhrase(mnemonic);
+// console.log(pk, sk);
 
 // TODO Rename to onStartCampaignCreation
 export const onCreateCampaign = thunk(async (_, payload, { getStoreState, getStoreActions }) => {

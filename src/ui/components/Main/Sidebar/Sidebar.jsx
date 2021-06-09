@@ -8,14 +8,10 @@ import { formatNearBalance } from '../../../utils/format';
 import { useStyles } from './Sidebar.styles';
 
 export const Sidebar = () => {
-  const balance = useStoreState((store) => store.general.user.balance);
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <Typography className={classes.balance} color="textPrimary">
-        {formatNearBalance(balance)}
-      </Typography>
       <Link to={routes.createCampaign}>
         <Button variant="contained" color="primary" className={classes.createCampaign}>
           <Add className={classes.addIcon} />

@@ -5,14 +5,6 @@ export const initState = {
     description: '',
   },
   notifications: {},
-  user: {
-    isConnected: false,
-    accountId: null,
-    balance: null,
-    linkdrop: {
-      accountId: null,
-    }
-  },
   entities: {
     near: null,
     keyStore: null,

@@ -6,6 +6,7 @@ import { Contract } from '../../../near/api/Сontract';
 import { getRoute } from '../../../ui/config/routes';
 import { getAccountName } from '../../utils/getAccountName';
 import { config } from '../../../near/config';
+import { redirectActions } from '../../../config/redirectActions';
 
 export const onCreateAccount = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { mnemonicPhrase } = payload;
@@ -21,24 +22,26 @@ export const onCreateAccount = thunk(async (_, payload, { getStoreState, getStor
     changeMethods: ['create_user_account'],
   });
 
+  const redirectAction = redirectActions.createAccount;
   const name = getAccountName(accountId);
   const accessKey = parseSeedPhrase(mnemonicPhrase);
 
   setTemporaryData({
-    createAccount: {
+    redirectAction,
+    data: {
       name,
       mnemonicPhrase,
     },
   });
 
-
-  await linkdrop.create_user_account({
+  // call this func will redirect the user to the wallet
+  linkdrop.create_user_account({
     payload: {
       name,
       public_key: accessKey.publicKey,
     },
     amount: parseNearAmount('5'),
     gas: new BN('100000000000000'),
-    callbackUrl: getRoute.callbackUrl({ redirectAfter: 'createAccount', name }),
+    callbackUrl: getRoute.callbackUrl({ redirectAction, name }),
   });
 });

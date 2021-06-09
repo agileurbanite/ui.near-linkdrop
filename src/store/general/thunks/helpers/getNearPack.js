@@ -20,9 +20,5 @@ export const getNearPack = async () => {
     near,
     wallet,
     keyStore,
-    user: {
-      isConnected: wallet.isSignedIn(),
-      accountId: wallet.getAccountId(),
-    },
   };
 };

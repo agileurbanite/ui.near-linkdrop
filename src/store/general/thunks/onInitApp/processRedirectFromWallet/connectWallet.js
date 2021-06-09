@@ -1,26 +1,15 @@
-/* eslint-disable */
-import { getAccountName } from '../../../../utils/getAccountName';
+import { getLinkdropUserAccountId } from '../../helpers/getLinkdropUserAccountId';
+import { isAccountExist } from '../../helpers/isAccountExist';
 import { routes } from '../../../../../ui/config/routes';
-import { config } from '../../../../../near/config';
 
-const onSuccess = async (state, history, query) => {
-  const { replace } = history;
-  const accountName = getAccountName(query.account_id);
+const onSuccess = async (state, actions, history, query) => {
+  const walletAccountId = query.account_id;
+  const linkdropUserAccountId = getLinkdropUserAccountId(walletAccountId);
+  const isLinkdropUser = await isAccountExist(state.general.entities.near, linkdropUserAccountId);
+  const destination = isLinkdropUser ? routes.restoreAccess : routes.createAccount;
 
-  try {
-    const account = await state.general.entities.near.connection.provider.query({
-      request_type: 'view_account',
-      finality: 'final',
-      account_id: `${accountName}.${config.accounts.linkdrop}`,
-    });
-    console.log(account);
-    // TODO Set info about account into state
-    replace(routes.restoreAccess);
-  } catch (e) {
-    console.log(query.account_id);
-    console.log(e);
-    replace(routes.createAccount);
-  }
+  actions.general.user.setWalletAccount({ walletAccountId, linkdropUserAccountId, isLinkdropUser });
+  history.replace(destination);
 };
 
 const onError = (actions, history) => {
@@ -28,10 +17,12 @@ const onError = (actions, history) => {
     isError: true,
     description: 'You have not connected your wallet',
   });
+  // TODO add check if user has already connected accounts (for the future feature - multi-accounts)
   history.replace(routes.connectWallet);
 };
 
-export const connectWallet = ({ state, actions, history, query }) => {
-  if (query.success) return onSuccess(state, history, query);
-  if (query.errorCode) return onError(actions, history);
+export const connectWallet = async ({ state, actions, history, query }) => {
+  actions.general.clearTemporaryData();
+  if (query.account_id) await onSuccess(state, actions, history, query);
+  if (query.errorCode) onError(actions, history);
 };

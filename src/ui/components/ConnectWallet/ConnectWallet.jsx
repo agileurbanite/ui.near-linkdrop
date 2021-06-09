@@ -5,7 +5,7 @@ import { Footer } from '../Footer/Footer';
 import { useStyles } from './ConnectWallet.styles';
 
 export const ConnectWallet = () => {
-  const onConnectToWallet = useStoreActions((actions) => actions.general.onConnectToWallet);
+  const onConnectWallet = useStoreActions((actions) => actions.general.onConnectWallet);
   const classes = useStyles();
   return (
     <>
@@ -22,7 +22,7 @@ export const ConnectWallet = () => {
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={onConnectToWallet}
+            onClick={onConnectWallet}
           >
             Connect Wallet
           </Button>
