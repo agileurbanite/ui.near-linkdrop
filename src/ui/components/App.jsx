@@ -3,6 +3,7 @@ import { Topbar } from './Topbar/Topbar';
 import { Caution } from './Caution/Caution';
 import { ConnectWallet } from './ConnectWallet/ConnectWallet';
 import { CreateAccount } from './CreateAccount/CreateAccount';
+import { RestoreAccess } from './RestoreAccess/RestoreAccess';
 import { Main } from './Main/Main';
 import { PageNotFound } from './PageNotFound/PageNotFound';
 import { Error } from './Error/Error';
@@ -15,6 +16,7 @@ export const App = () => (
     <Switch>
       <Route exact path={routes.connectWallet} component={ConnectWallet} />
       <Route exact path={routes.createAccount} component={CreateAccount} />
+      <Route exact path={routes.restoreAccess} component={RestoreAccess} />
       <Route
         exact
         path={[

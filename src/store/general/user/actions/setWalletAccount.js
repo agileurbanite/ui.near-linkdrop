@@ -6,6 +6,7 @@ export const setWalletAccount = action((slice, payload) => {
   slice.currentAccount = walletAccountId;
   slice.accounts[walletAccountId] = {
     wallet: {
+      isExist: true,
       accountId: walletAccountId,
     },
     linkdrop: {

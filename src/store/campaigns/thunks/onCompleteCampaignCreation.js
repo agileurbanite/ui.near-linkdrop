@@ -75,6 +75,6 @@ export const onCompleteCampaignCreation = thunk(async (_, __, { getStoreState })
       gas: new BN('300000000000000'),
     });
     i++;
-    console.log('Done chank №', i);
+    console.log('Done chunk №', i);
   }
 });

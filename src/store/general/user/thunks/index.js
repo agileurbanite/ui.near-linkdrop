@@ -1,5 +1,5 @@
-import { onCancelLink } from './onCancelLink';
+import { onRestoreAccess } from './onRestoreAccess';
 
 export const thunks = {
-  onCancelLink,
+  onRestoreAccess,
 };
