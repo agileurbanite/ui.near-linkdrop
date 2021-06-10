@@ -11,8 +11,8 @@ export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStor
   const state = getStoreState();
   const near = state.general.entities.near;
   const keyStore = state.general.entities.keyStore;
-  const currentAccount = state.general.user.currentAccount;
-  const linkdropUserAccountId = state.general.user.accounts[currentAccount].linkdrop.accountId;
+  const walletUserId = state.general.user.currentAccount;
+  const linkdropUserAccountId = state.general.user.accounts[walletUserId].linkdrop.accountId;
 
   const actions = getStoreActions();
   const setLinkdropMnemonic = actions.general.user.setLinkdropMnemonic;
@@ -29,7 +29,7 @@ export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStor
       linkdropUserAccountId,
       KeyPair.fromString(accessKey.secretKey),
     );
-    setLinkdropMnemonic(mnemonic);
+    setLinkdropMnemonic({ walletUserId, mnemonic });
     history.replace(routes.campaigns);
   } else {
     setError('mnemonic', {

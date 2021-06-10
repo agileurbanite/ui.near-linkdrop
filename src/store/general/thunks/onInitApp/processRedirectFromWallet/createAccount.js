@@ -1,27 +1,34 @@
-/* eslint-disable */
-import { getAccountName } from '../../../../utils/getAccountName';
+import { KeyPair } from 'near-api-js';
+import { parseSeedPhrase } from 'near-seed-phrase';
 import { routes } from '../../../../../ui/config/routes';
 import { config } from '../../../../../near/config';
 
-const onSuccess = async (state, history, query) => {
-  const { replace } = history;
+const onSuccess = async (state, actions, history, temporary) => {
+  const { walletUserId, mnemonic } = temporary;
+  const keyStore = state.general.entities.keyStore;
+  const linkdropUserAccountId = state.general.user.accounts[walletUserId].linkdrop.accountId;
+  const accessKey = parseSeedPhrase(mnemonic);
+
+  await keyStore.setKey(
+    config.networkId,
+    linkdropUserAccountId,
+    KeyPair.fromString(accessKey.secretKey),
+  );
+  actions.general.user.setLinkdropMnemonic({ walletUserId, mnemonic });
+  history.replace(routes.campaigns);
 };
 
 const onError = (actions, history) => {
-  const clearTemporaryData = actions.general.clearTemporaryData;
-  const setError = actions.general.setError;
-
-  clearTemporaryData();
-  setError({
+  actions.general.setError({
     isError: true,
     description: 'Linkdrop account was not created',
   });
   history.replace(routes.createAccount);
 };
 
-export const createAccount = ({ state, actions, history, query }) => {
-  console.log('Create Account', query);
-  history.replace(routes.campaigns);
-  // if (query.errorCode) return onError(actions, history);
-  // if (query.transactionHashes) return onSuccess(state, history, query);
+export const createAccount = async ({ state, actions, history, query }) => {
+  const temporary = state.general.temporary;
+  actions.general.clearTemporaryData();
+  if (query.transactionHashes) await onSuccess(state, actions, history, temporary);
+  if (query.errorCode) onError(actions, history);
 };

@@ -5,11 +5,11 @@ import { Footer } from '../Footer/Footer';
 import { useStyles } from './CreateAccount.styles';
 
 export const CreateAccount = () => {
-  const onCreateAccount = useStoreActions((actions) => actions.general.onCreateAccount);
+  const onCreateUser = useStoreActions((actions) => actions.general.user.onCreateUser);
   const classes = useStyles();
 
-  const mnemonicPhrase = generateMnemonic();
-  const createAccount = () => onCreateAccount({ mnemonicPhrase });
+  const mnemonic = generateMnemonic();
+  const createUser = () => onCreateUser({ mnemonic });
 
   return (
     <>
@@ -19,13 +19,13 @@ export const CreateAccount = () => {
             Create Linkdrop Account
           </Typography>
           <Typography variant="subtitle1" color="textSecondary" className={classes.title}>
-            Mnemonic phrase - {mnemonicPhrase}
+            Mnemonic phrase - {mnemonic}
           </Typography>
           <Button
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={createAccount}
+            onClick={createUser}
           >
             Create Account
           </Button>
