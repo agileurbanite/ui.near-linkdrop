@@ -2,6 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Footer } from '../Footer/Footer';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Campaigns } from './Campaigns/Campaigns';
+import { Settings } from './Settings/Settings';
 import { CreateCampaign } from './CreateCampaign/CreateCampaign';
 import { CompleteCampaignCreation } from './CompleteCampaignCreation/CompleteCampaignCreation';
 import { Campaign } from './Campaign/Campaign';
@@ -17,6 +18,7 @@ export const Main = () => {
         <div className={classes.pagesWrapper}>
           <Switch>
             <Route exact path={routes.campaigns} component={Campaigns} />
+            <Route exact path={routes.settings} component={Settings} />
             <Route exact path={routes.createCampaign} component={CreateCampaign} />
             <Route
               exact

@@ -9,6 +9,7 @@ export const routes = {
   createAccount: '/create-account',
   restoreAccess: '/restore-access',
   campaigns: '/campaigns',
+  settings: '/settings',
   createCampaign: '/create-campaign',
   completeCampaignCreation: '/complete-campaign-creation', // TODO Delete this route
   campaign: '/campaigns/:campaignId',

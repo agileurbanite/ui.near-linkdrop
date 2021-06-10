@@ -1,6 +1,6 @@
 import { thunk } from 'easy-peasy';
 import { parseSeedPhrase } from 'near-seed-phrase';
-import { Account, KeyPair } from 'near-api-js';
+import { KeyPair } from 'near-api-js';
 import { routes } from '../../../../ui/config/routes';
 import { config } from '../../../../near/config';
 
@@ -8,17 +8,19 @@ export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStor
   const { setError, history } = payload;
   const { mnemonic } = payload.values;
 
-  const store = getStoreState();
-  const near = store.general.entities.near;
-  const keyStore = store.general.entities.keyStore;
-  const currentAccount = store.general.user.currentAccount;
-  const linkdropUserAccountId = store.general.user.accounts[currentAccount].linkdrop.accountId;
+  const state = getStoreState();
+  const near = state.general.entities.near;
+  const keyStore = state.general.entities.keyStore;
+  const currentAccount = state.general.user.currentAccount;
+  const linkdropUserAccountId = state.general.user.accounts[currentAccount].linkdrop.accountId;
 
   const actions = getStoreActions();
   const setLinkdropMnemonic = actions.general.user.setLinkdropMnemonic;
 
   const accessKey = parseSeedPhrase(mnemonic);
-  const keys = await new Account(near.connection, linkdropUserAccountId).getAccessKeys();
+  const account = await near.account(linkdropUserAccountId);
+  const keys = await account.getAccessKeys();
+
   const isMatch = keys.some((key) => key.public_key === accessKey.publicKey);
 
   if (isMatch) {

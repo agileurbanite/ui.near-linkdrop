@@ -15,6 +15,7 @@ const styles = (theme) => ({
   },
   createCampaign: {
     padding: '12px 26px',
+    marginTop: 32,
   },
   addIcon: {
     marginRight: 12,

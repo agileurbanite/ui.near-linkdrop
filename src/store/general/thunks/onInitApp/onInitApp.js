@@ -26,7 +26,7 @@ export const onInitApp = thunk(async (_, payload, { getStoreState, getStoreActio
   } else {
     // Check if a user has access to the page, if not - handle it, for example
     // redirect non-connected user from /campaigns to /connect-wallet.
-    await manageNavigation(state, history);
+    // await manageNavigation(state, history);
   }
 
   // Call onMount thunk for the page - we want to load data before the page will be mounted -

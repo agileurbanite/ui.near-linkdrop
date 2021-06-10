@@ -21,6 +21,7 @@ export const App = () => (
         exact
         path={[
           routes.campaigns,
+          routes.settings,
           routes.campaign,
           routes.createCampaign,
           routes.completeCampaignCreation,
