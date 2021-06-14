@@ -24,6 +24,12 @@ const styles = (theme) => ({
     color: theme.palette.text.primary,
     margin: '0 8px',
   },
+  content: {
+    gridArea: 'b',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export const useStyles = makeStyles(styles, { name: 'CompleteCampaignCreation' });
