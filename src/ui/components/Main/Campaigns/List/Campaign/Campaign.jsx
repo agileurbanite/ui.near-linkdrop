@@ -6,8 +6,10 @@ import { getTotalAmount, getTime } from '../../../../../utils/formatCampaignData
 import { getRoute } from '../../../../../config/routes';
 import { useStyles } from './Campaign.styles';
 
+const getCampaignName = (campaignId) => campaignId.split('.')[0];
+
 export const Campaign = ({
-  campaign: { campaignId, name, icon, totalLinks, amountPerLink, createdAt },
+  campaign: { campaignId, icon, keysStats, tokensPerKey, createdAt, status },
 }) => {
   const { push } = useHistory();
   const classes = useStyles();
@@ -24,13 +26,15 @@ export const Campaign = ({
     >
       <span className={classes.icon}>{icon}</span>
       <Typography className={classes.name} noWrap>
-        {name}
+        {getCampaignName(campaignId)}
       </Typography>
-      <span className={classes.totalNear}>{getTotalAmount(amountPerLink, totalLinks)}</span>
+      <span className={classes.totalNear}>{getTotalAmount(tokensPerKey, keysStats.total)}</span>
       <More campaignId={campaignId} />
 
       <span className={cn(classes.label, classes.links)}>Links</span>
-      <span className={cn(classes.value, classes.linksValue)}>{totalLinks}</span>
+      <span className={cn(classes.value, classes.linksValue)}>
+        {keysStats.active}/{keysStats.total}
+      </span>
 
       <Divider className={cn(classes.divider, classes.divider1)} />
 
@@ -40,7 +44,7 @@ export const Campaign = ({
       <Divider className={cn(classes.divider, classes.divider2)} />
 
       <span className={cn(classes.label, classes.status)}>Status</span>
-      <span className={cn(classes.value, classes.statusValue)}>Active</span>
+      <span className={cn(classes.value, classes.statusValue)}>{status}</span>
     </div>
   );
 };

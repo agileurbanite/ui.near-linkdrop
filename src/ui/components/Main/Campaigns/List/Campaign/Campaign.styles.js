@@ -97,6 +97,7 @@ const styles = (theme) => ({
   statusValue: {
     gridArea: 'k',
     color: theme.palette.primary.main,
+    textTransform: 'capitalize',
   },
 });
 

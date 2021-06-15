@@ -6,6 +6,7 @@ import { CampaignProfileCard } from '../../general/CampaignProfileCard/CampaignP
 import { getRoute } from '../../../../config/routes';
 import { useStyles } from './SuccessCreationPopup.styles';
 
+// TODO Remove it
 export const SuccessCreationPopup = ({ campaignId }) => {
   const campaign = useStoreState((store) => store.campaigns.map[campaignId]);
   const removeNotification = useStoreActions((actions) => actions.general.removeNotification);

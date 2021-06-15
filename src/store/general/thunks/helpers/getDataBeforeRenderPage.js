@@ -6,8 +6,9 @@ const { campaign, createCampaign, campaigns } = routes;
 export const getDataBeforeRenderPage = async ({ actions, history, withLoading }) => {
   const enableLoading = actions.general.enableLoading;
   const disableLoading = actions.general.disableLoading;
-  const onLoadAccountBalance = actions.general.onLoadAccountBalance;
+  // const onLoadAccountBalance = actions.general.onLoadAccountBalance;
   const onMountCampaign = actions.campaigns.onMountCampaign;
+  const onMountCampaigns = actions.campaigns.onMountCampaigns;
 
   const match = matchPath(history.location.pathname, {
     path: [campaigns, campaign, createCampaign],
@@ -22,8 +23,9 @@ export const getDataBeforeRenderPage = async ({ actions, history, withLoading })
 
   // Probably we can load the account balance only when app started and if user redirect to the
   // create campaign page
-  await onLoadAccountBalance();
+  // await onLoadAccountBalance();
 
+  ifRouteIs(campaigns) && (await onMountCampaigns());
   ifRouteIs(campaign) && (await onMountCampaign(params.campaignId));
 
   withLoading && disableLoading();
