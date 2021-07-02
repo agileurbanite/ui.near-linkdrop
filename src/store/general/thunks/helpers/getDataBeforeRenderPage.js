@@ -3,10 +3,14 @@ import { routes } from '../../../../ui/config/routes';
 
 const { campaign, createCampaign, campaigns } = routes;
 
+/*
+  withLoading - we want to disable progress-loading bar when we init app - we already show to user
+  full screen spinner
+ */
+
 export const getDataBeforeRenderPage = async ({ actions, history, withLoading }) => {
   const enableLoading = actions.general.enableLoading;
   const disableLoading = actions.general.disableLoading;
-  // const onLoadAccountBalance = actions.general.onLoadAccountBalance;
   const onMountCampaign = actions.campaigns.onMountCampaign;
   const onMountCampaigns = actions.campaigns.onMountCampaigns;
 
@@ -20,10 +24,6 @@ export const getDataBeforeRenderPage = async ({ actions, history, withLoading })
   withLoading && enableLoading();
   const { path, params } = match;
   const ifRouteIs = (route) => route === path;
-
-  // Probably we can load the account balance only when app started and if user redirect to the
-  // create campaign page
-  // await onLoadAccountBalance();
 
   ifRouteIs(campaigns) && (await onMountCampaigns());
   ifRouteIs(campaign) && (await onMountCampaign(params.campaignId));

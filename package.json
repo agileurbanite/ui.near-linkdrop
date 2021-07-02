@@ -15,6 +15,7 @@
     "ed25519-hd-key": "^1.2.0",
     "filefy": "^0.1.10",
     "history": "4.10.1",
+    "ky": "^0.28.5",
     "near-api-js": "^0.39.0",
     "near-seed-phrase": "^0.2.0",
     "query-string": "^7.0.0",

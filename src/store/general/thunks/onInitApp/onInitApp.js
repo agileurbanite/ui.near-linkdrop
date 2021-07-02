@@ -3,7 +3,7 @@ import { getDataBeforeRenderPage } from '../helpers/getDataBeforeRenderPage';
 import { getNearPack } from '../helpers/getNearPack';
 import { checkUserExistence } from './checkUserExistence';
 import { isRedirect } from './isRedirect';
-import { manageNavigation } from './manageNavigation';
+// import { manageNavigation } from './manageNavigation';
 import { processRedirectFromWallet } from './processRedirectFromWallet/processRedirectFromWallet';
 
 export const onInitApp = thunk(async (_, payload, { getStoreState, getStoreActions }) => {

@@ -1,29 +1,46 @@
 import { thunk } from 'easy-peasy';
-import { Contract } from '../../../near/api/Сontract';
+import ky from 'ky';
+import { Account } from 'near-api-js/lib/account';
+import { config } from '../../../near/config';
+
+const getAccountIdsByPublicKey = (key) =>
+  ky.get(`${config.helperUrl}/publicKey/${key}/accounts`).json();
+
+const getCampaignsIds = (accountIds, linkdropUserId) =>
+  accountIds.filter(
+    (accountId) => accountId !== linkdropUserId && accountId.includes(linkdropUserId),
+  );
 
 export const onMountCampaigns = thunk(async (_, __, { getStoreState, getStoreActions }) => {
   const state = getStoreState();
-  const wallet = state.general.entities.wallet;
+  const near = state.general.entities.near;
   const walletUserId = state.general.user.currentAccount;
   const linkdropUserId = state.general.user.accounts[walletUserId].linkdrop.accountId;
+  const publicKey = state.general.user.accounts[walletUserId].linkdrop.publicKey;
 
   const actions = getStoreActions();
   const mountCampaigns = actions.campaigns.mountCampaigns;
+  const setError = actions.general.setError;
 
-  const userContract = new Contract(wallet.account(), linkdropUserId, {
-    viewMethods: ['get_campaigns'],
-  });
+  try {
+    const accountIds = await getAccountIdsByPublicKey(publicKey);
+    const campaignIds = getCampaignsIds(accountIds, linkdropUserId);
 
-  const campaignsIds = await userContract.get_campaigns();
+    const campaigns = await Promise.all(
+      campaignIds.map((campaignId) =>
+        new Account(near.connection, campaignId).viewFunction(
+          campaignId,
+          'get_campaign_metadata',
+          {},
+        ),
+      ),
+    );
 
-  const campaigns = await Promise.all(
-    campaignsIds.map((campaignId) => {
-      const contract = new Contract(wallet.account(), campaignId, {
-        viewMethods: ['get_campaign_metadata'],
-      });
-      return contract.get_campaign_metadata();
-    }),
-  );
-
-  mountCampaigns({ campaignsIds, campaigns });
+    mountCampaigns({ campaignIds, campaigns });
+  } catch (e) {
+    setError({
+      isError: true,
+      description: e,
+    });
+  }
 });

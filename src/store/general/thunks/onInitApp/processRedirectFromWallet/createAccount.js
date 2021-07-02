@@ -7,14 +7,15 @@ const onSuccess = async (state, actions, history, temporary) => {
   const { walletUserId, mnemonic } = temporary;
   const keyStore = state.general.entities.keyStore;
   const linkdropUserAccountId = state.general.user.accounts[walletUserId].linkdrop.accountId;
-  const accessKey = parseSeedPhrase(mnemonic);
+  const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
 
   await keyStore.setKey(
     config.networkId,
     linkdropUserAccountId,
-    KeyPair.fromString(accessKey.secretKey),
+    KeyPair.fromString(secretKey),
   );
-  actions.general.user.setLinkdropMnemonic({ walletUserId, mnemonic });
+
+  actions.general.user.setLinkdropMnemonic({ walletUserId, mnemonic, secretKey, publicKey });
   history.replace(routes.campaigns);
 };
 

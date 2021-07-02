@@ -1,10 +1,8 @@
-import { useStoreState } from 'easy-peasy';
 import { Link } from 'react-router-dom';
-import { Button, Divider, Typography } from '@material-ui/core';
+import { Button, Divider } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import { Navigation } from './Navigation/Navigation';
 import { routes } from '../../../config/routes';
-import { formatNearBalance } from '../../../utils/format';
 import { useStyles } from './Sidebar.styles';
 
 export const Sidebar = () => {

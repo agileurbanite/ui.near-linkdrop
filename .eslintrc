@@ -17,7 +17,8 @@
     "react/jsx-props-no-spreading": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": 0,
-    "jsx-a11y/anchor-is-valid": 0
+    "jsx-a11y/anchor-is-valid": 0,
+    "spaced-comment": 0
   },
   "overrides": [{ "files": ["*.jsx", "*.js"] }]
 }

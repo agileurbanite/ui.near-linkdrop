@@ -17,19 +17,15 @@ export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStor
   const actions = getStoreActions();
   const setLinkdropMnemonic = actions.general.user.setLinkdropMnemonic;
 
-  const accessKey = parseSeedPhrase(mnemonic);
+  const { publicKey, secretKey } = parseSeedPhrase(mnemonic);
   const account = await near.account(linkdropUserAccountId);
   const keys = await account.getAccessKeys();
 
-  const isMatch = keys.some((key) => key.public_key === accessKey.publicKey);
+  const isMatch = keys.some((key) => key.public_key === publicKey);
 
   if (isMatch) {
-    await keyStore.setKey(
-      config.networkId,
-      linkdropUserAccountId,
-      KeyPair.fromString(accessKey.secretKey),
-    );
-    setLinkdropMnemonic({ walletUserId, mnemonic });
+    await keyStore.setKey(config.networkId, linkdropUserAccountId, KeyPair.fromString(secretKey));
+    setLinkdropMnemonic({ walletUserId, mnemonic, publicKey, secretKey });
     history.replace(routes.campaigns);
   } else {
     setError('mnemonic', {
