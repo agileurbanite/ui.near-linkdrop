@@ -5,7 +5,7 @@ import { Link } from './Link/Link';
 import { useLinkSelector } from './useLinkSelector';
 import { useStyles } from './Links.styles';
 
-export const Links = ({ campaign: { keys, name, tokensPerKey } }) => {
+export const Links = ({ campaign: { campaignId, keys, name, tokensPerKey } }) => {
   const onExportLinksCSV = useStoreActions((actions) => actions.campaigns.onExportLinksCSV);
   const { numberOfSelected, isSelectedAll, allLinks, onSelectAll, onSelect } = useLinkSelector(
     keys,
@@ -45,6 +45,7 @@ export const Links = ({ campaign: { keys, name, tokensPerKey } }) => {
           onSelect={onSelect}
           isSelected={allLinks[key.pk]}
           amountPerLink={tokensPerKey}
+          campaignId={campaignId}
         />
       ))}
     </div>

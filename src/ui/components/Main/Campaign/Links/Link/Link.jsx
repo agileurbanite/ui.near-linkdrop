@@ -6,11 +6,12 @@ import { useStyles } from './Link.styles';
 
 export const Link = ({
   amountPerLink,
-  link: { pk, sk, order, isActive },
+  campaignId,
+  link: { pk, sk, order, status },
   onSelect,
   isSelected,
 }) => {
-  const classes = useStyles(isActive);
+  const classes = useStyles();
 
   return (
     <div className={classes.container}>
@@ -22,12 +23,12 @@ export const Link = ({
       />
       <span className={classes.order}>#{order}</span>
       <span className={classes.publicKey}>{pk}</span>
-      {isActive && (
-        <CancelLink secretKey={sk} amountPerLink={amountPerLink} />
-      )}
+      {/*{isActive && (*/}
+      {/*  <CancelLink secretKey={sk} amountPerLink={amountPerLink} />*/}
+      {/*)}*/}
       <CopyToClipboard
         classNames={{ iconButton: classes.copyButton }}
-        value={config.getCreateAccountAndClaimLink(sk)}
+        value={config.getCreateAccountAndClaimLink(sk, campaignId)}
       />
     </div>
   );
