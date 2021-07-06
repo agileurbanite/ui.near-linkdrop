@@ -2,11 +2,9 @@ import { useHistory } from 'react-router-dom';
 import { Divider, Typography } from '@material-ui/core';
 import cn from 'classnames';
 import { More } from './More/More';
-import { getTotalAmount, getTime } from '../../../../../utils/formatCampaignData';
+import { getTotalAmount, getTime, getCampaignName } from '../../../../../utils/formatCampaignData';
 import { getRoute } from '../../../../../config/routes';
 import { useStyles } from './Campaign.styles';
-
-const getCampaignName = (campaignId) => campaignId.split('.')[0];
 
 export const Campaign = ({
   campaign: { campaignId, icon, keysStats, tokensPerKey, createdAt, status },

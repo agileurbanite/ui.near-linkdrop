@@ -6,7 +6,7 @@ import { useStyles } from './Link.styles';
 
 export const Link = ({
   amountPerLink,
-  link: { publicKey, secretKey, order, isActive },
+  link: { pk, sk, order, isActive },
   onSelect,
   isSelected,
 }) => {
@@ -15,19 +15,19 @@ export const Link = ({
   return (
     <div className={classes.container}>
       <Checkbox
-        onChange={(e) => onSelect(publicKey, e.target.checked)}
+        onChange={(e) => onSelect(pk, e.target.checked)}
         className={classes.checkbox}
         color="primary"
         checked={isSelected}
       />
       <span className={classes.order}>#{order}</span>
-      <span className={classes.publicKey}>{publicKey}</span>
+      <span className={classes.publicKey}>{pk}</span>
       {isActive && (
-        <CancelLink secretKey={secretKey} amountPerLink={amountPerLink} />
+        <CancelLink secretKey={sk} amountPerLink={amountPerLink} />
       )}
       <CopyToClipboard
         classNames={{ iconButton: classes.copyButton }}
-        value={config.getCreateAccountAndClaimLink(secretKey)}
+        value={config.getCreateAccountAndClaimLink(sk)}
       />
     </div>
   );

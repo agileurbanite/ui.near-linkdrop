@@ -5,10 +5,10 @@ import { Link } from './Link/Link';
 import { useLinkSelector } from './useLinkSelector';
 import { useStyles } from './Links.styles';
 
-export const Links = ({ campaign: { links, name, amountPerLink } }) => {
+export const Links = ({ campaign: { keys, name, tokensPerKey } }) => {
   const onExportLinksCSV = useStoreActions((actions) => actions.campaigns.onExportLinksCSV);
   const { numberOfSelected, isSelectedAll, allLinks, onSelectAll, onSelect } = useLinkSelector(
-    links,
+    keys,
   );
   const classes = useStyles();
 
@@ -25,10 +25,10 @@ export const Links = ({ campaign: { links, name, amountPerLink } }) => {
         {numberOfSelected > 0 && (
           <>
             <span className={classes.selected}>
-              Selected {numberOfSelected}/{links.length}
+              Selected {numberOfSelected}/{keys.length}
             </span>
             <Button
-              onClick={() => onExportLinksCSV({ allLinks, links, name })}
+              onClick={() => onExportLinksCSV({ allLinks, links: keys, name })}
               className={classes.downloadCSV}
               color="primary"
             >
@@ -38,13 +38,13 @@ export const Links = ({ campaign: { links, name, amountPerLink } }) => {
           </>
         )}
       </div>
-      {links.map((link) => (
+      {keys.map((key) => (
         <Link
-          key={link.publicKey}
-          link={link}
+          key={key.pk}
+          link={key}
           onSelect={onSelect}
-          isSelected={allLinks[link.publicKey]}
-          amountPerLink={amountPerLink}
+          isSelected={allLinks[key.pk]}
+          amountPerLink={tokensPerKey}
         />
       ))}
     </div>
