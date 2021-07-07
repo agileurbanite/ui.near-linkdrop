@@ -9,7 +9,7 @@ const getCampaignAmount = (totalKeys, amountPerLink) => {
   // key storage
   // tokens in key
   // gas fee for calling claim or create account
-  const res = 2.5 + totalKeys * (Number(amountPerLink) + 0.1);
+  const res = 2.5 + totalKeys * (Number(amountPerLink) + 0.01); // TODO change coefficients
   return parseNearAmount(res.toString());
 };
 

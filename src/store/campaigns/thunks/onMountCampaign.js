@@ -19,14 +19,13 @@ export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getS
 
   const metadata = await campaign.get_campaign_metadata();
 
-  // TODO move to webworker
   const { start, end } = getKeysRange({
     page: 1,
     total: metadata.keys_stats.total,
-    keysPerPage: 50,
+    keysPerPage: 100,
   });
-  const keys = getKeysFromMnemonic({ mnemonic, start, end });
 
+  const keys = await getKeysFromMnemonic({ mnemonic, start, end });
   const keyStats = await campaign.get_keys({ keys: keys.map(({ pk }) => pk) });
 
   mountCampaign({ campaignId, metadata, keys, keyStats });
