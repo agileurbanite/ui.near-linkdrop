@@ -4,7 +4,7 @@ import { parseNearAmount } from 'near-api-js/lib/utils/format';
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { Contract } from '../../../../near/api/Сontract';
 import { getRoute } from '../../../../ui/config/routes';
-import { getAccountName } from '../../../utils/getAccountName';
+import { getAccountName } from '../../../helpers/getAccountName';
 import { config } from '../../../../near/config';
 import { redirectActions } from '../../../../config/redirectActions';
 

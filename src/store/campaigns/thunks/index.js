@@ -5,6 +5,7 @@ import { onCancelLink } from './onCancelLink';
 import { onExportCampaignCSV } from './onExportCampaignCSV';
 import { onExportLinksCSV } from './onExportLinksCSV';
 import { onMountCampaigns } from './onMountCampaigns';
+import { onLoadKeys } from './onLoadKeys';
 
 export const thunks = {
   onCreateCampaign,
@@ -14,4 +15,5 @@ export const thunks = {
   onExportCampaignCSV,
   onExportLinksCSV,
   onMountCampaigns,
+  onLoadKeys,
 };

@@ -2,14 +2,14 @@ import { thunk } from 'easy-peasy';
 import { parseNearAmount } from 'near-api-js/lib/utils/format';
 import { redirectActions } from '../../../config/redirectActions';
 import { getRoute } from '../../../ui/config/routes';
-import { sendTokens } from '../../../near/api/sendTokens';
+import { sendTokens } from '../../../near/helpers/sendTokens';
 
 const getCampaignAmount = (totalKeys, amountPerLink) => {
   // contract storage
   // key storage
   // tokens in key
   // gas fee for calling claim or create account
-  const res = 2.5 + totalKeys * (Number(amountPerLink) + 0.1);
+  const res = 2.5 + totalKeys * (Number(amountPerLink) + 0.01); // TODO change coefficients
   return parseNearAmount(res.toString());
 };
 

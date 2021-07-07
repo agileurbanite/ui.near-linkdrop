@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 export const useLinkSelector = (links) => {
   const selectAllLinks = (isSelected) =>
-    links.reduce((acc, { publicKey }) => {
-      acc[publicKey] = isSelected;
+    links.reduce((acc, { pk }) => {
+      acc[pk] = isSelected;
       return acc;
     }, {});
 
@@ -11,8 +11,8 @@ export const useLinkSelector = (links) => {
 
   const onSelectAll = (isSelected) => setSelectedLink(selectAllLinks(isSelected));
 
-  const onSelect = (publicKey, isSelected) =>
-    setSelectedLink((prevState) => ({ ...prevState, [publicKey]: isSelected }));
+  const onSelect = (pk, isSelected) =>
+    setSelectedLink((prevState) => ({ ...prevState, [pk]: isSelected }));
 
   const numberOfSelected = Object.values(allLinks).filter((value) => value).length;
 
