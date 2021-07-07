@@ -2,7 +2,7 @@ import { thunk } from 'easy-peasy';
 import { parseNearAmount } from 'near-api-js/lib/utils/format';
 import { redirectActions } from '../../../config/redirectActions';
 import { getRoute } from '../../../ui/config/routes';
-import { sendTokens } from '../../../near/api/sendTokens';
+import { sendTokens } from '../../../near/helpers/sendTokens';
 
 const getCampaignAmount = (totalKeys, amountPerLink) => {
   // contract storage

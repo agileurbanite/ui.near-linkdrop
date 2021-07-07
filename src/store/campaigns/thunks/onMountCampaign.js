@@ -2,7 +2,8 @@ import { thunk } from 'easy-peasy';
 import { Account } from 'near-api-js';
 import { Contract } from '../../../near/api/Сontract';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
-import { getKeysRange } from '../helpers/getKeysRange';
+import { getPagination } from '../helpers/getPagination';
+import { pagination as paginationConfig } from '../../../ui/config/campaign';
 
 export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getStoreActions }) => {
   const state = getStoreState();
@@ -19,14 +20,25 @@ export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getS
 
   const metadata = await campaign.get_campaign_metadata();
 
-  const { start, end } = getKeysRange({
-    page: 1,
+  const pagination = getPagination({
+    page: paginationConfig.startPage,
     total: metadata.keys_stats.total,
-    keysPerPage: 100,
+    elementsPerPage: paginationConfig.linksPerPage,
   });
 
-  const keys = await getKeysFromMnemonic({ mnemonic, start, end });
+  const keys = await getKeysFromMnemonic({
+    mnemonic,
+    start: pagination.range.start,
+    end: pagination.range.end,
+  });
+
   const keyStats = await campaign.get_keys({ keys: keys.map(({ pk }) => pk) });
 
-  mountCampaign({ campaignId, metadata, keys, keyStats });
+  mountCampaign({
+    campaignId,
+    metadata,
+    keys,
+    keyStats,
+    pagination,
+  });
 });

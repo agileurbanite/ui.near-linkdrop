@@ -1,5 +1,6 @@
 import { Link } from './Link/Link';
 import { Topbar } from './Topbar/Topbar';
+import { Pagination } from './Pagination/Pagination';
 import { useLinkSelector } from './useLinkSelector';
 import { useStyles } from './Links.styles';
 
@@ -29,6 +30,7 @@ export const Links = ({ campaign: { campaignId, keys, name, tokensPerKey } }) =>
           campaignId={campaignId}
         />
       ))}
+      <Pagination />
     </div>
   );
 };
