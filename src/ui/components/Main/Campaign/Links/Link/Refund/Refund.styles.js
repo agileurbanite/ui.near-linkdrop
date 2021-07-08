@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 const styles = {
   button: {
-    gridArea: 'd',
+    gridArea: 'f',
     height: 24,
   },
   modal: {

@@ -14,6 +14,12 @@ export const theme = createMuiTheme({
     red: '#e40029',
   },
   overrides: {
+    MuiSvgIcon: {
+      root: {
+        height: 20,
+        width: 20,
+      }
+    },
     MuiTypography: {
       h3: {
         fontSize: 24,

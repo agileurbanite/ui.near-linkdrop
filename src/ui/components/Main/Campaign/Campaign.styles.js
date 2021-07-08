@@ -26,7 +26,9 @@ const styles = (theme) => ({
   },
   body: {
     gridArea: 'b',
-    width: 680,
+    width: '100%',
+    minWidth: 680,
+    maxWidth: 900,
     justifySelf: 'center',
     display: 'flex',
     flexDirection: 'column',
