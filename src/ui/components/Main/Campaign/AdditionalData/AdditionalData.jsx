@@ -5,7 +5,7 @@ import { useStyles } from './AdditionalData.styles';
 
 export const AdditionalData = ({ campaign }) => {
   const classes = useStyles();
-  const { tokensPerKey, createdAt, status } = campaign;
+  const { tokensPerKey, createdAt, status, balance } = campaign;
 
   return (
     <div className={classes.container}>
@@ -16,7 +16,7 @@ export const AdditionalData = ({ campaign }) => {
       <Divider className={classes.divider} />
       <div className={classes.section}>
         <span className={classes.label}>Account balance</span>
-        <span className={classes.value}>100 NEAR</span>
+        <span className={classes.value}>{formatNearBalance(balance.total)}</span>
       </div>
       <Divider className={classes.divider} />
       <div className={classes.section}>

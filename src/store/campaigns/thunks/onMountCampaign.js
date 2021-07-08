@@ -1,8 +1,8 @@
 import { thunk } from 'easy-peasy';
 import { Account } from 'near-api-js';
-import { Contract } from '../../../near/api/Сontract';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagination } from '../helpers/getPagination';
+import { getCampaignContract } from '../../../near/helpers/getCampaignContract';
 import { pagination as paginationConfig } from '../../../ui/config/campaign';
 
 export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getStoreActions }) => {
@@ -14,11 +14,13 @@ export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getS
   const actions = getStoreActions();
   const mountCampaign = actions.campaigns.mountCampaign;
 
-  const campaign = new Contract(new Account(near.connection, campaignId), campaignId, {
-    viewMethods: ['get_campaign_metadata', 'get_keys'],
-  });
+  const account = new Account(near.connection, campaignId);
+  const campaign = getCampaignContract(state, campaignId);
 
-  const metadata = await campaign.get_campaign_metadata();
+  const [balance, metadata] = await Promise.all([
+    account.getAccountBalance(),
+    campaign.get_campaign_metadata(),
+  ]);
 
   const pagination = getPagination({
     page: paginationConfig.startPage,
@@ -37,6 +39,7 @@ export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getS
   mountCampaign({
     campaignId,
     metadata,
+    balance,
     keys,
     keyStats,
     pagination,
