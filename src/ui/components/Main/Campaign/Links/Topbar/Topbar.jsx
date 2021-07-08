@@ -15,7 +15,7 @@ export const Topbar = ({ numberOfSelected, isSelectedAll, onSelectAll, allLinks,
         onChange={(e) => onSelectAll(e.target.checked)}
         checked={isSelectedAll}
       />
-      <span className={classes.title}>Links</span>
+      {/*<span className={classes.title}>Links</span>*/}
       {numberOfSelected > 0 && (
         <>
           <span className={classes.selected}>

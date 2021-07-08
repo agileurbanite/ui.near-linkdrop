@@ -12,6 +12,8 @@ const styles = (theme) => ({
     alignItems: 'center',
     borderBottom: '1px solid',
     borderBottomColor: theme.colors.dividerOnWhite,
+    borderTop: '1px solid',
+    borderTopColor: theme.colors.dividerOnWhite,
   },
   checkbox: {
     gridArea: 'a',

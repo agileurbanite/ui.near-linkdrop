@@ -1,13 +1,11 @@
 import { Checkbox } from '@material-ui/core';
 import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
-import { CancelLink } from './CancelLink/CancelLink';
 import { config } from '../../../../../../near/config';
 import { useStyles } from './Link.styles';
 
 export const Link = ({
-  amountPerLink,
   campaignId,
-  link: { pk, sk, order, status },
+  link: { pk, sk, order },
   onSelect,
   isSelected,
 }) => {

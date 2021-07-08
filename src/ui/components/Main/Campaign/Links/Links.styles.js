@@ -5,7 +5,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 50,
+    marginTop: 16,
   },
 };
 

@@ -5,5 +5,6 @@ import { formatNearBalance } from './format';
 export const getTotalAmount = (amountPerLink, totalLinks) =>
   formatNearBalance(new BN(amountPerLink).mul(new BN(totalLinks)));
 
-export const getTime = (createdAt) => dateFormat(createdAt, 'd mmm yyyy');
+export const getDate = (createdAt) => dateFormat(createdAt, 'd mmm yyyy');
+export const getTime = (createdAt) => dateFormat(createdAt, 'd mmm yyyy HH:MM');
 export const getCampaignName = (campaignId) => campaignId.split('.')[0];

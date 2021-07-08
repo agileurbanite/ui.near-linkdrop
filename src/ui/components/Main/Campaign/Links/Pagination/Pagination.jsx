@@ -12,26 +12,6 @@ export const Pagination = () => {
 
   const { page, total, range, elementsPerPage } = pagination;
 
-  // const prevPage = () => {
-  //   onLoadKeys({
-  //     page: page - 1,
-  //     total,
-  //     elementsPerPage,
-  //     loaderOn: () => setLoader('prev'),
-  //     loaderOff: () => setLoader(''),
-  //   });
-  // };
-  //
-  // const nextPage = () => {
-  //   onLoadKeys({
-  //     page: page + 1,
-  //     total,
-  //     elementsPerPage,
-  //     loaderOn: () => setLoader('next'),
-  //     loaderOff: () => setLoader(''),
-  //   });
-  // };
-
   return (
     <div className={classes.container}>
       <ArrowButton

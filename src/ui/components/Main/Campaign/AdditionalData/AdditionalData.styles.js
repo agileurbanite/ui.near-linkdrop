@@ -2,10 +2,12 @@ import { makeStyles } from '@material-ui/core';
 
 const styles = (theme) => ({
   container: {
+    height: '100%',
     display: 'flex',
     marginTop: 24,
   },
   section: {
+    minWidth: 120,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

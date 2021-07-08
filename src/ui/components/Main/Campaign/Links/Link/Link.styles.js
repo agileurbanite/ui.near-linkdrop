@@ -4,7 +4,7 @@ const styles = (theme) => ({
   container: {
     height: 56,
     display: 'grid',
-    gridTemplateColumns: '56px 56px auto 24px 24px 24px 16px',
+    gridTemplateColumns: '42px 56px auto 24px 24px 24px 16px',
     gridTemplateRows: '100%',
     gridTemplateAreas: `
       'a b c d . e .'

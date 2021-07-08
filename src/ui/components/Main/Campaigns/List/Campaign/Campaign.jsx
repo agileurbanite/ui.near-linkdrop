@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { Divider, Typography } from '@material-ui/core';
 import cn from 'classnames';
 import { More } from './More/More';
-import { getTotalAmount, getTime, getCampaignName } from '../../../../../utils/formatCampaignData';
+import { getTotalAmount, getDate, getCampaignName } from '../../../../../utils/formatCampaignData';
 import { getRoute } from '../../../../../config/routes';
 import { useStyles } from './Campaign.styles';
 
@@ -37,7 +37,7 @@ export const Campaign = ({
       <Divider className={cn(classes.divider, classes.divider1)} />
 
       <span className={cn(classes.label, classes.created)}>Created</span>
-      <span className={cn(classes.value, classes.createdValue)}>{getTime(createdAt)}</span>
+      <span className={cn(classes.value, classes.createdValue)}>{getDate(createdAt)}</span>
 
       <Divider className={cn(classes.divider, classes.divider2)} />
 

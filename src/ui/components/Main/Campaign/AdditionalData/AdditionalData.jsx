@@ -15,6 +15,11 @@ export const AdditionalData = ({ campaign }) => {
       </div>
       <Divider className={classes.divider} />
       <div className={classes.section}>
+        <span className={classes.label}>Account balance</span>
+        <span className={classes.value}>100 NEAR</span>
+      </div>
+      <Divider className={classes.divider} />
+      <div className={classes.section}>
         <span className={classes.label}>Created</span>
         <span className={classes.value}>{getTime(createdAt)}</span>
       </div>

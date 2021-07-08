@@ -1,10 +1,11 @@
+/* eslint-disable */
 import { Button } from '@material-ui/core';
 import { KeyboardArrowLeft } from '@material-ui/icons';
 // import { getCampaignData } from './getCampaignData';
 // import { CampaignProfileCard } from '../../../general/CampaignProfileCard/CampaignProfileCard';
 import { useStyles } from './Step2.styles';
 
-export const Step2 = ({ setStep, getValues }) => {
+export const Step2 = ({ setStep }) => {
   const classes = useStyles();
 
   // const campaignData = getCampaignData(getValues);
