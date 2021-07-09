@@ -22,9 +22,10 @@ export const App = () => (
         path={[
           routes.campaigns,
           routes.settings,
-          routes.campaign,
           routes.createCampaign,
           routes.completeCampaignCreation,
+          routes.campaign,
+          routes.deleteCampaign,
         ]}
         component={Main}
       />

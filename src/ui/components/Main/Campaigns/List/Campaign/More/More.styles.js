@@ -15,7 +15,12 @@ const styles = (theme) => ({
   container: {
     width: 250,
     userSelect: 'none',
-    padding: '8px 0',
+  },
+  exportCsv: {
+    color: theme.palette.primary.main,
+  },
+  deleteCampaign: {
+    color: theme.colors.red,
   },
 });
 

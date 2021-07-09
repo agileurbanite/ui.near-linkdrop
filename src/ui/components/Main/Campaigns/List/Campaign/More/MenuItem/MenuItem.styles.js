@@ -7,12 +7,14 @@ const styles = (theme) => ({
     display: 'flex',
     alignItems: 'center',
     border: 'none',
-    '&:hover': {},
     cursor: 'pointer',
     padding: 0,
+    '&:hover': {
+      backgroundColor: '#e9e9e9',
+    },
   },
   icon: {
-    color: theme.palette.primary.main,
+    color: theme.palette.text.secondary,
     margin: '0 24px',
   },
   text: {

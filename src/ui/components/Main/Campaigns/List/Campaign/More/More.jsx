@@ -1,14 +1,17 @@
 import { useStoreActions } from 'easy-peasy';
 import { useRef, useState } from 'react';
 import { IconButton, Popover } from '@material-ui/core';
-import { MoreVertOutlined, GetApp } from '@material-ui/icons';
+import { MoreVertOutlined, GetApp, DeleteOutline } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 import { MenuItem } from './MenuItem/MenuItem';
+import { getRoute } from '../../../../../../config/routes';
 import { useStyles } from './More.styles';
 
 export const More = ({ campaignId }) => {
   const onExportCampaignCSV = useStoreActions((actions) => actions.campaigns.onExportCampaignCSV);
   const [isOpen, setOpen] = useState(false);
   const buttonRef = useRef(null);
+  const history = useHistory();
 
   const onOpen = (e) => {
     e.stopPropagation();
@@ -20,11 +23,12 @@ export const More = ({ campaignId }) => {
     setOpen(false);
   };
 
-  const stopPropagation = (e) => e.stopPropagation();
-
   const onExportCSV = (event) => {
     onExportCampaignCSV({ event, onClose, campaignId });
-  }
+  };
+
+  const stopPropagation = (e) => e.stopPropagation();
+  const goToDeleteCampaign = () => history.push(getRoute.deleteCampaign(campaignId));
 
   const classes = useStyles();
   return (
@@ -53,7 +57,18 @@ export const More = ({ campaignId }) => {
           tabIndex={0}
           className={classes.container}
         >
-          <MenuItem icon={GetApp} text="Download CSV" onClick={onExportCSV} />
+          <MenuItem
+            icon={GetApp}
+            classNames={{ icon: classes.exportCsv }}
+            text="Download CSV"
+            onClick={onExportCSV}
+          />
+          <MenuItem
+            icon={DeleteOutline}
+            classNames={{ icon: classes.deleteCampaign }}
+            text="Delete Campaign"
+            onClick={goToDeleteCampaign}
+          />
         </div>
       </Popover>
     </>

@@ -11,13 +11,11 @@ export const Campaigns = () => {
   const classes = useStyles();
 
   return (
-    <>
-      <div className={classes.container}>
-        <div className={classes.topbar}>
-          <Typography variant="h3">Campaigns</Typography>
-        </div>
-        {list.length > 0 ? <List list={list} map={map} /> : <NoCampaigns />}
+    <div className={classes.container}>
+      <div className={classes.topbar}>
+        <Typography variant="h3">Campaigns</Typography>
       </div>
-    </>
+      {list.length > 0 ? <List list={list} map={map} /> : <NoCampaigns />}
+    </div>
   );
 };

@@ -5,6 +5,7 @@ import { Campaigns } from './Campaigns/Campaigns';
 import { Settings } from './Settings/Settings';
 import { CreateCampaign } from './CreateCampaign/CreateCampaign';
 import { CompleteCampaignCreation } from './CompleteCampaignCreation/CompleteCampaignCreation';
+import { DeleteCampaign } from './DeleteCampaign/DeleteCampaign';
 import { Campaign } from './Campaign/Campaign';
 import { routes } from '../../config/routes';
 import { useStyles } from './Main.styles';
@@ -26,6 +27,7 @@ export const Main = () => {
               component={CompleteCampaignCreation}
             />
             <Route exact path={routes.campaign} component={Campaign} />
+            <Route exact path={routes.deleteCampaign} component={DeleteCampaign} />
           </Switch>
         </div>
       </div>

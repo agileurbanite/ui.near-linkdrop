@@ -6,7 +6,7 @@ const items = [
   {
     name: 'Campaigns',
     to: routes.campaigns,
-    activeFor: [routes.campaigns, routes.campaign, routes.createCampaign],
+    activeFor: [routes.campaigns, routes.campaign, routes.createCampaign, routes.deleteCampaign],
     icon: Campaign,
   },
   {

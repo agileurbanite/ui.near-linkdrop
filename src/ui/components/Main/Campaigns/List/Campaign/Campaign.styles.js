@@ -16,14 +16,17 @@ const styles = (theme) => ({
       '. d f g i j . .'
       '. e f h i k . .'
     `,
-    border: '1px solid',
-    borderColor: theme.colors.dividerOnWhite,
     borderRadius: 8,
     cursor: 'pointer',
+    boxShadow: `
+     0px 2px 1px -1px rgb(0 0 0 / 20%),
+     0px 2px 5px 0px rgb(0 0 0 / 15%),
+     0px 1px 10px 0px rgb(0 0 0 / 12%)
+    `,
     '&:hover': {
       boxShadow: `
-        0px 2px 4px -1px rgb(0 0 0 / 20%),
-        0px 4px 5px 0px rgb(0 0 0 / 14%),
+        0px 5px 4px -1px rgb(0 0 0 / 20%),
+        0px 6px 5px 0px rgb(0 0 0 / 14%),
         0px 1px 10px 0px rgb(0 0 0 / 12%)
       `,
     },
