@@ -1,13 +1,21 @@
 import { Checkbox } from '@material-ui/core';
 import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
-import { Refund } from './Refund/Refund';
+import { RefundLink } from './RefundLink/RefundLink';
 import { Status } from './Status/Status';
 import { config } from '../../../../../../near/config';
+import { keyStatus } from '../../../../../../config/keyStatus';
 import { useStyles } from './Link.styles';
 
-export const Link = ({ campaignId, link: { pk, sk, order, status }, onSelect, isSelected }) => {
+export const Link = ({
+  campaignId,
+  link: { pk, sk, order, status },
+  onSelect,
+  isSelected,
+  tokensPerKey,
+  walletUserId,
+}) => {
   const classes = useStyles();
-  const isActive = status === 'active';
+  const isActive = status === keyStatus.active;
 
   return (
     <div className={classes.container}>
@@ -20,9 +28,19 @@ export const Link = ({ campaignId, link: { pk, sk, order, status }, onSelect, is
       <span className={classes.order}>#{order}</span>
       <span className={classes.publicKey}>{pk}</span>
       <Status status={status} />
-      {isActive && <Refund secretKey={sk} />}
+      {isActive && (
+        <RefundLink
+          pk={pk}
+          campaignId={campaignId}
+          tokensPerKey={tokensPerKey}
+          walletUserId={walletUserId}
+        />
+      )}
       <CopyToClipboard
-        classNames={{ iconButton: classes.copyButton }}
+        classNames={{
+          iconButton: classes.copyButton,
+          icon: classes.copyButtonIcon,
+        }}
         value={config.getCreateAccountAndClaimLink(sk, campaignId)}
       />
     </div>

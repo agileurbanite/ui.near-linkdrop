@@ -1,3 +1,4 @@
+import { useStoreState } from 'easy-peasy';
 import { KeysStatistic } from './KeysStatistic/KeysStatistic';
 import { Link } from './Link/Link';
 import { Topbar } from './Topbar/Topbar';
@@ -6,6 +7,7 @@ import { useLinkSelector } from './useLinkSelector';
 import { useStyles } from './Links.styles';
 
 export const Links = ({ campaign: { campaignId, keys, name, tokensPerKey, keysStats } }) => {
+  const walletUserId = useStoreState(state => state.general.user.currentAccount);
   const { numberOfSelected, isSelectedAll, allLinks, onSelectAll, onSelect } =
     useLinkSelector(keys);
 
@@ -29,8 +31,9 @@ export const Links = ({ campaign: { campaignId, keys, name, tokensPerKey, keysSt
             link={key}
             onSelect={onSelect}
             isSelected={allLinks[key.pk]}
-            amountPerLink={tokensPerKey}
+            tokensPerKey={tokensPerKey}
             campaignId={campaignId}
+            walletUserId={walletUserId}
           />
         ))}
         <Pagination />

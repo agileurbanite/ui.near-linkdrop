@@ -1,12 +1,12 @@
-import { Button, IconButton, Modal, Paper, CircularProgress } from '@material-ui/core';
+import { Button, IconButton, Modal, Paper, CircularProgress, Tooltip } from '@material-ui/core';
 import { CancelOutlined } from '@material-ui/icons';
 import { useStoreActions } from 'easy-peasy';
 import { useState } from 'react';
-import { getRefundAmount } from './getRefundAmount';
-import { useStyles } from './Refund.styles';
+import { formatNearBalance } from '../../../../../../utils/format';
+import { useStyles } from './RefundLink.styles';
 
-export const Refund = ({ secretKey, amountPerLink }) => {
-  const onCancelLink = useStoreActions((actions) => actions.campaigns.onCancelLink);
+export const RefundLink = ({ pk, campaignId, tokensPerKey, walletUserId }) => {
+  const onRefundLink = useStoreActions((actions) => actions.campaigns.onRefundLink);
   const [isLoading, setLoading] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const classes = useStyles();
@@ -14,23 +14,29 @@ export const Refund = ({ secretKey, amountPerLink }) => {
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
 
-  const cancelLink = () => onCancelLink({ secretKey, onClose, setLoading });
+  const refundLink = () => {
+    setLoading(true);
+    onRefundLink({ pk, campaignId });
+  };
 
   return (
     <>
       <IconButton onClick={onOpen} className={classes.button}>
-        <CancelOutlined />
+        <Tooltip title="Refund link" placement="top">
+          <CancelOutlined className={classes.icon} />
+        </Tooltip>
       </IconButton>
       <Modal open={isOpen} onClose={onClose} className={classes.modal}>
         <Paper className={classes.container} elevation={5}>
           <h2 className={classes.header}>Refund Link</h2>
           <p>
-            Do you want to cancel the link and return your funds?
+            Do you want to deactivate the link and return your funds?
             <br />
-            <br />
-            Notice that only&nbsp;
-            <span className={classes.amount}>~{getRefundAmount(amountPerLink)}</span>
-            &nbsp; will be returned to your account.
+          </p>
+          <p>
+            <span className={classes.bold}>{formatNearBalance(tokensPerKey)}</span>
+            &nbsp; will be send to&nbsp;
+            <span className={classes.bold}>{walletUserId}</span>
           </p>
           <div className={classes.footer}>
             <Button onClick={onClose}>Cancel</Button>
@@ -38,7 +44,7 @@ export const Refund = ({ secretKey, amountPerLink }) => {
               {isLoading ? (
                 <CircularProgress size={16} />
               ) : (
-                <Button color="primary" onClick={cancelLink}>
+                <Button color="primary" onClick={refundLink}>
                   Refund Link
                 </Button>
               )}

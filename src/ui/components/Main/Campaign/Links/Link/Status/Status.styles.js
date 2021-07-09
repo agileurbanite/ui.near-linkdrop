@@ -1,12 +1,15 @@
 import { makeStyles } from '@material-ui/core';
+import { keyStatus } from '../../../../../../../config/keyStatus';
+
+const { active, created, claimed, refunded } = keyStatus;
 
 // prettier-ignore
 const getBackgroundColor = ({ status }) => {
   switch (status) {
-    case 'active': return '#7e90ff';
-    case 'created': return '#4caf50';
-    case 'claimed': return '#ffb300';
-    case 'refunded': return '#9e9e9e';
+    case active: return '#7e90ff';
+    case created: return '#4caf50';
+    case claimed: return '#ffb300';
+    case refunded: return '#9e9e9e';
     default: return 'black';
   }
 }

@@ -4,4 +4,5 @@ import { Contract } from '../api/Сontract';
 export const getCampaignContract = (state, campaignId) =>
   new Contract(new Account(state.general.entities.near.connection, campaignId), campaignId, {
     viewMethods: ['get_keys', 'get_campaign_metadata'],
+    changeMethods: ['add_keys', 'refund_keys', 'clear_state'],
   });

@@ -2,9 +2,9 @@ import { makeStyles } from '@material-ui/core';
 
 const styles = (theme) => ({
   container: {
-    height: 56,
+    height: 50,
     display: 'grid',
-    gridTemplateColumns: '42px 60px auto 130px 24px 16px 24px',
+    gridTemplateColumns: '42px 60px auto 130px 24px 6px 24px',
     gridTemplateRows: '100%',
     gridTemplateAreas: `
       'a b c d e . f'
@@ -21,7 +21,7 @@ const styles = (theme) => ({
   },
   publicKey: {
     gridArea: 'c',
-    width: '80%',
+    width: '90%',
     overflow: 'hidden',
     whiteSpace: 'pre-wrap',
     textOverflow: 'ellipsis',
@@ -29,6 +29,11 @@ const styles = (theme) => ({
   },
   copyButton: {
     gridArea: 'e',
+  },
+  copyButtonIcon: {
+    '&:hover': {
+      color: theme.palette.primary.main,
+    },
   },
 });
 

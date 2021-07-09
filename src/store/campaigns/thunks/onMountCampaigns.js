@@ -4,7 +4,7 @@ import { Account } from 'near-api-js/lib/account';
 import { config } from '../../../near/config';
 
 const getAccountIdsByPublicKey = (key) =>
-  ky.get(`${config.helperUrl}/publicKey/${key}/accounts`).json();
+  ky.get(`${config.helperUrl}/publicKey/${key}/accounts`, { timeout: 30000 }).json();
 
 const getCampaignsIds = (accountIds, linkdropUserId) =>
   accountIds.filter(

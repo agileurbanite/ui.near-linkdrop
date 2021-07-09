@@ -1,9 +1,14 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = {
+const styles = (theme) => ({
   button: {
     gridArea: 'f',
     height: 24,
+  },
+  icon: {
+    '&:hover': {
+      color: theme.colors.red,
+    },
   },
   modal: {
     display: 'flex',
@@ -11,7 +16,7 @@ const styles = {
     alignItems: 'center',
   },
   container: {
-    width: 300,
+    width: 350,
     display: 'flex',
     flexDirection: 'column',
     outline: 'none',
@@ -29,6 +34,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    marginTop: 20,
   },
   refundContainer: {
     width: 110,
@@ -36,6 +42,9 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
-};
+  bold: {
+    fontWeight: 700,
+  },
+});
 
 export const useStyles = makeStyles(styles, { name: 'CancelLink' });
