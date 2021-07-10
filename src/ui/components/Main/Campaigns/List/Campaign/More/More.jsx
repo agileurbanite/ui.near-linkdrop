@@ -9,6 +9,7 @@ import { useStyles } from './More.styles';
 
 export const More = ({ campaignId }) => {
   const onExportCampaignCSV = useStoreActions((actions) => actions.campaigns.onExportCampaignCSV);
+
   const [isOpen, setOpen] = useState(false);
   const buttonRef = useRef(null);
   const history = useHistory();
@@ -23,8 +24,9 @@ export const More = ({ campaignId }) => {
     setOpen(false);
   };
 
-  const onExportCSV = (event) => {
-    onExportCampaignCSV({ event, onClose, campaignId });
+  const exportCampaignCSV = (e) => {
+    onClose(e);
+    onExportCampaignCSV({ campaignId });
   };
 
   const stopPropagation = (e) => e.stopPropagation();
@@ -41,6 +43,7 @@ export const More = ({ campaignId }) => {
         classes={{ paper: classes.popover }}
         open={isOpen}
         onClose={onClose}
+        transitionDuration={{ appear: 200, enter: 200, exit: 0 }}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'right',
@@ -60,8 +63,8 @@ export const More = ({ campaignId }) => {
           <MenuItem
             icon={GetApp}
             classNames={{ icon: classes.exportCsv }}
-            text="Download CSV"
-            onClick={onExportCSV}
+            text="Export as CSV"
+            onClick={exportCampaignCSV}
           />
           <MenuItem
             icon={DeleteOutline}

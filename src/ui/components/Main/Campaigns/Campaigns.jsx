@@ -5,9 +5,8 @@ import { List } from './List/List';
 import { useStyles } from './Campaigns.styles';
 
 export const Campaigns = () => {
-  const list = useStoreState((store) => store.campaigns.list);
-  const map = useStoreState((store) => store.campaigns.map);
-
+  const list = useStoreState((state) => state.campaigns.list);
+  const map = useStoreState((state) => state.campaigns.map);
   const classes = useStyles();
 
   return (

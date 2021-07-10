@@ -26,6 +26,12 @@ export const onMountCampaigns = thunk(async (_, __, { getStoreState, getStoreAct
     const accountIds = await getAccountIdsByPublicKey(publicKey);
     const campaignIds = getCampaignsIds(accountIds, linkdropUserId);
 
+    // const campaignIds = [
+    //   '1000-links.eclipseer.linkdrop.testnet',
+    //   '200-links.eclipseer.linkdrop.testnet',
+    //   'c1.eclipseer.linkdrop.testnet',
+    // ];
+
     const campaigns = await Promise.all(
       campaignIds.map((campaignId) =>
         new Account(near.connection, campaignId).viewFunction(

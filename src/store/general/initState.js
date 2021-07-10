@@ -4,7 +4,7 @@ export const initState = {
     isError: false,
     description: '',
   },
-  notifications: {},
+  modals: {},
   entities: {
     near: null,
     keyStore: null,

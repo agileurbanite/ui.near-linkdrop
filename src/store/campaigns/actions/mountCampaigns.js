@@ -1,5 +1,6 @@
 import { action } from 'easy-peasy';
 import { emoji } from '../../../ui/config/emoji';
+import { getCampaignName } from '../../../ui/utils/formatCampaignData';
 
 export const mountCampaigns = action((slice, payload) => {
   const { campaignIds, campaigns } = payload;
@@ -13,6 +14,7 @@ export const mountCampaigns = action((slice, payload) => {
     slice.list.push(campaignId);
     slice.map[campaignId] = {
       campaignId,
+      name: getCampaignName(campaignId),
       icon: emoji.foxMuzzle,
       status: campaign.status,
       createdAt: Math.trunc(campaign.created_at / 1000000), // Convert nanoseconds to milliseconds

@@ -13,7 +13,7 @@ export const onConnectWallet = thunk(async (_, __, { getStoreState, getStoreActi
 
   setTemporaryData({ redirectAction });
   // redirect to NEAR Wallet
-  await wallet.requestSignIn({
+  wallet.requestSignIn({
     successUrl: getRoute.callbackUrl({ redirectAction }),
     failureUrl: getRoute.callbackUrl({ redirectAction, errorCode: 'userReject' }),
   });
