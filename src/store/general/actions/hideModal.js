@@ -1,5 +1,6 @@
 import { action } from 'easy-peasy';
 
-export const hideModal = action((slice, modal) => {
-  delete slice.modals[modal];
+export const hideModal = action((slice, payload) => {
+  const { name } = payload;
+  delete slice.modals[name];
 });

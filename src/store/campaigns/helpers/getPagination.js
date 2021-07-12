@@ -1,4 +1,4 @@
-const getPagesRange = (total, elementsPerPage) => ({
+export const getPagesRange = (total, elementsPerPage) => ({
   firstPage: 1,
   lastPage: Math.trunc(total / elementsPerPage) + (total % elementsPerPage ? 1 : 0),
 });

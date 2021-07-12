@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = {
+const styles = (theme) => ({
   container: {
     height: '100%',
     display: 'grid',
@@ -18,6 +18,19 @@ const styles = {
     alignItems: 'center',
     borderBottom: '1px solid #00000020',
   },
-};
+  icon: {
+    height: 36,
+    width: 36,
+    color: theme.palette.text.primary,
+    margin: '0 8px',
+  },
+  body: {
+    gridArea: 'b',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
+});
 
 export const useStyles = makeStyles(styles, { name: 'DeleteCampaign' });
