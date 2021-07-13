@@ -1,15 +1,7 @@
 import { thunk } from 'easy-peasy';
-import ky from 'ky';
 import { Account } from 'near-api-js/lib/account';
-import { config } from '../../../near/config';
-
-const getAccountIdsByPublicKey = (key) =>
-  ky.get(`${config.helperUrl}/publicKey/${key}/accounts`, { timeout: 30000 }).json();
-
-const getCampaignsIds = (accountIds, linkdropUserId) =>
-  accountIds.filter(
-    (accountId) => accountId !== linkdropUserId && accountId.includes(linkdropUserId),
-  );
+import { getAccountIdsByPublicKey } from '../../../near/helpers/getAccountIdsByPublicKey';
+import { getCampaignsIds } from '../../helpers/getCampaignsIds';
 
 export const onMountCampaigns = thunk(async (_, __, { getStoreState, getStoreActions }) => {
   const state = getStoreState();
