@@ -1,7 +1,6 @@
 import { thunk } from 'easy-peasy';
 import BN from 'bn.js';
 import { Account } from 'near-api-js';
-// import { delay } from 'ky/distribution/utils/time';
 import { getCampaignContract } from '../../../near/helpers/getCampaignContract';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
@@ -22,15 +21,6 @@ const deleteKeys = ({ firstPage, lastPage, total, elementsPerPage, mnemonic, cam
     }
   },
 });
-
-// const testIterator = ({ firstPage, lastPage }) => ({
-//   async *[Symbol.asyncIterator]() {
-//     for (let page = firstPage; page <= lastPage; page += 1) {
-//       await delay(500);
-//       yield page;
-//     }
-//   },
-// });
 
 export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { campaignId, onFinishDeleting, setProgress } = payload;
@@ -60,10 +50,8 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
     campaign,
   });
 
-  // const iterator = testIterator({ firstPage: 1, lastPage: 5 });
-
-  for await (const page of iterator) {
-    setProgress(Math.min((page / lastPage) * 100), 95);
+  for await (const chunk of iterator) {
+    setProgress(Math.trunc(Math.min((chunk / lastPage) * 100, 99)));
   }
 
   await account.deleteAccount(walletUserId);

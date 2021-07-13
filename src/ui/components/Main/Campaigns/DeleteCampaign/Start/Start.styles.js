@@ -22,7 +22,7 @@ const styles = (theme) => ({
       color: theme.palette.primary.main,
     },
   },
-  mainText: {
+  text: {
     letterSpacing: '0.25px',
     '&>span': {
       fontWeight: 700,

@@ -6,8 +6,10 @@ import { MenuItem } from './MenuItem/MenuItem';
 import { useStyles } from './More.styles';
 
 export const More = ({ campaignId }) => {
-  const showModal = useStoreActions((actions) => actions.general.showModal);
   const onExportCampaignCSV = useStoreActions((actions) => actions.campaigns.onExportCampaignCSV);
+  const onMountDeleteCampaign = useStoreActions(
+    (actions) => actions.campaigns.onMountDeleteCampaign,
+  );
 
   const [isOpen, setOpen] = useState(false);
   const buttonRef = useRef(null);
@@ -22,17 +24,14 @@ export const More = ({ campaignId }) => {
     setOpen(false);
   };
 
-  const exportCampaignCSV = (e) => {
-    onClose(e);
+  const exportCampaignCSV = () => {
+    setOpen(false);
     onExportCampaignCSV({ campaignId });
   };
 
   const stopPropagation = (e) => e.stopPropagation();
 
-  const openDeleteCampaignModal = () => {
-    showModal({ name: 'deleteCampaign', params: { campaignId } });
-    setOpen(false);
-  };
+  const openDeleteCampaignModal = () => onMountDeleteCampaign({ campaignId, setOpen });
 
   const classes = useStyles();
   return (
