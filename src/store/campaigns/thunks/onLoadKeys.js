@@ -10,6 +10,7 @@ export const onLoadKeys = thunk(async (_, payload, { getStoreState, getStoreActi
   const walletUserId = state.general.user.currentAccount;
   const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
   const campaignId = state.campaigns.campaign.campaignId;
+  const internalCampaignId = state.campaigns.campaign.internalCampaignId;
 
   const actions = getStoreActions();
   const loadKeys = actions.campaigns.loadKeys;
@@ -22,6 +23,7 @@ export const onLoadKeys = thunk(async (_, payload, { getStoreState, getStoreActi
     mnemonic,
     start: pagination.range.start,
     end: pagination.range.end,
+    internalCampaignId,
   });
   const keyStats = await campaign.get_keys({ keys: keys.map(({ pk }) => pk) });
 

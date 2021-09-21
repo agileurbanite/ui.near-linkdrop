@@ -1,5 +1,5 @@
 import { Account } from 'near-api-js';
-import { Contract } from '../../../near/api/Сontract';
+import { Contract } from '../../near/api/Сontract';
 
 export const getUserContract = (state, userId) =>
   new Contract(new Account(state.general.entities.near.connection, userId), userId, {

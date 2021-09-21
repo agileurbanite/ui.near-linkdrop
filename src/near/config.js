@@ -7,6 +7,7 @@ const testnet = {
   accounts: {
     linkdrop: 'linkdrop.testnet', // account for master branch
     // linkdrop: 'linkdrop-dev.testnet', // account for dev branch
+    accountCreator: 'testnet',
   },
 };
 
@@ -18,6 +19,7 @@ const mainnet = {
   explorerUrl: 'https://explorer.near.org',
   accounts: {
     linkdrop: 'linkdrop.near', // TODO need to create
+    accountCreator: 'near',
   },
 };
 

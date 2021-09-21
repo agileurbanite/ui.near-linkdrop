@@ -6,11 +6,25 @@ import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
 import { config } from '../../../near/config';
 
-const deleteKeys = ({ firstPage, lastPage, total, elementsPerPage, mnemonic, campaign }) => ({
+const createDeleteKeysIterator = ({
+  firstPage,
+  lastPage,
+  total,
+  elementsPerPage,
+  mnemonic,
+  campaign,
+  internalCampaignId,
+}) => ({
   async *[Symbol.asyncIterator]() {
     for (let page = firstPage; page <= lastPage; page += 1) {
       const { range } = getPagination({ page, total, elementsPerPage });
-      const keys = await getKeysFromMnemonic({ mnemonic, start: range.start, end: range.end });
+
+      const keys = await getKeysFromMnemonic({
+        mnemonic,
+        start: range.start,
+        end: range.end,
+        internalCampaignId,
+      });
 
       await campaign.clear_state({
         payload: { keys: keys.map(({ pk }) => pk) },
@@ -31,6 +45,7 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
   const walletUserId = state.general.user.currentAccount;
   const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
   const total = state.campaigns.map[campaignId].keysStats.total;
+  const internalCampaignId = state.campaigns.map[campaignId].internalCampaignId;
 
   const actions = getStoreActions();
   const deleteCampaign = actions.campaigns.deleteCampaign;
@@ -41,13 +56,14 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
   const elementsPerPage = 30; // TODO move to config
   const { firstPage, lastPage } = getPagesRange(total, elementsPerPage);
 
-  const iterator = deleteKeys({
+  const iterator = createDeleteKeysIterator({
     firstPage,
     lastPage,
     total,
     elementsPerPage,
     mnemonic,
     campaign,
+    internalCampaignId,
   });
 
   for await (const chunk of iterator) {

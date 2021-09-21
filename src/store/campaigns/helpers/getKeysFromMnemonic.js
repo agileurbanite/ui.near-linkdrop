@@ -1,5 +1,7 @@
 import GenerateKeysWorker from './generateKeys.worker';
 
+// TODO Terminate worker after job is done
+
 export const getKeysFromMnemonic = (params) => {
   const worker = new GenerateKeysWorker();
   worker.postMessage(params);
@@ -7,7 +9,6 @@ export const getKeysFromMnemonic = (params) => {
   return new Promise((resolve) => {
     worker.onmessage = (event) => {
       resolve(event.data);
-      // worker.terminate();
     };
   });
 };

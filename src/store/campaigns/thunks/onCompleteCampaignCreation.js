@@ -3,17 +3,48 @@ import BN from 'bn.js';
 import { KeyPair } from 'near-api-js';
 import { thunk } from 'easy-peasy';
 import { redirectActions } from '../../../config/redirectActions';
-import { Contract } from '../../../near/api/Сontract';
 import { config } from '../../../near/config';
-import { createGenerateKey } from '../helpers/createGenerateKey';
+import { getUserContract } from '../../helpers/getUserContract';
+import { getCampaignContract } from '../helpers/getCampaignContract';
 import { routes } from '../../../ui/config/routes';
+import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
+import { getPagesRange, getPagination } from '../helpers/getPagination';
+
+const createAddKeysIterator = ({
+  totalKeys,
+  elementsPerPage,
+  mnemonic,
+  campaign,
+  internalCampaignId,
+}) => ({
+  async *[Symbol.asyncIterator]() {
+    const { firstPage, lastPage } = getPagesRange(totalKeys, elementsPerPage);
+
+    for (let page = firstPage; page <= lastPage; page += 1) {
+      const { range } = getPagination({ page, total: totalKeys, elementsPerPage });
+
+      const keys = await getKeysFromMnemonic({
+        mnemonic,
+        start: range.start,
+        end: range.end,
+        internalCampaignId,
+      });
+
+      await campaign.add_keys({
+        payload: { keys: keys.map(({ pk }) => pk) },
+        gas: new BN('300000000000000'),
+      });
+
+      yield page;
+    }
+  },
+});
 
 export const onCompleteCampaignCreation = thunk(
   async (_, payload, { getStoreState, getStoreActions }) => {
     const { history } = payload;
 
     const state = getStoreState();
-    const near = state.general.entities.near;
     const keyStore = state.general.entities.keyStore;
     const temporary = state.general.temporary;
     const walletUserId = state.general.user.currentAccount;
@@ -26,20 +57,23 @@ export const onCompleteCampaignCreation = thunk(
     // TODO temp solution until permission system will be added;
     if (temporary.redirectAction !== redirectActions.createNearCampaign) return;
 
-    const campaignId = `${temporary.campaignName}.${linkdropUserId}`;
+    const { campaignName, totalKeys } = temporary;
+
+    const campaignId = `${campaignName}.${linkdropUserId}`;
     const campaignAccessKey = parseSeedPhrase(mnemonic);
-
-    // Create campaign account
-    const user = await near.account(linkdropUserId);
-    const userContract = new Contract(user, linkdropUserId, {
-      changeMethods: ['create_near_campaign'],
-    });
-
+    const userContract = getUserContract(state, linkdropUserId);
+    // try {
+    //
+    // } catch (e) {
+    //
+    // }
     await userContract.create_near_campaign({
       payload: {
         name: temporary.campaignName,
         public_key: campaignAccessKey.publicKey,
+        total_keys: totalKeys,
         tokens_per_key: temporary.yoctoNearPerKey,
+        account_creator: config.accounts.accountCreator,
       },
       amount: temporary.campaignAmount,
       gas: new BN('300000000000000'),
@@ -51,37 +85,45 @@ export const onCompleteCampaignCreation = thunk(
       KeyPair.fromString(campaignAccessKey.secretKey),
     );
 
-    const account = await near.account(campaignId);
-    const campaign = new Contract(account, campaignId, {
-      changeMethods: ['add_keys'],
+    const campaign = getCampaignContract(state, campaignId);
+    const metadata = await campaign.get_campaign_metadata();
+
+    const iterator = createAddKeysIterator({
+      totalKeys,
+      elementsPerPage: 50,
+      mnemonic,
+      campaign,
+      internalCampaignId: metadata.campaign_id,
     });
 
-    const generateKey = createGenerateKey(mnemonic);
-
-    const allKeys = Array(temporary.totalKeys)
-      .fill(0)
-      .map((i, index) => generateKey(1, index + 1).pk) // TODO use campaignId instead of 1
-      .reduce(
-        (acc, elem) => {
-          const last = acc[acc.length - 1];
-          last.length < 50 ? last.push(elem) : acc.push([elem]);
-          return acc;
-        },
-        [[]],
-      );
-
-    let i = 0;
-    /* eslint-disable */
-    for (const keys of allKeys) {
-      await campaign.add_keys({
-        payload: { keys },
-        gas: new BN('300000000000000'),
-      });
-      i++;
-      console.log('Done chunk №', i);
+    for await (const chunk of iterator) {
+      console.log('Done №', chunk);
     }
 
     clearTemporaryData();
     history.replace(routes.campaigns);
+
+    // const allKeys = Array(totalKeys)
+    //   .fill(0)
+    //   .map((i, index) => generateKey(internalCampaignId, index + 1).pk)
+    //   .reduce(
+    //     (acc, elem) => {
+    //       const last = acc[acc.length - 1];
+    //       last.length < 50 ? last.push(elem) : acc.push([elem]);
+    //       return acc;
+    //     },
+    //     [[]],
+    //   );
+    //
+    // let i = 0;
+    // /* eslint-disable */
+    // for (const keys of allKeys) {
+    //   await campaign.add_keys({
+    //     payload: { keys },
+    //     gas: new BN('300000000000000'),
+    //   });
+    //   i++;
+    //   console.log('Done chunk №', i);
+    // }
   },
 );

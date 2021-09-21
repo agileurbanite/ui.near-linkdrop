@@ -1,5 +1,6 @@
 import { thunk } from 'easy-peasy';
-import { getUserContract } from '../helpers/getUserContract';
+import { getUserContract } from '../../helpers/getUserContract';
+import { toCamelCase } from '../../helpers/toCamelCase';
 import { getCampaignContract } from '../helpers/getCampaignContract';
 
 export const onMountCampaigns = thunk(async (_, __, { getStoreState, getStoreActions }) => {
@@ -21,7 +22,7 @@ export const onMountCampaigns = thunk(async (_, __, { getStoreState, getStoreAct
       ),
     );
 
-    mountCampaigns({ campaignIds, campaigns });
+    mountCampaigns({ campaignIds, campaigns: toCamelCase(campaigns) });
   } catch (e) {
     setError({ isError: true, description: e });
   }
