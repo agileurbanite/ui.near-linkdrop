@@ -1,7 +1,7 @@
 import { thunk } from 'easy-peasy';
 import BN from 'bn.js';
 import { Account } from 'near-api-js';
-import { getCampaignContract } from '../../../near/helpers/getCampaignContract';
+import { getCampaignContract } from '../helpers/getCampaignContract';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
 import { config } from '../../../near/config';
@@ -38,7 +38,7 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
   const account = new Account(near.connection, campaignId);
   const campaign = getCampaignContract(state, campaignId);
 
-  const elementsPerPage = 30;
+  const elementsPerPage = 30; // TODO move to config
   const { firstPage, lastPage } = getPagesRange(total, elementsPerPage);
 
   const iterator = deleteKeys({

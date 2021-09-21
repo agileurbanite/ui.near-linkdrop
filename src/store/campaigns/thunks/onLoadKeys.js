@@ -1,7 +1,7 @@
 import { thunk } from 'easy-peasy';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagination } from '../helpers/getPagination';
-import { getCampaignContract } from '../../../near/helpers/getCampaignContract';
+import { getCampaignContract } from '../helpers/getCampaignContract';
 
 export const onLoadKeys = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { page, total, elementsPerPage, showLoader, hideLoader } = payload;

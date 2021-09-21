@@ -1,6 +1,6 @@
 import { thunk } from 'easy-peasy';
 import { Account } from 'near-api-js';
-import { getCampaignContract } from '../../../near/helpers/getCampaignContract';
+import { getCampaignContract } from '../helpers/getCampaignContract';
 
 export const onRefundLink = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { pk, campaignId } = payload;

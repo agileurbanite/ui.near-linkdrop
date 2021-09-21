@@ -5,7 +5,8 @@ const testnet = {
   helperUrl: 'https://helper.testnet.near.org',
   explorerUrl: 'https://explorer.testnet.near.org',
   accounts: {
-    linkdrop: 'linkdrop.testnet',
+    linkdrop: 'linkdrop.testnet', // account for master branch
+    // linkdrop: 'linkdrop-dev.testnet', // account for dev branch
   },
 };
 

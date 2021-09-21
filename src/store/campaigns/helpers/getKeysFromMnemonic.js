@@ -7,6 +7,7 @@ export const getKeysFromMnemonic = (params) => {
   return new Promise((resolve) => {
     worker.onmessage = (event) => {
       resolve(event.data);
+      // worker.terminate();
     };
   });
 };

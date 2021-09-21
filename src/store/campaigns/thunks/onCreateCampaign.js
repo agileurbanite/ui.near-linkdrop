@@ -40,6 +40,10 @@ export const onCreateCampaign = thunk(async (_, payload, { getStoreState, getSto
     campaignAmount,
   });
 
+  /*
+    We send tokens to user instead of calling 'user.create_near_campaign' because
+    'create_near_campaign' method is private
+   */
   sendTokens({
     wallet,
     receiverId: linkdropUserId,
