@@ -3,7 +3,7 @@ import { Divider, Typography } from '@material-ui/core';
 import cn from 'classnames';
 import { More } from './More/More';
 import { getTotalAmount, getDate, getCampaignName } from '../../../../../utils/formatCampaignData';
-import { getRoute } from '../../../../../config/routes';
+import { getRoute } from '../../../../../../config/routes';
 import { useStyles } from './Campaign.styles';
 
 export const Campaign = ({

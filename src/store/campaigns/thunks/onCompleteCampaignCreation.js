@@ -5,7 +5,7 @@ import { thunk } from 'easy-peasy';
 import { redirectActions } from '../../../config/redirectActions';
 import { config } from '../../../near/config';
 import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
-import { routes } from '../../../ui/config/routes';
+import { routes } from '../../../config/routes';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
 

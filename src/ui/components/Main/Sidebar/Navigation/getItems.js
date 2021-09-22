@@ -1,6 +1,6 @@
 import { TuneOutlined } from '@material-ui/icons';
 import { Campaign } from '../../../general/icons/Campaign';
-import { routes } from '../../../../config/routes';
+import { routes } from '../../../../../config/routes';
 
 const items = [
   {

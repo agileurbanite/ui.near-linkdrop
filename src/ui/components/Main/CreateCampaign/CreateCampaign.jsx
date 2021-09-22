@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Typography, IconButton } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { Form } from './Form/Form';
-import { routes } from '../../../config/routes';
+import { routes } from '../../../../config/routes';
 import { useStyles } from './CreateCampaign.styles';
 
 export const CreateCampaign = () => {

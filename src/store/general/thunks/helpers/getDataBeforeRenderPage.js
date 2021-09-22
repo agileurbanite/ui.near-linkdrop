@@ -1,5 +1,5 @@
 import { matchPath } from 'react-router';
-import { routes } from '../../../../ui/config/routes';
+import { routes } from '../../../../config/routes';
 
 const { campaign, createCampaign, campaigns } = routes;
 

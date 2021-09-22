@@ -2,7 +2,7 @@ import { Button, Typography } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { emoji } from '../../../../config/emoji';
-import { routes } from '../../../../config/routes';
+import { routes } from '../../../../../config/routes';
 import { useStyles } from './NoCampaigns.styles';
 
 export const NoCampaigns = () => {

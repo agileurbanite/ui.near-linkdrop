@@ -1,5 +1,5 @@
 import { thunk } from 'easy-peasy';
-import { getRoute } from '../../../ui/config/routes';
+import { getRoute } from '../../../config/routes';
 import { redirectActions } from '../../../config/redirectActions';
 
 export const onConnectWallet = thunk(async (_, __, { getStoreState, getStoreActions }) => {

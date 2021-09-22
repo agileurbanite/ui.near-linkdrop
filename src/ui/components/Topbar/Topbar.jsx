@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useStoreState } from 'easy-peasy';
 import { LinearProgress } from '@material-ui/core';
 import { Account } from './Account/Account';
-import { routes } from '../../config/routes';
+import { routes } from '../../../config/routes';
 import { appName } from '../../config/appName';
 import { useStyles } from './Topbar.styles';
 

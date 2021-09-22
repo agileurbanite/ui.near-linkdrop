@@ -1,4 +1,4 @@
-import { routes } from '../../../../../ui/config/routes';
+import { routes } from '../../../../../config/routes';
 
 const onSuccess = (history) => {
   history.replace(routes.completeCampaignCreation);

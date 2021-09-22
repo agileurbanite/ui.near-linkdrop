@@ -7,7 +7,7 @@ import { RestoreAccess } from './RestoreAccess/RestoreAccess';
 import { Main } from './Main/Main';
 import { PageNotFound } from './PageNotFound/PageNotFound';
 import { Error } from './Error/Error';
-import { routes } from '../config/routes';
+import { routes } from '../../config/routes';
 
 export const App = () => (
   <>

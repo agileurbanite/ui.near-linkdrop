@@ -1,6 +1,6 @@
 import { thunk } from 'easy-peasy';
 import { Account } from 'near-api-js/lib/account';
-import { routes } from '../../../../ui/config/routes';
+import { routes } from '../../../../config/routes';
 import { getAccountIdsByPublicKey } from '../helpers/getAccountIdsByPublicKey';
 import { getCampaignsIds } from '../helpers/getCampaignsIds';
 import { config } from '../../../../near/config';

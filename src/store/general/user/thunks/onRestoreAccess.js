@@ -1,7 +1,7 @@
 import { thunk } from 'easy-peasy';
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { KeyPair } from 'near-api-js';
-import { routes } from '../../../../ui/config/routes';
+import { routes } from '../../../../config/routes';
 import { config } from '../../../../near/config';
 
 export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStoreActions }) => {

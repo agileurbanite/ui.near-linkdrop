@@ -7,7 +7,7 @@ import { CreateCampaign } from './CreateCampaign/CreateCampaign';
 import { CompleteCampaignCreation } from './CompleteCampaignCreation/CompleteCampaignCreation';
 import { DeleteCampaign } from './DeleteCampaign/DeleteCampaign';
 import { Campaign } from './Campaign/Campaign';
-import { routes } from '../../config/routes';
+import { routes } from '../../../config/routes';
 import { useStyles } from './Main.styles';
 
 export const Main = () => {

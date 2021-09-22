@@ -1,6 +1,6 @@
 import { getLinkdropUserAccountId } from '../../helpers/getLinkdropUserAccountId';
 import { isAccountExist } from '../../helpers/isAccountExist';
-import { routes } from '../../../../../ui/config/routes';
+import { routes } from '../../../../../config/routes';
 
 const onSuccess = async (state, actions, history, query) => {
   const walletAccountId = query.account_id;

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getCampaignName } from '../../../utils/formatCampaignData';
 import { Start } from '../Campaigns/DeleteCampaign/Start/Start';
 import { Progress } from '../Campaigns/DeleteCampaign/Progress/Progress';
-import { routes } from '../../../config/routes';
+import { routes } from '../../../../config/routes';
 import { useStyles } from './DeleteCampaign.styles';
 
 export const DeleteCampaign = () => {

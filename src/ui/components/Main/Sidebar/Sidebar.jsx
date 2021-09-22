@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button, Divider } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import { Navigation } from './Navigation/Navigation';
-import { routes } from '../../../config/routes';
+import { routes } from '../../../../config/routes';
 import { useStyles } from './Sidebar.styles';
 
 export const Sidebar = () => {

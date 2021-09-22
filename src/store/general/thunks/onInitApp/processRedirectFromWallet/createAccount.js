@@ -1,6 +1,6 @@
 import { KeyPair } from 'near-api-js';
 import { parseSeedPhrase } from 'near-seed-phrase';
-import { routes } from '../../../../../ui/config/routes';
+import { routes } from '../../../../../config/routes';
 import { config } from '../../../../../near/config';
 
 const onSuccess = async (state, actions, history, temporary) => {

@@ -2,7 +2,7 @@ import { thunk } from 'easy-peasy';
 import BN from 'bn.js';
 import { parseNearAmount } from 'near-api-js/lib/utils/format';
 import { parseSeedPhrase } from 'near-seed-phrase';
-import { getRoute } from '../../../../ui/config/routes';
+import { getRoute } from '../../../../config/routes';
 import { getAccountName } from '../../../helpers/getAccountName';
 import { redirectActions } from '../../../../config/redirectActions';
 import { getLinkdropContract } from '../../../helpers/getContracts';
