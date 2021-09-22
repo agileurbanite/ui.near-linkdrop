@@ -2,7 +2,7 @@ import { thunk } from 'easy-peasy';
 import { toCamelCase } from '../../helpers/toCamelCase';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagination } from '../helpers/getPagination';
-import { getCampaignContract } from '../helpers/getCampaignContract';
+import { getCampaignContract } from '../../helpers/getContracts';
 import { pagination as paginationConfig } from '../../../ui/config/campaign';
 
 export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getStoreActions }) => {

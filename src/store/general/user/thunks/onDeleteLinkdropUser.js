@@ -1,8 +1,8 @@
 import { thunk } from 'easy-peasy';
 import { Account } from 'near-api-js/lib/account';
 import { routes } from '../../../../ui/config/routes';
-import { getAccountIdsByPublicKey } from '../../../../near/helpers/getAccountIdsByPublicKey';
-import { getCampaignsIds } from '../../../helpers/getCampaignsIds';
+import { getAccountIdsByPublicKey } from '../helpers/getAccountIdsByPublicKey';
+import { getCampaignsIds } from '../helpers/getCampaignsIds';
 import { config } from '../../../../near/config';
 
 export const onDeleteLinkdropUser = thunk(

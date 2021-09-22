@@ -4,8 +4,7 @@ import { KeyPair } from 'near-api-js';
 import { thunk } from 'easy-peasy';
 import { redirectActions } from '../../../config/redirectActions';
 import { config } from '../../../near/config';
-import { getUserContract } from '../../helpers/getUserContract';
-import { getCampaignContract } from '../helpers/getCampaignContract';
+import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
 import { routes } from '../../../ui/config/routes';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
@@ -31,7 +30,7 @@ const createAddKeysIterator = ({
       });
 
       await campaign.add_keys({
-        payload: { keys: keys.map(({ pk }) => pk) },
+        args: { keys: keys.map(({ pk }) => pk) },
         gas: new BN('300000000000000'),
       });
 
@@ -61,14 +60,10 @@ export const onCompleteCampaignCreation = thunk(
 
     const campaignId = `${campaignName}.${linkdropUserId}`;
     const campaignAccessKey = parseSeedPhrase(mnemonic);
-    const userContract = getUserContract(state, linkdropUserId);
-    // try {
-    //
-    // } catch (e) {
-    //
-    // }
-    await userContract.create_near_campaign({
-      payload: {
+    const user = getUserContract(state, linkdropUserId);
+
+    await user.create_near_campaign({
+      args: {
         name: temporary.campaignName,
         public_key: campaignAccessKey.publicKey,
         total_keys: totalKeys,
@@ -102,28 +97,5 @@ export const onCompleteCampaignCreation = thunk(
 
     clearTemporaryData();
     history.replace(routes.campaigns);
-
-    // const allKeys = Array(totalKeys)
-    //   .fill(0)
-    //   .map((i, index) => generateKey(internalCampaignId, index + 1).pk)
-    //   .reduce(
-    //     (acc, elem) => {
-    //       const last = acc[acc.length - 1];
-    //       last.length < 50 ? last.push(elem) : acc.push([elem]);
-    //       return acc;
-    //     },
-    //     [[]],
-    //   );
-    //
-    // let i = 0;
-    // /* eslint-disable */
-    // for (const keys of allKeys) {
-    //   await campaign.add_keys({
-    //     payload: { keys },
-    //     gas: new BN('300000000000000'),
-    //   });
-    //   i++;
-    //   console.log('Done chunk №', i);
-    // }
   },
 );

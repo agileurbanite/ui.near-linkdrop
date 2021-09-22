@@ -1,6 +1,6 @@
 import { thunk } from 'easy-peasy';
 import { toCamelCase } from '../../helpers/toCamelCase';
-import { getCampaignContract } from '../helpers/getCampaignContract';
+import { getCampaignContract } from '../../helpers/getContracts';
 
 export const onRefundLink = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { pk, campaignId } = payload;
@@ -16,7 +16,7 @@ export const onRefundLink = thunk(async (_, payload, { getStoreState, getStoreAc
 
   try {
     await campaign.refund_keys({
-      payload: {
+      args: {
         keys: [pk],
         beneficiary_id: walletUserId,
       },

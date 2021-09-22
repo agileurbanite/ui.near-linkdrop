@@ -1,8 +1,0 @@
-import { Account } from 'near-api-js';
-import { Contract } from '../../../near/api/Сontract';
-
-export const getCampaignContract = (state, campaignId) =>
-  new Contract(new Account(state.general.entities.near.connection, campaignId), campaignId, {
-    viewMethods: ['get_keys', 'get_campaign_metadata'],
-    changeMethods: ['add_keys', 'refund_keys', 'clear_state', 'delete_campaign'],
-  });

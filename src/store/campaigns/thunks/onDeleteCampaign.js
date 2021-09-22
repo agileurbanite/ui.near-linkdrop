@@ -1,7 +1,7 @@
 import { thunk } from 'easy-peasy';
 import BN from 'bn.js';
 import { Account } from 'near-api-js';
-import { getCampaignContract } from '../helpers/getCampaignContract';
+import { getCampaignContract } from '../../helpers/getContracts';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
 import { config } from '../../../near/config';
@@ -27,7 +27,7 @@ const createDeleteKeysIterator = ({
       });
 
       await campaign.clear_state({
-        payload: { keys: keys.map(({ pk }) => pk) },
+        args: { keys: keys.map(({ pk }) => pk) },
         gas: new BN('300000000000000'),
       });
 
