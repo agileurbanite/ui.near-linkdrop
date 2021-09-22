@@ -2,7 +2,7 @@ import dateFormat from 'dateformat';
 import { thunk } from 'easy-peasy';
 import { CsvBuilder } from 'filefy';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
-import { config } from '../../../near/config';
+import { nearConfig } from '../../../config/nearConfig';
 
 export const onExportCampaignCSV = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { campaignId } = payload;
@@ -30,7 +30,7 @@ export const onExportCampaignCSV = thunk(async (_, payload, { getStoreState, get
   const csvBuilder = new CsvBuilder(fileName).setColumns(['order', 'public key', 'link']);
 
   keys.forEach(({ pk, sk, order }) => {
-    csvBuilder.addRow([`#${order}`, pk, config.getCreateAccountAndClaimLink(sk, campaignId)]);
+    csvBuilder.addRow([`#${order}`, pk, nearConfig.getCreateAccountAndClaimLink(sk, campaignId)]);
   });
 
   csvBuilder.exportFile();

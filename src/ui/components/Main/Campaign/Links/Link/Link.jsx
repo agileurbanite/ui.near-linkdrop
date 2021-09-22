@@ -2,7 +2,7 @@ import { Checkbox } from '@material-ui/core';
 import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
 import { RefundLink } from './RefundLink/RefundLink';
 import { Status } from './Status/Status';
-import { config } from '../../../../../../near/config';
+import { nearConfig } from '../../../../../../config/nearConfig';
 import { keyStatus } from '../../../../../../config/keyStatus';
 import { useStyles } from './Link.styles';
 
@@ -41,7 +41,7 @@ export const Link = ({
           iconButton: classes.copyButton,
           icon: classes.copyButtonIcon,
         }}
-        value={config.getCreateAccountAndClaimLink(sk, campaignId)}
+        value={nearConfig.getCreateAccountAndClaimLink(sk, campaignId)}
       />
     </div>
   );

@@ -3,7 +3,7 @@ import BN from 'bn.js';
 import { KeyPair } from 'near-api-js';
 import { thunk } from 'easy-peasy';
 import { redirectActions } from '../../../config/redirectActions';
-import { config } from '../../../near/config';
+import { nearConfig } from '../../../config/nearConfig';
 import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
 import { routes } from '../../../config/routes';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
@@ -68,14 +68,14 @@ export const onCompleteCampaignCreation = thunk(
         public_key: campaignAccessKey.publicKey,
         total_keys: totalKeys,
         tokens_per_key: temporary.yoctoNearPerKey,
-        account_creator: config.accounts.accountCreator,
+        account_creator: nearConfig.accounts.accountCreator,
       },
       amount: temporary.campaignAmount,
       gas: new BN('300000000000000'),
     });
 
     await keyStore.setKey(
-      config.networkId,
+      nearConfig.networkId,
       campaignId,
       KeyPair.fromString(campaignAccessKey.secretKey),
     );

@@ -3,7 +3,7 @@ import { Account } from 'near-api-js/lib/account';
 import { routes } from '../../../../config/routes';
 import { getAccountIdsByPublicKey } from '../helpers/getAccountIdsByPublicKey';
 import { getCampaignsIds } from '../helpers/getCampaignsIds';
-import { config } from '../../../../near/config';
+import { nearConfig } from '../../../../config/nearConfig';
 
 export const onDeleteLinkdropUser = thunk(
   async (_, payload, { getStoreState, getStoreActions }) => {
@@ -27,7 +27,7 @@ export const onDeleteLinkdropUser = thunk(
 
     const account = new Account(near.connection, linkdropUserId)
     await account.deleteAccount(walletUserId);
-    await keyStore.removeKey(config.networkId, linkdropUserId);
+    await keyStore.removeKey(nearConfig.networkId, linkdropUserId);
 
     wallet.signOut();
     deleteLinkdropUser(walletUserId);

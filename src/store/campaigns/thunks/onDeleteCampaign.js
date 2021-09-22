@@ -4,7 +4,7 @@ import { Account } from 'near-api-js';
 import { getCampaignContract } from '../../helpers/getContracts';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
-import { config } from '../../../near/config';
+import { nearConfig } from '../../../config/nearConfig';
 
 const createDeleteKeysIterator = ({
   firstPage,
@@ -71,7 +71,7 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
   }
 
   await account.deleteAccount(walletUserId);
-  await keyStore.removeKey(config.networkId, campaignId);
+  await keyStore.removeKey(nearConfig.networkId, campaignId);
   deleteCampaign(campaignId);
   onFinishDeleting();
 });

@@ -1,7 +1,7 @@
 import { KeyPair } from 'near-api-js';
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { routes } from '../../../../../config/routes';
-import { config } from '../../../../../near/config';
+import { nearConfig } from '../../../../../config/nearConfig';
 
 const onSuccess = async (state, actions, history, temporary) => {
   const { walletUserId, mnemonic } = temporary;
@@ -10,7 +10,7 @@ const onSuccess = async (state, actions, history, temporary) => {
   const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
 
   await keyStore.setKey(
-    config.networkId,
+    nearConfig.networkId,
     linkdropUserAccountId,
     KeyPair.fromString(secretKey),
   );

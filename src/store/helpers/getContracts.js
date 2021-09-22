@@ -1,5 +1,5 @@
 import { Account, Contract } from 'near-api-js';
-import { config } from '../../near/config';
+import { nearConfig } from '../../config/nearConfig';
 
 export const getCampaignContract = (state, campaignId) =>
   new Contract(new Account(state.general.entities.near.connection, campaignId), campaignId, {
@@ -14,7 +14,7 @@ export const getUserContract = (state, userId) =>
   });
 
 export const getLinkdropContract = (state) =>
-  new Contract(state.general.entities.wallet.account(), config.accounts.linkdrop, {
+  new Contract(state.general.entities.wallet.account(), nearConfig.accounts.linkdrop, {
     viewMethods: [],
     changeMethods: ['create_user_account'],
   });

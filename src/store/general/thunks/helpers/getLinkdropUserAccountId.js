@@ -1,5 +1,5 @@
-import { config } from '../../../../near/config';
+import { nearConfig } from '../../../../config/nearConfig';
 import { getAccountName } from '../../../helpers/getAccountName';
 
 export const getLinkdropUserAccountId = (accountId) =>
-  `${getAccountName(accountId)}.${config.accounts.linkdrop}`;
+  `${getAccountName(accountId)}.${nearConfig.accounts.linkdrop}`;

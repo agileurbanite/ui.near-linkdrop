@@ -1,7 +1,7 @@
 import { connect, keyStores, WalletConnection } from 'near-api-js';
-import { config } from '../../../../near/config';
+import { nearConfig } from '../../../../config/nearConfig';
 
-const { networkId, nodeUrl, walletUrl } = config;
+const { networkId, nodeUrl, walletUrl } = nearConfig;
 
 export const getNearPack = async () => {
   const keyStore = new keyStores.BrowserLocalStorageKeyStore();

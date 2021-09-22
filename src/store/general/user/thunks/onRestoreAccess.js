@@ -2,7 +2,7 @@ import { thunk } from 'easy-peasy';
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { KeyPair } from 'near-api-js';
 import { routes } from '../../../../config/routes';
-import { config } from '../../../../near/config';
+import { nearConfig } from '../../../../config/nearConfig';
 
 export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { setError, history } = payload;
@@ -24,7 +24,7 @@ export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStor
   const isMatch = keys.some((key) => key.public_key === publicKey);
 
   if (isMatch) {
-    await keyStore.setKey(config.networkId, linkdropUserAccountId, KeyPair.fromString(secretKey));
+    await keyStore.setKey(nearConfig.networkId, linkdropUserAccountId, KeyPair.fromString(secretKey));
     setLinkdropMnemonic({ walletUserId, mnemonic, publicKey, secretKey });
     history.replace(routes.campaigns);
   } else {

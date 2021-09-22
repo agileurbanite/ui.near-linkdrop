@@ -5,8 +5,7 @@ const testnet = {
   helperUrl: 'https://helper.testnet.near.org',
   explorerUrl: 'https://explorer.testnet.near.org',
   accounts: {
-    linkdrop: 'linkdrop.testnet', // account for master branch
-    // linkdrop: 'linkdrop-dev.testnet', // account for dev branch
+    linkdrop: 'linkdrop.testnet',
     accountCreator: 'testnet',
   },
 };
@@ -42,4 +41,4 @@ const getNearConfig = (network) => {
   };
 };
 
-export const config = getNearConfig(process.env.REACT_APP_NETWORK);
+export const nearConfig = getNearConfig(process.env.REACT_APP_NETWORK);
