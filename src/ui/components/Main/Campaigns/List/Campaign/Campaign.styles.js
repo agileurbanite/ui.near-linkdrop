@@ -7,7 +7,7 @@ const styles = (theme) => ({
     marginTop: 24,
     display: 'grid',
     gridTemplateColumns: '24px 43px 13px 104px 13px auto 12px 24px',
-    gridTemplateRows: '22px 18px 28px 20px 18px 18px',
+    gridTemplateRows: '22px 18px 28px 20px 18px 18px auto',
     gridTemplateAreas: `
       '. . . . . . . .'
       '. a . b b b x .'
@@ -15,20 +15,28 @@ const styles = (theme) => ({
       '. . . . . . . .'
       '. d f g i j . .'
       '. e f h i k . .'
+      '. . . . . . . .'
     `,
     borderRadius: 8,
-    cursor: 'pointer',
+    cursor: ({ isUncompleted }) => (isUncompleted ? 'inherit' : 'pointer'),
     boxShadow: `
      0px 2px 1px -1px rgb(0 0 0 / 20%),
      0px 2px 5px 0px rgb(0 0 0 / 15%),
      0px 1px 10px 0px rgb(0 0 0 / 12%)
     `,
     '&:hover': {
-      boxShadow: `
+      boxShadow: ({ isUncompleted }) =>
+        isUncompleted
+          ? `
+        0px 2px 1px -1px rgb(0 0 0 / 20%),
+        0px 2px 5px 0px rgb(0 0 0 / 15%),
+        0px 1px 10px 0px rgb(0 0 0 / 12%)
+        `
+          : `
         0px 5px 4px -1px rgb(0 0 0 / 20%),
         0px 6px 5px 0px rgb(0 0 0 / 14%),
         0px 1px 10px 0px rgb(0 0 0 / 12%)
-      `,
+        `,
     },
     '@media (min-width: 1065px)': {
       '&:nth-child(2n)': {
@@ -100,7 +108,6 @@ const styles = (theme) => ({
   statusValue: {
     gridArea: 'k',
     color: theme.palette.primary.main,
-    textTransform: 'capitalize',
   },
 });
 

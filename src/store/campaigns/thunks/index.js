@@ -1,5 +1,5 @@
-import { onCreateCampaign } from './onCreateCampaign';
-import { onCompleteCampaignCreation } from './onCompleteCampaignCreation';
+import { onStartCampaignCreation } from './onStartCampaignCreation';
+import { onFinishCampaignCreation } from './onFinishCampaignCreation';
 import { onMountCampaign } from './onMountCampaign';
 import { onRefundLink } from './onRefundLink';
 import { onExportCampaignCSV } from './onExportCampaignCSV';
@@ -10,8 +10,8 @@ import { onDeleteCampaign } from './onDeleteCampaign';
 import { onMountDeleteCampaign } from './onMountDeleteCampaign';
 
 export const thunks = {
-  onCreateCampaign,
-  onCompleteCampaignCreation,
+  onStartCampaignCreation,
+  onFinishCampaignCreation,
   onMountCampaign,
   onRefundLink,
   onExportCampaignCSV,

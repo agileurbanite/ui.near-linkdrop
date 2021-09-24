@@ -18,7 +18,7 @@ export const mountCampaign = action((slice, payload) => {
     pagination,
     keys: keys.map((key, index) => ({
       ...key,
-      status: keyStats[index].status.toLowerCase(),
+      status: keyStats[index].status,
     })),
   };
 });

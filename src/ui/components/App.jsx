@@ -23,7 +23,6 @@ export const App = () => (
           routes.campaigns,
           routes.settings,
           routes.createCampaign,
-          routes.completeCampaignCreation,
           routes.campaign,
           routes.deleteCampaign,
         ]}

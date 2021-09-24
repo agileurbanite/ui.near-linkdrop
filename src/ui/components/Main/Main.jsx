@@ -4,7 +4,6 @@ import { Sidebar } from './Sidebar/Sidebar';
 import { Campaigns } from './Campaigns/Campaigns';
 import { Settings } from './Settings/Settings';
 import { CreateCampaign } from './CreateCampaign/CreateCampaign';
-import { CompleteCampaignCreation } from './CompleteCampaignCreation/CompleteCampaignCreation';
 import { DeleteCampaign } from './DeleteCampaign/DeleteCampaign';
 import { Campaign } from './Campaign/Campaign';
 import { routes } from '../../../config/routes';
@@ -21,11 +20,6 @@ export const Main = () => {
             <Route exact path={routes.campaigns} component={Campaigns} />
             <Route exact path={routes.settings} component={Settings} />
             <Route exact path={routes.createCampaign} component={CreateCampaign} />
-            <Route
-              exact
-              path={routes.completeCampaignCreation}
-              component={CompleteCampaignCreation}
-            />
             <Route exact path={routes.campaign} component={Campaign} />
             <Route exact path={routes.deleteCampaign} component={DeleteCampaign} />
           </Switch>

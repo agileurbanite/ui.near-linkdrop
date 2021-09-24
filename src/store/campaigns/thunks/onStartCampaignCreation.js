@@ -13,7 +13,7 @@ const getCampaignAmount = (totalKeys, amountPerLink) => {
   return parseNearAmount(res.toString());
 };
 
-export const onCreateCampaign = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
+export const onStartCampaignCreation = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { name: campaignName, icon, totalLinks, amountPerLink } = payload;
 
   const state = getStoreState();
@@ -33,6 +33,7 @@ export const onCreateCampaign = thunk(async (_, payload, { getStoreState, getSto
 
   setTemporaryData({
     redirectAction,
+    campaignId: `${campaignName}.${linkdropUserId}`,
     campaignName,
     icon,
     yoctoNearPerKey,

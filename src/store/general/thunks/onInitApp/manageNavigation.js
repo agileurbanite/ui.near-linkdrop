@@ -24,7 +24,7 @@ export const manageNavigation = async (state, history) => {
     replace(campaigns);
   }
 
-  // TODO add create-account and restore-access and completeCampaignCreation
+  // TODO add create-account and restore-access
   // createAccount -> if user connected and linkdrop account doesnt exist
   // restoreAccess -> if user connected and linkdrop account exist
 };

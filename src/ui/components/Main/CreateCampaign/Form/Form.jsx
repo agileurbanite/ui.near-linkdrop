@@ -11,7 +11,9 @@ import { useStyles } from './Form.styles';
 export const Form = () => {
   const accountId = useStoreState((store) => store.general.user.accountId);
   const balance = useStoreState((store) => store.general.user.balance);
-  const onCreateCampaign = useStoreActions((actions) => actions.campaigns.onCreateCampaign);
+  const onStartCampaignCreation = useStoreActions(
+    (actions) => actions.campaigns.onStartCampaignCreation,
+  );
   const [step, setStep] = useState(1);
   const classes = useStyles();
 
@@ -26,7 +28,7 @@ export const Form = () => {
     mode: 'all',
   });
 
-  const onSubmit = handleSubmit((values) => onCreateCampaign(values));
+  const onSubmit = handleSubmit((values) => onStartCampaignCreation(values));
 
   return (
     <form onSubmit={onSubmit} className={classes.stepper}>
