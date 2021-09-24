@@ -6,12 +6,12 @@ const styles = (theme) => ({
     width: 344,
     marginTop: 24,
     display: 'grid',
-    gridTemplateColumns: '24px 43px 13px 104px 13px auto 12px 24px',
+    gridTemplateColumns: '24px 52px 13px 104px 13px auto 12px 24px',
     gridTemplateRows: '22px 18px 28px 20px 18px 18px auto',
     gridTemplateAreas: `
       '. . . . . . . .'
-      '. a . b b b x .'
-      '. a . c c c . .'
+      '. a b b b b x .'
+      '. a c c c c . .'
       '. . . . . . . .'
       '. d f g i j . .'
       '. e f h i k . .'

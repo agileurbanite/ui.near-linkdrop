@@ -40,9 +40,7 @@ export const Campaign = ({ campaign }) => {
         <>
           <More campaignId={campaignId} />
           <span className={cn(classes.label, classes.links)}>Links</span>
-          <span className={cn(classes.value, classes.linksValue)}>
-            {keysStats.active}/{keysStats.total}
-          </span>
+          <span className={cn(classes.value, classes.linksValue)}>{keysStats.total}</span>
           <Divider className={cn(classes.divider, classes.divider1)} />
           <span className={cn(classes.label, classes.created)}>Created</span>
           <span className={cn(classes.value, classes.createdValue)}>{getDate(createdAt)}</span>
