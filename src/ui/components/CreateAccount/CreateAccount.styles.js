@@ -13,6 +13,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    margin: theme.spacing(2),
   },
   emoji: {
     fontSize: 80,
@@ -47,17 +48,55 @@ const styles = {
     whiteSpace: 'nowrap',
     margin: theme.spacing(0.5),
   },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& .MuiInputBase-input': {
+      padding: 0,
+    },
+  },
+  onSubmitError: {
+    marginTop: 12,
+    color: theme.colors.red,
+  },
+  input: {
+    border: 0,
+    padding: '8px 12px 8px 12px',
+    borderRadius: theme.spacing(0.5),
+    backgroundColor: '#FFF',
+  },
   button: {
-    marginTop: 24,
     borderRadius: theme.spacing(1),
-    padding: '11px 35px',
+    height: 48,
     fontWeight: 500,
     minWidth: 170,
-    marginRight: theme.spacing(2),
+    marginTop: theme.spacing(2),
   },
   [theme.breakpoints.down('xs')]: {
     responsiveDirection: {
+      display: 'flex',
+      width: '100%',
+      margin: theme.spacing(1),
       flexDirection: 'column-reverse',
+      marginBottom: theme.spacing(2),
+      '& button': {
+        marginRight: 0,
+        marginTop: theme.spacing(2),
+      },
+    },
+  },
+  [theme.breakpoints.down('lg')]: {
+    responsiveDirection: {
+      display: 'flex',
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
+      '& button': {
+        marginRight: theme.spacing(0),
+      },
+      '& button:nth-child(1)': {
+        marginRight: theme.spacing(1),
+      },
     },
   },
 };
