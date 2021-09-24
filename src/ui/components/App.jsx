@@ -19,13 +19,7 @@ export const App = () => (
       <Route exact path={routes.restoreAccess} component={RestoreAccess} />
       <Route
         exact
-        path={[
-          routes.campaigns,
-          routes.settings,
-          routes.createCampaign,
-          routes.campaign,
-          routes.deleteCampaign,
-        ]}
+        path={[routes.campaigns, routes.settings, routes.createCampaign, routes.campaign]}
         component={Main}
       />
       <Route path="*" component={PageNotFound} />
