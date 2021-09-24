@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import {theme} from "../../config/theme";
+import { theme } from '../../config/theme';
 
 const styles = {
   container: {
