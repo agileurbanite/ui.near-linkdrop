@@ -4,7 +4,7 @@ import { useStyles } from './Info.styles';
 
 export const Info = ({ accountId, balance, campaignData }) => {
   const classes = useStyles();
-  const { amountPerLink, totalInLinks, serviceFee, total } = campaignData;
+  const { amountPerKey, totalInKeys, operationReserve, totalPrice } = campaignData;
 
   return (
     <div className={classes.info}>
@@ -21,20 +21,22 @@ export const Info = ({ accountId, balance, campaignData }) => {
       <div className={classes.totalValueContainer}>
         <div className={classes.label}>
           <span className={classes.labelDescription}>Each link contains</span>
-          <span className={classes.labelValue}>{formatNearBalance(amountPerLink, 5)}</span>
+          <span className={classes.labelValue}>{amountPerKey} NEAR</span>
         </div>
         <div className={classes.label}>
           <span className={classes.labelDescription}>Total NEAR in links</span>
-          <span className={classes.labelValue}>{formatNearBalance(totalInLinks, 5)}</span>
+          <span className={classes.labelValue}>{totalInKeys} NEAR</span>
         </div>
         <div className={classes.label}>
-          <span className={classes.labelDescription}>Service fee</span>
-          <span className={classes.labelValue}>~{formatNearBalance(serviceFee)}</span>
+          <span className={classes.labelDescription}>
+            Operation reserve (gas price, campaign storage etc)
+          </span>
+          <span className={classes.labelValue}>~{operationReserve} NEAR</span>
         </div>
       </div>
       <div className={classes.label}>
         <span className={classes.total}>Total - spend</span>
-        <span className={classes.total}>~{formatNearBalance(total, 5)}</span>
+        <span className={classes.total}>~{totalPrice} NEAR</span>
       </div>
     </div>
   );

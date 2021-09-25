@@ -1,19 +1,20 @@
 /* eslint-disable */
 import { Button } from '@material-ui/core';
 import { KeyboardArrowLeft } from '@material-ui/icons';
-// import { getCampaignData } from './getCampaignData';
-// import { CampaignProfileCard } from '../../../general/CampaignProfileCard/CampaignProfileCard';
+import { Info } from './Info/Info';
+import { getCampaignData } from './getCampaignData';
+import { CampaignProfileCard } from './CampaignProfileCard/CampaignProfileCard';
 import { useStyles } from './Step2.styles';
 
-export const Step2 = ({ setStep, availableBalance }) => {
+export const Step2 = ({ setStep, getValues, currentAccount, availableBalance }) => {
   const classes = useStyles();
 
-  // const campaignData = getCampaignData(getValues);
+  const campaignData = getCampaignData(getValues);
 
   return (
     <div className={classes.container}>
-      {/*<CampaignProfileCard campaign={campaignData} />*/}
-      {/* <Info accountId={accountId} balance={balance} campaignData={campaignData} /> */}
+      <CampaignProfileCard campaign={campaignData} />
+      <Info accountId={currentAccount} balance={availableBalance} campaignData={campaignData} />
       <div className={classes.actions}>
         <Button onClick={() => setStep(1)} className={classes.back}>
           <KeyboardArrowLeft />
