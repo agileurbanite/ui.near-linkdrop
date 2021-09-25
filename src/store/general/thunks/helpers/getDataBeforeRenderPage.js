@@ -13,6 +13,7 @@ export const getDataBeforeRenderPage = async ({ actions, history, withLoading })
   const disableLoading = actions.general.disableLoading;
   const onMountCampaign = actions.campaigns.onMountCampaign;
   const onMountCampaigns = actions.campaigns.onMountCampaigns;
+  const onMountCreateCampaign = actions.campaigns.onMountCreateCampaign;
 
   const match = matchPath(history.location.pathname, {
     path: [campaigns, campaign, createCampaign],
@@ -27,6 +28,7 @@ export const getDataBeforeRenderPage = async ({ actions, history, withLoading })
 
   ifRouteIs(campaigns) && (await onMountCampaigns());
   ifRouteIs(campaign) && (await onMountCampaign(params.campaignId));
+  ifRouteIs(createCampaign) && (await onMountCreateCampaign());
 
   withLoading && disableLoading();
 };

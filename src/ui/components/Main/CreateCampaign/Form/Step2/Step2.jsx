@@ -5,7 +5,7 @@ import { KeyboardArrowLeft } from '@material-ui/icons';
 // import { CampaignProfileCard } from '../../../general/CampaignProfileCard/CampaignProfileCard';
 import { useStyles } from './Step2.styles';
 
-export const Step2 = ({ setStep }) => {
+export const Step2 = ({ setStep, availableBalance }) => {
   const classes = useStyles();
 
   // const campaignData = getCampaignData(getValues);

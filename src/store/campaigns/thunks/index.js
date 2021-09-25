@@ -8,6 +8,7 @@ import { onMountCampaigns } from './onMountCampaigns';
 import { onLoadKeys } from './onLoadKeys';
 import { onDeleteCampaign } from './onDeleteCampaign';
 import { onMountDeleteCampaign } from './onMountDeleteCampaign';
+import { onMountCreateCampaign } from './onMountCreateCampaign';
 
 export const thunks = {
   onStartCampaignCreation,
@@ -20,4 +21,5 @@ export const thunks = {
   onLoadKeys,
   onDeleteCampaign,
   onMountDeleteCampaign,
+  onMountCreateCampaign,
 };
