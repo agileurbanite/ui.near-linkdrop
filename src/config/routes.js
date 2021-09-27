@@ -11,13 +11,10 @@ export const routes = {
   campaigns: '/campaigns',
   settings: '/settings',
   createCampaign: '/create-campaign',
-  completeCampaignCreation: '/complete-campaign-creation',
   campaign: '/campaigns/:campaignId',
-  deleteCampaign: '/delete-campaign/:campaignId',
 };
 
 export const getRoute = {
   campaign: (campaignId) => `/campaigns/${campaignId}`,
-  deleteCampaign: (campaignId) => `/delete-campaign/${campaignId}`,
   callbackUrl: (params) => `${window.location.origin}/redirect-from-wallet?${qs.stringify(params)}`,
 };

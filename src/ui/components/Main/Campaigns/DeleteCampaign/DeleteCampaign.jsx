@@ -22,7 +22,7 @@ export const DeleteCampaign = ({ params: { campaignId, balance } }) => {
   // the user will accidentally close the modal.
   const closeModal = () => {
     if (step === 2) return;
-    hideModal({ name: 'deleteCampaign' });
+    hideModal('deleteCampaign');
   };
 
   return (

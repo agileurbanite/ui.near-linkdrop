@@ -2,10 +2,10 @@ import { parseSeedPhrase } from 'near-seed-phrase';
 import BN from 'bn.js';
 import { KeyPair } from 'near-api-js';
 import { thunk } from 'easy-peasy';
-import { redirectActions } from '../../../config/redirectActions';
+import { modals } from '../../../config/modals';
 import { nearConfig } from '../../../config/nearConfig';
 import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
-import { routes } from '../../../config/routes';
+import { getRoute } from '../../../config/routes';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
 
@@ -33,44 +33,38 @@ const createAddKeysIterator = ({
         args: { keys: keys.map(({ pk }) => pk) },
         gas: new BN('300000000000000'),
       });
-
-      yield page;
+      // return percentage between 0% and 99%
+      yield Math.trunc(Math.min((page / lastPage) * 100, 99));
     }
   },
 });
 
-export const onCompleteCampaignCreation = thunk(
+export const onFinishCampaignCreation = thunk(
   async (_, payload, { getStoreState, getStoreActions }) => {
-    const { history } = payload;
+    const { history, data, setProgress } = payload;
 
     const state = getStoreState();
     const keyStore = state.general.entities.keyStore;
-    const temporary = state.general.temporary;
     const walletUserId = state.general.user.currentAccount;
     const linkdropUserId = state.general.user.accounts[walletUserId].linkdrop.accountId;
     const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
 
     const actions = getStoreActions();
-    const clearTemporaryData = actions.general.clearTemporaryData;
+    const hideModal = actions.general.hideModal;
 
-    // TODO temp solution until permission system will be added;
-    if (temporary.redirectAction !== redirectActions.createNearCampaign) return;
-
-    const { campaignName, totalKeys } = temporary;
-
-    const campaignId = `${campaignName}.${linkdropUserId}`;
+    const { campaignId, campaignName, totalKeys, yoctoNearPerKey, campaignAmount } = data;
     const campaignAccessKey = parseSeedPhrase(mnemonic);
     const user = getUserContract(state, linkdropUserId);
 
     await user.create_near_campaign({
       args: {
-        name: temporary.campaignName,
+        name: campaignName,
         public_key: campaignAccessKey.publicKey,
         total_keys: totalKeys,
-        tokens_per_key: temporary.yoctoNearPerKey,
+        tokens_per_key: yoctoNearPerKey,
         account_creator: nearConfig.accounts.accountCreator,
       },
-      amount: temporary.campaignAmount,
+      amount: campaignAmount,
       gas: new BN('300000000000000'),
     });
 
@@ -91,11 +85,11 @@ export const onCompleteCampaignCreation = thunk(
       internalCampaignId: metadata.campaign_id,
     });
 
-    for await (const chunk of iterator) {
-      console.log('Done №', chunk);
+    for await (const percentage of iterator) {
+      setProgress(percentage);
     }
 
-    clearTemporaryData();
-    history.replace(routes.campaigns);
+    hideModal(modals.createCampaign);
+    history.replace(getRoute.campaign(campaignId));
   },
 );

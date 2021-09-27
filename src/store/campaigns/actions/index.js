@@ -3,6 +3,7 @@ import { mountCampaign } from './mountCampaign';
 import { mountCampaigns } from './mountCampaigns';
 import { loadKeys } from './loadKeys';
 import { deleteCampaign } from './deleteCampaign';
+import { mountCreateCampaign } from './mountCreateCampaign';
 
 export const actions = {
   refundLink,
@@ -10,4 +11,5 @@ export const actions = {
   mountCampaigns,
   loadKeys,
   deleteCampaign,
+  mountCreateCampaign,
 };

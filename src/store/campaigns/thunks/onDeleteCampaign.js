@@ -70,7 +70,7 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
     setProgress(Math.trunc(Math.min((chunk / lastPage) * 100, 99)));
   }
 
-  await account.deleteAccount(walletUserId);
+  await account.deleteAccount(walletUserId); // TODO replace with method
   await keyStore.removeKey(nearConfig.networkId, campaignId);
   deleteCampaign(campaignId);
   onFinishDeleting();

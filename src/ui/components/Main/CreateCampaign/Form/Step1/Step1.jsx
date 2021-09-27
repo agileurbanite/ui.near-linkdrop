@@ -6,7 +6,7 @@ import { Info } from './Info/Info';
 import { emoji } from '../../../../../config/emoji';
 import { useStyles } from './Step1.styles';
 
-export const Step1 = ({ setStep, control, accountId, balance }) => {
+export const Step1 = ({ setStep, control, currentAccount, availableBalance }) => {
   const { errors, isValid } = useFormState({ control });
   const classes = useStyles();
 
@@ -40,13 +40,13 @@ export const Step1 = ({ setStep, control, accountId, balance }) => {
           />
         </div>
         <Divider className={classes.divider} />
-        <Info accountId={accountId} balance={balance} />
+        <Info currentAccount={currentAccount} availableBalance={availableBalance} />
       </div>
       <div className={classes.actions}>
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setStep(2) }
+          onClick={() => setStep(2)}
           className={classes.next}
           disabled={!isValid}
         >
