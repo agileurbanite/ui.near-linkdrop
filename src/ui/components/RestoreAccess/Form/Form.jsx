@@ -27,7 +27,6 @@ export const Form = () => {
         name="mnemonic"
         variant="outlined"
         fullWidth
-        className={classes.name}
         label="Mnemonic phrase"
       />
       <Button variant="contained" color="primary" className={classes.button} type="submit">
