@@ -1,6 +1,5 @@
 import { thunk } from 'easy-peasy';
 import BN from 'bn.js';
-import { Account } from 'near-api-js';
 import { getCampaignContract } from '../../helpers/getContracts';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
@@ -40,7 +39,6 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
   const { campaignId, onFinishDeleting, setProgress } = payload;
 
   const state = getStoreState();
-  const near = state.general.entities.near;
   const keyStore = state.general.entities.keyStore;
   const walletUserId = state.general.user.currentAccount;
   const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
@@ -49,11 +47,10 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
 
   const actions = getStoreActions();
   const deleteCampaign = actions.campaigns.deleteCampaign;
+  const setError = actions.general.setError;
 
-  const account = new Account(near.connection, campaignId);
   const campaign = getCampaignContract(state, campaignId);
-
-  const elementsPerPage = 30; // TODO move to config
+  const elementsPerPage = 30;
   const { firstPage, lastPage } = getPagesRange(total, elementsPerPage);
 
   const iterator = createDeleteKeysIterator({
@@ -65,13 +62,20 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
     campaign,
     internalCampaignId,
   });
+  try {
+    for await (const chunk of iterator) {
+      setProgress(Math.trunc(Math.min((chunk / lastPage) * 100, 99)));
+    }
 
-  for await (const chunk of iterator) {
-    setProgress(Math.trunc(Math.min((chunk / lastPage) * 100, 99)));
+    await campaign.delete_campaign({
+      args: { beneficiary_id: walletUserId },
+      gas: new BN('50000000000000'),
+    });
+
+    await keyStore.removeKey(nearConfig.networkId, campaignId);
+    deleteCampaign(campaignId);
+    onFinishDeleting();
+  } catch (e) {
+    setError({ description: e.message });
   }
-
-  await account.deleteAccount(walletUserId); // TODO replace with method
-  await keyStore.removeKey(nearConfig.networkId, campaignId);
-  deleteCampaign(campaignId);
-  onFinishDeleting();
 });
