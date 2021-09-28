@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core';
-import { theme } from '../../../config/theme';
 
-const styles = {
+const styles = theme => ({
   header: {
     fontSize: 34,
     fontWeight: 700,
@@ -38,6 +37,6 @@ const styles = {
     fontWeight: 500,
     minWidth: 150,
   },
-};
+});
 
 export const useStyles = makeStyles(styles, { name: 'ValidatePhrase' });

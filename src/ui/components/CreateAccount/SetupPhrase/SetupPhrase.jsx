@@ -15,8 +15,8 @@ export const SetupPhrase = ({ phraseBag: { mnemonic, wordList }, goToValidatePhr
       <Box maxWidth={592}>
         <Typography variant="body1" color="textSecondary" className={classes.subHeader}>
           Copy or write down the following words in the exact order listed below. You will not be
-          able to restore access to your Linkdrop account without it, which could result in the loss
-          of your funds.
+          able to restore access to your Linkdrop account without this seed phrase, which could
+          result in the loss of your funds.
         </Typography>
       </Box>
       <Box display="flex" alignItems="center">
