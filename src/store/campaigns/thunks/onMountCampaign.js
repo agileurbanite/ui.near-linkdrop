@@ -7,8 +7,7 @@ import { pagination as paginationConfig } from '../../../ui/config/campaign';
 
 export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getStoreActions }) => {
   const state = getStoreState();
-  const walletUserId = state.general.user.currentAccount;
-  const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
+  const mnemonic = state.general.user.linkdrop.mnemonic;
 
   const actions = getStoreActions();
   const mountCampaign = actions.campaigns.mountCampaign;
@@ -21,6 +20,8 @@ export const onMountCampaign = thunk(async (_, campaignId, { getStoreState, getS
   ]);
 
   const metadata = toCamelCase(_metadata);
+
+  // TODO redirect to campaigns if status is wrong or campaign is not user campaign
 
   const pagination = getPagination({
     page: paginationConfig.startPage,

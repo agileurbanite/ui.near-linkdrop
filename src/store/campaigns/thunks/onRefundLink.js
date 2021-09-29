@@ -6,7 +6,7 @@ export const onRefundLink = thunk(async (_, payload, { getStoreState, getStoreAc
   const { pk, campaignId } = payload;
 
   const state = getStoreState();
-  const walletUserId = state.general.user.currentAccount;
+  const walletUserId = state.general.user.wallet.accountId;
 
   const actions = getStoreActions();
   const setError = actions.general.setError;

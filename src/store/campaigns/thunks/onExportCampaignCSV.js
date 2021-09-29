@@ -8,8 +8,7 @@ export const onExportCampaignCSV = thunk(async (_, payload, { getStoreState, get
   const { campaignId } = payload;
 
   const state = getStoreState();
-  const walletUserId = state.general.user.currentAccount;
-  const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
+  const mnemonic = state.general.user.linkdrop.mnemonic;
   const total = state.campaigns.map[campaignId].keysStats.total;
   const name = state.campaigns.map[campaignId].name;
   const internalCampaignId = state.campaigns.map[campaignId].internalCampaignId;

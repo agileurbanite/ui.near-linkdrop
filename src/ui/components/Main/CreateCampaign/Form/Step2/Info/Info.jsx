@@ -2,7 +2,7 @@ import { Near } from '../../../../../general/icons/Near';
 import { formatNearBalance } from '../../../../../../utils/format';
 import { useStyles } from './Info.styles';
 
-export const Info = ({ accountId, balance, campaignData }) => {
+export const Info = ({ walletAccountId, balance, campaignData }) => {
   const classes = useStyles();
   const { amountPerKey, totalInKeys, operationReserve, totalPrice } = campaignData;
 
@@ -11,7 +11,7 @@ export const Info = ({ accountId, balance, campaignData }) => {
       <div className={classes.accountBlock}>
         <Near className={classes.nearIcon} />
         <span className={classes.walletId}>Wallet ID</span>
-        <span className={classes.account}>{accountId}</span>
+        <span className={classes.account}>{walletAccountId}</span>
       </div>
       <div className={classes.balanceBlock}>
         <span className={classes.balance}>Balance</span>

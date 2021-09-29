@@ -7,7 +7,7 @@ import { appName } from '../../config/appName';
 import { useStyles } from './Topbar.styles';
 
 export const Topbar = () => {
-  const currentAccount = useStoreState((store) => store.general.user.currentAccount);
+  const accountId = useStoreState((store) => store.general.user.wallet.accountId);
   const isLoading = useStoreState((store) => store.general.isLoading);
   const classes = useStyles();
 
@@ -17,9 +17,7 @@ export const Topbar = () => {
         <span className={classes.logo}>
           <Link to={routes.campaigns}>{appName}</Link>
         </span>
-        <div className={classes.account}>
-          {currentAccount && <Account accountId={currentAccount} />}
-        </div>
+        <div className={classes.account}>{accountId && <Account accountId={accountId} />}</div>
       </div>
       {isLoading && <LinearProgress className={classes.progress} />}
     </>

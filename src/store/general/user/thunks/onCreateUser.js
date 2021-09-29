@@ -11,21 +11,19 @@ export const onCreateUser = thunk(async (_, payload, { getStoreState, getStoreAc
   const { mnemonic } = payload;
 
   const state = getStoreState();
-  const walletUserId = state.general.user.currentAccount;
-
+  const walletAccountId = state.general.user.wallet.accountId;
   const actions = getStoreActions();
-  const setTemporaryData = actions.general.setTemporaryData;
 
   const linkdrop = getLinkdropContract(state);
   const accessKey = parseSeedPhrase(mnemonic);
   const redirectAction = redirectActions.createAccount;
 
-  setTemporaryData({ redirectAction, walletUserId, mnemonic });
+  actions.general.setTemporaryData({ redirectAction, mnemonic });
 
   // call this func will redirect the user to the wallet
   linkdrop.create_user_account({
     args: {
-      name: getAccountName(walletUserId),
+      name: getAccountName(walletAccountId),
       public_key: accessKey.publicKey,
     },
     amount: parseNearAmount('5'),

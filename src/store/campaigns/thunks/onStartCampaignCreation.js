@@ -18,8 +18,7 @@ export const onStartCampaignCreation = thunk(async (_, payload, { getStoreState,
 
   const state = getStoreState();
   const wallet = state.general.entities.wallet;
-  const walletUserId = state.general.user.currentAccount;
-  const linkdropUserId = state.general.user.accounts[walletUserId].linkdrop.accountId;
+  const linkdropUserId = state.general.user.linkdrop.accountId;
 
   const actions = getStoreActions();
   const setTemporaryData = actions.general.setTemporaryData;
@@ -28,6 +27,7 @@ export const onStartCampaignCreation = thunk(async (_, payload, { getStoreState,
   const totalKeys = Number(totalLinks);
   const yoctoNearPerKey = parseNearAmount(amountPerLink);
 
+  // TODO Remove this and use data from payload;
   const campaignAmount = getCampaignAmount(totalKeys, amountPerLink);
   const redirectAction = redirectActions.createNearCampaign;
 

@@ -12,11 +12,9 @@ export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStor
   const state = getStoreState();
   const near = state.general.entities.near;
   const keyStore = state.general.entities.keyStore;
-  const walletUserId = state.general.user.currentAccount;
-  const linkdropUserAccountId = state.general.user.accounts[walletUserId].linkdrop.accountId;
+  const linkdropUserAccountId = state.general.user.linkdrop.accountId;
 
   const actions = getStoreActions();
-  const setLinkdropMnemonic = actions.general.user.setLinkdropMnemonic;
 
   const { publicKey, secretKey } = parseSeedPhrase(mnemonic);
   const account = await near.account(linkdropUserAccountId);
@@ -26,18 +24,26 @@ export const onRestoreAccess = thunk(async (_, payload, { getStoreState, getStor
 
   if (isMatch) {
     const user = getUserContract(state, linkdropUserAccountId);
+
     const keyPair = KeyPair.fromString(secretKey);
+    await keyStore.setKey(nearConfig.networkId, linkdropUserAccountId, keyPair);
 
     const campaignsIds = await user.get_campaigns();
-
-    await keyStore.setKey(nearConfig.networkId, linkdropUserAccountId, keyPair);
     await Promise.all(
       campaignsIds.map((campaignAccountId) =>
         keyStore.setKey(nearConfig.networkId, campaignAccountId, keyPair),
       ),
     );
 
-    setLinkdropMnemonic({ walletUserId, mnemonic, publicKey, secretKey });
+    actions.general.user.setUserData({
+      linkdrop: {
+        isConnected: true,
+        mnemonic,
+        secretKey,
+        publicKey,
+      },
+    });
+
     history.replace(routes.campaigns);
   } else {
     setError('mnemonic', {
