@@ -1,6 +1,6 @@
 import qs from 'query-string';
 import { matchPath } from 'react-router';
-import { routes } from '../../../../ui/config/routes';
+import { routes } from '../../../../config/routes';
 
 export const isRedirect = (state, history) => {
   const { redirectAction } = qs.parse(history.location.search);

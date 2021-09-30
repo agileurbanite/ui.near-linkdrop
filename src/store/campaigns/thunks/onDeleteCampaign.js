@@ -1,19 +1,32 @@
 import { thunk } from 'easy-peasy';
 import BN from 'bn.js';
-import { Account } from 'near-api-js';
-import { getCampaignContract } from '../../../near/helpers/getCampaignContract';
+import { getCampaignContract } from '../../helpers/getContracts';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
-import { config } from '../../../near/config';
+import { nearConfig } from '../../../config/nearConfig';
 
-const deleteKeys = ({ firstPage, lastPage, total, elementsPerPage, mnemonic, campaign }) => ({
+const createDeleteKeysIterator = ({
+  firstPage,
+  lastPage,
+  total,
+  elementsPerPage,
+  mnemonic,
+  campaign,
+  internalCampaignId,
+}) => ({
   async *[Symbol.asyncIterator]() {
     for (let page = firstPage; page <= lastPage; page += 1) {
       const { range } = getPagination({ page, total, elementsPerPage });
-      const keys = await getKeysFromMnemonic({ mnemonic, start: range.start, end: range.end });
+
+      const keys = await getKeysFromMnemonic({
+        mnemonic,
+        start: range.start,
+        end: range.end,
+        internalCampaignId,
+      });
 
       await campaign.clear_state({
-        payload: { keys: keys.map(({ pk }) => pk) },
+        args: { keys: keys.map(({ pk }) => pk) },
         gas: new BN('300000000000000'),
       });
 
@@ -26,36 +39,43 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
   const { campaignId, onFinishDeleting, setProgress } = payload;
 
   const state = getStoreState();
-  const near = state.general.entities.near;
   const keyStore = state.general.entities.keyStore;
-  const walletUserId = state.general.user.currentAccount;
-  const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
+  const walletUserId = state.general.user.wallet.accountId;
+  const mnemonic = state.general.user.linkdrop.mnemonic;
   const total = state.campaigns.map[campaignId].keysStats.total;
+  const internalCampaignId = state.campaigns.map[campaignId].internalCampaignId;
 
   const actions = getStoreActions();
   const deleteCampaign = actions.campaigns.deleteCampaign;
+  const setError = actions.general.setError;
 
-  const account = new Account(near.connection, campaignId);
   const campaign = getCampaignContract(state, campaignId);
-
   const elementsPerPage = 30;
   const { firstPage, lastPage } = getPagesRange(total, elementsPerPage);
 
-  const iterator = deleteKeys({
+  const iterator = createDeleteKeysIterator({
     firstPage,
     lastPage,
     total,
     elementsPerPage,
     mnemonic,
     campaign,
+    internalCampaignId,
   });
+  try {
+    for await (const chunk of iterator) {
+      setProgress(Math.trunc(Math.min((chunk / lastPage) * 100, 99)));
+    }
 
-  for await (const chunk of iterator) {
-    setProgress(Math.trunc(Math.min((chunk / lastPage) * 100, 99)));
+    await campaign.delete_campaign({
+      args: { beneficiary_id: walletUserId },
+      gas: new BN('50000000000000'),
+    });
+
+    await keyStore.removeKey(nearConfig.networkId, campaignId);
+    deleteCampaign(campaignId);
+    onFinishDeleting();
+  } catch (e) {
+    setError({ description: e.message });
   }
-
-  await account.deleteAccount(walletUserId);
-  await keyStore.removeKey(config.networkId, campaignId);
-  deleteCampaign(campaignId);
-  onFinishDeleting();
 });

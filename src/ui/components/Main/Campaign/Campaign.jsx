@@ -6,7 +6,7 @@ import { Info } from './Info/Info';
 import { AdditionalData } from './AdditionalData/AdditionalData';
 import { getCampaignName } from '../../../utils/formatCampaignData';
 import { Links } from './Links/Links';
-import { routes } from '../../../config/routes';
+import { routes } from '../../../../config/routes';
 import { useStyles } from './Campaign.styles';
 
 export const Campaign = () => {

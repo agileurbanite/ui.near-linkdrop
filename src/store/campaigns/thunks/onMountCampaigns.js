@@ -1,43 +1,29 @@
 import { thunk } from 'easy-peasy';
-import { Account } from 'near-api-js/lib/account';
-import { getAccountIdsByPublicKey } from '../../../near/helpers/getAccountIdsByPublicKey';
-import { getCampaignsIds } from '../../helpers/getCampaignsIds';
+import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
+import { toCamelCase } from '../../helpers/toCamelCase';
+
+// TODO We can have a case with multi devices - if user will create campaign on device A
+// device B won't have a key in LS and wont be able to generate keys for this campaign
 
 export const onMountCampaigns = thunk(async (_, __, { getStoreState, getStoreActions }) => {
   const state = getStoreState();
-  const near = state.general.entities.near;
-  const walletUserId = state.general.user.currentAccount;
-  const linkdropUserId = state.general.user.accounts[walletUserId].linkdrop.accountId;
-  const publicKey = state.general.user.accounts[walletUserId].linkdrop.publicKey;
+  const linkdropUserId = state.general.user.linkdrop.accountId;
 
   const actions = getStoreActions();
   const mountCampaigns = actions.campaigns.mountCampaigns;
   const setError = actions.general.setError;
 
+  const user = getUserContract(state, linkdropUserId);
+
   try {
-    const accountIds = await getAccountIdsByPublicKey(publicKey);
-    const campaignIds = getCampaignsIds(accountIds, linkdropUserId);
-
-    // const campaignIds = [
-    //   '1000-links.eclipseer.linkdrop.testnet',
-    //   'campaign1.eclipseer.linkdrop.testnet',
-    // ];
-
+    const campaignIds = await user.get_campaigns();
     const campaigns = await Promise.all(
       campaignIds.map((campaignId) =>
-        new Account(near.connection, campaignId).viewFunction(
-          campaignId,
-          'get_campaign_metadata',
-          {},
-        ),
+        getCampaignContract(state, campaignId).get_campaign_metadata(),
       ),
     );
-
-    mountCampaigns({ campaignIds, campaigns });
+    mountCampaigns({ campaignIds, campaigns: toCamelCase(campaigns) });
   } catch (e) {
-    setError({
-      isError: true,
-      description: e,
-    });
+    setError({ description: e.message });
   }
 });

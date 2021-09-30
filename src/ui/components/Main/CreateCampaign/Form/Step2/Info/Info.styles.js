@@ -67,6 +67,7 @@ const styles = (theme) => ({
     },
   },
   labelDescription: {
+    width: '65%',
     color: theme.palette.text.secondary,
     fontSize: 14,
   },

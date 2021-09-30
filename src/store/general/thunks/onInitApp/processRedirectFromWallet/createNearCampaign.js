@@ -1,7 +1,10 @@
-import { routes } from '../../../../../ui/config/routes';
+import { modals } from '../../../../../config/modals';
+import { routes } from '../../../../../config/routes';
 
-const onSuccess = (history) => {
-  history.replace(routes.completeCampaignCreation);
+const onSuccess = (state, actions, history) => {
+  actions.general.showModal({ name: modals.createCampaign, params: state.general.temporary });
+  actions.general.clearTemporaryData();
+  history.replace(routes.createCampaign);
 };
 
 const onError = (actions, history) => {
@@ -13,7 +16,7 @@ const onError = (actions, history) => {
   history.replace(routes.createCampaign);
 };
 
-export const createNearCampaign = async ({ actions, history, query }) => {
-  if (query.transactionHashes) onSuccess(history);
+export const createNearCampaign = async ({ state, actions, history, query }) => {
+  if (query.transactionHashes) onSuccess(state, actions, history);
   if (query.errorCode) onError(actions, history);
 };

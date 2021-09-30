@@ -8,7 +8,7 @@ import { Finish } from './Finish/Finish';
 import { useStyles } from './DeleteCampaign.styles';
 
 export const DeleteCampaign = ({ params: { campaignId, balance } }) => {
-  const walletUserId = useStoreState((state) => state.general.user.currentAccount);
+  const walletUserId = useStoreState((state) => state.general.user.wallet.accountId);
   const hideModal = useStoreActions((actions) => actions.general.hideModal);
   const [step, setStep] = useState(1);
   const classes = useStyles();
@@ -22,7 +22,7 @@ export const DeleteCampaign = ({ params: { campaignId, balance } }) => {
   // the user will accidentally close the modal.
   const closeModal = () => {
     if (step === 2) return;
-    hideModal({ name: 'deleteCampaign' });
+    hideModal('deleteCampaign');
   };
 
   return (

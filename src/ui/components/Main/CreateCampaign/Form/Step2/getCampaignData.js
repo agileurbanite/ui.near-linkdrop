@@ -1,30 +1,22 @@
-import BN from 'bn.js';
-import { parseNearAmount } from 'near-api-js/lib/utils/format';
-
 export const getCampaignData = (getValues) => {
-  const { icon, name, amountPerLink, totalLinks } = getValues();
-  // We may calculate the real fee in the future
-  const nearPriceForCampaignCreation = new BN(parseNearAmount('0.05'));
-  const oneNearFeePerLink = new BN(parseNearAmount('0'));
-  const _amountPerLink = new BN(parseNearAmount(amountPerLink));
-  const _totalLinks = new BN(totalLinks);
+  const { icon, name, amountPerLink: amountPerKey, totalLinks: totalKeys } = getValues();
 
-  const pureAmountPerLink = _amountPerLink.sub(oneNearFeePerLink);
-  const totalInLinks = pureAmountPerLink.mul(_totalLinks);
+  const _amountPerKey = Number(amountPerKey);
+  const _totalKeys = Number(totalKeys);
+  const campaignStoragePrice = 2.7;
+  const operationReservePerKey = 0.01;
 
-  const serviceFee = oneNearFeePerLink
-    .mul(_totalLinks)
-    .add(nearPriceForCampaignCreation);
-
-  const total = totalInLinks.add(serviceFee);
+  const totalPrice = campaignStoragePrice + _totalKeys * (_amountPerKey + operationReservePerKey);
+  const totalInKeys = _amountPerKey * _totalKeys;
+  const operationReserve = totalPrice - totalInKeys;
 
   return {
     icon,
     name,
-    amountPerLink: pureAmountPerLink.toString(),
-    totalLinks,
-    totalInLinks: totalInLinks.toString(),
-    serviceFee: serviceFee.toString(),
-    total: total.toString(),
+    totalKeys: _totalKeys,
+    amountPerKey: _amountPerKey,
+    totalInKeys: totalInKeys.toFixed(2),
+    operationReserve: operationReserve.toFixed(2),
+    totalPrice: totalPrice.toFixed(2),
   };
 };

@@ -34,6 +34,7 @@ const styles = {
     alignItems: 'center',
   },
   disconnect: {
+    fontSize: 12,
     letterSpacing: 1.25,
     fontWeight: 700,
     borderRadius: 8,

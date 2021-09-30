@@ -1,9 +1,5 @@
-import { setWalletAccount } from './setWalletAccount';
-import { setLinkdropMnemonic } from './setLinkdropMnemonic';
-import { deleteLinkdropUser } from './deleteLinkdropUser';
+import { setUserData } from './setUserData';
 
 export const actions = {
-  setWalletAccount,
-  setLinkdropMnemonic,
-  deleteLinkdropUser,
+  setUserData,
 };

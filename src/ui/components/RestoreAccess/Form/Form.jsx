@@ -1,4 +1,4 @@
-import { Button, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { useStoreActions } from 'easy-peasy';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
@@ -17,7 +17,7 @@ export const Form = () => {
   } = useForm();
 
   const onSubmit = handleSubmit((values) => {
-    onRestoreAccess({ setError, values, history })
+    onRestoreAccess({ setError, values, history });
   });
 
   return (
@@ -27,17 +27,13 @@ export const Form = () => {
         name="mnemonic"
         variant="outlined"
         fullWidth
-        className={classes.name}
-        label="Mnemonic phrase"
+        label="Seed phrase"
+        error={errors?.mnemonic}
+        helperText={errors?.mnemonic?.message}
       />
       <Button variant="contained" color="primary" className={classes.button} type="submit">
         Restore Access
       </Button>
-      {errors.mnemonic && (
-        <Typography variant="caption" color="textPrimary" className={classes.onSubmitError}>
-          {errors.mnemonic.message}
-        </Typography>
-      )}
     </form>
   );
 };

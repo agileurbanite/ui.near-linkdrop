@@ -4,7 +4,11 @@ export const initState = {
     isError: false,
     description: '',
   },
-  modals: {},
+  modals: {
+    createCampaign: null,
+    deleteCampaign: null,
+    resumeCampaignCreation: null,
+  },
   entities: {
     near: null,
     keyStore: null,

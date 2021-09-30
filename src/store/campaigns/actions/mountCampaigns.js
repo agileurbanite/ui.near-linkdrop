@@ -9,17 +9,18 @@ export const mountCampaigns = action((slice, payload) => {
   slice.map = {};
 
   campaigns.forEach((campaign, index) => {
-    const campaignId = campaignIds[index];
+    const campaignAccountId = campaignIds[index];
 
-    slice.list.push(campaignId);
-    slice.map[campaignId] = {
-      campaignId,
-      name: getCampaignName(campaignId),
+    slice.list.push(campaignAccountId);
+    slice.map[campaignAccountId] = {
+      campaignId: campaignAccountId,
+      internalCampaignId: campaign.campaignId,
+      name: getCampaignName(campaignAccountId),
       icon: emoji.foxMuzzle,
       status: campaign.status,
-      createdAt: Math.trunc(campaign.created_at / 1000000), // Convert nanoseconds to milliseconds
-      tokensPerKey: campaign.tokens_per_key,
-      keysStats: campaign.keys_stats,
+      createdAt: Math.trunc(campaign.createdAt / 1000000), // Convert nanoseconds to milliseconds
+      tokensPerKey: campaign.tokensPerKey,
+      keysStats: campaign.keysStats,
     };
   });
 });

@@ -7,7 +7,7 @@ import { RestoreAccess } from './RestoreAccess/RestoreAccess';
 import { Main } from './Main/Main';
 import { PageNotFound } from './PageNotFound/PageNotFound';
 import { Error } from './Error/Error';
-import { routes } from '../config/routes';
+import { routes } from '../../config/routes';
 
 export const App = () => (
   <>
@@ -19,14 +19,7 @@ export const App = () => (
       <Route exact path={routes.restoreAccess} component={RestoreAccess} />
       <Route
         exact
-        path={[
-          routes.campaigns,
-          routes.settings,
-          routes.createCampaign,
-          routes.completeCampaignCreation,
-          routes.campaign,
-          routes.deleteCampaign,
-        ]}
+        path={[routes.campaigns, routes.settings, routes.createCampaign, routes.campaign]}
         component={Main}
       />
       <Route path="*" component={PageNotFound} />

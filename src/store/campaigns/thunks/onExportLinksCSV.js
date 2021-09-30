@@ -1,6 +1,6 @@
 import { thunk } from 'easy-peasy';
 import { CsvBuilder } from 'filefy';
-import { config } from '../../../near/config';
+import { nearConfig } from '../../../config/nearConfig';
 
 export const onExportLinksCSV = thunk((_, payload) => {
   const { allLinks, links, name } = payload;
@@ -16,7 +16,7 @@ export const onExportLinksCSV = thunk((_, payload) => {
 
   links.forEach(({ publicKey, secretKey }) => {
     if (!selectedLinks[publicKey]) return;
-    csvBuilder.addRow([publicKey, config.getCreateAccountAndClaimLink(secretKey)]);
+    csvBuilder.addRow([publicKey, nearConfig.getCreateAccountAndClaimLink(secretKey)]);
   });
 
   csvBuilder.exportFile();

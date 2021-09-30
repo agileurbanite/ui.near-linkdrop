@@ -1,27 +1,30 @@
 import { KeyPair } from 'near-api-js';
 import { parseSeedPhrase } from 'near-seed-phrase';
-import { routes } from '../../../../../ui/config/routes';
-import { config } from '../../../../../near/config';
+import { routes } from '../../../../../config/routes';
+import { nearConfig } from '../../../../../config/nearConfig';
 
 const onSuccess = async (state, actions, history, temporary) => {
-  const { walletUserId, mnemonic } = temporary;
+  const { mnemonic } = temporary;
   const keyStore = state.general.entities.keyStore;
-  const linkdropUserAccountId = state.general.user.accounts[walletUserId].linkdrop.accountId;
+  const linkdropAccountId = state.general.user.linkdrop.accountId;
   const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
 
-  await keyStore.setKey(
-    config.networkId,
-    linkdropUserAccountId,
-    KeyPair.fromString(secretKey),
-  );
+  await keyStore.setKey(nearConfig.networkId, linkdropAccountId, KeyPair.fromString(secretKey));
 
-  actions.general.user.setLinkdropMnemonic({ walletUserId, mnemonic, secretKey, publicKey });
+  actions.general.user.setUserData({
+    linkdrop: {
+      isExist: true,
+      isConnected: true,
+      mnemonic,
+      secretKey,
+      publicKey,
+    },
+  });
   history.replace(routes.campaigns);
 };
 
 const onError = (actions, history) => {
   actions.general.setError({
-    isError: true,
     description: 'Linkdrop account was not created',
   });
   history.replace(routes.createAccount);

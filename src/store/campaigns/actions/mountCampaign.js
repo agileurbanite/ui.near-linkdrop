@@ -7,17 +7,18 @@ export const mountCampaign = action((slice, payload) => {
 
   slice.campaign = {
     campaignId,
+    internalCampaignId: metadata.campaignId,
     name: getCampaignName(campaignId),
     balance,
     icon: emoji.foxMuzzle,
-    tokensPerKey: metadata.tokens_per_key,
-    createdAt: Math.trunc(metadata.created_at / 1000000), // Convert nanoseconds to milliseconds
-    keysStats: metadata.keys_stats,
+    tokensPerKey: metadata.tokensPerKey,
+    createdAt: Math.trunc(metadata.createdAt / 1000000), // Convert nanoseconds to milliseconds
+    keysStats: metadata.keysStats,
     status: metadata.status,
     pagination,
     keys: keys.map((key, index) => ({
       ...key,
-      status: keyStats[index].status.toLowerCase(),
+      status: keyStats[index].status,
     })),
   };
 });

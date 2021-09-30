@@ -1,14 +1,28 @@
-import { getLinkdropUserAccountId } from '../../helpers/getLinkdropUserAccountId';
-import { isAccountExist } from '../../helpers/isAccountExist';
-import { routes } from '../../../../../ui/config/routes';
+import { nearConfig } from '../../../../../config/nearConfig';
+import { getAccountName } from '../../../../helpers/getAccountName';
+import { isAccountExist } from '../../../helpers/isAccountExist';
+import { routes } from '../../../../../config/routes';
 
 const onSuccess = async (state, actions, history, query) => {
   const walletAccountId = query.account_id;
-  const linkdropUserAccountId = getLinkdropUserAccountId(walletAccountId);
-  const isLinkdropUser = await isAccountExist(state.general.entities.near, linkdropUserAccountId);
+  // TODO rework and search account by public key
+  const linkdropUserAccountId = `${getAccountName(walletAccountId)}.${
+    nearConfig.accounts.linkdrop
+  }`;
+  const isLinkdropUser = await isAccountExist(state, linkdropUserAccountId);
   const destination = isLinkdropUser ? routes.restoreAccess : routes.createAccount;
 
-  actions.general.user.setWalletAccount({ walletAccountId, linkdropUserAccountId, isLinkdropUser });
+  actions.general.user.setUserData({
+    wallet: {
+      accountId: walletAccountId,
+      isConnected: true,
+    },
+    linkdrop: {
+      accountId: linkdropUserAccountId,
+      isExist: isLinkdropUser,
+    },
+  });
+
   history.replace(destination);
 };
 

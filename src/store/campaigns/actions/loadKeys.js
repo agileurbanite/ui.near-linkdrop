@@ -6,6 +6,6 @@ export const loadKeys = action((slice, payload) => {
   slice.campaign.pagination = pagination;
   slice.campaign.keys = keys.map((key, index) => ({
     ...key,
-    status: keyStats[index].status.toLowerCase(),
+    status: keyStats[index].status,
   }));
 });

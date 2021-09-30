@@ -32,7 +32,7 @@ export const TextField = ({
       label={label}
       helperText={helperText}
       fullWidth={fullWidth}
-      error={error}
+      error={Boolean(error)}
     />
   );
 };
