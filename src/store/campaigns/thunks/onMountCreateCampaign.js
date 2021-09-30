@@ -4,8 +4,7 @@ import { getUserContract } from '../../helpers/getContracts';
 export const onMountCreateCampaign = thunk(async (_, __, { getStoreState, getStoreActions }) => {
   const state = getStoreState();
   const wallet = state.general.entities.wallet;
-  const walletUserId = state.general.user.currentAccount;
-  const linkdropUserId = state.general.user.accounts[walletUserId].linkdrop.accountId;
+  const linkdropUserId = state.general.user.linkdrop.accountId;
 
   const actions = getStoreActions();
   const mountCreateCampaign = actions.campaigns.mountCreateCampaign;

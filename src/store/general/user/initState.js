@@ -1,25 +1,21 @@
 /*
-  State example:
-
-  currentAccount: 'eclipseeer2.testnet',
-  accounts: {
-    'eclipseeer2.testnet': {
-      wallet: {
-        isExist: true,
-        accountId: 'eclipseeer2.testnet',
-      },
-      linkdrop: {
-        isExist: true,
-        accountId: 'eclipseeer2.linkdrop.testnet',
-        mnemonic: 'relief mansion marine spare thank park vessel beach electric dentist say lemon',
-        secretKey: '',
-        publicKey: ''
-      },
-    }
-  },
+  We don't have wallet.isExist because there is no difference between wallet.isConnected
+  and wallet.isExist - in difference to linkdrop user account, we don't have a separate
+  'Restore Access' page which is only available when
+  linkdrop.isExist == true && linkdrop.isConnected == false
  */
 
 export const initState = {
-  currentAccount: null,
-  accounts: {},
+  wallet: {
+    accountId: null,
+    isConnected: false,
+  },
+  linkdrop: {
+    accountId: null,
+    isExist: false,
+    isConnected: false,
+    mnemonic: null,
+    secretKey: null,
+    publicKey: null,
+  },
 };

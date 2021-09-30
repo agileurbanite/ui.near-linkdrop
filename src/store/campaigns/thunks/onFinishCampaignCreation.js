@@ -45,9 +45,8 @@ export const onFinishCampaignCreation = thunk(
 
     const state = getStoreState();
     const keyStore = state.general.entities.keyStore;
-    const walletUserId = state.general.user.currentAccount;
-    const linkdropUserId = state.general.user.accounts[walletUserId].linkdrop.accountId;
-    const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
+    const linkdropUserId = state.general.user.linkdrop.accountId;
+    const mnemonic = state.general.user.linkdrop.mnemonic;
 
     const actions = getStoreActions();
     const hideModal = actions.general.hideModal;

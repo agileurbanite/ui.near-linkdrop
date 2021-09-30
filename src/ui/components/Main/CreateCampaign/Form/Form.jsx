@@ -9,7 +9,7 @@ import { emoji } from '../../../../config/emoji';
 import { useStyles } from './Form.styles';
 
 export const Form = () => {
-  const currentAccount = useStoreState((store) => store.general.user.currentAccount);
+  const walletAccountId = useStoreState((store) => store.general.user.wallet.accountId);
   const availableBalance = useStoreState(
     (store) => store.campaigns.createCampaign.availableBalance,
   );
@@ -40,14 +40,14 @@ export const Form = () => {
         <Step1
           setStep={setStep}
           control={control}
-          currentAccount={currentAccount}
+          walletAccountId={walletAccountId}
           availableBalance={availableBalance}
           getValues={getValues}
         />
         <Step2
           setStep={setStep}
           getValues={getValues}
-          currentAccount={currentAccount}
+          walletAccountId={walletAccountId}
           availableBalance={availableBalance}
         />
       </Stepper>

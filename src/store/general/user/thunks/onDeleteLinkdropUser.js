@@ -1,9 +1,7 @@
 import { thunk } from 'easy-peasy';
 import { Account } from 'near-api-js/lib/account';
-import { routes } from '../../../../config/routes';
 import { getAccountIdsByPublicKey } from '../helpers/getAccountIdsByPublicKey';
 import { getCampaignsIds } from '../helpers/getCampaignsIds';
-import { nearConfig } from '../../../../config/nearConfig';
 
 export const onDeleteLinkdropUser = thunk(
   async (_, payload, { getStoreState, getStoreActions }) => {
@@ -11,26 +9,18 @@ export const onDeleteLinkdropUser = thunk(
 
     const state = getStoreState();
     const near = state.general.entities.near;
-    const wallet = state.general.entities.wallet;
-    const keyStore = state.general.entities.keyStore;
-    const walletUserId = state.general.user.currentAccount;
-    const linkdropUserId = state.general.user.accounts[walletUserId].linkdrop.accountId;
-    const publicKey = state.general.user.accounts[walletUserId].linkdrop.publicKey;
+    const walletUserId = state.general.user.wallet.accountId;
+    const linkdropUserId = state.general.user.linkdrop.accountId;
+    const publicKey = state.general.user.linkdrop.publicKey;
 
     const actions = getStoreActions();
-    const deleteLinkdropUser = actions.general.user.deleteLinkdropUser;
-
+    // TODO Rework this
     const accountIds = await getAccountIdsByPublicKey(publicKey);
     const campaignIds = getCampaignsIds(accountIds, linkdropUserId);
 
     if (campaignIds.length > 0) return;
 
-    const account = new Account(near.connection, linkdropUserId)
-    await account.deleteAccount(walletUserId);
-    await keyStore.removeKey(nearConfig.networkId, linkdropUserId);
-
-    wallet.signOut();
-    deleteLinkdropUser(walletUserId);
-    history.push(routes.connectWallet);
+    await new Account(near.connection, linkdropUserId).deleteAccount(walletUserId);
+    actions.general.onDisconnect(history);
   },
 );

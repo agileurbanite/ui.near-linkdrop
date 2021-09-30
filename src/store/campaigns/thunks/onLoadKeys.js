@@ -7,8 +7,7 @@ export const onLoadKeys = thunk(async (_, payload, { getStoreState, getStoreActi
   const { page, total, elementsPerPage, showLoader, hideLoader } = payload;
 
   const state = getStoreState();
-  const walletUserId = state.general.user.currentAccount;
-  const mnemonic = state.general.user.accounts[walletUserId].linkdrop.mnemonic;
+  const mnemonic = state.general.user.linkdrop.mnemonic;
   const campaignId = state.campaigns.campaign.campaignId;
   const internalCampaignId = state.campaigns.campaign.internalCampaignId;
 

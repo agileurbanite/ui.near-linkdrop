@@ -1,6 +1,7 @@
-export const isAccountExist = async (near, accountId) => {
+export const isAccountExist = async (state, accountId) => {
+  if (!accountId) return false;
   try {
-    await near.connection.provider.query({
+    await state.general.entities.near.connection.provider.query({
       request_type: 'view_account',
       finality: 'final',
       account_id: accountId,
