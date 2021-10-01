@@ -12,6 +12,8 @@ export const theme = createMuiTheme({
     dashboardHoverBgGrey: '#ffffff28',
     dividerOnWhite: '#dfdfdf',
     red: '#e40029',
+    grey450: '#636364',
+    grey500: '#212121',
   },
   overrides: {
     MuiSvgIcon: {

@@ -1,9 +1,9 @@
 import { onRestoreAccess } from './onRestoreAccess';
-import { onDeleteLinkdropUser } from './onDeleteLinkdropUser';
+import { onDeleteUser } from './onDeleteUser';
 import { onCreateUser } from './onCreateUser';
 
 export const thunks = {
   onRestoreAccess,
-  onDeleteLinkdropUser,
+  onDeleteUser,
   onCreateUser,
 };
