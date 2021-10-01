@@ -1,7 +1,7 @@
 import { matchPath } from 'react-router';
 import { routes } from '../../../config/routes';
 
-const { campaign, createCampaign, campaigns } = routes;
+const { campaign, createCampaign, campaigns, settings } = routes;
 
 /*
   withLoading - we want to disable progress-loading bar when we init app - we already show to user
@@ -14,9 +14,10 @@ export const getDataBeforeRenderPage = async ({ actions, history, withLoading })
   const onMountCampaign = actions.campaigns.onMountCampaign;
   const onMountCampaigns = actions.campaigns.onMountCampaigns;
   const onMountCreateCampaign = actions.campaigns.onMountCreateCampaign;
+  const onMountSettings = actions.settings.onMountSettings;
 
   const match = matchPath(history.location.pathname, {
-    path: [campaigns, campaign, createCampaign],
+    path: [campaigns, campaign, createCampaign, settings],
     exact: true,
   });
 
@@ -29,6 +30,7 @@ export const getDataBeforeRenderPage = async ({ actions, history, withLoading })
   ifRouteIs(campaigns) && (await onMountCampaigns());
   ifRouteIs(campaign) && (await onMountCampaign(params.campaignId));
   ifRouteIs(createCampaign) && (await onMountCreateCampaign());
+  ifRouteIs(settings) && (await onMountSettings());
 
   withLoading && disableLoading();
 };

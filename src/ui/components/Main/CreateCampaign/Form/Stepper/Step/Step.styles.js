@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core';
 
-const isActiveStep = (yes, no) => ({ isActive }) => (isActive ? yes : no);
+const isActiveStep =
+  (yes, no) =>
+  ({ isActive }) =>
+    isActive ? yes : no;
 
 const styles = (theme) => ({
   step: {

@@ -7,7 +7,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 };
 
 export const useStyles = makeStyles(styles, { name: 'ArrowButton' });

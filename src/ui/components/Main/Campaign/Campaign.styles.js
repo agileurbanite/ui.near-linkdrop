@@ -33,7 +33,7 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  }
+  },
 });
 
 export const useStyles = makeStyles(styles, { name: 'Campaign' });

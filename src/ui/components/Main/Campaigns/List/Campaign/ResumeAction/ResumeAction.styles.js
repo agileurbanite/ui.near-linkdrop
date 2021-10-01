@@ -12,7 +12,7 @@ const styles = {
     width: '50%',
     borderRadius: 8,
     padding: '0',
-    fontSize: 12
+    fontSize: 12,
   },
 };
 

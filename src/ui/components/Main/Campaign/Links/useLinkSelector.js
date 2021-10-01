@@ -18,7 +18,7 @@ export const useLinkSelector = (links) => {
 
   return {
     numberOfSelected,
-    isSelectedAll:  numberOfSelected=== links.length,
+    isSelectedAll: numberOfSelected === links.length,
     allLinks,
     onSelectAll,
     onSelect,
