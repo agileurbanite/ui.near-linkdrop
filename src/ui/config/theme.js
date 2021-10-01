@@ -20,7 +20,7 @@ export const theme = createMuiTheme({
       root: {
         height: 20,
         width: 20,
-      }
+      },
     },
     MuiTypography: {
       h3: {
@@ -42,7 +42,7 @@ export const theme = createMuiTheme({
     MuiOutlinedInput: {
       root: {
         borderRadius: 8,
-      }
+      },
     },
   },
 });

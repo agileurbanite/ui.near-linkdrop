@@ -8,7 +8,6 @@ const styles = (theme) => ({
     alignItems: 'center',
   },
 
-
   actions: {
     width: '100%',
     height: 72,

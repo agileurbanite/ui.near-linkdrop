@@ -29,8 +29,8 @@ const styles = (theme) => ({
   statusValue: {
     fontWeight: 600,
     color: theme.palette.primary.main,
-    textTransform: 'capitalize'
-  }
+    textTransform: 'capitalize',
+  },
 });
 
 export const useStyles = makeStyles(styles, { name: 'AdditionalData' });

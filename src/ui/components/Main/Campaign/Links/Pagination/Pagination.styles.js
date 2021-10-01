@@ -11,7 +11,7 @@ const styles = {
     width: 200,
     display: 'flex',
     justifyContent: 'center',
-  }
+  },
 };
 
 export const useStyles = makeStyles(styles, { name: 'Pagination' });

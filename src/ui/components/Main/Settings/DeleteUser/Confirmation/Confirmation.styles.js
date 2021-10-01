@@ -48,7 +48,7 @@ const styles = (theme) => ({
     width: 156,
     height: 48,
     borderRadius: 8,
-    margin: '0 9px'
+    margin: '0 9px',
   },
 });
 

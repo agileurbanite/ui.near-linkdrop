@@ -29,7 +29,7 @@ const styles = {
     padding: '12px 36px',
     borderRadius: 8,
     boxShadow: 'none',
-  }
+  },
 };
 
 export const useStyles = makeStyles(styles, { name: 'DeleteUser' });

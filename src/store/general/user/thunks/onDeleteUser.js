@@ -1,18 +1,16 @@
 import { thunk } from 'easy-peasy';
 import { Account } from 'near-api-js/lib/account';
 
-export const onDeleteUser = thunk(
-  async (_, payload, { getStoreState, getStoreActions }) => {
-    const { history } = payload;
+export const onDeleteUser = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
+  const { history } = payload;
 
-    const state = getStoreState();
-    const near = state.general.entities.near;
-    const walletUserId = state.general.user.wallet.accountId;
-    const linkdropUserId = state.general.user.linkdrop.accountId;
+  const state = getStoreState();
+  const near = state.general.entities.near;
+  const walletUserId = state.general.user.wallet.accountId;
+  const linkdropUserId = state.general.user.linkdrop.accountId;
 
-    const actions = getStoreActions();
+  const actions = getStoreActions();
 
-    await new Account(near.connection, linkdropUserId).deleteAccount(walletUserId);
-    actions.general.onDisconnect(history);
-  },
-);
+  await new Account(near.connection, linkdropUserId).deleteAccount(walletUserId);
+  actions.general.onDisconnect(history);
+});
