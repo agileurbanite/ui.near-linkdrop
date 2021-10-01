@@ -2,7 +2,7 @@ import { Button } from '@material-ui/core';
 import { useStoreActions } from 'easy-peasy';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { TextField } from '../../Main/general/TextField/TextField';
+import { TextField } from '../../general/TextField/TextField';
 import { useStyles } from './Form.styles';
 
 export const Form = () => {

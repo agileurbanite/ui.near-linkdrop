@@ -23,8 +23,9 @@ const styles = {
     alignSelf: 'center',
   },
   progress: {
+    height: 5,
     position: 'absolute',
-    top: '120px',
+    top: 0,
     width: '100%',
   },
 };

@@ -8,6 +8,7 @@ const testnet = {
     linkdrop: 'linkdrop.testnet',
     accountCreator: 'testnet',
   },
+  isTestnet: true,
 };
 
 const mainnet = {
