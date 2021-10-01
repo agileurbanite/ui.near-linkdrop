@@ -1,7 +1,7 @@
 import { useStoreActions } from 'easy-peasy';
 import { useForm } from 'react-hook-form';
 import { Button, Typography } from '@material-ui/core';
-import { TextField } from '../../Main/general/TextField/TextField';
+import { TextField } from '../../general/TextField/TextField';
 import { validations } from './validations';
 import { useStyles } from './ValidatePhrase.styles';
 

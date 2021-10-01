@@ -1,9 +1,9 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme) => ({
   container: {
     width: '100vw',
-    height: 50,
+    minHeight: 40,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -13,15 +13,16 @@ const styles = theme => ({
   },
   icon: {
     fontSize: 20,
+    marginRight: 4,
   },
   caution: {
     fontWeight: 700,
     letterSpacing: 0.5,
-    margin: '0 8px 0 4px'
+    marginRight: 4,
   },
   bold: {
     fontWeight: 700,
-  }
+  },
 });
 
 export const useStyles = makeStyles(styles, { name: 'Caution' });

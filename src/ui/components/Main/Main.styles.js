@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 const styles = {
   container: {
     width: '100vw',
-    minHeight: 'calc(100vh - 73px - 50px)', // height of topbar + caution
+    minHeight: 'calc(100vh - 40px - 73px)', // height of topbar + caution
     display: 'grid',
     gridTemplateColumns: '256px auto',
     gridTemplateRows: 'auto 52px',
