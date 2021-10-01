@@ -16,7 +16,16 @@ const styles = {
     gridArea: 'a',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     borderBottom: '1px solid #00000020',
+  },
+  createCampaign: {
+    padding: '12px 26px',
+    borderRadius: 8,
+    boxShadow: 'none',
+  },
+  addIcon: {
+    marginRight: 12,
   },
   noCampaigns: {
     gridArea: 'b',

@@ -1,6 +1,6 @@
 import { Button, Divider } from '@material-ui/core';
 import { useFormState } from 'react-hook-form';
-import { TextField } from '../../../general/TextField/TextField';
+import { TextField } from '../../../../general/TextField/TextField';
 import { AmountPerLink } from './AmountPerLink/AmountPerLink';
 import { Info } from './Info/Info';
 import { emoji } from '../../../../../config/emoji';

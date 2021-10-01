@@ -1,5 +1,5 @@
 import { InputAdornment } from '@material-ui/core';
-import { TextField } from '../../../../general/TextField/TextField';
+import { TextField } from '../../../../../general/TextField/TextField';
 import { Near } from '../../../../../general/icons/Near';
 import { useStyles } from './AmountPerLink.styles';
 
