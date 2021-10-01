@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core';
 
-const isSecondStep = (yes, no) => ({ activeStep }) => (activeStep === 2 ? yes : no);
+const isSecondStep =
+  (yes, no) =>
+  ({ activeStep }) =>
+    activeStep === 2 ? yes : no;
 
 const styles = (theme) => ({
   container: {

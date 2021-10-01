@@ -1,16 +1,9 @@
-import { Typography, Button } from '@material-ui/core';
-import { useStoreActions } from 'easy-peasy';
-import { useHistory } from 'react-router-dom';
+import { Typography } from '@material-ui/core';
+import { DeleteUser } from './DeleteUser/DeleteUser';
 import { useStyles } from './Settings.styles';
 
 export const Settings = () => {
-  const onDeleteLinkdropUser = useStoreActions(
-    (actions) => actions.general.user.onDeleteLinkdropUser,
-  );
-  const history = useHistory();
   const classes = useStyles();
-
-  const deleteLinkdropUser = () => onDeleteLinkdropUser({ history });
 
   return (
     <div className={classes.container}>
@@ -18,9 +11,7 @@ export const Settings = () => {
         <Typography variant="h3">Settings</Typography>
       </div>
       <div className={classes.content}>
-        <Button variant="contained" onClick={deleteLinkdropUser}>
-          Delete Linkdrop Account
-        </Button>
+        <DeleteUser />
       </div>
     </div>
   );

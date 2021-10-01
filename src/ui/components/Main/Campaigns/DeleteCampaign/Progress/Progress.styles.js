@@ -47,8 +47,8 @@ const styles = (theme) => ({
     marginTop: 50,
     '&>span': {
       fontWeight: 700,
-    }
-  }
+    },
+  },
 });
 
 export const useStyles = makeStyles(styles, { name: 'Progress' });

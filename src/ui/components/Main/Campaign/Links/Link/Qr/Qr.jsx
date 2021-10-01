@@ -20,6 +20,7 @@ export const Qr = ({ link }) => {
         </Tooltip>
       </IconButton>
       <Popover
+        transitionDuration={{ appear: 0, enter: 0, exit: 0 }}
         anchorEl={buttonRef.current}
         open={isOpen}
         onClose={onClose}

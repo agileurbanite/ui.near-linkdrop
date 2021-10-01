@@ -11,7 +11,7 @@ export const onMountDeleteCampaign = thunk(
     const actions = getStoreActions();
     const enableLoading = actions.general.enableLoading;
     const disableLoading = actions.general.disableLoading;
-    const showModal = actions.general.showModal
+    const showModal = actions.general.showModal;
 
     enableLoading();
     setOpen(false);

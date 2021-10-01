@@ -7,7 +7,7 @@ import { useLinkSelector } from './useLinkSelector';
 import { useStyles } from './Links.styles';
 
 export const Links = ({ campaign: { campaignId, keys, name, tokensPerKey, keysStats } }) => {
-  const walletUserId = useStoreState(state => state.general.user.wallet.accountId);
+  const walletUserId = useStoreState((state) => state.general.user.wallet.accountId);
   const { numberOfSelected, isSelectedAll, allLinks, onSelectAll, onSelect } =
     useLinkSelector(keys);
 

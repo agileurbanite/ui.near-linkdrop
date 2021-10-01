@@ -12,13 +12,15 @@ export const theme = createMuiTheme({
     dashboardHoverBgGrey: '#ffffff28',
     dividerOnWhite: '#dfdfdf',
     red: '#e40029',
+    grey450: '#636364',
+    grey500: '#212121',
   },
   overrides: {
     MuiSvgIcon: {
       root: {
         height: 20,
         width: 20,
-      }
+      },
     },
     MuiTypography: {
       h3: {
@@ -40,7 +42,7 @@ export const theme = createMuiTheme({
     MuiOutlinedInput: {
       root: {
         borderRadius: 8,
-      }
+      },
     },
   },
 });

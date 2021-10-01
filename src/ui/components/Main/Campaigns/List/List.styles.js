@@ -22,5 +22,4 @@ const styles = {
   },
 };
 
-
 export const useStyles = makeStyles(styles, { name: 'List' });

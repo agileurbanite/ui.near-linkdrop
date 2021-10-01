@@ -13,42 +13,44 @@ const getCampaignAmount = (totalKeys, amountPerLink) => {
   return parseNearAmount(res.toString());
 };
 
-export const onStartCampaignCreation = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
-  const { name: campaignName, icon, totalLinks, amountPerLink } = payload;
+export const onStartCampaignCreation = thunk(
+  async (_, payload, { getStoreState, getStoreActions }) => {
+    const { name: campaignName, icon, totalLinks, amountPerLink } = payload;
 
-  const state = getStoreState();
-  const wallet = state.general.entities.wallet;
-  const linkdropUserId = state.general.user.linkdrop.accountId;
+    const state = getStoreState();
+    const wallet = state.general.entities.wallet;
+    const linkdropUserId = state.general.user.linkdrop.accountId;
 
-  const actions = getStoreActions();
-  const setTemporaryData = actions.general.setTemporaryData;
+    const actions = getStoreActions();
+    const setTemporaryData = actions.general.setTemporaryData;
 
-  // TODO Rename form fields totalLinks -> totalKeys
-  const totalKeys = Number(totalLinks);
-  const yoctoNearPerKey = parseNearAmount(amountPerLink);
+    // TODO Rename form fields totalLinks -> totalKeys
+    const totalKeys = Number(totalLinks);
+    const yoctoNearPerKey = parseNearAmount(amountPerLink);
 
-  // TODO Remove this and use data from payload;
-  const campaignAmount = getCampaignAmount(totalKeys, amountPerLink);
-  const redirectAction = redirectActions.createNearCampaign;
+    // TODO Remove this and use data from payload;
+    const campaignAmount = getCampaignAmount(totalKeys, amountPerLink);
+    const redirectAction = redirectActions.createNearCampaign;
 
-  setTemporaryData({
-    redirectAction,
-    campaignId: `${campaignName}.${linkdropUserId}`,
-    campaignName,
-    icon,
-    yoctoNearPerKey,
-    totalKeys,
-    campaignAmount,
-  });
+    setTemporaryData({
+      redirectAction,
+      campaignId: `${campaignName}.${linkdropUserId}`,
+      campaignName,
+      icon,
+      yoctoNearPerKey,
+      totalKeys,
+      campaignAmount,
+    });
 
-  /*
+    /*
     We send tokens to user instead of calling 'user.create_near_campaign' because
     'create_near_campaign' method is private
    */
-  sendTokens({
-    wallet,
-    receiverId: linkdropUserId,
-    amount: campaignAmount,
-    callbackUrl: getRoute.callbackUrl({ redirectAction }),
-  });
-});
+    sendTokens({
+      wallet,
+      receiverId: linkdropUserId,
+      amount: campaignAmount,
+      callbackUrl: getRoute.callbackUrl({ redirectAction }),
+    });
+  },
+);
