@@ -27,7 +27,7 @@ export const onCreateUser = thunk(async (_, payload, { getStoreState, getStoreAc
       public_key: accessKey.publicKey,
     },
     amount: parseNearAmount('5'),
-    gas: new BN('100000000000000'),
+    gas: new BN('150000000000000'), // 150 Tgas
     callbackUrl: getRoute.callbackUrl({ redirectAction }),
   });
 });
