@@ -15,8 +15,7 @@ export const RefundLink = ({ pk, campaignId, tokensPerKey, walletUserId }) => {
   const onClose = () => setOpen(false);
 
   const refundLink = () => {
-    setLoading(true);
-    onRefundLink({ pk, campaignId });
+    onRefundLink({ pk, campaignId, setLoading, onClose });
   };
 
   return (
