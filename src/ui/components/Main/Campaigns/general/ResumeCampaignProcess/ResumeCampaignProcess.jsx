@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useStyles } from './ResumeCampaignProcess.styles';
 
-export const ResumeCampaignProcess = ({ onMount, campaignName }) => {
+export const ResumeCampaignProcess = ({ onMount, campaignName, process }) => {
   const [progress, setProgress] = useState(0);
   const history = useHistory();
   const classes = useStyles();
@@ -19,7 +19,7 @@ export const ResumeCampaignProcess = ({ onMount, campaignName }) => {
         <div className={classes.wrapper}>
           <ScheduleOutlined className={classes.icon} />
           <h1 className={classes.header}>
-            <span>{campaignName}</span> creation in progress
+            <span>{campaignName}</span> {process} in progress
           </h1>
           <div className={classes.progressContainer}>
             <CircularProgress

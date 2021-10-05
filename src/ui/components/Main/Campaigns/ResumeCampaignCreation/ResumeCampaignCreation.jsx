@@ -23,5 +23,5 @@ export const ResumeCampaignCreation = () => {
     });
   };
 
-  return <ResumeCampaignProcess onMount={onMount} campaignName={name} />;
+  return <ResumeCampaignProcess onMount={onMount} campaignName={name} process="creation" />;
 };

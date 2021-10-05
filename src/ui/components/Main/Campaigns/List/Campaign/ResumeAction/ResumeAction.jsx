@@ -13,6 +13,9 @@ export const ResumeAction = ({ campaign }) => {
   const openResumeCreation = () =>
     showModal({ name: modals.resumeCampaignCreation, params: { campaign } });
 
+  const openResumeDeletion = () =>
+    showModal({ name: modals.resumeCampaignDeletion, params: { campaign } });
+
   return (
     <div className={classes.container}>
       {isCreation ? (
@@ -25,7 +28,12 @@ export const ResumeAction = ({ campaign }) => {
           Resume Creation
         </Button>
       ) : (
-        <Button variant="outlined" color="secondary" className={classes.button}>
+        <Button
+          variant="outlined"
+          color="secondary"
+          className={classes.button}
+          onClick={openResumeDeletion}
+        >
           Resume Deletion
         </Button>
       )}
