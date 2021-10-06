@@ -9,7 +9,7 @@ const styles = (theme) => ({
     marginBottom: theme.spacing(2),
   },
   subHeader: {
-    width: '80%',
+    width: '63%',
     fontSize: 16,
     fontStyle: 'normal',
     fontWeight: 400,
@@ -19,7 +19,7 @@ const styles = (theme) => ({
     marginBottom: theme.spacing(2),
   },
   form: {
-    width: '80%',
+    width: '63%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

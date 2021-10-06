@@ -48,7 +48,7 @@ export const ValidatePhrase = ({
             Back
           </Button>
           <Button variant="contained" color="primary" className={classes.button} type="submit">
-            Create Linkdrop Account
+            Create Account
           </Button>
         </div>
       </form>
