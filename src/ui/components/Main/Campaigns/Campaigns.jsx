@@ -4,6 +4,8 @@ import { useStoreState } from 'easy-peasy';
 import { Link } from 'react-router-dom';
 import { routes } from '../../../../config/routes';
 import { DeleteCampaign } from './DeleteCampaign/DeleteCampaign';
+import { ResumeCampaignCreation } from './ResumeCampaignCreation/ResumeCampaignCreation';
+import { ResumeCampaignDeletion } from './ResumeCampaignDeletion/ResumeCampaignDeletion';
 import { NoCampaigns } from './NoCampaigns/NoCampaigns';
 import { List } from './List/List';
 import { useStyles } from './Campaigns.styles';
@@ -29,6 +31,8 @@ export const Campaigns = () => {
         {list.length > 0 ? <List list={list} map={map} /> : <NoCampaigns />}
       </div>
       {deleteCampaign && <DeleteCampaign params={deleteCampaign} />}
+      <ResumeCampaignCreation />
+      <ResumeCampaignDeletion />
     </>
   );
 };

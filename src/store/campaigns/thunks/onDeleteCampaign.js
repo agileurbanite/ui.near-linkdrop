@@ -62,6 +62,7 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
     campaign,
     internalCampaignId,
   });
+
   try {
     for await (const chunk of iterator) {
       setProgress(Math.trunc(Math.min((chunk / lastPage) * 100, 99)));
