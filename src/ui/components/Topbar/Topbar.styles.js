@@ -15,7 +15,15 @@ const styles = {
   logo: {
     gridArea: 'a',
     fontSize: 24,
+    fontWeight: 500,
     alignSelf: 'center',
+  },
+  logoWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    '&>img': {
+      marginRight: 10,
+    }
   },
   account: {
     gridArea: 'b',

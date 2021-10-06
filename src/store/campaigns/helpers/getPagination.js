@@ -1,9 +1,10 @@
-// TODO rename to getChunksRange
+// TODO remove and replace with getChunksRange
 export const getPagesRange = (total, elementsPerPage) => ({
   firstPage: 1,
   lastPage: Math.trunc(total / elementsPerPage) + (total % elementsPerPage ? 1 : 0),
 });
 
+// TODO remove and replace with getChunkElementsRange
 export const getPagination = ({ page, total, elementsPerPage = 50 }) => {
   const startIndex = 1;
   const { firstPage, lastPage } = getPagesRange(total, elementsPerPage);

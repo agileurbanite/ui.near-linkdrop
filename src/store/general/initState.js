@@ -8,6 +8,7 @@ export const initState = {
     createCampaign: null,
     deleteCampaign: null,
     resumeCampaignCreation: null,
+    resumeCampaignDeletion: null,
   },
   entities: {
     near: null,
