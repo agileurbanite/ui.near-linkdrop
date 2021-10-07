@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Grid, Typography } from '@material-ui/core';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import { useStyles } from './SetupPhrase.styles';
 
@@ -10,22 +10,21 @@ export const SetupPhrase = ({ phraseBag: { mnemonic, wordList }, goToValidatePhr
   return (
     <>
       <Typography variant="h1" color="textPrimary" className={classes.header}>
-        Create Linkdrop Account
+        Create Account
       </Typography>
       <Box maxWidth={592}>
-        <Typography variant="body1" color="textSecondary" className={classes.subHeader}>
-          Copy or write down the following words in the exact order listed below. You will not be
-          able to restore access to your Linkdrop account without this seed phrase, which could
-          result in the loss of your funds.
+        <Typography variant="body1" color="textSecondary" className={classes.description}>
+          Copy or write down the following words in the exact order listed below. You are not able
+          to recover your <span>Linkdrop account</span> without them
         </Typography>
       </Box>
       <Box display="flex" alignItems="center">
         <Grid container>
           {wordList.map((word, i) => (
             <Grid item lg={2} md={4} xs={6} key={word}>
-              <Paper elevation={0} className={classes.paper}>
-                <span>#{i + 1}</span> {word}
-              </Paper>
+              <div className={classes.paper}>
+                {word} <span>#{i + 1}</span>
+              </div>
             </Grid>
           ))}
         </Grid>
@@ -46,7 +45,7 @@ export const SetupPhrase = ({ phraseBag: { mnemonic, wordList }, goToValidatePhr
           className={classes.button}
           onClick={goToValidatePhrase}
         >
-          Verify Phrase
+          Next
         </Button>
       </Box>
     </>

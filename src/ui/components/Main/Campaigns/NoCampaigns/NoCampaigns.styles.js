@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = {
+const styles = (theme) => ({
   container: {
     gridArea: 'b',
     alignSelf: 'center',
@@ -22,6 +22,7 @@ const styles = {
   title: {
     marginTop: 16,
     letterSpacing: 0.5,
+    color: theme.colors.grey450,
   },
   button: {
     marginTop: 24,
@@ -31,6 +32,6 @@ const styles = {
   addIcon: {
     marginRight: 12,
   },
-};
+});
 
 export const useStyles = makeStyles(styles, { name: 'NoCampaigns' });

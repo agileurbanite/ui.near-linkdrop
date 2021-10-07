@@ -13,8 +13,8 @@ export const NoCampaigns = () => {
       <Typography variant="h1" color="textPrimary" className={classes.header}>
         No Campaigns
       </Typography>
-      <Typography variant="subtitle1" color="textSecondary" className={classes.title}>
-        Create a new campaign to start work with the application.
+      <Typography variant="subtitle1" className={classes.title}>
+        Setup a campaign to generate Linkdrops
       </Typography>
       <Link to={routes.createCampaign}>
         <Button variant="contained" color="primary" className={classes.button}>

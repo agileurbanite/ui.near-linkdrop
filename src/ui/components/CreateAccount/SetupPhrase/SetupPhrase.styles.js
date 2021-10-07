@@ -8,7 +8,7 @@ const styles = (theme) => ({
     marginTop: 8,
     marginBottom: theme.spacing(2),
   },
-  subHeader: {
+  description: {
     fontSize: 16,
     fontStyle: 'normal',
     fontWeight: 400,
@@ -16,6 +16,10 @@ const styles = (theme) => ({
     letterSpacing: '0px',
     textAlign: 'center',
     marginBottom: theme.spacing(2),
+    '&>span': {
+      fontWeight: 700,
+      color: theme.colors.grey500,
+    },
   },
   strong: {
     color: '#212121',
