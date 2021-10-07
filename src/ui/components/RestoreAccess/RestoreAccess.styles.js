@@ -8,15 +8,14 @@ const styles = (theme) => ({
     alignItems: 'center',
   },
   content: {
-    maxWidth: 580,
+    width: 650,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   icon: {
-    height: 80,
-    width: 80,
-    color: theme.palette.primary.light,
+    height: 96,
+    width: 96,
   },
   header: {
     fontSize: 34,
@@ -25,12 +24,13 @@ const styles = (theme) => ({
     marginTop: 24,
     marginBottom: theme.spacing(2),
   },
-  subHeader: {
+  description: {
     fontSize: 16,
+    color: theme.colors.grey450,
     fontStyle: 'normal',
     fontWeight: 400,
     lineHeight: '22px',
-    letterSpacing: '0px',
+    letterSpacing: 0,
     textAlign: 'center',
   },
 });

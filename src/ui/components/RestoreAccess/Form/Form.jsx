@@ -32,7 +32,7 @@ export const Form = () => {
         helperText={errors?.mnemonic?.message}
       />
       <Button variant="contained" color="primary" className={classes.button} type="submit">
-        Restore Access
+        Restore
       </Button>
     </form>
   );
