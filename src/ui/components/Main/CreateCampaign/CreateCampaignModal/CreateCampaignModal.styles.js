@@ -7,7 +7,7 @@ const styles = (theme) => ({
     alignItems: 'center',
   },
   container: {
-    width: 400,
+    width: 390,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -15,7 +15,7 @@ const styles = (theme) => ({
     borderRadius: 8,
   },
   wrapper: {
-    width: '90%',
+    width: '80%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -24,47 +24,37 @@ const styles = (theme) => ({
     letterSpacing: '0.5px',
   },
   icon: {
-    height: 75,
-    width: 75,
-    marginTop: 30,
-    color: theme.palette.primary.main,
+    height: 120,
+    width: 120,
+    marginTop: 80,
   },
   header: {
     fontSize: 24,
-    '&>span': {
-      fontWeight: 900,
-    },
+    margin: 0,
+    marginTop: 24,
+    fontWeight: 500,
   },
-  progressContainer: {
-    height: 100,
-    width: 100,
-    display: 'grid',
-    gridTemplateColumns: '100%',
-    gridTemplateRows: '100%',
-    gridTemplateAreas: `'a'`,
-    marginTop: 20,
-  },
-  spinner: {
-    gridArea: 'a',
-    justifySelf: 'center',
-    alignSelf: 'center',
-  },
-  spinnerCircle: {
-    strokeWidth: 1,
+  description: {
+    margin: 0,
+    marginTop: 8,
+    color: theme.colors.grey450,
   },
   progressLabel: {
-    gridArea: 'a',
-    justifySelf: 'center',
-    alignSelf: 'center',
-    fontSize: 20,
-    fontWeight: 700,
+    fontSize: 18,
+    fontWeight: 500,
+    marginTop: 24,
+    color: theme.palette.primary.main,
   },
-  text: {
-    marginTop: 50,
-    marginBottom: 25,
-    '&>span': {
-      fontWeight: 700,
-    },
+  progress: {
+    width: '100%',
+    height: 5,
+    marginTop: 8,
+    marginBottom: 80,
+    borderRadius: 4,
+    backgroundColor: theme.colors.grey200,
+  },
+  progressBar: {
+    borderRadius: 4,
   },
 });
 

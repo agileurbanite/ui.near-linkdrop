@@ -12,6 +12,8 @@ export const theme = createMuiTheme({
     dashboardHoverBgGrey: '#ffffff28',
     dividerOnWhite: '#dfdfdf',
     red: '#e40029',
+    primary400: '#3D5AFE',
+    grey200: '#E4E4E4',
     grey450: '#636364',
     grey500: '#212121',
   },
