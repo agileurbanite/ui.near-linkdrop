@@ -10,6 +10,7 @@ const styles = {
     marginTop: 24,
   },
   button: {
+    minWidth: 200,
     marginTop: 24,
     padding: '16px 35px',
     fontWeight: 500,
