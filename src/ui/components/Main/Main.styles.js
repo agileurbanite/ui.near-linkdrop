@@ -11,6 +11,14 @@ const styles = {
       'a b'
       'a c'
     `,
+    '@media (max-width: 800px)': {
+      minHeight: 'calc(100vh - 40px - 57px)',
+      gridTemplateAreas: `
+      'b'
+      'c'
+    `,
+      gridTemplateColumns: 'auto',
+    },
   },
   pages: {
     gridArea: 'b',
