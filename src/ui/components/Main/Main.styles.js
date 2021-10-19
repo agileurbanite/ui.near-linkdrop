@@ -12,7 +12,7 @@ const styles = {
       'a c'
     `,
     '@media (max-width: 800px)': {
-      minHeight: 'calc(100vh - 40px - 57px)',
+      minHeight: 'calc(100vh - 40px - 65px)',
       gridTemplateAreas: `
       'b'
       'c'

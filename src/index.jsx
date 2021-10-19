@@ -7,6 +7,7 @@ import { Initializer } from './ui/providers/Initializer/Initializer';
 import { Router } from './ui/providers/Router';
 import { App } from './ui/components/App';
 import { store } from './store';
+import { ViewportProvider } from './ui/utils/viewport';
 import { theme } from './ui/config/theme';
 
 const history = createBrowserHistory();
@@ -17,7 +18,9 @@ render(
       <MuiThemeProvider theme={theme}>
         <Initializer history={history} store={store}>
           <Router>
-            <App />
+            <ViewportProvider>
+              <App />
+            </ViewportProvider>
           </Router>
         </Initializer>
       </MuiThemeProvider>

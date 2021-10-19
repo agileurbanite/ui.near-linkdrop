@@ -1,17 +1,17 @@
-import * as React from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
 
-export const viewportContext = React.createContext({});
+export const viewportContext = createContext({});
 
 export const mobileMaxWidth = 800;
 
 export const ViewportProvider = ({ children }) => {
-  const [isMobileView, setMobileView] = React.useState(window.innerWidth < mobileMaxWidth);
+  const [isMobileView, setMobileView] = useState(window.innerWidth < mobileMaxWidth);
 
   const handleWindowResize = () => {
     setMobileView(window.innerWidth < mobileMaxWidth);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
     return () => window.removeEventListener('resize', handleWindowResize);
   }, []);
@@ -20,6 +20,6 @@ export const ViewportProvider = ({ children }) => {
 };
 
 export const useViewport = () => {
-  const { isMobileView } = React.useContext(viewportContext);
+  const { isMobileView } = useContext(viewportContext);
   return { isMobileView };
 };

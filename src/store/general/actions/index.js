@@ -7,6 +7,7 @@ import { showModal } from './showModal';
 import { hideModal } from './hideModal';
 import { setTemporaryData } from './setTemporaryData';
 import { clearTemporaryData } from './clearTemporaryData';
+import { showMenu } from './showMenu';
 
 export const actions = {
   setNearPack,
@@ -18,4 +19,5 @@ export const actions = {
   hideModal,
   setTemporaryData,
   clearTemporaryData,
+  showMenu,
 };

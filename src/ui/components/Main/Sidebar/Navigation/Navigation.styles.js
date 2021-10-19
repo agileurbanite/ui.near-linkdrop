@@ -5,6 +5,9 @@ const styles = {
     gridArea: 'c',
     color: 'white',
     width: 'calc(100% - 24px)',
+    '@media (max-width: 800px)': {
+      width: '100%',
+    },
   },
 };
 
