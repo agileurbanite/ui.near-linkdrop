@@ -7,15 +7,13 @@ import { CreateCampaign } from './CreateCampaign/CreateCampaign';
 import { Campaign } from './Campaign/Campaign';
 import { routes } from '../../../config/routes';
 import { useStyles } from './Main.styles';
-import { useViewport } from '../../utils/viewport';
 
 export const Main = () => {
   const classes = useStyles();
-  const { isMobileView } = useViewport();
 
   return (
     <div className={classes.container}>
-      {!isMobileView ? <Sidebar /> : <></>}
+      <Sidebar />
       <div className={classes.pages}>
         <div className={classes.pagesWrapper}>
           <Switch>

@@ -9,6 +9,11 @@ const styles = (theme) => ({
     borderRight: '1px solid',
     borderRightColor: theme.colors.dividerOnWhite,
   },
+  menu: {
+    width: 250,
+    marginRight: 16,
+    marginLeft: 16,
+  },
 });
 
 export const useStyles = makeStyles(styles, { name: 'Sidebar' });
