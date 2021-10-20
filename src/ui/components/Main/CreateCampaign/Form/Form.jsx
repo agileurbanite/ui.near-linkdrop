@@ -25,8 +25,8 @@ export const Form = () => {
     defaultValues: {
       name: '',
       icon: emoji.foxMuzzle,
-      amountPerLink: '0.01',
-      totalLinks: '10',
+      amountPerLink: '',
+      totalLinks: '',
     },
     resolver: validations,
     context: { campaignNames, linkdropAccountId },
