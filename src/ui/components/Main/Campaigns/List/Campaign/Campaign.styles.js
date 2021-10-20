@@ -57,7 +57,7 @@ const styles = (theme) => ({
         marginLeft: 20,
       },
     },
-    '@media (max-width: 600px)': {
+    '@media (max-width: 690px)': {
       width: '100%',
       '&:nth-child(2n)': {
         marginLeft: 0,

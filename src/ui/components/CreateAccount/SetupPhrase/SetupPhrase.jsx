@@ -21,7 +21,7 @@ export const SetupPhrase = ({ phraseBag: { mnemonic, wordList }, goToValidatePhr
       <Box display="flex" alignItems="center">
         <Grid container>
           {wordList.map((word, i) => (
-            <Grid item lg={2} md={4} xs={6} key={word}>
+            <Grid item xs={6} sm={4} md={2} lg={2} key={word}>
               <div className={classes.paper}>
                 {word} <span>#{i + 1}</span>
               </div>

@@ -36,6 +36,17 @@ const styles = (theme) => ({
     height: 48,
     fontWeight: 500,
     minWidth: 150,
+    marginTop: theme.spacing(2),
+  },
+  '@media (max-width: 690px)': {
+    buttons: {
+      flexWrap: 'wrap',
+      flexDirection: 'column-reverse',
+      justifyContent: 'start',
+    },
+    button: {
+      width: '100%',
+    },
   },
 });
 
