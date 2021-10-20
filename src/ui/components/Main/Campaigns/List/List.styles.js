@@ -19,6 +19,15 @@ const styles = {
     '@media (min-width: 1440px)': {
       maxWidth: 1088,
     },
+    '@media (max-width: 800px)': {
+      flexWrap: 'nowrap',
+      flex: '50%',
+      maxWidth: 'none',
+    },
+    '@media (max-width: 600px)': {
+      flex: '100%',
+      flexWrap: 'wrap',
+    },
   },
 };
 

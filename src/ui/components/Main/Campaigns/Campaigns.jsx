@@ -23,15 +23,23 @@ export const Campaigns = () => {
       <div className={classes.container}>
         <div className={classes.topbar}>
           <Typography variant="h3">Campaigns</Typography>
-          {!isMobileView && (
-            <Link to={routes.createCampaign}>
+          <Link to={routes.createCampaign}>
+            {!isMobileView && (
               <Button variant="contained" color="primary" className={classes.createCampaign}>
                 <Add className={classes.addIcon} />
                 New Campaign
               </Button>
-            </Link>
-          )}
+            )}
+          </Link>
         </div>
+        {isMobileView && (
+          <div className={classes.createCampaignWrapper}>
+            <Button variant="contained" color="primary" className={classes.createCampaign}>
+              <Add className={classes.addIcon} />
+              New Campaign
+            </Button>
+          </div>
+        )}
         {list.length > 0 ? <List list={list} map={map} /> : <NoCampaigns />}
       </div>
       {deleteCampaign && <DeleteCampaign params={deleteCampaign} />}

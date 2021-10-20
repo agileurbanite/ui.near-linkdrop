@@ -9,6 +9,7 @@ const styles = {
     gridTemplateAreas: `
       '.'
       'a'
+      'c'
       'b'
     `,
   },
@@ -18,14 +19,21 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     borderBottom: '1px solid #00000020',
-    '@media (max-width: 800px)': {
-      justifyContent: 'center',
-    },
+  },
+  createCampaignWrapper: {
+    gridArea: 'c',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   createCampaign: {
     padding: '12px 26px',
     borderRadius: 8,
     boxShadow: 'none',
+    width: '100%',
+    '@media (max-width: 600px)': {
+      marginTop: 16,
+    },
   },
   addIcon: {
     marginRight: 12,
