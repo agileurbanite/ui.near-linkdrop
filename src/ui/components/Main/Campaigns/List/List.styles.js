@@ -4,7 +4,6 @@ const styles = {
   container: {
     gridArea: 'b',
     display: 'flex',
-    justifyContent: 'center',
   },
   wrapper: {
     maxWidth: 350,
@@ -24,9 +23,10 @@ const styles = {
       flex: '50%',
       maxWidth: 'none',
     },
-    '@media (max-width: 600px)': {
+    '@media (max-width: 690px)': {
       flex: '100%',
       flexWrap: 'wrap',
+      justifyContent: 'center',
     },
   },
 };

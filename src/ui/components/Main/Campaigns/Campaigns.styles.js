@@ -19,6 +19,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     borderBottom: '1px solid #00000020',
+    marginBottom: 16,
   },
   createCampaignWrapper: {
     gridArea: 'c',
