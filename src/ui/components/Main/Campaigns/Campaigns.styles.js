@@ -9,7 +9,6 @@ const styles = {
     gridTemplateAreas: `
       '.'
       'a'
-      'c'
       'b'
     `,
   },
@@ -19,13 +18,12 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     borderBottom: '1px solid #00000020',
-    marginBottom: 16,
+  },
+  link: {
+    width: '100%',
   },
   createCampaignWrapper: {
-    gridArea: 'c',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   createCampaign: {
     padding: '12px 26px',
@@ -45,6 +43,23 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  '@media (max-width: 800px)': {
+    container: {
+      gridTemplateRows: '16px 72px 72px auto',
+      gridTemplateAreas: `
+      '.'
+      'a'
+      'c'
+      'b'
+    `,
+    },
+    createCampaignWrapper: {
+      gridArea: 'c',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   },
 };
 

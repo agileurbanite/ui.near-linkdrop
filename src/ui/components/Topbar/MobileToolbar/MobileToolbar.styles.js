@@ -21,6 +21,7 @@ const styles = {
     },
   },
   toolbar: {
+    width: 'calc(100vw - 32px)',
     borderBottom: '1px solid #00000020',
   },
   menuButton: {
