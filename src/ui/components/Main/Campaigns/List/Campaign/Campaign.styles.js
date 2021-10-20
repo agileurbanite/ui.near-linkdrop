@@ -51,6 +51,18 @@ const styles = (theme) => ({
         margin: '24px 24px 0 24px',
       },
     },
+    '@media (max-width: 800px)': {
+      width: '100%',
+      '&:nth-child(2n)': {
+        marginLeft: 20,
+      },
+    },
+    '@media (max-width: 600px)': {
+      width: '100%',
+      '&:nth-child(2n)': {
+        marginLeft: 0,
+      },
+    },
   },
   icon: {
     gridArea: 'a',

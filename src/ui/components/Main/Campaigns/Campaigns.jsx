@@ -9,11 +9,13 @@ import { ResumeCampaignDeletion } from './ResumeCampaignDeletion/ResumeCampaignD
 import { NoCampaigns } from './NoCampaigns/NoCampaigns';
 import { List } from './List/List';
 import { useStyles } from './Campaigns.styles';
+import { useViewport } from '../../../utils/viewport';
 
 export const Campaigns = () => {
   const list = useStoreState((state) => state.campaigns.list);
   const map = useStoreState((state) => state.campaigns.map);
   const deleteCampaign = useStoreState((state) => state.general.modals.deleteCampaign);
+  const { isMobileView } = useViewport();
   const classes = useStyles();
 
   return (
@@ -22,12 +24,22 @@ export const Campaigns = () => {
         <div className={classes.topbar}>
           <Typography variant="h3">Campaigns</Typography>
           <Link to={routes.createCampaign}>
+            {!isMobileView && (
+              <Button variant="contained" color="primary" className={classes.createCampaign}>
+                <Add className={classes.addIcon} />
+                New Campaign
+              </Button>
+            )}
+          </Link>
+        </div>
+        {isMobileView && (
+          <div className={classes.createCampaignWrapper}>
             <Button variant="contained" color="primary" className={classes.createCampaign}>
               <Add className={classes.addIcon} />
               New Campaign
             </Button>
-          </Link>
-        </div>
+          </div>
+        )}
         {list.length > 0 ? <List list={list} map={map} /> : <NoCampaigns />}
       </div>
       {deleteCampaign && <DeleteCampaign params={deleteCampaign} />}

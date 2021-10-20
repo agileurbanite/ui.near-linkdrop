@@ -16,4 +16,5 @@ export const initState = {
     wallet: null,
   },
   temporary: {},
+  isMenuVisible: false,
 };
