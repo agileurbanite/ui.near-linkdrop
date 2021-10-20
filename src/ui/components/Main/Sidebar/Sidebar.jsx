@@ -1,5 +1,5 @@
 import { useStoreActions, useStoreState } from 'easy-peasy';
-import { Drawer, Toolbar } from '@material-ui/core';
+import { Drawer } from '@material-ui/core';
 import { Navigation } from './Navigation/Navigation';
 import { useStyles } from './Sidebar.styles';
 import { useViewport } from '../../../utils/viewport';

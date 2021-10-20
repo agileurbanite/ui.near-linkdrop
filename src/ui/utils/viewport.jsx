@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext, createContext } from 'react';
+import { mobileMaxWidth } from '../config/constants';
 
 export const viewportContext = createContext({});
-
-export const mobileMaxWidth = 800;
 
 export const ViewportProvider = ({ children }) => {
   const [isMobileView, setMobileView] = useState(window.innerWidth < mobileMaxWidth);

@@ -25,6 +25,10 @@ const styles = {
   },
   menuButton: {
     marginRight: 16,
+    edge: 'start',
+    color: 'inherit',
+    ariaLabel: 'menu',
+    ariaHaspopup: true,
   },
   rightToolbar: {
     marginLeft: 'auto',
