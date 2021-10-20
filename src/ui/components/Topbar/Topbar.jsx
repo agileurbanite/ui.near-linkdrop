@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useStoreState } from 'easy-peasy';
-import { LinearProgress, IconButton, Box, Toolbar, Typography, Drawer } from '@material-ui/core';
+import { LinearProgress, IconButton, Toolbar, Typography, Drawer } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Account } from './Account/Account';
 import { routes } from '../../../config/routes';
 import { useStyles } from './Topbar.styles';
-import logo from '../../images/linkdrop-logo.png';
-import { Navigation } from '../Main/Sidebar/Navigation/Navigation';
 import { useViewport } from '../../utils/viewport';
 import { Sidebar } from '../Main/Sidebar/Sidebar';
+import logo from '../../images/linkdrop-logo.png';
 
 export const Topbar = () => {
   const accountId = useStoreState((store) => store.general.user.wallet.accountId);
@@ -74,21 +73,19 @@ export const Topbar = () => {
     );
   };
 
-  const displayDesktop = () => {
-    return (
-      <div className={classes.container}>
-        <div className={classes.logo}>
-          <Link to={routes.campaigns}>
-            <div className={classes.logoWrapper}>
-              <img src={logo} alt="linkdrop logo (chain links)" />
-              NEAR Linkdrop
-            </div>
-          </Link>
-        </div>
-        <div className={classes.account}>{accountId && <Account accountId={accountId} />}</div>
+  const displayDesktop = () => (
+    <div className={classes.container}>
+      <div className={classes.logo}>
+        <Link to={routes.campaigns}>
+          <div className={classes.logoWrapper}>
+            <img src={logo} alt="linkdrop logo (chain links)" />
+            NEAR Linkdrop
+          </div>
+        </Link>
       </div>
-    );
-  };
+      <div className={classes.account}>{accountId && <Account accountId={accountId} />}</div>
+    </div>
+  );
 
   return (
     <>

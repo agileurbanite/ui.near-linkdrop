@@ -10,6 +10,7 @@ import { useStyles } from './Form.styles';
 
 export const Form = () => {
   const walletAccountId = useStoreState((store) => store.general.user.wallet.accountId);
+  const linkdropAccountId = useStoreState((store) => store.general.user.linkdrop.accountId);
   const availableBalance = useStoreState(
     (store) => store.campaigns.createCampaign.availableBalance,
   );
@@ -24,11 +25,11 @@ export const Form = () => {
     defaultValues: {
       name: '',
       icon: emoji.foxMuzzle,
-      amountPerLink: '',
-      totalLinks: '',
+      amountPerLink: '0.01',
+      totalLinks: '10',
     },
     resolver: validations,
-    context: { campaignNames },
+    context: { campaignNames, linkdropAccountId },
     mode: 'all',
   });
 
