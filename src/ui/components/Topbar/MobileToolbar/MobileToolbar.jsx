@@ -1,5 +1,4 @@
 import { useStoreActions, useStoreState } from 'easy-peasy';
-import { Link } from 'react-router-dom';
 import { useLocation, matchPath } from 'react-router';
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton, Toolbar } from '@material-ui/core';
@@ -33,11 +32,9 @@ export const MobileToolbar = () => {
       )}
       <section className={classes.rightToolbar}>
         <div className={classes.logo}>
-          <Link to={routes.campaigns}>
-            <div className={classes.logoWrapper}>
-              <img src={logo} alt="linkdrop logo (chain links)" />
-            </div>
-          </Link>
+          <div className={classes.logoWrapper}>
+            <img src={logo} alt="linkdrop logo (chain links)" />
+          </div>
         </div>
       </section>
     </Toolbar>

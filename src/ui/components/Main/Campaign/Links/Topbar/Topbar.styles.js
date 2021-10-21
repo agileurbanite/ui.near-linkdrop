@@ -17,10 +17,13 @@ const styles = (theme) => ({
   },
   downloadCSV: {
     gridArea: 'a',
-    justifySelf: 'end',
+    justifySelf: 'center',
     padding: '5px 20px',
     boxShadow: 'none',
     borderRadius: 8,
+    '@media (min-width: 1024px)': {
+      justifySelf: 'end',
+    },
   },
   downloadCSVText: {
     textTransform: 'none',

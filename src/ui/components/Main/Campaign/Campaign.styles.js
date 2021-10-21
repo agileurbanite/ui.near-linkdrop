@@ -4,8 +4,8 @@ const styles = (theme) => ({
   container: {
     height: '100%',
     display: 'grid',
-    gridTemplateColumns: 'auto',
-    gridTemplateRows: '16px 72px auto',
+    gridTemplateColumns: '100%',
+    gridTemplateRows: '16px max-content auto',
     gridTemplateAreas: `
       '.'
       'a'
@@ -14,6 +14,7 @@ const styles = (theme) => ({
   },
   topbar: {
     gridArea: 'a',
+    minHeight: 72,
     display: 'flex',
     alignItems: 'center',
     borderBottom: '1px solid #00000020',
@@ -24,15 +25,22 @@ const styles = (theme) => ({
     color: theme.palette.text.primary,
     margin: '0 8px',
   },
+  campaignName: {
+    width: '90%',
+    wordBreak: 'break-all',
+    overflowWrap: 'anywhere',
+  },
   body: {
     gridArea: 'b',
     width: '100%',
-    minWidth: 680,
-    maxWidth: 900,
     justifySelf: 'center',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    '@media (min-width: 1024px)': {
+      minWidth: 680,
+      maxWidth: 900,
+    },
   },
 });
 

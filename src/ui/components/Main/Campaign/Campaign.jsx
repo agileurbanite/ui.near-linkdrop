@@ -21,7 +21,9 @@ export const Campaign = () => {
             <ArrowBack className={classes.closeIcon} />
           </IconButton>
         </Link>
-        <Typography variant="h3">{getCampaignName(campaign.campaignId)}</Typography>
+        <Typography variant="h3" className={classes.campaignName}>
+          {getCampaignName(campaign.campaignId)}
+        </Typography>
       </div>
       <div className={classes.body}>
         <Info campaign={campaign} />

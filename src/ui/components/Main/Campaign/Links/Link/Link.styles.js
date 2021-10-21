@@ -4,13 +4,16 @@ const styles = (theme) => ({
   container: {
     height: 50,
     display: 'grid',
-    gridTemplateColumns: '60px auto 130px 24px 6px 24px 6px 24px',
+    gridTemplateColumns: '60px auto 100px 24px 6px 24px 6px 24px',
     gridTemplateRows: '100%',
     gridTemplateAreas: `
       'b c d g . e . f'
     `,
     alignItems: 'center',
     color: (isActive) => (isActive ? theme.palette.text.primary : theme.palette.text.disabled),
+    '@media (min-width: 1024px)': {
+      gridTemplateColumns: '60px auto 130px 24px 6px 24px 6px 24px',
+    },
   },
   order: {
     gridArea: 'b',
