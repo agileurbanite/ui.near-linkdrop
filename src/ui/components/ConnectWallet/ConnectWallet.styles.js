@@ -11,6 +11,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    marginLeft: 24,
+    marginRight: 24,
   },
   emoji: {
     fontSize: 80,
@@ -20,10 +22,12 @@ const styles = {
     fontWeight: 700,
     letterSpacing: 0.25,
     marginTop: 8,
+    textAlign: 'center',
   },
   title: {
     marginTop: 16,
     letterSpacing: 0.5,
+    textAlign: 'center',
   },
   button: {
     marginTop: 24,

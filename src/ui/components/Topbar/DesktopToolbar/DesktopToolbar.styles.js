@@ -39,21 +39,6 @@ const styles = {
     justifySelf: 'end',
     alignSelf: 'center',
   },
-  progress: {
-    height: 5,
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-  },
-  toolbar: {
-    borderBottom: '1px solid #00000020',
-  },
-  menuButton: {
-    marginRight: 16,
-  },
-  rightToolbar: {
-    marginLeft: 'auto',
-  },
 };
 
-export const useStyles = makeStyles(styles, { name: 'Topbar' });
+export const useStyles = makeStyles(styles, { name: 'DesktopToolbar' });

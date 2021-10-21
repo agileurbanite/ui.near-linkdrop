@@ -1,4 +1,3 @@
-import { Checkbox } from '@material-ui/core';
 import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
 import { RefundLink } from './RefundLink/RefundLink';
 import { Qr } from './Qr/Qr';
@@ -10,8 +9,6 @@ import { useStyles } from './Link.styles';
 export const Link = ({
   campaignId,
   link: { pk, sk, order, status },
-  onSelect,
-  isSelected,
   tokensPerKey,
   walletUserId,
 }) => {
@@ -22,16 +19,9 @@ export const Link = ({
 
   return (
     <div className={classes.container}>
-      <Checkbox
-        onChange={(e) => onSelect(pk, e.target.checked)}
-        className={classes.checkbox}
-        color="primary"
-        checked={isSelected}
-      />
       <span className={classes.order}>#{order}</span>
       <span className={classes.publicKey}>{pk}</span>
       <Status status={status} />
-
       {isActive && (
         <>
           <Qr link={link} />

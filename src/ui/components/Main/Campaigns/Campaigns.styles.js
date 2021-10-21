@@ -19,10 +19,20 @@ const styles = {
     justifyContent: 'space-between',
     borderBottom: '1px solid #00000020',
   },
+  link: {
+    width: '100%',
+  },
+  createCampaignWrapper: {
+    display: 'flex',
+  },
   createCampaign: {
     padding: '12px 26px',
     borderRadius: 8,
     boxShadow: 'none',
+    width: '100%',
+    '@media (max-width: 600px)': {
+      marginTop: 16,
+    },
   },
   addIcon: {
     marginRight: 12,
@@ -33,6 +43,23 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  '@media (max-width: 800px)': {
+    container: {
+      gridTemplateRows: '16px 72px 72px auto',
+      gridTemplateAreas: `
+      '.'
+      'a'
+      'c'
+      'b'
+    `,
+    },
+    createCampaignWrapper: {
+      gridArea: 'c',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   },
 };
 

@@ -12,6 +12,8 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    marginRight: 24,
+    marginLeft: 24,
   },
   icon: {
     height: 96,
@@ -23,6 +25,7 @@ const styles = (theme) => ({
     letterSpacing: 0.25,
     marginTop: 24,
     marginBottom: theme.spacing(2),
+    textAlign: 'center',
   },
   description: {
     fontSize: 16,

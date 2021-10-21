@@ -11,6 +11,14 @@ const styles = {
       'a b'
       'a c'
     `,
+    '@media (max-width: 800px)': {
+      minHeight: 'calc(100vh - 40px - 65px)',
+      gridTemplateAreas: `
+        'b'
+        'c'
+      `,
+      gridTemplateColumns: '100%',
+    },
   },
   pages: {
     gridArea: 'b',
@@ -18,7 +26,10 @@ const styles = {
     justifyContent: 'center',
   },
   pagesWrapper: {
-    width: 'calc(100% - 48px - 48px)',
+    width: 'calc(100% - 24px - 24px)',
+    '@media (min-width: 1024px)': {
+      width: 'calc(100% - 48px - 48px)',
+    },
   },
   footer: {
     gridArea: 'c',

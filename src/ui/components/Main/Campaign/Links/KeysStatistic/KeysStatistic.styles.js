@@ -16,30 +16,46 @@ const styles = (theme) => ({
     margin: 0,
   },
   wrapper: {
-    height: 60,
     width: '100%',
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    marginTop: 8,
-    backgroundColor: '#3d5afe',
-    borderRadius: 8,
-  },
-  section: {
-    minWidth: 80,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    marginTop: 8,
+    borderRadius: 8,
+    '@media (min-width: 1024px)': {
+      height: 60,
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      backgroundColor: '#3d5afe',
+    },
+  },
+  section: {
+    height: 35,
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    '@media (min-width: 1024px)': {
+      height: 'auto',
+      width: 'auto',
+      flexDirection: 'column',
+    },
   },
   label: {
     fontSize: 12,
     letterSpacing: 0.4,
-    color: '#ffffffbf',
+    color: theme.palette.text.secondary,
+    fontWeight: 500,
+    '@media (min-width: 1024px)': {
+      color: '#ffffffbf',
+    },
   },
   value: {
     fontWeight: 600,
-    color: 'white',
     marginTop: 2,
+    '@media (min-width: 1024px)': {
+      color: 'white',
+    },
   },
 });
 

@@ -10,6 +10,7 @@ import { useStyles } from './Main.styles';
 
 export const Main = () => {
   const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <Sidebar />

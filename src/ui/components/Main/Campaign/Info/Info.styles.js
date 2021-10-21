@@ -26,6 +26,9 @@ const styles = (theme) => ({
     fontSize: 12,
     fontWeight: 500,
     marginTop: 16,
+    wordBreak: 'break-all',
+    overflowWrap: 'anywhere',
+    textAlign: 'center',
   },
   balance: {
     fontSize: 24,

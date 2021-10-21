@@ -1,36 +1,25 @@
-import { Button, Checkbox } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { GetApp } from '@material-ui/icons';
 import { useStoreActions } from 'easy-peasy';
 import { useStyles } from './Topbar.styles';
 
-export const Topbar = ({ numberOfSelected, isSelectedAll, onSelectAll, allLinks, keys, name }) => {
-  const onExportLinksCSV = useStoreActions((actions) => actions.campaigns.onExportLinksCSV);
+export const Topbar = ({ campaignId }) => {
+  const onExportCampaignCSV = useStoreActions((actions) => actions.campaigns.onExportCampaignCSV);
   const classes = useStyles();
+
+  const exportCampaign = () => onExportCampaignCSV({ campaignId, fromCampaignPage: true });
 
   return (
     <div className={classes.topbar}>
-      <Checkbox
-        className={classes.checkbox}
+      <Button
+        onClick={exportCampaign}
+        className={classes.downloadCSV}
         color="primary"
-        onChange={(e) => onSelectAll(e.target.checked)}
-        checked={isSelectedAll}
-      />
-      {/*<span className={classes.title}>Links</span>*/}
-      {numberOfSelected > 0 && (
-        <>
-          <span className={classes.selected}>
-            Selected {numberOfSelected}/{keys.length}
-          </span>
-          <Button
-            onClick={() => onExportLinksCSV({ allLinks, links: keys, name })}
-            className={classes.downloadCSV}
-            color="primary"
-          >
-            <GetApp />
-            <span className={classes.downloadCSVText}>Download CSV</span>
-          </Button>
-        </>
-      )}
+        variant="outlined"
+      >
+        <GetApp />
+        <span className={classes.downloadCSVText}>Export Links CSV</span>
+      </Button>
     </div>
   );
 };
