@@ -4,10 +4,10 @@ const styles = (theme) => ({
   topbar: {
     height: 60,
     display: 'grid',
-    gridTemplateColumns: '56px 56px auto 24px max-content 16px',
+    gridTemplateColumns: '100%',
     gridTemplateRows: '100%',
     gridTemplateAreas: `
-      'a b c . e .'
+      'a'
     `,
     alignItems: 'center',
     borderBottom: '1px solid',
@@ -15,31 +15,22 @@ const styles = (theme) => ({
     borderTop: '1px solid',
     borderTopColor: theme.colors.dividerOnWhite,
   },
-  checkbox: {
-    gridArea: 'a',
-    justifySelf: 'start',
-  },
-  title: {
-    gridArea: 'b',
-    fontSize: 20,
-    fontWeight: 500,
-  },
-  selected: {
-    gridArea: 'c',
-    justifySelf: 'end',
-    fontSize: 12,
-    fontWeight: 500,
-    letterSpacing: 0.4,
-    color: theme.palette.text.secondary,
-  },
   downloadCSV: {
-    gridArea: 'e',
+    gridArea: 'a',
+    justifySelf: 'center',
+    padding: '5px 20px',
+    boxShadow: 'none',
+    borderRadius: 8,
+    '@media (min-width: 1024px)': {
+      justifySelf: 'end',
+    },
   },
   downloadCSVText: {
     textTransform: 'none',
+    fontWeight: 500,
     fontSize: 16,
-    marginLeft: 5,
-    color: theme.palette.text.primary,
+    marginLeft: 8,
+    letterSpacing: '0.15px',
   },
 });
 

@@ -21,7 +21,6 @@ export const App = () => (
         exact
         path={[routes.campaigns, routes.settings, routes.createCampaign, routes.campaign]}
         component={Main}
-        title="NEAR Linkdrop"
       />
       <Route path="*" component={PageNotFound} title="PageNotFound" />
     </Switch>

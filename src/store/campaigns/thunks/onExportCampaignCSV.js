@@ -5,13 +5,14 @@ import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { nearConfig } from '../../../config/nearConfig';
 
 export const onExportCampaignCSV = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
-  const { campaignId } = payload;
+  const { campaignId, fromCampaignPage } = payload;
 
   const state = getStoreState();
   const mnemonic = state.general.user.linkdrop.mnemonic;
-  const total = state.campaigns.map[campaignId].keysStats.total;
-  const name = state.campaigns.map[campaignId].name;
-  const internalCampaignId = state.campaigns.map[campaignId].internalCampaignId;
+  const campaign = fromCampaignPage ? state.campaigns.campaign : state.campaigns.map[campaignId];
+  const total = campaign.keysStats.total;
+  const name = campaign.name;
+  const internalCampaignId = campaign.internalCampaignId;
 
   const actions = getStoreActions();
   const enableLoading = actions.general.enableLoading;

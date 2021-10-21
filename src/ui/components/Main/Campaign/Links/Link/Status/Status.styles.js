@@ -17,6 +17,7 @@ const getBackgroundColor = ({ status }) => {
 const styles = {
   container: {
     gridArea: 'd',
+    justifySelf: 'center',
     width: 90,
     height: 20,
     display: 'flex',
@@ -29,6 +30,9 @@ const styles = {
     fontWeight: 600,
     backgroundColor: getBackgroundColor,
     borderRadius: 8,
+    '@media (min-width: 1024px)': {
+      justifySelf: 'start',
+    },
   },
 };
 
