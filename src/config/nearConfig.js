@@ -18,9 +18,10 @@ const mainnet = {
   helperUrl: 'https://helper.mainnet.near.org',
   explorerUrl: 'https://explorer.near.org',
   accounts: {
-    linkdrop: 'linkdrop.near', // TODO need to create
+    linkdrop: 'linkdropv1.near',
     accountCreator: 'near',
   },
+  isTestnet: false,
 };
 
 const configs = {
