@@ -24,7 +24,7 @@ export const Step2 = ({ setStep, getValues, walletAccountId, availableBalance })
           <KeyboardArrowLeft />
           &nbsp;Back
         </Button>
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="contained" color="primary" type="submit" className={classes.confirm}>
           Confirm
         </Button>
       </div>
