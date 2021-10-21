@@ -33,6 +33,9 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    '@media (max-width: 600px)': {
+      minWidth: 0,
+    },
   },
 });
 

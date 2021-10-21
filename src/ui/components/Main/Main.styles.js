@@ -27,6 +27,9 @@ const styles = {
   },
   pagesWrapper: {
     width: 'calc(100% - 48px - 48px)',
+    '@media (max-width: 600px)': {
+      width: 'calc(100% - 16px - 16px)',
+    },
   },
   footer: {
     gridArea: 'c',

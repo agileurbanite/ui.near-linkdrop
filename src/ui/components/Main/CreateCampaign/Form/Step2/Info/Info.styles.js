@@ -77,6 +77,11 @@ const styles = (theme) => ({
   total: {
     fontWeight: 500,
   },
+  '@media (max-width: 600px)': {
+    info: {
+      width: '100%',
+    },
+  },
 });
 
 export const useStyles = makeStyles(styles, { name: 'Info' });
