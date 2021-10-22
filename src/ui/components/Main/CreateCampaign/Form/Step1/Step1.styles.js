@@ -8,7 +8,7 @@ const styles = (theme) => ({
     alignItems: 'center',
   },
   body: {
-    width: 680,
+    maxWidth: 680,
     display: 'flex',
     flexDirection: ' column',
     alignItems: 'center',
@@ -58,6 +58,26 @@ const styles = (theme) => ({
   },
   next: {
     width: 208,
+  },
+  '@media (max-width: 600px)': {
+    body: {
+      width: '100%',
+    },
+    inputs: {
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: '100%',
+      gridTemplateRows: '80px 80px 80px',
+      gridTemplateAreas: `
+      'a'
+      'b'
+      'c'
+    `,
+      marginTop: 36,
+    },
+    next: {
+      width: '100%',
+    },
   },
 });
 
