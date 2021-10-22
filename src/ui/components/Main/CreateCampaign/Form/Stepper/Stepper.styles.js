@@ -13,7 +13,8 @@ const styles = (theme) => ({
     alignItems: 'center',
   },
   topbar: {
-    width: 680,
+    width: '100%',
+    maxWidth: 680,
     display: 'grid',
     gridTemplateColumns: '50% 50%',
     gridTemplateRows: '100%',
@@ -41,6 +42,11 @@ const styles = (theme) => ({
   step2: {
     gridArea: 'b',
     justifySelf: 'end',
+  },
+  '@media (max-width: 600px)': {
+    topbar: {
+      width: '100%',
+    },
   },
 });
 

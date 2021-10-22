@@ -8,7 +8,8 @@ const styles = (theme) => ({
     alignItems: 'center',
   },
   body: {
-    width: 680,
+    width: '100%',
+    maxWidth: 680,
     display: 'flex',
     flexDirection: ' column',
     alignItems: 'center',
@@ -31,7 +32,7 @@ const styles = (theme) => ({
     width: '100%',
     display: 'grid',
     gridTemplateColumns: '48% 4% 48%',
-    gridTemplateRows: '100px 80px',
+    gridTemplateRows: '106px 80px',
     gridTemplateAreas: `
       'a a a'
       'b . c'
@@ -58,6 +59,29 @@ const styles = (theme) => ({
   },
   next: {
     width: 208,
+  },
+  '@media (max-width: 600px)': {
+    body: {
+      width: '100%',
+    },
+    inputs: {
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: '100%',
+      gridTemplateRows: 'minmax(90px, max-content) 90px 90px',
+      gridTemplateAreas: `
+        'a'
+        'b'
+        'c'
+      `,
+      marginTop: 36,
+    },
+    name: {
+      marginBottom: 10,
+    },
+    next: {
+      width: '100%',
+    },
   },
 });
 
