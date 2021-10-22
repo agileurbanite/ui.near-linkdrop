@@ -2,20 +2,9 @@ import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const errors = {
-  invalidAccountIdFormat: () => (
-    <>
-      Campaign name doesn&apos;t follow an account id pattern. More details&nbsp;
-      <a
-        rel="noreferrer"
-        target="_blank"
-        href="https://nomicon.io/DataStructures/Account.html#account-id-rules"
-        style={{ fontWeight: 700 }}
-      >
-        here
-      </a>
-    </>
-  ),
   requiredName: 'Campaign name is required',
+  invalidNameFormat: `Campaign name should start/finish with Latin letters or
+  digits and contain only Latin letters, digits, - and _ separators`,
   nameMaxLength: (max) => `Campaign name should be equal or less than ${max} symbols`,
   amountPerLink: 'You should attach more than 0.01 NEAR',
   totalLinks: 'You should choose between 1 and 10 000 links',
@@ -24,7 +13,7 @@ const errors = {
 };
 
 const regex = {
-  accountId: /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/g, // https://nomicon.io/DataStructures/Account.html#account-id-rules
+  accountId: /^([a-z\d]+[-_])*[a-z\d]+$/g,
   integerPositiveNumber: /^[0-9]+$/g,
   decimalPositiveNumber: /^\d+(\.\d+)?$/g,
 };
@@ -40,7 +29,7 @@ const name = string()
       return context.createError({ path: 'name', message: errors.nameMaxLength(max) });
     },
   })
-  .matches(regex.accountId, errors.invalidAccountIdFormat)
+  .matches(regex.accountId, errors.invalidNameFormat)
   .test({
     test: (value, context) => !context.options.context.campaignNames.has(value),
     message: errors.nonUniqueCampaignName,
