@@ -1,7 +1,7 @@
 import { useStoreState } from 'easy-peasy';
 import { LinearProgress } from '@material-ui/core';
 import { useStyles } from './Topbar.styles';
-import { useViewport } from '../../utils/viewport';
+import { useViewport } from '../../providers/Viewport';
 import { MobileToolbar } from './MobileToolbar/MobileToolbar';
 import { DesktopToolbar } from './DesktopToolbar/DesktopToolbar';
 

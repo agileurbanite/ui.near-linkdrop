@@ -9,7 +9,7 @@ import { ResumeCampaignDeletion } from './ResumeCampaignDeletion/ResumeCampaignD
 import { NoCampaigns } from './NoCampaigns/NoCampaigns';
 import { List } from './List/List';
 import { useStyles } from './Campaigns.styles';
-import { useViewport } from '../../../utils/viewport';
+import { useViewport } from '../../../providers/Viewport';
 
 export const Campaigns = () => {
   const list = useStoreState((state) => state.campaigns.list);

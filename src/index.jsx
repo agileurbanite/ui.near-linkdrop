@@ -7,7 +7,7 @@ import { Initializer } from './ui/providers/Initializer/Initializer';
 import { Router } from './ui/providers/Router';
 import { App } from './ui/components/App';
 import { store } from './store';
-import { ViewportProvider } from './ui/utils/viewport';
+import { ViewportProvider } from './ui/providers/Viewport';
 import { theme } from './ui/config/theme';
 
 const history = createBrowserHistory();

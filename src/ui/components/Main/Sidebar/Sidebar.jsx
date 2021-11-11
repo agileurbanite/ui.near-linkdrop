@@ -2,7 +2,7 @@ import { useStoreActions, useStoreState } from 'easy-peasy';
 import { Drawer } from '@material-ui/core';
 import { Navigation } from './Navigation/Navigation';
 import { useStyles } from './Sidebar.styles';
-import { useViewport } from '../../../utils/viewport';
+import { useViewport } from '../../../providers/Viewport';
 
 export const Sidebar = () => {
   const classes = useStyles();
