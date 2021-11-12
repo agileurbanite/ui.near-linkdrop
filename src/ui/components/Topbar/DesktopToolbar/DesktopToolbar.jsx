@@ -12,7 +12,7 @@ export const DesktopToolbar = () => {
       <div className={classes.logo}>
         <div className={classes.logoWrapper}>
           <img src={logo} alt="linkdrop logo (chain links)" />
-          NEAR Linkdrop
+          NEARDROP
         </div>
       </div>
       <div className={classes.account}>{accountId && <Account accountId={accountId} />}</div>
