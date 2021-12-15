@@ -1,5 +1,5 @@
-import { Near } from '../../../../../general/icons/Near';
-import { formatNearBalance } from '../../../../../../utils/format';
+import { Near } from '../../../../../../general/icons/Near';
+import { formatNearBalance } from '../../../../../../../utils/format';
 import { useStyles } from './Info.styles';
 
 export const Info = ({ walletAccountId, balance, campaignData }) => {

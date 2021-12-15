@@ -1,6 +1,6 @@
 import { InputAdornment } from '@material-ui/core';
-import { TextField } from '../../../../../general/TextField/TextField';
-import { Near } from '../../../../../general/icons/Near';
+import { TextField } from '../../../../../../general/TextField/TextField';
+import { Near } from '../../../../../../general/icons/Near';
 import { useStyles } from './AmountPerLink.styles';
 
 export const AmountPerLink = ({ control, errors }) => {

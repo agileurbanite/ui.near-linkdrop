@@ -13,12 +13,12 @@ export const onMountCreateCampaign = thunk(async (_, __, { getStoreState, getSto
   const user = getUserContract(state, linkdropUserId);
 
   try {
-    const [balance, campaignIds] = await Promise.all([
-      wallet.account().getAccountBalance(),
-      user.get_campaigns(),
-    ]);
-
-    mountCreateCampaign({ balance, campaignIds });
+    // const [balance, campaignIds] = await Promise.all([
+    //   wallet.account().getAccountBalance(),
+    //   user.get_campaigns(),
+    // ]);
+    //
+    // mountCreateCampaign({ balance, campaignIds });
   } catch (e) {
     setError({ isError: true, description: e });
   }

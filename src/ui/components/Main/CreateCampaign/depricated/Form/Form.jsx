@@ -5,7 +5,7 @@ import { Stepper } from './Stepper/Stepper';
 import { Step1 } from './Step1/Step1';
 import { Step2 } from './Step2/Step2';
 import { validations } from './validations';
-import { emoji } from '../../../../config/emoji';
+import { emoji } from '../../../../../config/emoji';
 import { useStyles } from './Form.styles';
 
 export const Form = () => {

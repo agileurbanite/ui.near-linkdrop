@@ -17,7 +17,7 @@
     "filefy": "^0.1.10",
     "history": "4.10.1",
     "ky": "^0.28.6",
-    "near-api-js": "^0.43.1",
+    "near-api-js": "^0.44.1",
     "near-seed-phrase": "^0.2.0",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
@@ -42,10 +42,8 @@
     "worker-loader": "^3.0.8"
   },
   "scripts": {
-    "start-testnet": "set PORT=30061&&set REACT_APP_NETWORK=testnet&&react-app-rewired start",
-    "start-mainnet": "set PORT=4005&&set REACT_APP_NETWORK=mainnet&&react-app-rewired start",
-    "build-testnet": "set REACT_APP_NETWORK=testnet&&react-app-rewired build",
-    "build-mainnet": "set REACT_APP_NETWORK=mainnet&&react-app-rewired build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "lint": "eslint src/",
@@ -53,7 +51,7 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">1%",
       "not dead",
       "not op_mini all"
     ],

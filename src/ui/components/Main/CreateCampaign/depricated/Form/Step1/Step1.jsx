@@ -1,9 +1,9 @@
 import { Button, Divider } from '@material-ui/core';
 import { useFormState } from 'react-hook-form';
-import { TextField } from '../../../../general/TextField/TextField';
+import { TextField } from '../../../../../general/TextField/TextField';
 import { AmountPerLink } from './AmountPerLink/AmountPerLink';
 import { Info } from './Info/Info';
-import { emoji } from '../../../../../config/emoji';
+import { emoji } from '../../../../../../config/emoji';
 import { useStyles } from './Step1.styles';
 
 export const Step1 = ({ setStep, control, walletAccountId, availableBalance }) => {

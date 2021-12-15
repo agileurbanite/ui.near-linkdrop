@@ -3,7 +3,7 @@ import { useStoreActions } from 'easy-peasy';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useStyles } from './CreateCampaignModal.styles';
-import clock from '../../../../images/clock.png';
+import clock from '../../../../../images/clock.png';
 
 export const CreateCampaignModal = ({ data }) => {
   const [progress, setProgress] = useState(0);

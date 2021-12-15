@@ -22,7 +22,7 @@ export const App = () => (
         path={[routes.campaigns, routes.settings, routes.createCampaign, routes.campaign]}
         component={Main}
       />
-      <Route path="*" component={PageNotFound} title="PageNotFound" />
+      <Route path="*" component={PageNotFound} />
     </Switch>
     <Error />
   </>

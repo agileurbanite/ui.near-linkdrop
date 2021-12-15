@@ -1,30 +1,46 @@
-import { useStoreState } from 'easy-peasy';
-import { Link } from 'react-router-dom';
-import { Typography, IconButton } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
-import { CreateCampaignModal } from './CreateCampaignModal/CreateCampaignModal';
-import { Form } from './Form/Form';
-import { routes } from '../../../../config/routes';
-import { useStyles } from './CreateCampaign.styles';
+import { Topbar } from './Topbar/Topbar';
+import { Routes, Route } from '../../../providers/MemoryRouter';
+import { SelectType } from './SelectType/SelectType';
+import { Near } from './Near/Near';
+import { memoryRoutes } from '../../../../config/routes';
+import { useJss } from './CreateCampaign.jss';
+
+const { selectType, near } = memoryRoutes.createCampaign;
 
 export const CreateCampaign = () => {
-  const createCampaign = useStoreState((state) => state.general.modals.createCampaign);
-  const classes = useStyles();
+  // TODO remove
+  // const createCampaign = useStoreState((state) => state.general.modals.createCampaign);
+  const jss = useJss();
 
   return (
-    <>
-      <div className={classes.container}>
-        <div className={classes.topbar}>
-          <Link to={routes.campaigns}>
-            <IconButton>
-              <Close className={classes.closeIcon} />
-            </IconButton>
-          </Link>
-          <Typography variant="h3">Create Campaign</Typography>
-        </div>
-        <Form />
+    <div className={jss.container}>
+      <Topbar />
+      <div className={jss.body}>
+        <Routes defaultRoute={selectType}>
+          <Route path={selectType} element={<SelectType />} />
+          <Route path={near.root} element={<Near />} />
+        </Routes>
       </div>
-      {createCampaign && <CreateCampaignModal data={createCampaign} />}
-    </>
+    </div>
   );
 };
+
+// const create_campaign = [
+//   'select_type',
+//   'near',
+//   'nft',
+//   'near_nft',
+// ]
+//
+// const near = [
+//   'near.general',
+//   'near.summary',
+//   'near.creation',
+// ]
+//
+// const nft = [
+//   'nft.general',
+//   'nft.select_nft',
+//   'nft.summary',
+//   'nft.creation',
+// ]
