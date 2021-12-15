@@ -1,44 +1,43 @@
 import { useState } from 'react';
-import { Typography } from '@material-ui/core';
 import { useStoreActions, useStoreState } from 'easy-peasy';
-import { ArrowButton } from './ArrowButton/ArrowButton';
+import { Pagination as MuiPagination } from '@material-ui/lab';
+
 import { useStyles } from './Pagination.styles';
+import { PaginationItem } from './PaginationItem/PaginationItem';
 
 export const Pagination = () => {
   const pagination = useStoreState((state) => state.campaigns.campaign.pagination);
   const onLoadKeys = useStoreActions((actions) => actions.campaigns.onLoadKeys);
   const [loader, setLoader] = useState(null);
   const classes = useStyles();
+  const { total, elementsPerPage } = pagination;
+  const countPage = Math.round(total / elementsPerPage);
 
-  const { page, total, range, elementsPerPage } = pagination;
+
+  const handleChange = (_, page) => {
+    onLoadKeys({
+      page,
+      total,
+      elementsPerPage,
+      showLoader: () => setLoader('loading'),
+      hideLoader: () => setLoader(null),
+    });
+  };
 
   return (
     <div className={classes.container}>
-      <ArrowButton
-        type="prev"
-        page={page - 1}
-        disabled={range.start === 1}
-        total={total}
-        elementsPerPage={elementsPerPage}
-        onLoadKeys={onLoadKeys}
-        loader={loader}
-        setLoader={setLoader}
-      />
-      <div className={classes.pageInfo}>
-        <Typography variant="subtitle2" color="textSecondary">
-          {`${range.start}-${range.end} from ${total}`}
-        </Typography>
-      </div>
-      <ArrowButton
-        type="next"
-        page={page + 1}
-        disabled={range.end === total}
-        total={total}
-        elementsPerPage={elementsPerPage}
-        onLoadKeys={onLoadKeys}
-        loader={loader}
-        setLoader={setLoader}
-      />
+      {total < elementsPerPage ? (
+        <div className={classes.container} />
+      ) : (
+        <MuiPagination
+          renderItem={(item) => <PaginationItem item={item} loader={loader} />}
+          onChange={handleChange}
+          count={countPage}
+          color="primary"
+          siblingCount={0}
+          disabled={loader === 'loading'}
+        />
+      )}
     </div>
   );
 };
