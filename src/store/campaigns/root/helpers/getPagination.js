@@ -18,6 +18,8 @@ export const getPagination = ({ page, total, elementsPerPage = 50 }) => {
 
   return {
     page,
+    firstPage,
+    lastPage,
     total,
     elementsPerPage,
     range: { start, end },
