@@ -13,8 +13,8 @@ export const Caution = () => {
         <>
           <span className={classes.caution}>CAUTION:</span>
           <span>
-            The NEARDROP is beta software and{' '}
-            <span className={classes.bold}>IS NOT AUDITED</span>. Use at your own responsibility.
+            The NEARDROP is beta software and <span className={classes.bold}>IS NOT AUDITED</span>.
+            Use at your own responsibility.
           </span>
         </>
       )}

@@ -13,7 +13,12 @@ export const SelectType = () => {
       <p>Select Campaign Type</p>
       <Navigate to={memoryRoutes.createCampaign.near.generalData}>
         <Button variant="contained" color="primary">
-          Next Step
+          NEAR
+        </Button>
+      </Navigate>
+      <Navigate to={memoryRoutes.createCampaign.nft.campaignData}>
+        <Button variant="contained" color="secondary">
+          NFT
         </Button>
       </Navigate>
     </div>

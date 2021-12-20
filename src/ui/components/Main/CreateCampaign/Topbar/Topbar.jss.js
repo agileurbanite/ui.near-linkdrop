@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme) => ({
   topbar: {
     gridArea: 'a',
     display: 'flex',

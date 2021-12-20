@@ -10,7 +10,7 @@ const styles = {
   name: {
     fontSize: 12,
     marginLeft: 3,
-  }
+  },
 };
 
 export const useStyles = makeStyles(styles, { name: 'SocialMedia' });

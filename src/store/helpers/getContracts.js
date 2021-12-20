@@ -18,3 +18,13 @@ export const getLinkdropContract = (state) =>
     viewMethods: [],
     changeMethods: ['create_user_account'],
   });
+
+export const getNftCollectionContract = (state, nftCollectionId) =>
+  new Contract(
+    new Account(state.general.entities.near.connection, state.general.user.linkdrop.accountId),
+    nftCollectionId,
+    {
+      viewMethods: ['nft_metadata', 'nft_tokens_for_owner'],
+      changeMethods: [],
+    },
+  );

@@ -19,6 +19,8 @@ export const getRoute = {
   callbackUrl: (params) => `${window.location.origin}/redirect-from-wallet?${qs.stringify(params)}`,
 };
 
+// TODO generate paths (like 'a_b.c') automatically from object, writing
+//  'aB: { c: 'a_b.c' }' is boring
 export const memoryRoutes = {
   createCampaign: {
     selectType: 'create_campaign.select_type',
@@ -27,5 +29,13 @@ export const memoryRoutes = {
       generalData: 'create_campaign.near.general_data',
       summary: 'create_campaign.near.summary',
     },
+    nft: {
+      root: 'create_campaign.nft',
+      campaignData: 'create_campaign.nft.campaign_data',
+      selectNft: 'create_campaign.nft.select_nft',
+      summary: 'create_campaign.nft.summary',
+      creationProgress: 'create_campaign.nft.creation_progress',
+    },
+    creationProgress: 'create_campaign.creation_progress',
   },
 };

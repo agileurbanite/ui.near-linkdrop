@@ -1,6 +1,6 @@
 import { action } from 'easy-peasy';
-import { emoji } from '../../../ui/config/emoji';
-import { getCampaignName } from '../../../ui/utils/formatCampaignData';
+import { emoji } from '../../../../ui/config/emoji';
+import { getCampaignName } from '../../../../ui/utils/formatCampaignData';
 
 export const mountCampaign = action((slice, payload) => {
   const { campaignId, metadata, balance, keys, keyStats, pagination } = payload;

@@ -7,7 +7,6 @@ const { generalData, summary } = memoryRoutes.createCampaign.near;
 
 export const Near = () => {
   const jss = useJss();
-  console.log('render NEAR');
 
   return (
     <Routes>

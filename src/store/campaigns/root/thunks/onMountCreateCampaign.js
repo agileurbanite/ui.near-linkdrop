@@ -1,5 +1,5 @@
 import { thunk } from 'easy-peasy';
-import { getUserContract } from '../../helpers/getContracts';
+import { getUserContract } from '../../../helpers/getContracts';
 
 export const onMountCreateCampaign = thunk(async (_, __, { getStoreState, getStoreActions }) => {
   const state = getStoreState();

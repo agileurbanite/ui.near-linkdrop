@@ -1,6 +1,6 @@
 import { thunk } from 'easy-peasy';
-import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
-import { toCamelCase } from '../../helpers/toCamelCase';
+import { getUserContract, getCampaignContract } from '../../../helpers/getContracts';
+import { toCamelCase } from '../../../helpers/toCamelCase';
 
 // TODO We can have a case with multi devices - if user will create campaign on device A
 // device B won't have a key in LS and wont be able to generate keys for this campaign
