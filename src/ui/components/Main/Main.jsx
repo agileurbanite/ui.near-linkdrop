@@ -4,7 +4,7 @@ import { Sidebar } from './Sidebar/Sidebar';
 import { Campaigns } from './Campaigns/Campaigns';
 import { Settings } from './Settings/Settings';
 import { CreateCampaign } from './CreateCampaign/CreateCampaign';
-import { Campaign } from './Campaign/Campaign';
+import { CampaignPage } from './CampaignPage/CampaignPage';
 import { routes } from '../../../config/routes';
 import { useStyles } from './Main.styles';
 
@@ -20,7 +20,7 @@ export const Main = () => {
             <Route exact path={routes.campaigns} component={Campaigns} />
             <Route exact path={routes.settings} component={Settings} />
             <Route exact path={routes.createCampaign} component={CreateCampaign} />
-            <Route exact path={routes.campaign} component={Campaign} />
+            <Route exact path={routes.campaign} component={CampaignPage} />
           </Switch>
         </div>
       </div>

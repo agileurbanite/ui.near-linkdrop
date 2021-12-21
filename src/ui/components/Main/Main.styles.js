@@ -24,6 +24,7 @@ const styles = {
     gridArea: 'b',
     display: 'flex',
     justifyContent: 'center',
+    backgroundColor: '#F5F5F5',
   },
   pagesWrapper: {
     width: 'calc(100% - 24px - 24px)',
