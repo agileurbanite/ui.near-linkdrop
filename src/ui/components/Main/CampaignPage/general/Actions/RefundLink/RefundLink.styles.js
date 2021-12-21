@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 const styles = (theme) => ({
   button: {
     gridArea: 'f',
-    height: 24,
+    height: 44,
   },
   icon: {
     '&:hover': {

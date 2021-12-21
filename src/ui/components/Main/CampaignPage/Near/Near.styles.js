@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = (theme) => ({
+const styles = () => ({
   container: {
     height: '100%',
     display: 'grid',
@@ -11,24 +11,6 @@ const styles = (theme) => ({
       'a'
       'b'
     `,
-  },
-  topbar: {
-    gridArea: 'a',
-    minHeight: 72,
-    display: 'flex',
-    alignItems: 'center',
-    borderBottom: '1px solid #00000020',
-  },
-  closeIcon: {
-    height: 36,
-    width: 36,
-    color: theme.palette.text.primary,
-    margin: '0 8px',
-  },
-  campaignName: {
-    width: '90%',
-    wordBreak: 'break-all',
-    overflowWrap: 'anywhere',
   },
   body: {
     gridArea: 'b',
@@ -44,4 +26,4 @@ const styles = (theme) => ({
   },
 });
 
-export const useStyles = makeStyles(styles, { name: 'Campaign' });
+export const useStyles = makeStyles(styles, { name: 'Near' });

@@ -8,6 +8,7 @@ const styles = (theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     color: theme.colors.grey450,
+    backgroundColor: '#F5F5F5',
   },
   text: {
     fontSize: 12,

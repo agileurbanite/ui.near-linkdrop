@@ -5,7 +5,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '15px 0 40px',
+    margin: '28px 0 140px',
   },
   pageInfo: {
     width: 200,

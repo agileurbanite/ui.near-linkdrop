@@ -2,14 +2,14 @@ import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const errors = {
-  requiredName: 'Campaign name is required',
+  requiredName: 'CampaignPage name is required',
   invalidNameFormat: `Campaign name should start/finish with Latin letters or
   digits and contain only Latin letters, digits, - and _ separators`,
   nameMaxLength: (max) => `Campaign name should be equal or less than ${max} symbols`,
   amountPerLink: 'You should attach more than 0.01 NEAR',
   totalLinks: 'You should choose between 1 and 10 000 links',
   totalLinksInteger: 'This field should be an integer number',
-  nonUniqueCampaignName: 'Campaign with this name already exists',
+  nonUniqueCampaignName: 'CampaignPage with this name already exists',
 };
 
 const regex = {

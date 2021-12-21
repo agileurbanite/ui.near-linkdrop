@@ -7,6 +7,7 @@ export const mountCampaign = action((slice, payload) => {
 
   slice.campaign = {
     campaignId,
+    type: 'Near',
     internalCampaignId: metadata.campaignId,
     name: getCampaignName(campaignId),
     balance,
