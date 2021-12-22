@@ -1,13 +1,12 @@
 import { makeStyles } from '@material-ui/core';
-
-const getColor = ({ status }) => (status === 'Active' ? '#3D5AFE' : '#E0203C');
+import {campaignStatus} from '../../../../../../../config/campaignStatus';
 
 const styles = () => ({
   status: {
     fontSize: 14,
     fontWeight: 500,
     lineHeight: '20px',
-    color: (isActive) => getColor(isActive),
+    color: ({ status }) => (status === campaignStatus.active ? '#3D5AFE' : '#E0203C'),
   },
   section: {
     display: 'flex',

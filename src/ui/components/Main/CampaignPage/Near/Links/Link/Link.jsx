@@ -1,5 +1,5 @@
 import { useStyles } from './Link.styles';
-import { Status } from '../../../general/Status/Status';
+import { LinkStatus } from '../../../general/LinkStatus/LinkStatus';
 import { keyStatus } from '../../../../../../../config/keyStatus';
 import { Qr } from '../../../general/Actions/Qr/Qr';
 import { RefundLink } from '../../../general/Actions/RefundLink/RefundLink';
@@ -20,7 +20,7 @@ export const Link = ({
   return (
     <div className={classes.container}>
       <div className={classes.statusBar}>
-        <Status status={status} />
+        <LinkStatus status={status} />
         <span>#{order}</span>
       </div>
 
