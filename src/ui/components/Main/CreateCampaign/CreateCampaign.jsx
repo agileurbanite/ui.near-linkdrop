@@ -17,7 +17,7 @@ export const CreateCampaign = () => {
     <div className={jss.container}>
       <Topbar />
       <div className={jss.body}>
-        <Routes startRoute={selectType}>
+        <Routes startRoute={nft.summary}>
           <Route path={selectType} element={<SelectType />} />
           <Route path={near.root} element={<Near />} />
           <Route path={nft.root} element={<Nft />} />

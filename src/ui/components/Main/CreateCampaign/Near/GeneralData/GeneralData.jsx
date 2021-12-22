@@ -9,8 +9,8 @@ export const GeneralData = () => {
     <div className={jss.container}>
       <p>Near - GeneralData</p>
       <Navigate to={memoryRoutes.createCampaign.selectType}>
-        <Button variant="contained" color="primary">
-          Back to Type
+        <Button variant="outlined" color="primary">
+          Back
         </Button>
       </Navigate>
     </div>

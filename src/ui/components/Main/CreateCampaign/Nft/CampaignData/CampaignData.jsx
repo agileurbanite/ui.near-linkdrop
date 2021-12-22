@@ -16,14 +16,14 @@ export const CampaignData = () => {
   return (
     <div className={jss.container}>
       <p>NFT - GeneralData</p>
-      <Navigate to={nft.selectNft} beforeHook={onMountSelectNft}>
-        <Button variant="contained" color="primary">
-          Select Nft
-        </Button>
-      </Navigate>
       <Navigate to={selectType}>
         <Button variant="outlined" color="primary">
           Back
+        </Button>
+      </Navigate>
+      <Navigate to={nft.selectNft} beforeHook={onMountSelectNft}>
+        <Button variant="outlined" color="primary">
+          Select Nft
         </Button>
       </Navigate>
     </div>
