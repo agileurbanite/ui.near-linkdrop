@@ -6,8 +6,8 @@ export const CampaignIcon = ({ campaign: { type } }) => {
   const classes = useStyles();
 
   const iconType = {
-    Near: NearIcon(classes.icon),
-    Nft: NftIcon(classes.icon),
+    near: NearIcon(classes.icon),
+    nft: NftIcon(classes.icon),
   };
   const icon = iconType[type];
 

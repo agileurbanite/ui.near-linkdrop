@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-
-const getBackgroundColor = ({ status }) => (status === 'Active' ? '#3D5AFE' : '#C9C9C9');
+import { keyStatus } from '../../../../../../config/keyStatus';
 
 const styles = {
   container: {
@@ -8,7 +7,7 @@ const styles = {
     marginRight: 15.23,
     width: 16,
     height: 16,
-    backgroundColor: (isActive) => getBackgroundColor(isActive),
+    backgroundColor: ({ status }) => (status === keyStatus.active ? '#3D5AFE' : '#C9C9C9'),
     borderRadius: '50%',
   },
 };
