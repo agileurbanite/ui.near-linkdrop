@@ -17,6 +17,11 @@ export const mountCampaign = action((slice, payload) => {
     keysStats: metadata.keysStats,
     status: metadata.status,
     pagination,
+    qr: {
+      isOpen: false,
+      order: null,
+      link: null,
+    },
     keys: keys.map((key, index) => ({
       ...key,
       status: keyStats[index].status,

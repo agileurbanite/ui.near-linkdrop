@@ -12,4 +12,4 @@ const styles = {
   },
 };
 
-export const useStyles = makeStyles(styles, { name: 'Status' });
+export const useStyles = makeStyles(styles, { name: 'LinkStatus' });

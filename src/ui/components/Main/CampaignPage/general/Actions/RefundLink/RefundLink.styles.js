@@ -47,4 +47,4 @@ const styles = (theme) => ({
   },
 });
 
-export const useStyles = makeStyles(styles, { name: 'CancelLink' });
+export const useStyles = makeStyles(styles, { name: 'RefundLink' });
