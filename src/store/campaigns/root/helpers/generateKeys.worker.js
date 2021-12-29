@@ -5,7 +5,7 @@ import nacl from 'tweetnacl';
 
 const getPath = (campaignId, keyId) => `m/44'/397'/0'/${campaignId}'/${keyId}'`;
 
-export const createGenerateKey = (seedPhrase) => {
+const createGenerateKey = (seedPhrase) => {
   const seed = mnemonicToSeed(seedPhrase);
 
   return (campaignId, keyId) => {

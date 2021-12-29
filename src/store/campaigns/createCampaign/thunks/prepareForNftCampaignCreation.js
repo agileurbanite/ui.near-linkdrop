@@ -14,7 +14,8 @@ export const prepareForNftCampaignCreation = thunk(
     const actions = getStoreActions();
 
     //  "public_key": "ed25519:2zRD6HekaqUtUkoiwYAus5husSgEbaJ9k6NCbP6QW3Lk",
-    //   "private_key": "ed25519:ukTK5k9A5qotUoEZF4meaCCMigMvcfaDRyesLjUhPR9x7nwZbFGxSQmpWmt9x5hEfNPt3AcFW8UFPZ1FgZk8sfn"
+    //  "private_key": "ed25519:ukTK5k9A5qotUoEZF4meaCCMigMvcfaDRyesLjUhPR9x7nwZbFGxSQmpWmt9x5hEfNPt3AcFW8UFPZ1FgZk8sfn"
+
     // const result = await account.signAndSendTransaction(walletAccountId, [
     //   transactions.addKey(
     //     PublicKey.from('ed25519:2zRD6HekaqUtUkoiwYAus5husSgEbaJ9k6NCbP6QW3Lk'),
