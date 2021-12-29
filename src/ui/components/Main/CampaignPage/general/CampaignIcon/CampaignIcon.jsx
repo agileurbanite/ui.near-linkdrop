@@ -2,14 +2,19 @@ import { useStyles } from './CampaignIcon.styles';
 import { NearIcon } from '../../../../general/icons/NearIcon';
 import { NftIcon } from '../../../../general/icons/NftIcon';
 
+const icons = {
+  near: NearIcon,
+  nft: NftIcon,
+};
+
 export const CampaignIcon = ({ campaign: { type } }) => {
   const classes = useStyles();
 
-  const iconType = {
-    near: NearIcon(classes.icon),
-    nft: NftIcon(classes.icon),
-  };
-  const icon = iconType[type];
+  const Icon = icons[type];
 
-  return <div className={classes.container}>{icon}</div>;
+  return (
+    <div className={classes.container}>
+      <Icon className={classes.icon} />
+    </div>
+  );
 };

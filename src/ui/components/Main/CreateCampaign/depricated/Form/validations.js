@@ -2,7 +2,7 @@ import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const errors = {
-  requiredName: 'CampaignPage name is required',
+  requiredName: 'Campaign name is required',
   invalidNameFormat: `Campaign name should start/finish with Latin letters or
   digits and contain only Latin letters, digits, - and _ separators`,
   nameMaxLength: (max) => `Campaign name should be equal or less than ${max} symbols`,

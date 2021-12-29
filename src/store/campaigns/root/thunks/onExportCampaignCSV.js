@@ -27,10 +27,10 @@ export const onExportCampaignCSV = thunk(async (_, payload, { getStoreState, get
 
   const date = dateFormat(Date.now(), 'd_mmm_yyyy-HH_MM_ss');
   const fileName = `${name}[${start}-${end}][${date}.csv`;
-  const csvBuilder = new CsvBuilder(fileName).setColumns(['order', 'public key', 'link']);
+  const csvBuilder = new CsvBuilder(fileName).setColumns(['order', 'link']);
 
-  keys.forEach(({ pk, sk, order }) => {
-    csvBuilder.addRow([`#${order}`, pk, nearConfig.getCreateAccountAndClaimLink(sk, campaignId)]);
+  keys.forEach(({ sk, order }) => {
+    csvBuilder.addRow([`#${order}`, nearConfig.getCreateAccountAndClaimLink(sk, campaignId)]);
   });
 
   csvBuilder.exportFile();

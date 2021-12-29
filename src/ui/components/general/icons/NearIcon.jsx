@@ -1,5 +1,5 @@
-export const NearIcon = (classes) => (
-  <svg className={classes} viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const NearIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
       clipRule="evenodd"
