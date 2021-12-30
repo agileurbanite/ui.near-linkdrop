@@ -10,7 +10,7 @@ import { onMountDeleteCampaign } from './onMountDeleteCampaign';
 import { onMountCreateCampaign } from './onMountCreateCampaign';
 import { onResumeCampaignCreation } from './onResumeCampaignCreation';
 import { onResumeCampaignDeletion } from './onResumeCampaignDeletion';
-import { onClaimNFT } from './onClaimNFT';
+import { onLoadQr } from './onLoadQr';
 
 export const thunks = {
   onStartCampaignCreation,
@@ -25,5 +25,5 @@ export const thunks = {
   onMountCreateCampaign,
   onResumeCampaignCreation,
   onResumeCampaignDeletion,
-  onClaimNFT,
+  onLoadQr,
 };

@@ -30,6 +30,7 @@ export const Pagination = () => {
           renderItem={(item) => <PaginationItem item={item} loader={loader} />}
           onChange={handleChange}
           count={lastPage}
+          page={pagination.page}
           color="primary"
           siblingCount={0}
           disabled={loader}

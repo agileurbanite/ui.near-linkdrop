@@ -5,7 +5,7 @@ import { useStyles } from './PaginationItem.styles';
 export const PaginationItem = ({ item, loader }) => {
   const classes = useStyles();
 
-  return item.selected && loader === 'loading' ? (
+  return item.selected && loader? (
     <div className={classes.loaderWrapper}>
       <CircularProgress size={18} className={classes.spinner} />
     </div>

@@ -38,6 +38,7 @@ const styles = {
     fontSize: 12,
     letterSpacing: '0.15px',
     backgroundColor: '#3D5AFE',
+    borderRadius: 8,
     color: 'white',
     '&:hover': {
       backgroundColor: '#3D5AFE',
