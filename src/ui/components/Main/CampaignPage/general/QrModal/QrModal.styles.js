@@ -47,6 +47,7 @@ const styles = {
     height: 32,
     color: 'white',
     backgroundColor: '#3D5AFE',
+    borderRadius: 8,
     letterSpacing: 0.15,
     fontSize: 12,
     fontWeight: 500,

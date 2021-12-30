@@ -10,6 +10,7 @@ import { onMountDeleteCampaign } from './onMountDeleteCampaign';
 import { onMountCreateCampaign } from './onMountCreateCampaign';
 import { onResumeCampaignCreation } from './onResumeCampaignCreation';
 import { onResumeCampaignDeletion } from './onResumeCampaignDeletion';
+import { onLoadQr } from './onLoadQr';
 
 export const thunks = {
   onStartCampaignCreation,
@@ -24,4 +25,5 @@ export const thunks = {
   onMountCreateCampaign,
   onResumeCampaignCreation,
   onResumeCampaignDeletion,
+  onLoadQr,
 };

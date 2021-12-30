@@ -16,7 +16,7 @@ const styles = {
     marginLeft: 20,
   },
   actions: {
-    marginRight: 20,
+    marginRight: 8,
   },
   copyButtonIcon: {
     '&:hover': {

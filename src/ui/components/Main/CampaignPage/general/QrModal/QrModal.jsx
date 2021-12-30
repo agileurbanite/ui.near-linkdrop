@@ -1,28 +1,34 @@
-import { useStoreActions } from 'easy-peasy';
+import { useState } from 'react';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 import { Button, Modal, Paper } from '@material-ui/core';
 import QRCode from 'react-qr-code';
 import { useStyles } from './QrModal.styles';
 import { ArrowButton } from './ArrowButton/ArrowButton';
 
-export const QrModal = ({ qr, keys }) => {
+export const QrModal = ({ qr }) => {
   const { isOpen, order, link } = qr;
   const onClose = useStoreActions((actions) => actions.campaigns.closeQrModal);
-  const nextLink = useStoreActions((actions) => actions.campaigns.openNextLink);
-  const prevLink = useStoreActions((actions) => actions.campaigns.openPrevLink);
+  const total = useStoreState((actions) => actions.campaigns.campaign.pagination.total);
+  const onLoadQr = useStoreActions((actions) => actions.campaigns.onLoadQr);
+  const [loader, setLoader] = useState(null);
   const classes = useStyles();
 
-  const isActiveKey = (button) => {
-    return keys.find((key) => {
-      const nextKey = button === 'prev' ? key.order < order : key.order > order;
-      return key.status === 'Active' && nextKey
+  const prev = () => {
+    onLoadQr({
+      order,
+      button: 'prev',
+      loader,
+      showLoader: () => setLoader('prev'),
+      hideLoader: () => setLoader(null),
     });
   };
-
-  const prev = () => {
-    prevLink({ order });
-  };
   const next = () => {
-    nextLink({ order });
+    onLoadQr({
+      order,
+      button: 'next',
+      showLoader: () => setLoader('next'),
+      hideLoader: () => setLoader(null),
+    });
   };
 
   return (
@@ -33,20 +39,22 @@ export const QrModal = ({ qr, keys }) => {
         </h2>
         <p className={classes.description}>Scan QR code with your phone</p>
         <ArrowButton
-          disabled={!isActiveKey('prev')}
+          disabled={order === 1}
           onClick={prev}
           className={classes.arrowBack}
           type="prev"
+          loader={loader}
         />
 
         <div className={classes.qrWrapper}>
           <QRCode value={link} size={500} level="M" />
         </div>
         <ArrowButton
-          disabled={!isActiveKey('next')}
+          disabled={total === order}
           onClick={next}
           className={classes.arrowForward}
           type="next"
+          loader={loader}
         />
 
         <div className={classes.buttonWrapper}>
