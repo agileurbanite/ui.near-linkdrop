@@ -15,7 +15,7 @@ export const Qr = ({ order, sk, campaignId }) => {
 
   return (
     <IconButton onClick={onOpen} ref={buttonRef}>
-      <Tooltip title="Share via QR" placement="top">
+      <Tooltip title="Share via QR" placement="top" classes={{ tooltip: classes.tooltip }}>
         <QrIcon className={classes.icon} />
       </Tooltip>
     </IconButton>

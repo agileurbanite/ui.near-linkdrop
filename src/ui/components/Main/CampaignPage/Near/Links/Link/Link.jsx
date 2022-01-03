@@ -28,6 +28,7 @@ export const Link = ({
           <CopyToClipboard
             classNames={{
               icon: classes.copyButtonIcon,
+              tooltip: classes.tooltip
             }}
             value={link}
           />

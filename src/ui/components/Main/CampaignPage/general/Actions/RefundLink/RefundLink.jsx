@@ -21,7 +21,7 @@ export const RefundLink = ({ pk, campaignId, tokensPerKey, walletUserId }) => {
   return (
     <>
       <IconButton onClick={onOpen} className={classes.button}>
-        <Tooltip title="Refund link" placement="top">
+        <Tooltip title="Refund link" placement="top" classes={{ tooltip: classes.tooltip }}>
           <CancelOutlined className={classes.icon} />
         </Tooltip>
       </IconButton>
