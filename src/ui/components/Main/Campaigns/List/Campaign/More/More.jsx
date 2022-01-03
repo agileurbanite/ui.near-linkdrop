@@ -1,7 +1,7 @@
 import { useStoreActions } from 'easy-peasy';
 import { useRef, useState } from 'react';
 import { IconButton, Popover } from '@material-ui/core';
-import { MoreVertOutlined, GetApp, DeleteOutline } from '@material-ui/icons';
+import { MoreVertOutlined, GetApp, DeleteRounded } from '@material-ui/icons';
 import { MenuItem } from './MenuItem/MenuItem';
 import { useStyles } from './More.styles';
 
@@ -37,7 +37,7 @@ export const More = ({ campaignId }) => {
   return (
     <>
       <IconButton ref={buttonRef} className={classes.button} onClick={onOpen}>
-        <MoreVertOutlined />
+        <MoreVertOutlined className={classes.moreIcon} />
       </IconButton>
       <Popover
         anchorEl={buttonRef.current}
@@ -46,8 +46,8 @@ export const More = ({ campaignId }) => {
         onClose={onClose}
         transitionDuration={{ appear: 200, enter: 200, exit: 0 }}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: 'bottom',
+          horizontal: 'center',
         }}
         transformOrigin={{
           vertical: 'top',
@@ -64,11 +64,11 @@ export const More = ({ campaignId }) => {
           <MenuItem
             icon={GetApp}
             classNames={{ icon: classes.exportCsv }}
-            text="Export as CSV"
+            text="Import as CSV"
             onClick={exportCampaignCSV}
           />
           <MenuItem
-            icon={DeleteOutline}
+            icon={DeleteRounded}
             classNames={{ icon: classes.deleteCampaign }}
             text="Delete Campaign"
             onClick={openDeleteCampaignModal}

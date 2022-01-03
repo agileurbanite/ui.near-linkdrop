@@ -44,6 +44,14 @@ const styles = {
       backgroundColor: '#3D5AFE',
     },
   },
+  tooltip:{
+    color: 'white',
+    backgroundColor: '#3D5AFE',
+    fontSize: 12,
+    borderRadius: 5,
+    padding: '8px 12px',
+    fontWeight: 400,
+  },
 };
 
 export const useStyles = makeStyles(styles, { name: 'CampaignInfo' });

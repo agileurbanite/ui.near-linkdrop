@@ -42,9 +42,8 @@ export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getSto
   const keyStore = state.general.entities.keyStore;
   const walletUserId = state.general.user.wallet.accountId;
   const mnemonic = state.general.user.linkdrop.mnemonic;
-  const total = state.campaigns.map[campaignId].keysStats.total;
-  const internalCampaignId = state.campaigns.map[campaignId].internalCampaignId;
-
+  const total = state.campaigns.campaign.keysStats.total
+  const internalCampaignId = state.campaigns.campaign.internalCampaignId
   const actions = getStoreActions();
   const deleteCampaign = actions.campaigns.deleteCampaign;
   const setError = actions.general.setError;

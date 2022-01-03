@@ -10,6 +10,14 @@ const styles = (theme) => ({
       fill: theme.palette.primary.main,
     },
   },
+  tooltip:{
+    color: 'white',
+    backgroundColor: '#3D5AFE',
+    fontSize: 12,
+    borderRadius: 8,
+    padding: '8px 12px',
+    fontWeight: 400,
+  },
 });
 
 export const useStyles = makeStyles(styles, { name: 'Qr' });

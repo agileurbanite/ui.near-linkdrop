@@ -8,13 +8,20 @@ const styles = (theme) => ({
       color: theme.palette.primary.main,
     },
   },
+  moreIcon: {
+    height: 25,
+    width: 25,
+  },
   popover: {
-    borderRadius: 8,
-    border: '1px solid #4b5aae1e',
+    borderRadius: 10,
   },
   container: {
-    width: 250,
+    width: 178,
     userSelect: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: 20,
+    padding: '16px 0',
   },
   exportCsv: {
     color: theme.palette.primary.main,

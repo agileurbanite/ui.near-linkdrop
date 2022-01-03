@@ -2,16 +2,16 @@ import { makeStyles } from '@material-ui/core';
 
 const styles = (theme) => ({
   container: {
-    height: 160,
-    width: 344,
+    height: 152,
+    width: 313,
     marginTop: 24,
     display: 'grid',
-    gridTemplateColumns: '24px 52px 13px 104px 13px auto 12px 24px',
-    gridTemplateRows: '22px 18px 28px 20px 18px 18px auto',
+    gridTemplateColumns: '24px 48px 13px 104px 13px auto 12px 24px',
+    gridTemplateRows: '22px 28px 20px 20px 20px 20px 22px',
     gridTemplateAreas: `
       '. . . . . . . .'
-      '. a b b b b x .'
-      '. a c c c c . .'
+      '. a . b b b x .'
+      '. a . c c c . .'
       '. . . . . . . .'
       '. d f g i j . .'
       '. e f h i k . .'
@@ -64,24 +64,27 @@ const styles = (theme) => ({
       },
     },
   },
-  icon: {
+  iconWrapper:{
     gridArea: 'a',
-    fontSize: 30,
     alignSelf: 'center',
-    marginLeft: '-4px',
+    textAlign: 'center',
+  },
+  icon: {
+    width: 31,
+    height: 31,
   },
   name: {
     gridArea: 'b',
     textTransform: 'uppercase',
-    letterSpacing: 2,
-    fontSize: 12,
+    fontSize: 20,
     fontWeight: 500,
     margin: '0 8px 0 0',
   },
   totalNear: {
     gridArea: 'c',
-    fontSize: 24,
-    fontWeight: 700,
+    fontSize: 12,
+    fontWeight: 500,
+    color: '#636364',
   },
   label: {
     fontSize: 12,
