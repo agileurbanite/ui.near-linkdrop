@@ -47,7 +47,7 @@ export const QrModal = ({ qr }) => {
         />
 
         <div className={classes.qrWrapper}>
-          <QRCode value={link} size={500} level="M" />
+          <QRCode value={link} size={490} level="M" />
         </div>
         <ArrowButton
           disabled={total === order}

@@ -72,6 +72,7 @@ const styles = (theme) => ({
   icon: {
     width: 31,
     height: 31,
+    fill: '#212121',
   },
   name: {
     gridArea: 'b',

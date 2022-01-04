@@ -1,17 +1,17 @@
 import { Button, SvgIcon } from '@material-ui/core';
 import { BarChart } from '@material-ui/icons';
 import { useStyles } from './CampaignInfo.styles';
-import { CampaignIcon } from '../../general/CampaignIcon/CampaignIcon';
+import { CampaignIcon } from '../CampaignIcon/CampaignIcon';
 import { Info } from './Info/Info';
 
-export const CampaignInfo = ({ campaign }) => {
+export const CampaignInfo = ({ campaign, type }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.campaignIcon}>
-          <CampaignIcon campaign={campaign} />
+          <CampaignIcon campaign={campaign} type={type}/>
         </div>
         <div className={classes.info}>
           <Info campaign={campaign} />

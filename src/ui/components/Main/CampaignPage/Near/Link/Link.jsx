@@ -1,10 +1,10 @@
-import { nearConfig } from '../../../../../../../config/nearConfig';
+import { nearConfig } from '../../../../../../config/nearConfig';
 import { useStyles } from './Link.styles';
-import { LinkStatus } from '../../../general/LinkStatus/LinkStatus';
-import { keyStatus } from '../../../../../../../config/keyStatus';
-import { Qr } from '../../../general/Actions/Qr/Qr';
-import { RefundLink } from '../../../general/Actions/RefundLink/RefundLink';
-import { CopyToClipboard } from '../../../../../general/CopyToClipboard/CopyToClipboard';
+import { LinkStatus } from '../../general/LinkStatus/LinkStatus';
+import { keyStatus } from '../../../../../../config/keyStatus';
+import { Qr } from '../../general/Actions/Qr/Qr';
+import { RefundLink } from '../../general/Actions/RefundLink/RefundLink';
+import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
 
 export const Link = ({
   link: { pk, sk, order, status },

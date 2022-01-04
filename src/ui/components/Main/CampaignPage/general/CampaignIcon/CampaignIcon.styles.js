@@ -12,6 +12,7 @@ const styles = {
   icon: {
     width: 120,
     height: 120,
+    fill: '#212121',
   },
 };
 
