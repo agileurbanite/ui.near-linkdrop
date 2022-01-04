@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { Divider, Typography } from '@material-ui/core';
 import cn from 'classnames';
-import { campaignStatus } from '../../../../../../config/campaignStatus';
+import { campaignStatus, types } from '../../../../../../config/campaignStatus';
 import { ResumeAction } from './ResumeAction/ResumeAction';
 import { getTotalAmount, getDate, getCampaignName } from '../../../../../utils/formatCampaignData';
 import { getRoute } from '../../../../../../config/routes';
@@ -21,7 +21,8 @@ export const Campaign = ({ campaign }) => {
 
   const { push } = useHistory();
   const classes = useStyles({ isUncompleted });
-  const Icon = icons[type];
+
+  const Icon = type === types.near ? icons.near : icons.nft
 
   const goToCampaign = () => {
     if (isUncompleted) return;

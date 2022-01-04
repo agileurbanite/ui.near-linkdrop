@@ -4,3 +4,8 @@ export const campaignStatus = {
   completed: 'Completed',
   deletion: 'Deletion',
 };
+
+export const types = {
+  nft: 'nft',
+  near: 'near'
+}

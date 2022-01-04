@@ -15,7 +15,7 @@ export const mountCampaigns = action((slice, payload) => {
       campaignId: campaignAccountId,
       internalCampaignId: campaign.campaignId,
       name: getCampaignName(campaignAccountId),
-      type: 'near',
+      type: 'nft',
       status: campaign.status,
       createdAt: Math.trunc(campaign.createdAt / 1000000), // Convert nanoseconds to milliseconds
       tokensPerKey: campaign.tokensPerKey,

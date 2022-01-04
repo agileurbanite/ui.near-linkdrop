@@ -1,12 +1,12 @@
 import { useStoreState } from 'easy-peasy';
-import { useStyles } from './Near.styles';
-import { Topbar } from '../general/Topbar/Topbar';
-import { CampaignInfo } from '../general/CampaignInfo/CampaignInfo';
-import { Links } from '../general/Links/Links';
+import { useStyles } from './Nft.styles';
 import { DeleteCampaign } from '../../Campaigns/DeleteCampaign/DeleteCampaign';
 import { ResumeCampaignDeletion } from '../../Campaigns/ResumeCampaignDeletion/ResumeCampaignDeletion';
+import { Topbar } from '../general/Topbar/Topbar';
+import { Links } from '../general/Links/Links';
+import { CampaignInfo } from '../general/CampaignInfo/CampaignInfo';
 
-export const Near = ({ campaign, type }) => {
+export const Nft = ({ campaign, type }) => {
   const classes = useStyles();
   const deleteCampaign = useStoreState((state) => state.general.modals.deleteCampaign);
 

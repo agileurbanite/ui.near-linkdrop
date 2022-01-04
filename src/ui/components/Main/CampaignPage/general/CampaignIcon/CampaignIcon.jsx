@@ -7,7 +7,7 @@ const icons = {
   nft: NftIcon,
 };
 
-export const CampaignIcon = ({ campaign: { type } }) => {
+export const CampaignIcon = ({ type }) => {
   const classes = useStyles();
 
   const Icon = icons[type];

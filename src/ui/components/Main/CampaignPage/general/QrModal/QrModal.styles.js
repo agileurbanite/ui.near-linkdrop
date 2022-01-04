@@ -10,14 +10,15 @@ const styles = {
     width: 700,
     height: 700,
     display: 'grid',
-    gridTemplateRows: '40px 28px 28px 507.17px 44.83px 32px 20px',
-    gridTemplateColumns: '63.53px 11.48px 550px 11.48px 63.53px',
+    gridTemplateRows: '40px 28px 25px 20px 490px 45px 32px 20px',
+    gridTemplateColumns: '63px 12px 550px 12px 63px',
     alignItems: 'center',
     textAlign: 'center',
     gridTemplateAreas: `
       '. . . . .'
       '. . a . .'
       '. . b . .'
+      '. . . . .'
       'c . d . e'
       '. . . . .'
       '. . f . .'
@@ -26,9 +27,11 @@ const styles = {
   },
   header: {
     gridArea: 'a',
+    fontSize: 24,
   },
   description: {
     gridArea: 'b',
+    fontSize: 18,
   },
   arrowBack: {
     gridArea: 'c',
