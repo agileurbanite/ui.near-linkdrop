@@ -10,7 +10,12 @@ export const ArrowButton = ({ disabled, onClick, className, type, loader }) => {
       {loader === type ? (
         <CircularProgress size={25} />
       ) : (
-        <IconButton onClick={onClick} disabled={disabled} color="primary">
+        <IconButton
+          onClick={onClick}
+          disabled={disabled}
+          color="primary"
+          className={classes.button}
+        >
           {type === 'prev' ? (
             <ArrowBackIosOutlined className={classes.arrow} />
           ) : (

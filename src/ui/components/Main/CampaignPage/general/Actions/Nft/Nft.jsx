@@ -1,18 +1,19 @@
 import { useRef, useState } from 'react';
 import { IconButton, Tooltip, Button, Paper, Modal } from '@material-ui/core';
-import { useStyles } from './NftButton.styles';
+import { useStyles } from './Nft.styles';
 import { NftIcon } from '../../../../../general/icons/NftIcon';
 
-export const NftButton = ({ order }) => {
+export const Nft = ({ order }) => {
   const [isOpen, setOpen] = useState(false);
   const classes = useStyles();
   const buttonRef = useRef(null);
+
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
 
   return (
     <>
-      <IconButton onClick={onOpen} ref={buttonRef}>
+      <IconButton onClick={onOpen} ref={buttonRef} className={classes.nftButton}>
         <Tooltip title="Show NFT" placement="top" classes={{ tooltip: classes.tooltip }}>
           <NftIcon className={classes.icon} />
         </Tooltip>

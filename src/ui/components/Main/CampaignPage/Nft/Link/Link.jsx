@@ -5,7 +5,7 @@ import { LinkStatus } from '../../general/LinkStatus/LinkStatus';
 import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
 import { Qr } from '../../general/Actions/Qr/Qr';
 import { RefundLink } from '../../general/Actions/RefundLink/RefundLink';
-import { NftButton } from '../../general/Actions/NftButton/NftButton';
+import { Nft } from '../../general/Actions/Nft/Nft';
 
 export const Link = ({
   link: { pk, sk, order, status },
@@ -26,11 +26,12 @@ export const Link = ({
 
       {isActive && (
         <div className={classes.actions}>
-          <NftButton order={order} sk={sk} campaignId={campaignId} />
+          <Nft order={order} sk={sk} campaignId={campaignId} />
           <CopyToClipboard
             classNames={{
               icon: classes.copyButtonIcon,
               tooltip: classes.tooltip,
+              copyButton: classes.copyButton,
             }}
             value={link}
           />

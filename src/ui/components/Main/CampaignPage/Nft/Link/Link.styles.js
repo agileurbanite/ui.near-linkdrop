@@ -23,6 +23,13 @@ const styles = {
       color: '#3D5AFE',
     },
   },
+  copyButton: {
+    '@media (max-width: 600px)': {
+      padding: 5,
+      width: 30,
+      height: 30,
+    },
+  },
   tooltip: {
     color: 'white',
     backgroundColor: '#3D5AFE',
