@@ -2,13 +2,13 @@ import { makeStyles } from '@material-ui/core';
 
 const styles = {
   container: {
-    width: '84.445%',
+    width: '88.89%',
     backgroundColor: '#FFFFFF',
     marginTop: 31,
     borderRadius: 8,
-    padding: '25px 20px',
   },
   wrapper: {
+    margin: '25px 20px',
     display: 'grid',
     gridTemplateColumns: '32.895% 20px auto',
     gridTemplateRows: '195px 25px 30px',
@@ -17,6 +17,17 @@ const styles = {
       'a . .'
       'a . c'
     `,
+
+    '@media (max-width: 600px)': {
+      gridTemplateColumns: '100%',
+      gridTemplateRows: '120px 25px 220px 30px',
+      gridTemplateAreas: `
+      'a'
+      '.'
+      'b'
+      'c'
+    `,
+    },
   },
   campaignIcon: {
     gridArea: 'a',
@@ -44,7 +55,7 @@ const styles = {
       backgroundColor: '#3D5AFE',
     },
   },
-  tooltip:{
+  tooltip: {
     color: 'white',
     backgroundColor: '#3D5AFE',
     fontSize: 12,

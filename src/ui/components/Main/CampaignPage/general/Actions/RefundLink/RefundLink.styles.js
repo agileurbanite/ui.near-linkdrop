@@ -4,6 +4,11 @@ const styles = (theme) => ({
   button: {
     gridArea: 'f',
     height: 44,
+    '@media (max-width: 600px)': {
+      padding: 5,
+      width: 30,
+      height: 30,
+    },
   },
   icon: {
     '&:hover': {

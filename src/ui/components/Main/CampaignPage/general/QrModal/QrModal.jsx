@@ -4,6 +4,7 @@ import { Button, Modal, Paper } from '@material-ui/core';
 import QRCode from 'react-qr-code';
 import { useStyles } from './QrModal.styles';
 import { ArrowButton } from './ArrowButton/ArrowButton';
+import { useViewport } from '../../../../../providers/Viewport';
 
 export const QrModal = ({ qr }) => {
   const { isOpen, order, link } = qr;
@@ -12,6 +13,7 @@ export const QrModal = ({ qr }) => {
   const onLoadQr = useStoreActions((actions) => actions.campaigns.onLoadQr);
   const [loader, setLoader] = useState(null);
   const classes = useStyles();
+  const { isMobileView } = useViewport();
 
   const prev = () => {
     onLoadQr({
@@ -47,7 +49,7 @@ export const QrModal = ({ qr }) => {
         />
 
         <div className={classes.qrWrapper}>
-          <QRCode value={link} size={490} level="M" />
+          <QRCode value={link} size={isMobileView ? 250 : 405} level="M" />
         </div>
         <ArrowButton
           disabled={total === order}

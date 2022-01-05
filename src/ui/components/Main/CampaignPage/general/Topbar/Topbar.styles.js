@@ -14,11 +14,18 @@ const styles = (theme) => ({
     width: 36,
     color: theme.palette.text.primary,
     margin: '0 8px',
+    '@media (max-width: 600px)': {
+      height: 25,
+      width: 25,
+    },
   },
   campaignName: {
     width: '90%',
     wordBreak: 'break-all',
     overflowWrap: 'anywhere',
+    '@media (max-width: 600px)': {
+      fontSize: 20,
+    },
   },
 });
 

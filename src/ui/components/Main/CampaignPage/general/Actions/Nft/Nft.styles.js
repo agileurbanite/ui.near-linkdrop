@@ -26,7 +26,7 @@ const styles = (theme) => ({
     width: 700,
     height: 700,
     display: 'grid',
-    gridTemplateRows: '40px 28px 25px 510px 45px 32px 20px',
+    gridTemplateRows: '5% 5% 5% 70% 5% 5% 5% ',
     gridTemplateColumns: '10% 80% 10% ',
     alignItems: 'center',
     textAlign: 'center',
@@ -39,6 +39,14 @@ const styles = (theme) => ({
       '. f .'
       '. . .'
     `,
+    '@media (max-width: 800px)': {
+      width: '100%',
+      height: '100%',
+    },
+    '@media (max-height: 700px)': {
+      height: '100%',
+      width: '100%',
+    },
   },
   header: {
     gridArea: 'a',
@@ -49,7 +57,7 @@ const styles = (theme) => ({
   },
   nft: {
     maxWidth: '100%',
-    maxHeight: '510px',
+    maxHeight: '460px',
     height: 'auto',
   },
   buttonWrapper: {
@@ -66,6 +74,13 @@ const styles = (theme) => ({
     fontWeight: 500,
     '&:hover': {
       backgroundColor: '#3D5AFE',
+    },
+  },
+  nftButton: {
+    '@media (max-width: 600px)': {
+      padding: 5,
+      width: 30,
+      height: 30,
     },
   },
 });
