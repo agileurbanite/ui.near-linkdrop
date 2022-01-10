@@ -9,8 +9,8 @@ const styles = {
     color: '#3D5AFE',
   },
   selected: {
-    color: 'white',
-    backgroundColor: '#3D5AFE',
+    color: '#636364 !important',
+    background: 'none !important',
   },
   disabled: {
     opacity: '1 !important',

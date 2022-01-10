@@ -5,7 +5,7 @@ export const campaignStatus = {
   deletion: 'Deletion',
 };
 
-export const types = {
+export const campaignTypes = {
   nft: 'nft',
   near: 'near'
 }
