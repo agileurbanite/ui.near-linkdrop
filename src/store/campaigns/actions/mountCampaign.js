@@ -1,13 +1,14 @@
 import { action } from 'easy-peasy';
 import { emoji } from '../../../ui/config/emoji';
 import { getCampaignName } from '../../../ui/utils/formatCampaignData';
+import { campaignTypes } from '../../../config/campaignStatus';
 
 export const mountCampaign = action((slice, payload) => {
   const { campaignId, metadata, balance, keys, keyStats, pagination } = payload;
 
   slice.campaign = {
     campaignId,
-    type: 'nft',
+    type: campaignTypes.near,
     internalCampaignId: metadata.campaignId,
     name: getCampaignName(campaignId),
     balance,

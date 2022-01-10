@@ -1,5 +1,6 @@
 import { action } from 'easy-peasy';
 import { getCampaignName } from '../../../ui/utils/formatCampaignData';
+import {campaignTypes} from '../../../config/campaignStatus';
 
 export const mountCampaigns = action((slice, payload) => {
   const { campaignIds, campaigns } = payload;
@@ -15,7 +16,7 @@ export const mountCampaigns = action((slice, payload) => {
       campaignId: campaignAccountId,
       internalCampaignId: campaign.campaignId,
       name: getCampaignName(campaignAccountId),
-      type: 'nft',
+      type: campaignTypes.near,
       status: campaign.status,
       createdAt: Math.trunc(campaign.createdAt / 1000000), // Convert nanoseconds to milliseconds
       tokensPerKey: campaign.tokensPerKey,

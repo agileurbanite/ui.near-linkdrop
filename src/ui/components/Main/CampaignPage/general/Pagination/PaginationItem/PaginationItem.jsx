@@ -2,10 +2,13 @@ import { PaginationItem as MuiPaginationItem } from '@material-ui/lab';
 import { CircularProgress } from '@material-ui/core';
 import { useStyles } from './PaginationItem.styles';
 
-export const PaginationItem = ({ item, loader }) => {
-  const classes = useStyles();
+export const PaginationItem = (props) => {
+  const { item, loader, nextPage } = props;
+  const classes = useStyles(loader);
 
-  return item.selected && loader? (
+  // console.log(item);
+  console.log(props);
+  return item.page === nextPage /*&& item.type === 'page'*/ && loader ? (
     <div className={classes.loaderWrapper}>
       <CircularProgress size={18} className={classes.spinner} />
     </div>
@@ -15,7 +18,7 @@ export const PaginationItem = ({ item, loader }) => {
       classes={{
         root: classes.root,
         icon: classes.icon,
-        selected: classes.selected,
+        selected: loader && classes.selected ,
         disabled: classes.disabled,
       }}
     />
