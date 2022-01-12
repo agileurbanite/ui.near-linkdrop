@@ -5,6 +5,7 @@ import { ConnectWallet } from './ConnectWallet/ConnectWallet';
 import { CreateAccount } from './CreateAccount/CreateAccount';
 import { RestoreAccess } from './RestoreAccess/RestoreAccess';
 import { Main } from './Main/Main';
+import { ClaimPage } from './ClaimPage/ClaimPage';
 import { PageNotFound } from './PageNotFound/PageNotFound';
 import { Error } from './Error/Error';
 import { routes } from '../../config/routes';
@@ -22,6 +23,7 @@ export const App = () => (
         path={[routes.campaigns, routes.settings, routes.createCampaign, routes.campaign]}
         component={Main}
       />
+      <Route exact path={routes.claim} component={ClaimPage} />
       <Route path="*" component={PageNotFound} />
     </Switch>
     <Error />

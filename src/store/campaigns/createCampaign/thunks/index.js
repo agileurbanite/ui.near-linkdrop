@@ -1,13 +1,13 @@
 import { onMountSelectNft } from './onMountSelectNft';
-import { prepareForNftCampaignCreation } from './prepareForNftCampaignCreation';
+import { prepareForNft } from './prepareForNft';
 import { createNftCampaign } from './createNftCampaign';
-import { transferNftsOwnershipToCampaign } from './transferNftsOwnershipToCampaign';
+import { transferNft } from './transferNft';
 
 export const thunks = {
   onMountSelectNft,
-  prepareForNftCampaignCreation,
+  prepareForNft,
   createNftCampaign,
-  transferNftsOwnershipToCampaign,
+  transferNft,
 };
 
 /*

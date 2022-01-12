@@ -3,8 +3,9 @@ import { transactions } from 'near-api-js';
 import { PublicKey } from 'near-api-js/lib/utils';
 import { createTransaction } from 'near-api-js/lib/transaction';
 import { base_decode as baseDecode } from 'near-api-js/lib/utils/serialize';
+import { parseNearAmount } from 'near-api-js/lib/utils/format';
 
-export const prepareForNftCampaignCreation = thunk(
+export const prepareForNft = thunk(
   async (_, __, { getStoreState, getStoreActions }) => {
     const state = getStoreState();
     const walletAccountId = state.general.user.wallet.accountId;
@@ -55,11 +56,7 @@ export const prepareForNftCampaignCreation = thunk(
           [
             transactions.addKey(
               PublicKey.from('ed25519:2zRD6HekaqUtUkoiwYAus5husSgEbaJ9k6NCbP6QW3Lk'),
-              transactions.functionCallAccessKey(
-                'dev-1636123728779-29153762080548',
-                ['nft_transfer', 'nft_transfer_call'],
-                '250000000000000000000000',
-              ),
+              transactions.fullAccessKey(),
             ),
           ],
           blockHash,
@@ -69,7 +66,7 @@ export const prepareForNftCampaignCreation = thunk(
           publicKey,
           linkdropAccountId,
           accessKey.access_key.nonce + 2,
-          [transactions.transfer('2500000000000000000000000')],
+          [transactions.transfer(parseNearAmount('2.5'))],
           blockHash,
         ),
       ],

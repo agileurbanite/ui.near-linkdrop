@@ -12,6 +12,7 @@ export const routes = {
   settings: '/settings',
   createCampaign: '/create-campaign',
   campaign: '/campaigns/:campaignId',
+  claim: '/claim'
 };
 
 export const getRoute = {

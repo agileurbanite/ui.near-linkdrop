@@ -22,8 +22,9 @@ export const createNftCampaign = thunk(async (_, __, { getStoreState, getStoreAc
     // "ed25519:2W3McSV6SGxtiuPEGzjoXi8REqUoEJFAT65JKC9J77UzApSFQQvm9Q6ofWU1px1iVMLzQFWiE2gZ1jWc6f617guA"
     const wasm = await fetch('wasm/nft_campaign.wasm').then((res) => res.arrayBuffer());
     const user = await near.account(linkdropAccountId);
+    const campaignId = `abc2.${linkdropAccountId}`;
 
-    const res1 = await user.signAndSendTransaction(`abc2.${linkdropAccountId}`, [
+    const res1 = await user.signAndSendTransaction(campaignId, [
       createAccount(),
       transfer('4000000000000000000000000'),
       addKey(
@@ -38,9 +39,9 @@ export const createNftCampaign = thunk(async (_, __, { getStoreState, getStoreAc
 
     // Need to call only 1 time - set to LS
     const keyPair = KeyPair.fromString(
-      'ed25519:2W3McSV6SGxtiuPEGzjoXi8REqUoEJFAT65JKC9J77UzApSFQQvm9Q6ofWU1px1iVMLzQFWiE2gZ1jWc6f617guA',
+      'ed25519:2W3McSV6SGxtiuPEGzjoXi8REqUoEJFAT65JKC9J77UzApSFQQvm9Q6ofWU1px1iVMLzQFWiE2gZ1jWc6f617guA', // general neardrop key
     );
-    await near.config.keyStore.setKey('testnet', `abc2.${linkdropAccountId}`, keyPair);
+    await near.config.keyStore.setKey('testnet', campaignId, keyPair);
 
     // const abc = await near.account(`abc2.${linkdropAccountId}`);
     // const res1 = await abc.signAndSendTransaction(`abc2.${linkdropAccountId}`, [

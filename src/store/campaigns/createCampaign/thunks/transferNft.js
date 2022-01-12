@@ -24,7 +24,7 @@ const createTxCreator = (account) => async (tokenId, pk) => {
   return signedTx;
 };
 
-export const transferNftsOwnershipToCampaign = thunk(
+export const transferNft = thunk(
   async (_, __, { getStoreState, getStoreActions }) => {
     const state = getStoreState();
     const walletAccountId = state.general.user.wallet.accountId;
@@ -39,7 +39,7 @@ export const transferNftsOwnershipToCampaign = thunk(
 
     try {
       const keyPair = KeyPair.fromString(
-        'ed25519:ukTK5k9A5qotUoEZF4meaCCMigMvcfaDRyesLjUhPR9x7nwZbFGxSQmpWmt9x5hEfNPt3AcFW8UFPZ1FgZk8sfn',
+        'ed25519:ukTK5k9A5qotUoEZF4meaCCMigMvcfaDRyesLjUhPR9x7nwZbFGxSQmpWmt9x5hEfNPt3AcFW8UFPZ1FgZk8sfn', // claim nft key
       );
       await near.config.keyStore.setKey('testnet', walletAccountId, keyPair);
 
@@ -48,6 +48,7 @@ export const transferNftsOwnershipToCampaign = thunk(
 
       const res = await near.connection.provider.sendTransaction(tx);
       console.log(res);
+      // TODO Delete full access key after all NFT will be transferred;
     } catch (e) {
       console.log(e);
     }

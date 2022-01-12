@@ -7,15 +7,13 @@ import { useJss } from './Summary.jss';
 const { selectNft } = memoryRoutes.createCampaign.nft;
 
 export const Summary = () => {
-  const prepareForNftCampaignCreation = useStoreActions(
-    (actions) => actions.campaigns.createCampaign.prepareForNftCampaignCreation,
+  const prepareForNft = useStoreActions(
+    (actions) => actions.campaigns.createCampaign.prepareForNft,
   );
   const createNftCampaign = useStoreActions(
     (actions) => actions.campaigns.createCampaign.createNftCampaign,
   );
-  const transferNftsOwnershipToCampaign = useStoreActions(
-    (actions) => actions.campaigns.createCampaign.transferNftsOwnershipToCampaign,
-  );
+  const transferNft = useStoreActions((actions) => actions.campaigns.createCampaign.transferNft);
   const jss = useJss();
 
   return (
@@ -26,13 +24,13 @@ export const Summary = () => {
           Back
         </Button>
       </Navigate>
-      <Button variant="outlined" color="primary" onClick={prepareForNftCampaignCreation}>
+      <Button variant="outlined" color="primary" onClick={prepareForNft}>
         Prepare for creation
       </Button>
       <Button variant="outlined" color="primary" onClick={createNftCampaign}>
         Create Campaign
       </Button>
-      <Button variant="outlined" color="primary" onClick={transferNftsOwnershipToCampaign}>
+      <Button variant="outlined" color="primary" onClick={transferNft}>
         Transfer Nfts Ownership
       </Button>
     </div>
