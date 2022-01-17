@@ -1,25 +1,28 @@
+import { useState } from 'react';
 import { PaginationItem as MuiPaginationItem } from '@material-ui/lab';
 import { CircularProgress } from '@material-ui/core';
 import { useStyles } from './PaginationItem.styles';
 
-export const PaginationItem = (props) => {
-  const { item, loader, nextPage } = props;
-  const classes = useStyles(loader);
+export const PaginationItem = ({ item, hidePagination }) => {
+  const [isLoading, setLoader] = useState(false);
+  const classes = useStyles();
 
-  // console.log(item);
-  console.log(props);
-  return item.page === nextPage /*&& item.type === 'page'*/ && loader ? (
+  const onClick = () => {
+    !hidePagination && item.onClick({ setLoader });
+  };
+
+  return isLoading ? (
     <div className={classes.loaderWrapper}>
       <CircularProgress size={18} className={classes.spinner} />
     </div>
   ) : (
     <MuiPaginationItem
       {...item}
+      onClick={onClick}
       classes={{
         root: classes.root,
         icon: classes.icon,
-        selected: loader && classes.selected ,
-        disabled: classes.disabled,
+        selected: hidePagination ? classes.selectedOn : classes.selectedOff,
       }}
     />
   );

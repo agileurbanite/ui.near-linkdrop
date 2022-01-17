@@ -8,12 +8,12 @@ const styles = {
   icon: {
     color: '#3D5AFE',
   },
-  selected: {
+  selectedOn: {
     color: '#636364 !important',
     background: 'none !important',
   },
-  disabled: {
-    opacity: '1 !important',
+  selectedOff: {
+    background: '#3D5AFE !important',
   },
   loaderWrapper: {
     height: 32,
