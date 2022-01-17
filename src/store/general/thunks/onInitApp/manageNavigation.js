@@ -1,6 +1,8 @@
 /* eslint consistent-return: 0 */
 import { matchPath } from 'react-router';
 import { routes } from '../../../../config/routes';
+import { getUserContract, getCampaignContract } from '../../../helpers/getContracts';
+import { toCamelCase } from '../../../helpers/toCamelCase';
 
 const {
   root,
@@ -17,6 +19,22 @@ const {
   There is can't be a case when linkdrop.isExist === false && linkdrop.isConnected === true
   because 'checkUserAccounts' will disconnect user in this case.
  */
+const campaignHandler = async ({ replace, wallet, linkdrop, state, history }) => {
+  const location = history.location.pathname.split('/')[2];
+  const userContract = getUserContract(state, linkdrop.accountId);
+  const userCampaigns = await userContract.get_campaigns();
+  const isOwnCampaign = userCampaigns.find((el) => el === location);
+
+  if (!wallet.isConnected) return replace(connectWallet);
+  if (!linkdrop.isExist) return replace(createAccount);
+  if (!linkdrop.isConnected) return replace(restoreAccess);
+  if (!isOwnCampaign) return replace(campaigns);
+
+  const activeCampaign = getCampaignContract(state, isOwnCampaign);
+  const [_metadata] = await Promise.all([activeCampaign.get_campaign_metadata()]);
+  const metadata = toCamelCase(_metadata);
+  if (metadata.status !== 'Active') return replace(campaigns);
+};
 
 const mainPagesHandler = ({ replace, wallet, linkdrop }) => {
   if (!wallet.isConnected) return replace(connectWallet);
@@ -57,7 +75,7 @@ const handlers = {
   [campaigns]: mainPagesHandler,
   [settings]: mainPagesHandler,
   [createCampaign]: mainPagesHandler,
-  [campaign]: mainPagesHandler,
+  [campaign]: campaignHandler,
 };
 
 export const manageNavigation = async (state, history) => {
@@ -78,5 +96,6 @@ export const manageNavigation = async (state, history) => {
     exact: true,
   });
 
-  if (match) await handlers[match.path]({ replace: history.replace, wallet, linkdrop });
+  if (match)
+    await handlers[match.path]({ replace: history.replace, wallet, linkdrop, state, history });
 };

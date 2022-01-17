@@ -1,5 +1,4 @@
 import { action } from 'easy-peasy';
-import { emoji } from '../../../ui/config/emoji';
 import { getCampaignName } from '../../../ui/utils/formatCampaignData';
 import { campaignTypes } from '../../../config/campaignStatus';
 
@@ -12,7 +11,6 @@ export const mountCampaign = action((slice, payload) => {
     internalCampaignId: metadata.campaignId,
     name: getCampaignName(campaignId),
     balance,
-    icon: emoji.foxMuzzle,
     tokensPerKey: metadata.tokensPerKey,
     createdAt: Math.trunc(metadata.createdAt / 1000000), // Convert nanoseconds to milliseconds
     keysStats: metadata.keysStats,

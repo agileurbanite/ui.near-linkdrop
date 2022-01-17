@@ -11,7 +11,7 @@ const styles = {
     height: 700,
     display: 'grid',
     gridTemplateRows: '5% 5% 5% 2% 68% 5% 5% 5% ',
-    gridTemplateColumns: '8% 2% 80% 2% 8%',
+    gridTemplateColumns: '2% 8% 80% 8% 2%',
     alignItems: 'center',
     textAlign: 'center',
     gridTemplateAreas: `
@@ -19,7 +19,7 @@ const styles = {
       '. . a . .'
       '. . b . .'
       '. . . . .'
-      'c . d . e'
+      '. c d e .'
       '. . . . .'
       '. . f . .'
       '. . . . .'
