@@ -2,13 +2,15 @@ import { makeStyles } from '@material-ui/core';
 
 const styles = {
   container: {
-    height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-    gap: 25,
+  },
+  imageContainer: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#ffffff',
   },
 };
 
-export const useJss = makeStyles(styles, { name: 'CampaignData' });
+export const useJss = makeStyles(styles, { name: 'Type' });

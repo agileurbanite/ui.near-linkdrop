@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';

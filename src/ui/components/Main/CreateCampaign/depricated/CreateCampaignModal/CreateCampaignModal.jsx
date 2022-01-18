@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { LinearProgress, Modal, Paper } from '@material-ui/core';
 import { useStoreActions } from 'easy-peasy';
 import { useEffect, useState } from 'react';

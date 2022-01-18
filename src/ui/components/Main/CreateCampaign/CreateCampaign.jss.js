@@ -14,6 +14,8 @@ const styles = {
   },
   body: {
     gridArea: 'b',
+    height: '100%',
+    width: '100%',
   },
 };
 
