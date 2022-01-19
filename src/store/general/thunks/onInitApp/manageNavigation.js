@@ -3,6 +3,7 @@ import { matchPath } from 'react-router';
 import { routes } from '../../../../config/routes';
 import { getUserContract, getCampaignContract } from '../../../helpers/getContracts';
 import { toCamelCase } from '../../../helpers/toCamelCase';
+import { campaignStatus } from '../../../../config/campaignStatus';
 
 const {
   root,
@@ -20,20 +21,22 @@ const {
   because 'checkUserAccounts' will disconnect user in this case.
  */
 const campaignHandler = async ({ replace, wallet, linkdrop, state, history }) => {
-  const campaignId = matchPath(history.location.pathname, campaign).params.campaignId
-  const userContract = getUserContract(state, linkdrop.accountId);
-  const userCampaigns = await userContract.get_campaigns();
-  const isOwnCampaign = userCampaigns.find((el) => el === campaignId);
-
   if (!wallet.isConnected) return replace(connectWallet);
   if (!linkdrop.isExist) return replace(createAccount);
   if (!linkdrop.isConnected) return replace(restoreAccess);
+
+  const campaignId = matchPath(history.location.pathname, campaign).params.campaignId;
+  const userContract = getUserContract(state, linkdrop.accountId);
+  const userCampaigns = await userContract.get_campaigns();
+  const isOwnCampaign = userCampaigns.includes(campaignId);
+
   if (!isOwnCampaign) return replace(campaigns);
 
-  const activeCampaign = getCampaignContract(state, isOwnCampaign);
-  const [_metadata] = await Promise.all([activeCampaign.get_campaign_metadata()]);
+  const campaignContract = getCampaignContract(state, campaignId);
+  const [_metadata] = await Promise.all([campaignContract.get_campaign_metadata()]);
   const metadata = toCamelCase(_metadata);
-  if (metadata.status !== 'Active') return replace(campaigns);
+
+  if (metadata.status !== campaignStatus.active) return replace(campaigns);
 };
 
 const mainPagesHandler = ({ replace, wallet, linkdrop }) => {
