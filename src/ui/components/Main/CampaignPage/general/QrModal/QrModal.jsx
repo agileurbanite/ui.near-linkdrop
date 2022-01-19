@@ -10,24 +10,22 @@ export const QrModal = ({ qr }) => {
   const { isOpen, order, link } = qr;
   const onClose = useStoreActions((actions) => actions.campaigns.closeQrModal);
   const total = useStoreState((actions) => actions.campaigns.campaign.pagination.total);
-  const onLoadQr = useStoreActions((actions) => actions.campaigns.onLoadQr);
+  const onLoadNextQr = useStoreActions((actions) => actions.campaigns.onLoadNextQr);
+  const onLoadPrevQr = useStoreActions((actions) => actions.campaigns.onLoadPrevQr);
   const [loader, setLoader] = useState(null);
   const classes = useStyles();
   const { isMobileView } = useViewport();
 
   const prev = () => {
-    onLoadQr({
+    onLoadPrevQr({
       order,
-      button: 'prev',
-      loader,
       showLoader: () => setLoader('prev'),
       hideLoader: () => setLoader(null),
     });
   };
   const next = () => {
-    onLoadQr({
+    onLoadNextQr({
       order,
-      button: 'next',
       showLoader: () => setLoader('next'),
       hideLoader: () => setLoader(null),
     });
