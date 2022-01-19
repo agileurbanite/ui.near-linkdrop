@@ -4,7 +4,7 @@ import { ArrowBack } from '@material-ui/icons';
 import { useStyles } from './Topbar.styles';
 import { routes } from '../../../../../../config/routes';
 import { getCampaignName } from '../../../../../utils/formatCampaignData';
-import { More } from '../../../Campaigns/List/Campaign/More/More';
+import { More } from './More/More';
 
 export const Topbar = ({ campaign: { campaignId } }) => {
   const classes = useStyles();

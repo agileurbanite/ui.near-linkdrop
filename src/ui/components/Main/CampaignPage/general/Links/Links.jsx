@@ -1,10 +1,9 @@
 import { useStoreState } from 'easy-peasy';
 import { useStyles } from './Links.styles';
-import { Link } from '../../Nft/Link/Link';
 import { QrModal } from '../QrModal/QrModal';
 import { Pagination } from '../Pagination/Pagination';
 
-export const Links = ({ campaign: { campaignId, keys, tokensPerKey, qr } }) => {
+export const Links = ({ campaign: { campaignId, keys, tokensPerKey, qr }, Link }) => {
   const classes = useStyles();
   const walletUserId = useStoreState((state) => state.general.user.wallet.accountId);
 

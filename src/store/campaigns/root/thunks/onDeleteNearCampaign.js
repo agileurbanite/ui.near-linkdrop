@@ -35,7 +35,7 @@ const createDeleteKeysIterator = ({
   },
 });
 
-export const onDeleteCampaign = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
+export const onDeleteNearCampaign = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { campaignId, onFinishDeleting, setProgress } = payload;
 
   const state = getStoreState();

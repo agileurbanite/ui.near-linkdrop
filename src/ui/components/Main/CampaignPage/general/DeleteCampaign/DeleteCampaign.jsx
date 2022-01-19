@@ -1,13 +1,13 @@
 import { Modal, Paper } from '@material-ui/core';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState } from 'react';
-import { getCampaignName } from '../../../../utils/formatCampaignData';
+import { getCampaignName } from '../../../../../utils/formatCampaignData';
 import { Start } from './Start/Start';
 import { Progress } from './Progress/Progress';
 import { Finish } from './Finish/Finish';
 import { useStyles } from './DeleteCampaign.styles';
 
-export const DeleteCampaign = ({ params: { campaignId, balance } }) => {
+export const DeleteCampaign = ({ params: { campaignId, balance }, campaignType }) => {
   const walletUserId = useStoreState((state) => state.general.user.wallet.accountId);
   const hideModal = useStoreActions((actions) => actions.general.hideModal);
   const [step, setStep] = useState(1);
@@ -36,7 +36,13 @@ export const DeleteCampaign = ({ params: { campaignId, balance } }) => {
             walletUserId={walletUserId}
           />
         )}
-        {step === 2 && <Progress campaignId={campaignId} onFinishDeleting={onFinishDeleting} />}
+        {step === 2 && (
+          <Progress
+            campaignId={campaignId}
+            onFinishDeleting={onFinishDeleting}
+            campaignType={campaignType}
+          />
+        )}
         {step === 3 && <Finish closeModal={closeModal} />}
       </Paper>
     </Modal>

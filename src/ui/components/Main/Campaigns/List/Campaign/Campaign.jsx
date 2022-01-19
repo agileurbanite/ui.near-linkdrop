@@ -1,18 +1,11 @@
 import { useHistory } from 'react-router-dom';
 import { Divider, Typography } from '@material-ui/core';
 import cn from 'classnames';
-import { campaignStatus, campaignTypes } from '../../../../../../config/campaignStatus';
+import { campaignStatus } from '../../../../../../config/campaignStatus';
 import { ResumeAction } from './ResumeAction/ResumeAction';
 import { getTotalAmount, getDate, getCampaignName } from '../../../../../utils/formatCampaignData';
 import { getRoute } from '../../../../../../config/routes';
 import { useStyles } from './Campaign.styles';
-import { NearIcon } from '../../../../general/icons/NearIcon';
-import { NftIcon } from '../../../../general/icons/NftIcon';
-
-const icons = {
-  near: NearIcon,
-  nft: NftIcon,
-};
 
 export const Campaign = ({ campaign }) => {
   const { campaignId, keysStats, tokensPerKey, createdAt, status, type } = campaign;
@@ -21,8 +14,7 @@ export const Campaign = ({ campaign }) => {
 
   const { push } = useHistory();
   const classes = useStyles({ isUncompleted });
-
-  const Icon = type === campaignTypes.near ? icons.near : icons.nft
+  const Icon = type.icon
 
   const goToCampaign = () => {
     if (isUncompleted) return;

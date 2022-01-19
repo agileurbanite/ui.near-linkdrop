@@ -9,7 +9,7 @@ const errors = {
   amountPerLink: 'You should attach more than 0.01 NEAR',
   totalLinks: 'You should choose between 1 and 10 000 links',
   totalLinksInteger: 'This field should be an integer number',
-  nonUniqueCampaignName: 'CampaignPage with this name already exists',
+  nonUniqueCampaignName: 'Campaign with this name already exists',
 };
 
 const regex = {

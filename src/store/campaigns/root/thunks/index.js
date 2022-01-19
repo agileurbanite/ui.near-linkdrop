@@ -5,7 +5,8 @@ import { onRefundLink } from './onRefundLink';
 import { onExportCampaignCSV } from './onExportCampaignCSV';
 import { onMountCampaigns } from './onMountCampaigns';
 import { onLoadKeys } from './onLoadKeys';
-import { onDeleteCampaign } from './onDeleteCampaign';
+import { onDeleteNearCampaign } from './onDeleteNearCampaign';
+import { onDeleteNftCampaign } from './onDeleteNftCampaign';
 import { onMountDeleteCampaign } from './onMountDeleteCampaign';
 import { onMountCreateCampaign } from './onMountCreateCampaign';
 import { onResumeCampaignCreation } from './onResumeCampaignCreation';
@@ -20,7 +21,8 @@ export const thunks = {
   onExportCampaignCSV,
   onMountCampaigns,
   onLoadKeys,
-  onDeleteCampaign,
+  onDeleteNearCampaign,
+  onDeleteNftCampaign,
   onMountDeleteCampaign,
   onMountCreateCampaign,
   onResumeCampaignCreation,

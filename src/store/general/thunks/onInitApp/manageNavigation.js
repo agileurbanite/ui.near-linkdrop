@@ -20,10 +20,10 @@ const {
   because 'checkUserAccounts' will disconnect user in this case.
  */
 const campaignHandler = async ({ replace, wallet, linkdrop, state, history }) => {
-  const location = history.location.pathname.split('/')[2];
+  const campaignId = matchPath(history.location.pathname, campaign).params.campaignId
   const userContract = getUserContract(state, linkdrop.accountId);
   const userCampaigns = await userContract.get_campaigns();
-  const isOwnCampaign = userCampaigns.find((el) => el === location);
+  const isOwnCampaign = userCampaigns.find((el) => el === campaignId);
 
   if (!wallet.isConnected) return replace(connectWallet);
   if (!linkdrop.isExist) return replace(createAccount);
