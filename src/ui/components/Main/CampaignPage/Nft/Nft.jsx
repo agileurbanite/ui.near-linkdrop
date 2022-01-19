@@ -1,12 +1,12 @@
 import { useStoreState } from 'easy-peasy';
 import { useStyles } from './Nft.styles';
-import { DeleteCampaign } from '../../Campaigns/DeleteCampaign/DeleteCampaign';
-import { ResumeCampaignDeletion } from '../../Campaigns/ResumeCampaignDeletion/ResumeCampaignDeletion';
 import { Topbar } from '../general/Topbar/Topbar';
-import { Links } from '../general/Links/Links';
 import { CampaignInfo } from '../general/CampaignInfo/CampaignInfo';
+import { Links } from '../general/Links/Links';
+import { Link } from './Link/Link';
+import { DeleteCampaign } from '../general/DeleteCampaign/DeleteCampaign';
 
-export const Nft = ({ campaign, type }) => {
+export const Nft = ({ campaign }) => {
   const classes = useStyles();
   const deleteCampaign = useStoreState((state) => state.general.modals.deleteCampaign);
 
@@ -14,11 +14,10 @@ export const Nft = ({ campaign, type }) => {
     <div className={classes.container}>
       <Topbar campaign={campaign} />
       <div className={classes.body}>
-        <CampaignInfo campaign={campaign} type={type} />
-        <Links campaign={campaign} />
+        <CampaignInfo campaign={campaign} />
+        <Links campaign={campaign} Link={Link} />
       </div>
-      {deleteCampaign && <DeleteCampaign params={deleteCampaign} />}
-      <ResumeCampaignDeletion />
+      {deleteCampaign && <DeleteCampaign params={deleteCampaign} campaignType={campaign.type} />}
     </div>
   );
 };

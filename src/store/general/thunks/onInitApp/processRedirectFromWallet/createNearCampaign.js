@@ -10,7 +10,7 @@ const onSuccess = (state, actions, history) => {
 const onError = (actions, history) => {
   actions.general.setError({
     isError: true,
-    description: 'CampaignPage account was not created',
+    description: 'Campaign account was not created',
   });
   actions.general.clearTemporaryData();
   history.replace(routes.createCampaign);

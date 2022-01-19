@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { DeleteForeverOutlined } from '@material-ui/icons';
-import { formatNearBalance } from '../../../../../utils/format';
+import { formatNearBalance } from '../../../../../../utils/format';
 import { useStyles } from './Start.styles';
 
 export const Start = ({ campaignName, onStartDeleting, balance, walletUserId }) => {

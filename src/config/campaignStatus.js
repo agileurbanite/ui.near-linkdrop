@@ -1,3 +1,6 @@
+import { NearIcon } from '../ui/components/general/icons/NearIcon';
+import { NftIcon } from '../ui/components/general/icons/NftIcon';
+
 export const campaignStatus = {
   creation: 'Creation',
   active: 'Active',
@@ -6,6 +9,12 @@ export const campaignStatus = {
 };
 
 export const campaignTypes = {
-  nft: 'nft',
-  near: 'near'
-}
+  nft: {
+    campaignType: 'nft',
+    icon: NftIcon,
+  },
+  near: {
+    campaignType: 'near',
+    icon: NearIcon,
+  },
+};
