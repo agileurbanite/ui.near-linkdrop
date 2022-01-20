@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState } from 'react';
 import { PaginationItem as MuiPaginationItem } from '@material-ui/lab';
 import { CircularProgress } from '@material-ui/core';

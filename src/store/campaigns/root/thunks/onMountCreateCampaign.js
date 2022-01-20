@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { thunk } from 'easy-peasy';
 import { getUserContract } from '../../../helpers/getContracts';
 

@@ -1,6 +1,5 @@
 import { Button } from '@material-ui/core';
 import { Navigate } from '../../../../providers/MemoryRouter';
-import { Type } from './Type/Type';
 import { memoryRoutes } from '../../../../../config/routes';
 import { useJss } from './SelectType.jss';
 

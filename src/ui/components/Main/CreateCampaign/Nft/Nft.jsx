@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { memoryRoutes } from '../../../../../config/routes';
 import { Route, Routes } from '../../../../providers/MemoryRouter';
 import { CampaignData } from './CampaignData/CampaignData';

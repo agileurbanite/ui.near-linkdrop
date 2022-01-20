@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { thunk } from 'easy-peasy';
 import ky from 'ky';
 import { nearConfig } from '../../../../config/nearConfig';

@@ -1,7 +1,7 @@
 import { thunk } from 'easy-peasy';
 import { getDataBeforeRenderPage } from '../../helpers/getDataBeforeRenderPage';
 import { getNearPack } from '../../helpers/getNearPack';
-import { checkUserAccounts } from './checkUserAccounts';
+// import { checkUserAccounts } from './checkUserAccounts';
 import { isRedirect } from './isRedirect';
 import { manageNavigation } from './manageNavigation';
 import { processRedirectFromWallet } from './processRedirectFromWallet/processRedirectFromWallet';
@@ -26,7 +26,7 @@ export const onInitApp = thunk(async (_, payload, { getStoreState, getStoreActio
     await processRedirectFromWallet(state, actions, history);
   } else {
     // TODO Enable!
-    // await manageNavigation(state, history);
+    await manageNavigation(state, history);
   }
   // Call onMount thunk for the page - we want to load data before the page will be mounted -
   // it allows us to avoid "screen blinking" or display the empty page to the user.

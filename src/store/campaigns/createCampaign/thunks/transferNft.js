@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { thunk } from 'easy-peasy';
 import { KeyPair } from 'near-api-js';
 import { Account } from 'near-api-js/lib/account';

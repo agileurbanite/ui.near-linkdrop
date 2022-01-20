@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Routes, Route } from '../../../../providers/MemoryRouter';
 import { GeneralData } from './GeneralData/GeneralData';
 import { memoryRoutes } from '../../../../../config/routes';
