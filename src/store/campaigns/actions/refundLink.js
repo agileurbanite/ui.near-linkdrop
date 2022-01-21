@@ -1,5 +1,5 @@
 import { action } from 'easy-peasy';
-import { keyStatus } from '../../../../config/keyStatus';
+import { keyStatus } from '../../../config/keyStatus';
 
 export const refundLink = action((slice, payload) => {
   const { balance, metadata, pk } = payload;

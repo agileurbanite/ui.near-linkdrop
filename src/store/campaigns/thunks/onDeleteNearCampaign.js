@@ -1,9 +1,9 @@
 import { thunk } from 'easy-peasy';
-import BN from 'bn.js';
-import { getCampaignContract } from '../../../helpers/getContracts';
+import BN from '../../../../node_modules/bn.js/lib/bn';
+import { getCampaignContract } from '../../helpers/getContracts';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
-import { nearConfig } from '../../../../config/nearConfig';
+import { nearConfig } from '../../../config/nearConfig';
 
 const createDeleteKeysIterator = ({
   firstPage,

@@ -2,7 +2,7 @@ import dateFormat from 'dateformat';
 import { thunk } from 'easy-peasy';
 import { CsvBuilder } from 'filefy';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
-import { nearConfig } from '../../../../config/nearConfig';
+import { nearConfig } from '../../../config/nearConfig';
 
 export const onExportCampaignCSV = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { campaignId, fromCampaignPage } = payload;

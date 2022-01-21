@@ -1,6 +1,6 @@
 import { action } from 'easy-peasy';
-import { getCampaignName } from '../../../../ui/utils/formatCampaignData';
-import { campaignTypes } from '../../../../config/campaignStatus';
+import { getCampaignName } from '../../../ui/utils/formatCampaignData';
+import { campaignTypes } from '../../../config/campaignStatus';
 
 export const mountCampaign = action((slice, payload) => {
   const { campaignId, metadata, balance, keys, keyStats, pagination } = payload;

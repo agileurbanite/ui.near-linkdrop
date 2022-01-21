@@ -2,16 +2,16 @@
 import { thunk } from 'easy-peasy';
 import ky from 'ky';
 import { nearConfig } from '../../../../config/nearConfig';
+import { memoryRoutes } from '../../../../config/routes';
 import { getNftCollectionContract } from '../../../helpers/getContracts';
 import { toCamelCase } from '../../../helpers/toCamelCase';
 
 const isPromiseSuccessful = (status) => status === 'fulfilled';
 
-const findLikelyNFTs = (account) =>
-  ky.get(`${nearConfig.helperUrl}/account/${account}/likelyNFTs`, { timeout: 30000 }).json();
-
 const getCollectionsMetadata = async (state, walletAccountId) => {
-  const allCollectionsIds = await findLikelyNFTs(walletAccountId);
+  const allCollectionsIds = await ky
+    .get(`${nearConfig.helperUrl}/account/${walletAccountId}/likelyNFTs`, { timeout: 30000 })
+    .json();
 
   const allCollectionsMetadata = await Promise.allSettled(
     allCollectionsIds.map((contractId) =>
@@ -25,12 +25,19 @@ const getCollectionsMetadata = async (state, walletAccountId) => {
     .map(({ collectionId, value }) => ({ collectionId, metadata: value }));
 };
 
-export const onMountSelectNft = thunk(async (_, __, { getStoreState, getStoreActions }) => {
+export const loadNftCollections = thunk(async (_, __, { getStoreState, getStoreActions }) => {
   const state = getStoreState();
   const walletAccountId = state.general.user.wallet.accountId;
+
   const actions = getStoreActions();
+  const setNftCollections = actions.campaigns.createCampaign.setNftCollections;
+  const setError = actions.general.setError;
+  const enableLoading = actions.general.enableLoading;
+  const disableLoading = actions.general.disableLoading;
+  const navigate = actions.navigation.navigate;
 
   try {
+    enableLoading();
     const collectionsMetadata = await getCollectionsMetadata(state, walletAccountId);
 
     const allTokens = await Promise.allSettled(
@@ -48,12 +55,15 @@ export const onMountSelectNft = thunk(async (_, __, { getStoreState, getStoreAct
       .filter(({ status }) => isPromiseSuccessful(status))
       .map(({ collectionId, value, metadata }) => ({ collectionId, metadata, tokens: value }));
 
-    // console.log('allTokens ', allTokens);
-    // console.log('collections ', collections);
+    console.log('allTokens ', allTokens);
+    console.log('collections ', collections);
 
-    actions.campaigns.createCampaign.setNftCollections(toCamelCase(collections));
+    setNftCollections(toCamelCase(collections));
+    navigate({ to: memoryRoutes.createCampaign.nft.selectNft });
   } catch (e) {
     console.log(e);
-    actions.general.setError({ isError: true, description: e.message });
+    setError({ isError: true, description: e.message });
+  } finally {
+    disableLoading();
   }
 });

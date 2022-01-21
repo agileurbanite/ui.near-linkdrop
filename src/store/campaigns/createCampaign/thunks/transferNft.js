@@ -4,7 +4,7 @@ import { KeyPair } from 'near-api-js';
 import { Account } from 'near-api-js/lib/account';
 import { functionCall } from 'near-api-js/lib/transaction';
 import { parseNearAmount } from 'near-api-js/lib/utils/format';
-import { getKeysFromMnemonic } from '../../root/helpers/getKeysFromMnemonic';
+import { getKeysFromMnemonic } from '../../helpers/getKeysFromMnemonic';
 
 // ed25519:w4Nb233J1hzb6tywhabjTKjsAysz9Y9N3fbDwzG3BU6 - ed25519:3V5rYNwYfYsSRzuAr8jhf64D6kRwppuy9k3m8CxXQxqNHLa2dGAe162sZNUwjXJxfkGtvf8XnG42qV5MnYrJcocW
 // ed25519:fzakaxVD42YWSGFugDZJbXroCJtAjES6FXZXro5dtXs - ed25519:sqmT3buv7FExZV2ANjV5Ee5ix8FV2iG4PPE74nnnUGYz4VcpCRq44rPsPKeWFsZ9M6SwF3QLskFPrnxVXeH2MBo

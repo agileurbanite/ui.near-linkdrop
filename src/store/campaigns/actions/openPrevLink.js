@@ -1,5 +1,5 @@
 import { action } from 'easy-peasy';
-import { nearConfig } from '../../../../config/nearConfig';
+import { nearConfig } from '../../../config/nearConfig';
 
 export const openPrevLink = action((slice, payload) => {
   const { order } = payload;

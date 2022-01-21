@@ -1,5 +1,9 @@
 export const initState = {
   nft: {
-    collections: [],
+    needToLoadCollections: true,
+    collections: {
+      list: [],
+      map: {},
+    },
   },
 };

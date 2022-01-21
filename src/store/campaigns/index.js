@@ -1,7 +1,11 @@
-import { root } from './root';
+import { initState } from './initState';
+import { actions } from './actions';
+import { thunks } from './thunks';
 import { createCampaign } from './createCampaign';
 
 export const campaigns = {
-  ...root,
+  ...initState,
+  ...actions,
+  ...thunks,
   createCampaign,
 };

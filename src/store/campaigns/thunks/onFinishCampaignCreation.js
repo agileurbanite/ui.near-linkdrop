@@ -2,10 +2,10 @@ import { parseSeedPhrase } from 'near-seed-phrase';
 import BN from 'bn.js';
 import { KeyPair } from 'near-api-js';
 import { thunk } from 'easy-peasy';
-import { modals } from '../../../../config/modals';
-import { nearConfig } from '../../../../config/nearConfig';
-import { getUserContract, getCampaignContract } from '../../../helpers/getContracts';
-import { getRoute } from '../../../../config/routes';
+import { modals } from '../../../config/modals';
+import { nearConfig } from '../../../config/nearConfig';
+import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
+import { getRoute } from '../../../config/routes';
 import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
 

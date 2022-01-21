@@ -1,8 +1,8 @@
-import BN from 'bn.js';
+import BN from '../../../../node_modules/bn.js/lib/bn';
 import { thunk } from 'easy-peasy';
 import { utils, keyStores } from 'near-api-js';
-import { getNftCampaignContract } from '../../../helpers/getContracts';
-import { getNear } from '../../../general/helpers/getNearPack';
+import { getNftCampaignContract } from '../../helpers/getContracts';
+import { getNear } from '../../general/helpers/getNearPack';
 
 export const addKeyToKeyStore = async (keyStore, accountId, secretKey) => {
   const keyPair = utils.KeyPair.fromString(secretKey);

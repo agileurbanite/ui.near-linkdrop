@@ -1,7 +1,13 @@
 import { makeStyles } from '@material-ui/core';
 
 const styles = {
-  container: {},
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 30,
+    // backgroundColor: '#ffd5d5',
+  },
   topbar: {
     display: 'flex',
     alignItems: 'center',
@@ -11,6 +17,7 @@ const styles = {
     width: 50,
   },
   tokens: {
+    width: 700,
     display: 'flex',
     flexWrap: 'wrap',
     gap: 20,

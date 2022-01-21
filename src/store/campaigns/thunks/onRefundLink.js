@@ -1,7 +1,7 @@
 import BN from 'bn.js';
 import { thunk } from 'easy-peasy';
-import { toCamelCase } from '../../../helpers/toCamelCase';
-import { getCampaignContract } from '../../../helpers/getContracts';
+import { toCamelCase } from '../../helpers/toCamelCase';
+import { getCampaignContract } from '../../helpers/getContracts';
 
 export const onRefundLink = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { pk, campaignId, setLoading, onClose } = payload;

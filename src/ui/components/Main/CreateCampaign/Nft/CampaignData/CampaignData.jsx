@@ -6,11 +6,11 @@ import { memoryRoutes } from '../../../../../../config/routes';
 import { Navigate } from '../../../../../providers/MemoryRouter';
 import { useJss } from './CampaignData.jss';
 
-const { nft, selectType } = memoryRoutes.createCampaign;
+const { selectType } = memoryRoutes.createCampaign;
 
 export const CampaignData = () => {
-  const onMountSelectNft = useStoreActions(
-    (actions) => actions.campaigns.createCampaign.onMountSelectNft,
+  const loadNftCollections = useStoreActions(
+    (actions) => actions.campaigns.createCampaign.loadNftCollections,
   );
   const jss = useJss();
   const { control, formState } = useForm({ defaultValues: {} });
@@ -40,11 +40,9 @@ export const CampaignData = () => {
             Back
           </Button>
         </Navigate>
-        <Navigate to={nft.selectNft} beforeHook={onMountSelectNft}>
-          <Button variant="outlined" color="primary">
-            Next
-          </Button>
-        </Navigate>
+        <Button variant="outlined" color="primary" onClick={loadNftCollections}>
+          Next
+        </Button>
       </div>
     </div>
   );
