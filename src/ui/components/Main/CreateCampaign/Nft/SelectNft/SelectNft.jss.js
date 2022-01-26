@@ -1,7 +1,11 @@
 import { makeStyles } from '@material-ui/core';
 
 const styles = {
-  container: {},
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 };
 
 export const useJss = makeStyles(styles, { name: 'SelectNft' });

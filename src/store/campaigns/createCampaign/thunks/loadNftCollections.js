@@ -15,7 +15,11 @@ const getCollectionsMetadata = async (state, walletAccountId) => {
 
   const allCollectionsMetadata = await Promise.allSettled(
     allCollectionsIds.map((contractId) =>
-      getNftCollectionContract(state, contractId).nft_metadata(),
+      getNftCollectionContract(
+        state.general.entities.near.connection,
+        walletAccountId,
+        contractId,
+      ).nft_metadata(),
     ),
   );
 

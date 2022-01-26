@@ -29,6 +29,7 @@ export const memoryRoutes = {
       root: 'create_campaign.near',
       generalData: 'create_campaign.near.general_data',
       summary: 'create_campaign.near.summary',
+      creationProgress: 'create_campaign.near.creation_progress',
     },
     nft: {
       root: 'create_campaign.nft',
@@ -37,6 +38,5 @@ export const memoryRoutes = {
       summary: 'create_campaign.nft.summary',
       creationProgress: 'create_campaign.nft.creation_progress',
     },
-    creationProgress: 'create_campaign.creation_progress',
   },
 };

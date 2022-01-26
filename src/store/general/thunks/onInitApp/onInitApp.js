@@ -25,7 +25,6 @@ export const onInitApp = thunk(async (_, payload, { getStoreState, getStoreActio
   if (isRedirect(state, history)) {
     await processRedirectFromWallet(state, actions, history);
   } else {
-    // TODO Enable!
     await manageNavigation(state, history);
   }
   // Call onMount thunk for the page - we want to load data before the page will be mounted -

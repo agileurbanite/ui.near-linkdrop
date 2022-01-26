@@ -2,6 +2,7 @@ import qs from 'query-string';
 import { connectWallet } from './connectWallet';
 import { createAccount } from './createAccount';
 import { createNearCampaign } from './createNearCampaign';
+import { createNftCampaign } from './createNftCampaign';
 import { redirectActions } from '../../../../../config/redirectActions';
 
 export const processRedirectFromWallet = async (state, actions, history) => {
@@ -16,4 +17,7 @@ export const processRedirectFromWallet = async (state, actions, history) => {
 
   if (redirectAction === redirectActions.createNearCampaign)
     await createNearCampaign({ state, actions, history, query });
+
+  if (redirectAction === redirectActions.createNftCampaign)
+    await createNftCampaign({ state, actions, history, query });
 };

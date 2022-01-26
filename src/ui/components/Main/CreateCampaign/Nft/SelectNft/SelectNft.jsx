@@ -13,16 +13,18 @@ export const SelectNft = () => {
     <div className={jss.container}>
       <p>Select Nft</p>
       <Collections />
-      <Navigate to={campaignData}>
-        <Button variant="outlined" color="primary">
-          Back
-        </Button>
-      </Navigate>
-      <Navigate to={summary}>
-        <Button variant="outlined" color="primary">
-          Summary
-        </Button>
-      </Navigate>
+      <div>
+        <Navigate to={campaignData}>
+          <Button variant="outlined" color="primary">
+            Back
+          </Button>
+        </Navigate>
+        <Navigate to={summary}>
+          <Button variant="outlined" color="primary">
+            Next
+          </Button>
+        </Navigate>
+      </div>
     </div>
   );
 };

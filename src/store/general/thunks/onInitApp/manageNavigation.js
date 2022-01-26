@@ -2,7 +2,6 @@
 import { matchPath } from 'react-router';
 import { routes } from '../../../../config/routes';
 import { getUserContract, getCampaignContract } from '../../../helpers/getContracts';
-import { toCamelCase } from '../../../helpers/toCamelCase';
 import { campaignStatus } from '../../../../config/campaignStatus';
 
 const {
@@ -25,17 +24,16 @@ const campaignHandler = async ({ replace, wallet, linkdrop, state, history }) =>
   if (!linkdrop.isExist) return replace(createAccount);
   if (!linkdrop.isConnected) return replace(restoreAccess);
 
+  // User can view only his own campaigns
   const campaignId = matchPath(history.location.pathname, campaign).params.campaignId;
   const userContract = getUserContract(state, linkdrop.accountId);
   const userCampaigns = await userContract.get_campaigns();
   const isOwnCampaign = userCampaigns.includes(campaignId);
-
   if (!isOwnCampaign) return replace(campaigns);
 
+  // User can view only active campaigns
   const campaignContract = getCampaignContract(state, campaignId);
-  const [_metadata] = await Promise.all([campaignContract.get_campaign_metadata()]);
-  const metadata = toCamelCase(_metadata);
-
+  const metadata = await campaignContract.get_campaign_metadata();
   if (metadata.status !== campaignStatus.active) return replace(campaigns);
 };
 
@@ -69,7 +67,7 @@ const restoreAccessHandler = ({ replace, wallet, linkdrop }) => {
   if (!linkdrop.isExist) return replace(createAccount);
   if (linkdrop.isConnected) return replace(campaigns);
 };
-// TODO Handle redirect on non-user campaign and creating / deleting campaign
+
 const handlers = {
   [root]: rootHandler,
   [connectWallet]: connectWalletHandler,

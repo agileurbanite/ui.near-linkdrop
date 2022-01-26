@@ -1,3 +1,5 @@
+import { memoryRoutes } from '../../config/routes';
+
 export const initState = {
-  path: '',
+  path: memoryRoutes.createCampaign.selectType,
 };

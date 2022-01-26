@@ -1,13 +1,11 @@
 import { loadNftCollections } from './loadNftCollections';
 import { loadMoreNft } from './loadMoreNft';
-import { prepareForNft } from './prepareForNft';
-import { createNftCampaign } from './createNftCampaign';
-import { transferNft } from './transferNft';
+import { prepareNftCampaignCreation } from './prepareNftCampaignCreation';
+import { createNftCampaign } from './createNftCampaign/createNftCampaign';
 
 export const thunks = {
   loadNftCollections,
   loadMoreNft,
-  prepareForNft,
+  prepareNftCampaignCreation,
   createNftCampaign,
-  transferNft,
 };

@@ -7,6 +7,7 @@ export const loadMoreNft = thunk(async (_, payload, { getStoreState, getStoreAct
   const { collectionId } = payload;
   const state = getStoreState();
   const walletAccountId = state.general.user.wallet.accountId;
+  const connection = state.general.entities.near.connection;
 
   const actions = getStoreActions();
   const addMoreNftToCollection = actions.campaigns.createCampaign.addMoreNftToCollection;
@@ -14,7 +15,7 @@ export const loadMoreNft = thunk(async (_, payload, { getStoreState, getStoreAct
   const enableLoading = actions.general.enableLoading;
   const disableLoading = actions.general.disableLoading;
 
-  const collectionContract = getNftCollectionContract(state, collectionId);
+  const collectionContract = getNftCollectionContract(connection, walletAccountId, collectionId);
 
   try {
     enableLoading();

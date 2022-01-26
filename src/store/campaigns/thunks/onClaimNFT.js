@@ -1,17 +1,13 @@
-import BN from '../../../../node_modules/bn.js/lib/bn';
+import BN from 'bn.js';
 import { thunk } from 'easy-peasy';
-import { utils, keyStores } from 'near-api-js';
+import { keyStores } from 'near-api-js';
 import { getNftCampaignContract } from '../../helpers/getContracts';
 import { getNear } from '../../general/helpers/getNearPack';
+import { setKeyToKeyStore } from '../../helpers/setKeyToKeyStore';
 
-export const addKeyToKeyStore = async (keyStore, accountId, secretKey) => {
-  const keyPair = utils.KeyPair.fromString(secretKey);
-  await keyStore.setKey('testnet', accountId, keyPair);
-};
-
-export const onClaimNFT = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
-  const state = getStoreState();
-  const neardropUserId = state.general.user.linkdrop.accountId;
+export const onClaimNFT = thunk(async (_, payload, { /* getStoreState */ getStoreActions }) => {
+  // const state = getStoreState();
+  // const neardropUserId = state.general.user.linkdrop.accountId;
   const actions = getStoreActions();
 
   const { campaignId, beneficiaryId, secretKey } = payload;
@@ -19,14 +15,14 @@ export const onClaimNFT = thunk(async (_, payload, { getStoreState, getStoreActi
   try {
     const keyStore = new keyStores.InMemoryKeyStore();
     const near = await getNear(keyStore);
-    await addKeyToKeyStore(keyStore, campaignId, secretKey);
+    await setKeyToKeyStore(keyStore, campaignId, secretKey);
     const nftCampaign = getNftCampaignContract({ near, campaignId });
-
 
     const res = await nftCampaign.claim({
       args: { beneficiary_id: beneficiaryId },
       gas: new BN('300000000000000'),
     });
+    /* eslint-disable no-console */
     console.log(res);
   } catch (e) {
     actions.general.setError({ isError: true, description: e.message });

@@ -5,6 +5,7 @@ export const Routes = ({ children, startRoute }) => {
   const path = useStoreState((state) => state.navigation.path);
   const navigate = useStoreActions((actions) => actions.navigation.navigate);
 
+  // TODO maybe we can delete this
   useEffect(() => {
     if (startRoute) navigate({ to: startRoute });
   }, []);

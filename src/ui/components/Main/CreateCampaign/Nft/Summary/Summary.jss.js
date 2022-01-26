@@ -4,7 +4,7 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: 20,
   },
 };

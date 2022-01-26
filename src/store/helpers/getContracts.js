@@ -27,12 +27,8 @@ export const getNftCampaignContract = ({ state, near, campaignId }) => {
   });
 };
 
-export const getNftCollectionContract = (state, nftCollectionId) =>
-  new Contract(
-    new Account(state.general.entities.near.connection, state.general.user.linkdrop.accountId),
-    nftCollectionId,
-    {
-      viewMethods: ['nft_metadata', 'nft_tokens_for_owner'],
-      changeMethods: [],
-    },
-  );
+export const getNftCollectionContract = (connection, signerId, collectionId) =>
+  new Contract(new Account(connection, signerId), collectionId, {
+    viewMethods: ['nft_metadata', 'nft_tokens_for_owner'],
+    changeMethods: ['nft_transfer_call'],
+  });
