@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { thunk } from 'easy-peasy';
 import { transactions } from 'near-api-js';
 import { PublicKey, KeyPair } from 'near-api-js/lib/utils';
@@ -22,6 +21,15 @@ const getTxParams = async (near, wallet, signerId) => {
   };
 };
 
+const getSelectedTokens = (collections) =>
+  collections.list.reduce((acc, collectionId) => {
+    const tokens = collections.map[collectionId].tokens;
+    tokens.list.forEach((tokenId) => {
+      if (tokens.map[tokenId].selected) acc.push([collectionId, tokenId]);
+    });
+    return acc;
+  }, []);
+
 export const prepareNftCampaignCreation = thunk(
   async (_, __, { getStoreState, getStoreActions }) => {
     const state = getStoreState();
@@ -29,31 +37,32 @@ export const prepareNftCampaignCreation = thunk(
     const linkdropAccountId = state.general.user.linkdrop.accountId;
     const wallet = state.general.entities.wallet;
     const near = state.general.entities.near;
+    const campaignName = state.campaigns.createCampaign.nft.campaignName;
+    const linkRedirectUrl = state.campaigns.createCampaign.nft.linkRedirectUrl;
+    const collections = state.campaigns.createCampaign.nft.collections;
 
     const actions = getStoreActions();
     const setTemporaryData = actions.general.setTemporaryData;
 
     try {
-      const { blockHash, publicKey, nonce } = await getTxParams(near, wallet, walletAccountId);
+      const deposit = parseNearAmount('5'); // TODO use a real deposit
       const key = KeyPair.fromRandom('ed25519');
 
-      const fullAccessKey = {
-        publicKey: key.getPublicKey().toString(),
-        secretKey: key.toString(),
-      };
-      const deposit = parseNearAmount('5'); // TODO use a real deposit
-      const campaignName = 'abc3';
-      // Визначити скільки токенів треба переслати до user акаунта
-
-      // Перед переходом зберегти дані до temporary (name, redirectUrl, selectedNfts, walletKey)
       setTemporaryData({
         redirectAction,
         campaignName,
-        fullAccessKey,
+        linkRedirectUrl,
+        walletFullAccessKey: {
+          publicKey: key.getPublicKey().toString(),
+          secretKey: key.toString(),
+        },
         deposit,
+        tokens: getSelectedTokens(collections),
       });
 
-      await wallet.requestSignTransactions({
+      const { blockHash, publicKey, nonce } = await getTxParams(near, wallet, walletAccountId);
+
+      wallet.requestSignTransactions({
         transactions: [
           createTransaction(
             walletAccountId,
@@ -75,6 +84,7 @@ export const prepareNftCampaignCreation = thunk(
         callbackUrl: getRoute.callbackUrl({ redirectAction }),
       });
     } catch (e) {
+      /* eslint-disable no-console */
       console.log(e);
       actions.general.setError({ isError: true, description: e.message });
     }

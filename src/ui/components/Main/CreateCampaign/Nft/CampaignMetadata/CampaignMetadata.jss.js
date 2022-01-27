@@ -11,4 +11,4 @@ const styles = {
   },
 };
 
-export const useJss = makeStyles(styles, { name: 'CampaignData' });
+export const useJss = makeStyles(styles, { name: 'CampaignMetadata' });

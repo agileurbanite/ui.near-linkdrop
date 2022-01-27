@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { thunk } from 'easy-peasy';
 import ky from 'ky';
 import { nearConfig } from '../../../../config/nearConfig';
@@ -7,19 +6,15 @@ import { getNftCollectionContract } from '../../../helpers/getContracts';
 import { toCamelCase } from '../../../helpers/toCamelCase';
 
 const isPromiseSuccessful = (status) => status === 'fulfilled';
-
-const getCollectionsMetadata = async (state, walletAccountId) => {
+// TODO Try carrying
+const getCollectionsMetadata = async (connection, walletAccountId) => {
   const allCollectionsIds = await ky
     .get(`${nearConfig.helperUrl}/account/${walletAccountId}/likelyNFTs`, { timeout: 30000 })
     .json();
 
   const allCollectionsMetadata = await Promise.allSettled(
     allCollectionsIds.map((contractId) =>
-      getNftCollectionContract(
-        state.general.entities.near.connection,
-        walletAccountId,
-        contractId,
-      ).nft_metadata(),
+      getNftCollectionContract(connection, walletAccountId, contractId).nft_metadata(),
     ),
   );
 
@@ -32,6 +27,7 @@ const getCollectionsMetadata = async (state, walletAccountId) => {
 export const loadNftCollections = thunk(async (_, __, { getStoreState, getStoreActions }) => {
   const state = getStoreState();
   const walletAccountId = state.general.user.wallet.accountId;
+  const connection = state.general.entities.near.connection;
 
   const actions = getStoreActions();
   const setNftCollections = actions.campaigns.createCampaign.setNftCollections;
@@ -42,11 +38,11 @@ export const loadNftCollections = thunk(async (_, __, { getStoreState, getStoreA
 
   try {
     enableLoading();
-    const collectionsMetadata = await getCollectionsMetadata(state, walletAccountId);
+    const collectionsMetadata = await getCollectionsMetadata(connection, walletAccountId);
 
     const allTokens = await Promise.allSettled(
       collectionsMetadata.map(({ collectionId }) =>
-        getNftCollectionContract(state, collectionId).nft_tokens_for_owner({
+        getNftCollectionContract(connection, walletAccountId, collectionId).nft_tokens_for_owner({
           account_id: walletAccountId,
           from_index: '0',
           limit: 10,
@@ -59,12 +55,10 @@ export const loadNftCollections = thunk(async (_, __, { getStoreState, getStoreA
       .filter(({ status }) => isPromiseSuccessful(status))
       .map(({ collectionId, value, metadata }) => ({ collectionId, metadata, tokens: value }));
 
-    console.log('allTokens ', allTokens);
-    console.log('collections ', collections);
-
     setNftCollections(toCamelCase(collections));
     navigate({ to: memoryRoutes.createCampaign.nft.selectNft });
   } catch (e) {
+    /* eslint-disable no-console */
     console.log(e);
     setError({ isError: true, description: e.message });
   } finally {

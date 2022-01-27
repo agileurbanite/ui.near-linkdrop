@@ -5,7 +5,7 @@ import { createGenerateKeyV2 } from '../../../helpers/createGenerateKeyV2';
 import { getNear } from '../../../../general/helpers/getNearPack';
 import { setKeyToKeyStore } from '../../../../helpers/setKeyToKeyStore';
 
-// TODO Think how we can speed up transfer process
+// TODO Think about how we can speed up transfer process
 async function* createGenerator(tokens, mnemonic, connection, walletAccountId, campaignId) {
   const generateKey = createGenerateKeyV2(mnemonic, campaignId);
 
@@ -30,12 +30,12 @@ async function* createGenerator(tokens, mnemonic, connection, walletAccountId, c
 
 const getProgressPercentage = (order, total) => Math.min(Math.trunc((order / total) * 100), 99);
 
-export const transferNfts = async (state, tokens, campaignId, setProgress, fullAccessKey) => {
+export const transferNfts = async (state, tokens, campaignId, setProgress, walletFullAccessKey) => {
   const walletAccountId = state.general.user.wallet.accountId;
   const mnemonic = state.general.user.linkdrop.mnemonic;
 
   const keyStore = new keyStores.InMemoryKeyStore();
-  await setKeyToKeyStore(keyStore, walletAccountId, fullAccessKey.secretKey);
+  await setKeyToKeyStore(keyStore, walletAccountId, walletFullAccessKey.secretKey);
   const near = await getNear(keyStore);
 
   try {

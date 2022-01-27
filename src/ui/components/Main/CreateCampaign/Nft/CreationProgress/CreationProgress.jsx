@@ -7,7 +7,7 @@ import { useJss } from './CreationProgress.jss';
 
 export const CreationProgress = () => {
   const [progress, setProgress] = useState(0);
-  const createNftCampaign = useStoreActions(a => a.campaigns.createCampaign.createNftCampaign);
+  const createNftCampaign = useStoreActions((a) => a.campaigns.createCampaign.createNftCampaign);
   const history = useHistory();
   const jss = useJss();
 
