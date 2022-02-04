@@ -5,7 +5,8 @@ const testnet = {
   helperUrl: 'https://helper.testnet.near.org',
   explorerUrl: 'https://explorer.testnet.near.org',
   accounts: {
-    linkdrop: 'linkdrop.testnet',
+    // linkdrop: 'linkdrop.testnet', // V1
+    linkdrop: 'dev-neardrop.testnet', // TODO: use an env variable for this
     accountCreator: 'testnet',
   },
   isTestnet: true,

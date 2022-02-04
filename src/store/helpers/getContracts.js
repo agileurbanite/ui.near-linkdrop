@@ -7,10 +7,11 @@ export const getLinkdropContract = (state) =>
     changeMethods: ['create_user_account'],
   });
 
+// User Contract V2.0.0
 export const getUserContract = (state, userId) =>
   new Contract(new Account(state.general.entities.near.connection, userId), userId, {
     viewMethods: ['get_campaigns', 'get_user_metadata'],
-    changeMethods: ['create_near_campaign'],
+    changeMethods: ['add_campaign_to_list', 'remove_campaign_from_list'],
   });
 
 export const getCampaignContract = (state, campaignId) =>
@@ -19,13 +20,11 @@ export const getCampaignContract = (state, campaignId) =>
     changeMethods: ['add_keys', 'refund_keys', 'clear_state', 'delete_campaign'],
   });
 
-export const getNftCampaignContract = ({ state, near, campaignId }) => {
-  const connection = near ? near.connection : state.general.entities.near.connection;
-  return new Contract(new Account(connection, campaignId), campaignId, {
-    viewMethods: ['get_drops'],
+export const getNftCampaignContract = (connection, signerId, campaignId = signerId) =>
+  new Contract(new Account(connection, signerId), campaignId, {
+    viewMethods: ['get_drops', 'get_campaign_metadata'],
     changeMethods: ['claim'],
   });
-};
 
 export const getNftCollectionContract = (connection, signerId, collectionId) =>
   new Contract(new Account(connection, signerId), collectionId, {

@@ -2,6 +2,8 @@ import { thunk } from 'easy-peasy';
 import { routes } from '../../../../../config/routes';
 import { createAccount } from './createAccount';
 import { transferNfts } from './transferNfts';
+import { deleteWalletFullAccessKey } from './deleteWalletFullAccessKey';
+import { getCampaignCreationDate } from './getCampaignCreationDate';
 
 // TODO handle page closing on any stage
 export const createNftCampaign = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
@@ -9,16 +11,28 @@ export const createNftCampaign = thunk(async (_, payload, { getStoreState, getSt
   const state = getStoreState();
   const near = state.general.entities.near;
   const linkdrop = state.general.user.linkdrop;
+  const walletAccountId = state.general.user.wallet.accountId;
+  const mnemonic = state.general.user.linkdrop.mnemonic;
   const actions = getStoreActions();
 
   const { campaignName, deposit, tokens, walletFullAccessKey } = state.general.temporary;
   const campaignId = `${campaignName}.${linkdrop.accountId}`;
 
   try {
-    await createAccount(near, linkdrop, campaignId, deposit);
-    await transferNfts(state, tokens, campaignId, setProgress, walletFullAccessKey);
+    await createAccount(state, near, linkdrop, campaignId, deposit);
+    const createdAt = await getCampaignCreationDate(near.connection, campaignId);
 
-    // TODO Delete full access key after all NFT will be transferred;
+    await transferNfts(
+      tokens,
+      campaignId,
+      createdAt,
+      setProgress,
+      walletAccountId,
+      walletFullAccessKey,
+      mnemonic,
+    );
+
+    await deleteWalletFullAccessKey(walletAccountId, walletFullAccessKey);
     history.replace(routes.campaigns);
   } catch (e) {
     /* eslint-disable no-console */

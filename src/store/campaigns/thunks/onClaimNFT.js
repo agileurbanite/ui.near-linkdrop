@@ -16,9 +16,8 @@ export const onClaimNFT = thunk(async (_, payload, { /* getStoreState */ getStor
     const keyStore = new keyStores.InMemoryKeyStore();
     const near = await getNear(keyStore);
     await setKeyToKeyStore(keyStore, campaignId, secretKey);
-    const nftCampaign = getNftCampaignContract({ near, campaignId });
 
-    const res = await nftCampaign.claim({
+    const res = await getNftCampaignContract(near.connection, campaignId).claim({
       args: { beneficiary_id: beneficiaryId },
       gas: new BN('300000000000000'),
     });

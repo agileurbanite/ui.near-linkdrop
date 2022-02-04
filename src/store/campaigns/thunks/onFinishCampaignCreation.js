@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { parseSeedPhrase } from 'near-seed-phrase';
 import BN from 'bn.js';
 import { KeyPair } from 'near-api-js';
@@ -55,6 +56,8 @@ export const onFinishCampaignCreation = thunk(
     const campaignAccessKey = parseSeedPhrase(mnemonic);
     const user = getUserContract(state, linkdropUserId);
 
+    // TODO Fix it - deprecated since user v2.0.0
+    return;
     await user.create_near_campaign({
       args: {
         name: campaignName,

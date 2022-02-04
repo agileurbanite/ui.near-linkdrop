@@ -9,19 +9,26 @@ import {
 import { PublicKey } from 'near-api-js/lib/utils';
 import { setKeyToKeyStore } from '../../../../helpers/setKeyToKeyStore';
 import { terraGas } from '../../../../helpers/terraGas';
+import { getUserContract } from '../../../../helpers/getContracts';
 
-export const createAccount = async (near, linkdrop, campaignId, deposit) => {
+export const createAccount = async (state, near, linkdrop, campaignId, deposit) => {
   try {
-    const user = await near.account(linkdrop.accountId);
-    const wasm = await fetch('wasm/nft_campaign.wasm').then((res) => res.arrayBuffer());
+    const userAccount = await near.account(linkdrop.accountId);
+    const wasm = await fetch('wasm/nft_campaign.wasm')
+      .then((r) => r.arrayBuffer())
+      .then((r) => new Uint8Array(r));
 
-    await user.signAndSendTransaction(campaignId, [
+    await userAccount.signAndSendTransaction(campaignId, [
       createAccountTx(),
       transfer(deposit),
       addKey(PublicKey.from(linkdrop.publicKey), fullAccessKey()),
-      deployContract(new Uint8Array(wasm)),
+      deployContract(wasm),
       functionCall('new', {}, terraGas(30), 0),
     ]);
+
+    await getUserContract(state, linkdrop.accountId).add_campaign_to_list({
+      args: { campaign_id: campaignId },
+    });
 
     await setKeyToKeyStore(near.config.keyStore, campaignId, linkdrop.secretKey);
   } catch (e) {
