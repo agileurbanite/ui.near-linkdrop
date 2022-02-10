@@ -8,12 +8,10 @@ import { processRedirectFromWallet } from './processRedirectFromWallet/processRe
 
 export const onInitApp = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
   const { history, setInit } = payload;
-
   const actions = getStoreActions();
-  const setNearPack = actions.general.setNearPack;
 
-  // Create near and wallet instances and set it into the state
-  setNearPack(await getNearPack());
+  actions.navigation.setHistory(history);
+  actions.general.setNearPack(await getNearPack());
   // Check accounts existence
   // TODO Enable!
   // await checkUserAccounts(getStoreState(), actions, history);

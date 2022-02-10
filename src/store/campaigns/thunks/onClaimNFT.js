@@ -1,26 +1,45 @@
-import BN from 'bn.js';
 import { thunk } from 'easy-peasy';
 import { keyStores } from 'near-api-js';
-import { getNftCampaignContract } from '../../helpers/getContracts';
+import qs from 'query-string';
+import { matchPath } from 'react-router';
+import { routes } from '../../../config/routes';
 import { getNear } from '../../general/helpers/getNearPack';
+import { getNftCampaignContract } from '../../helpers/getContracts';
 import { setKeyToKeyStore } from '../../helpers/setKeyToKeyStore';
+import { terraGas } from '../../helpers/terraGas';
 
-export const onClaimNFT = thunk(async (_, payload, { /* getStoreState */ getStoreActions }) => {
-  // const state = getStoreState();
-  // const neardropUserId = state.general.user.linkdrop.accountId;
+const getUrlParams = (history) => {
+  const match = matchPath(history.location.pathname, {
+    path: routes.claim,
+    exact: true,
+  });
+  const { redirectTo } = qs.parse(history.location.search);
+
+  return {
+    contractId: match.params.contractId,
+    secretKey: match.params.secretKey,
+    redirectTo,
+  };
+};
+
+// TODO move from campaigns;
+export const onClaimNFT = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
+  const state = getStoreState();
   const actions = getStoreActions();
 
-  const { campaignId, beneficiaryId, secretKey } = payload;
+  const { contractId, secretKey } = getUrlParams(state.navigation.history);
+  const { beneficiaryId } = payload;
 
   try {
     const keyStore = new keyStores.InMemoryKeyStore();
+    await setKeyToKeyStore(keyStore, contractId, secretKey);
     const near = await getNear(keyStore);
-    await setKeyToKeyStore(keyStore, campaignId, secretKey);
 
-    const res = await getNftCampaignContract(near.connection, campaignId).claim({
+    const res = await getNftCampaignContract(near.connection, contractId).claim({
       args: { beneficiary_id: beneficiaryId },
-      gas: new BN('300000000000000'),
+      gas: terraGas(100),
     });
+    // TODO navigate to Wallet or to redirect URL
     /* eslint-disable no-console */
     console.log(res);
   } catch (e) {

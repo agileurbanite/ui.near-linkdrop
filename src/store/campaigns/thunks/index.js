@@ -1,3 +1,4 @@
+import { onClaimNFT } from './onClaimNFT';
 import { onDeleteNearCampaign } from './onDeleteNearCampaign';
 import { onDeleteNftCampaign } from './onDeleteNftCampaign';
 import { onExportCampaignCSV } from './onExportCampaignCSV';
@@ -30,4 +31,5 @@ export const thunks = {
   onResumeCampaignDeletion,
   onLoadNextQr,
   onLoadPrevQr,
+  onClaimNFT,
 };

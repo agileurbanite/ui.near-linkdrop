@@ -7,6 +7,9 @@ const styles = {
     alignItems: 'center',
     gap: 20,
   },
+  input: {
+    width: 300,
+  },
 };
 
 export const useJss = makeStyles(styles, { name: 'ClaimPage' });
