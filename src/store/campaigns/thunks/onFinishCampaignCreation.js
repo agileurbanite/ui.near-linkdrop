@@ -1,14 +1,14 @@
 /* eslint-disable */
-import { parseSeedPhrase } from 'near-seed-phrase';
 import BN from 'bn.js';
-import { KeyPair } from 'near-api-js';
 import { thunk } from 'easy-peasy';
+import { KeyPair } from 'near-api-js';
+import { parseSeedPhrase } from 'near-seed-phrase';
 import { modals } from '../../../config/modals';
 import { nearConfig } from '../../../config/nearConfig';
-import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
 import { getRoute } from '../../../config/routes';
-import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
+import { getCampaignContract, getUserContract } from '../../helpers/getContracts';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
+import { getKeysFromMnemonic } from '../helpers/keys/getKeysFromMnemonic';
 
 const createAddKeysIterator = ({
   totalKeys,

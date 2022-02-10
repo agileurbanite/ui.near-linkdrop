@@ -1,11 +1,11 @@
-import { useStyles } from './Link.styles';
 import { keyStatus } from '../../../../../../config/keyStatus';
 import { nearConfig } from '../../../../../../config/nearConfig';
-import { LinkStatus } from '../../general/LinkStatus/LinkStatus';
 import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
+import { Nft } from '../../general/Actions/Nft/Nft';
 import { Qr } from '../../general/Actions/Qr/Qr';
 import { RefundLink } from '../../general/Actions/RefundLink/RefundLink';
-import { Nft } from '../../general/Actions/Nft/Nft';
+import { LinkStatus } from '../../general/LinkStatus/LinkStatus';
+import { useStyles } from './Link.styles';
 
 export const Link = ({
   link: { pk, sk, order, status },
@@ -15,7 +15,7 @@ export const Link = ({
 }) => {
   const classes = useStyles();
   const isActive = status === keyStatus.active;
-  const link = nearConfig.getCreateAccountAndClaimLink(sk, campaignId);
+  const link = nearConfig.getClaimNftLink(sk, campaignId);
 
   return (
     <div className={classes.container}>

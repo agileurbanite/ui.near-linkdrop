@@ -1,7 +1,11 @@
 import { makeStyles } from '@material-ui/core';
-import {campaignStatus} from '../../../../../../../config/campaignStatus';
+import { campaignStatus } from '../../../../../../../config/campaignStatus';
 
 const styles = () => ({
+  container: {
+    gridArea: 'b',
+    alignSelf: 'center',
+  },
   status: {
     fontSize: 14,
     fontWeight: 500,

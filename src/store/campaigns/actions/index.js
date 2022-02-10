@@ -1,17 +1,19 @@
-import { refundLink } from './refundLink';
+import { closeQrModal } from './closeQrModal';
+import { deleteCampaign } from './deleteCampaign';
+import { loadKeys } from './loadKeys';
 import { mountCampaign } from './mountCampaign';
 import { mountCampaigns } from './mountCampaigns';
-import { loadKeys } from './loadKeys';
-import { deleteCampaign } from './deleteCampaign';
 import { mountCreateCampaign } from './mountCreateCampaign';
-import { openQrModal } from './openQrModal';
-import { closeQrModal } from './closeQrModal';
 import { openNextLink } from './openNextLink';
 import { openPrevLink } from './openPrevLink';
+import { openQrModal } from './openQrModal';
+import { refundLink } from './refundLink';
+import { setNftCampaign } from './setNftCampaign';
 
 export const actions = {
   refundLink,
   mountCampaign,
+  setNftCampaign,
   mountCampaigns,
   loadKeys,
   deleteCampaign,

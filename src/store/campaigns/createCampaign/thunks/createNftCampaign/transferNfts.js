@@ -1,12 +1,12 @@
 import { keyStores } from 'near-api-js';
-import { terraGas } from '../../../../helpers/terraGas';
-import { getNftCollectionContract } from '../../../../helpers/getContracts';
-import { createGetCampaignKeys } from '../../../helpers/createGetCampaignKeys';
 import { getNear } from '../../../../general/helpers/getNearPack';
+import { getNftCollectionContract } from '../../../../helpers/getContracts';
 import { setKeyToKeyStore } from '../../../../helpers/setKeyToKeyStore';
+import { terraGas } from '../../../../helpers/terraGas';
+import { createGetCampaignKeys } from '../../../helpers/keys/createGetCampaignKeys';
 
-const getProgressPercentage = (index, total) =>
-  Math.min(Math.trunc(((index + 1) / total) * 100), 99);
+// We don't want to show 100% but 99% on the progress bar
+const getProgressPercentage = (index, total) => Math.min(Math.trunc((index / total) * 100), 99);
 
 // TODO Think about how we can speed up transfer process
 async function* createGenerator(
@@ -19,7 +19,7 @@ async function* createGenerator(
 ) {
   const generateKey = createGetCampaignKeys(mnemonic, campaignId, createdAt);
 
-  for (let i = 0; i < tokens.length; i += 1) {
+  for (let i = 1; i <= tokens.length; i += 1) {
     const [collectionId, tokenId] = tokens[i];
     const collection = getNftCollectionContract(connection, walletAccountId, collectionId);
     const { publicKey } = generateKey(i);

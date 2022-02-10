@@ -1,9 +1,9 @@
 import { thunk } from 'easy-peasy';
 import { routes } from '../../../../../config/routes';
+import { getCampaignMetadata } from '../../../helpers/getCampaignMetadata';
 import { createAccount } from './createAccount';
-import { transferNfts } from './transferNfts';
 import { deleteWalletFullAccessKey } from './deleteWalletFullAccessKey';
-import { getCampaignCreationDate } from './getCampaignCreationDate';
+import { transferNfts } from './transferNfts';
 
 // TODO handle page closing on any stage
 export const createNftCampaign = thunk(async (_, payload, { getStoreState, getStoreActions }) => {
@@ -20,7 +20,7 @@ export const createNftCampaign = thunk(async (_, payload, { getStoreState, getSt
 
   try {
     await createAccount(state, near, linkdrop, campaignId, deposit);
-    const createdAt = await getCampaignCreationDate(near.connection, campaignId);
+    const { createdAt } = await getCampaignMetadata(near.connection, campaignId);
 
     await transferNfts(
       tokens,

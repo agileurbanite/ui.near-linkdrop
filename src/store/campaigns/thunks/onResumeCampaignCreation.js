@@ -1,10 +1,10 @@
 import BN from 'bn.js';
 import { thunk } from 'easy-peasy';
 import { modals } from '../../../config/modals';
-import { getCampaignContract } from '../../helpers/getContracts';
 import { getRoute } from '../../../config/routes';
-import { getChunksRange, getChunkElementsRange } from '../helpers/getChunksRange';
-import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
+import { getCampaignContract } from '../../helpers/getContracts';
+import { getChunkElementsRange, getChunksRange } from '../helpers/getChunksRange';
+import { getKeysFromMnemonic } from '../helpers/keys/getKeysFromMnemonic';
 
 const createAddKeysIterator = ({
   totalKeys,
