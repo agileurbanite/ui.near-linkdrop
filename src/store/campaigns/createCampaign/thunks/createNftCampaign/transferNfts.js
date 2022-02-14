@@ -20,7 +20,7 @@ async function* createGenerator(
   const generateKey = createGetCampaignKeys(mnemonic, campaignId, createdAt);
 
   for (let i = 1; i <= tokens.length; i += 1) {
-    const [collectionId, tokenId] = tokens[i];
+    const [collectionId, tokenId] = tokens[i - 1];
     const collection = getNftCollectionContract(connection, walletAccountId, collectionId);
     const { publicKey } = generateKey(i);
 

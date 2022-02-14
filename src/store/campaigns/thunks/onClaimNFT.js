@@ -28,7 +28,7 @@ export const onClaimNFT = thunk(async (_, payload, { getStoreState, getStoreActi
   const actions = getStoreActions();
 
   const { contractId, secretKey } = getUrlParams(state.navigation.history);
-  const { beneficiaryId } = payload;
+  const { beneficiaryId, onSuccessfulClaim } = payload;
 
   try {
     const keyStore = new keyStores.InMemoryKeyStore();
@@ -42,6 +42,7 @@ export const onClaimNFT = thunk(async (_, payload, { getStoreState, getStoreActi
     // TODO navigate to Wallet or to redirect URL
     /* eslint-disable no-console */
     console.log(res);
+    onSuccessfulClaim();
   } catch (e) {
     actions.general.setError({ isError: true, description: e.message });
   }

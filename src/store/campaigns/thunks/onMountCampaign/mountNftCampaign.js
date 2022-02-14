@@ -21,8 +21,8 @@ export const mountNftCampaign = async ({
 
   const keys = await getKeysFromMnemonic({
     mnemonic,
-    start: pagination.range.start - 1, // TODO remove it for all next campaigns
-    end: pagination.range.end - 1,
+    start: pagination.range.start,
+    end: pagination.range.end,
     campaignId,
     createdAt: metadata.createdAt,
   });
