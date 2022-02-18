@@ -10,12 +10,12 @@ const styles = {
   wrapper: {
     margin: '25px 20px',
     display: 'grid',
-    gridTemplateColumns: '32.895% 20px auto',
+    gridTemplateColumns: '34% 20px auto',
     gridTemplateRows: '195px 25px 30px',
     gridTemplateAreas: `
       'a . b'
-      'a . .'
-      'a . c'
+      '. . .'
+      'c c c'
     `,
 
     '@media (max-width: 600px)': {
@@ -31,9 +31,6 @@ const styles = {
   },
   campaignIcon: {
     gridArea: 'a',
-  },
-  info: {
-    gridArea: 'b',
   },
   analytics: {
     justifySelf: 'center',

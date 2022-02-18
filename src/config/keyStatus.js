@@ -1,6 +1,6 @@
 export const keyStatus = {
   active: 'Active',
-  inactive: 'Inactive',
+  created: 'Created',
   claimed: 'Claimed',
   refunded: 'Refunded',
 };

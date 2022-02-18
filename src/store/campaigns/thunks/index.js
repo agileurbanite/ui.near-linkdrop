@@ -1,18 +1,19 @@
-import { onStartCampaignCreation } from './onStartCampaignCreation';
-import { onFinishCampaignCreation } from './onFinishCampaignCreation';
-import { onMountCampaign } from './onMountCampaign';
-import { onRefundLink } from './onRefundLink';
-import { onExportCampaignCSV } from './onExportCampaignCSV';
-import { onMountCampaigns } from './onMountCampaigns';
-import { onLoadKeys } from './onLoadKeys';
+import { onClaimNFT } from './onClaimNFT';
 import { onDeleteNearCampaign } from './onDeleteNearCampaign';
 import { onDeleteNftCampaign } from './onDeleteNftCampaign';
-import { onMountDeleteCampaign } from './onMountDeleteCampaign';
-import { onMountCreateCampaign } from './onMountCreateCampaign';
-import { onResumeCampaignCreation } from './onResumeCampaignCreation';
-import { onResumeCampaignDeletion } from './onResumeCampaignDeletion';
+import { onExportCampaignCSV } from './onExportCampaignCSV';
+import { onFinishCampaignCreation } from './onFinishCampaignCreation';
+import { onLoadKeys } from './onLoadKeys';
 import { onLoadNextQr } from './onLoadNextQr';
 import { onLoadPrevQr } from './onLoadPrevQr';
+import { onMountCampaign } from './onMountCampaign/onMountCampaign';
+import { onMountCampaigns } from './onMountCampaigns';
+import { onMountCreateCampaign } from './onMountCreateCampaign';
+import { onMountDeleteCampaign } from './onMountDeleteCampaign';
+import { onRefundLink } from './onRefundLink';
+import { onResumeCampaignCreation } from './onResumeCampaignCreation';
+import { onResumeCampaignDeletion } from './onResumeCampaignDeletion';
+import { onStartCampaignCreation } from './onStartCampaignCreation';
 
 export const thunks = {
   onStartCampaignCreation,
@@ -30,4 +31,5 @@ export const thunks = {
   onResumeCampaignDeletion,
   onLoadNextQr,
   onLoadPrevQr,
+  onClaimNFT,
 };

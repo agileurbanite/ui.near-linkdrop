@@ -3,8 +3,8 @@ import { thunk } from 'easy-peasy';
 import { modals } from '../../../config/modals';
 import { nearConfig } from '../../../config/nearConfig';
 import { getCampaignContract } from '../../helpers/getContracts';
-import { getChunksRange, getChunkElementsRange } from '../helpers/getChunksRange';
-import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
+import { getChunkElementsRange, getChunksRange } from '../helpers/getChunksRange';
+import { getKeysFromMnemonic } from '../helpers/keys/getKeysFromMnemonic';
 
 // TODO create reusable function
 const createDeleteKeysIterator = ({

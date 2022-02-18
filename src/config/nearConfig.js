@@ -5,7 +5,8 @@ const testnet = {
   helperUrl: 'https://helper.testnet.near.org',
   explorerUrl: 'https://explorer.testnet.near.org',
   accounts: {
-    linkdrop: 'linkdrop.testnet',
+    // linkdrop: 'linkdrop.testnet', // V1
+    linkdrop: 'dev-neardrop.testnet', // TODO: use an env variable for this
     accountCreator: 'testnet',
   },
   isTestnet: true,
@@ -31,8 +32,10 @@ const configs = {
 
 const createHelpers = (config) => ({
   getCheckAccountInExplorerUrl: (accountId) => `${config.explorerUrl}/accounts/${accountId}`,
-  getCreateAccountAndClaimLink: (secretKey, campaignAccountId) =>
-    `${config.walletUrl}/linkdrop/${campaignAccountId}/${secretKey}`,
+  getCreateAccountAndClaimLink: (secretKey, campaignId) =>
+    `${config.walletUrl}/linkdrop/${campaignId}/${secretKey}`,
+  getClaimNftLink: (secretKey, campaignId) =>
+    `${window.location.origin}/claim/${campaignId}/${secretKey}`,
 });
 
 const getNearConfig = (network) => {

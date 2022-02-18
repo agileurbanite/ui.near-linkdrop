@@ -1,8 +1,9 @@
 /* eslint consistent-return: 0 */
 import { matchPath } from 'react-router';
-import { routes } from '../../../../config/routes';
-import { getUserContract, getCampaignContract } from '../../../helpers/getContracts';
 import { campaignStatus } from '../../../../config/campaignStatus';
+import { routes } from '../../../../config/routes';
+import { getCampaignMetadata } from '../../../campaigns/helpers/getCampaignMetadata';
+import { getUserContract } from '../../../helpers/getContracts';
 
 const {
   root,
@@ -19,6 +20,7 @@ const {
   There is can't be a case when linkdrop.isExist === false && linkdrop.isConnected === true
   because 'checkUserAccounts' will disconnect user in this case.
  */
+/* eslint-disable */
 const campaignHandler = async ({ replace, wallet, linkdrop, state, history }) => {
   if (!wallet.isConnected) return replace(connectWallet);
   if (!linkdrop.isExist) return replace(createAccount);
@@ -32,9 +34,8 @@ const campaignHandler = async ({ replace, wallet, linkdrop, state, history }) =>
   if (!isOwnCampaign) return replace(campaigns);
 
   // User can view only active campaigns
-  const campaignContract = getCampaignContract(state, campaignId);
-  const metadata = await campaignContract.get_campaign_metadata();
-  if (metadata.status !== campaignStatus.active) return replace(campaigns);
+  const { status } = await getCampaignMetadata(state.general.entities.near.connection, campaignId);
+  if (status !== campaignStatus.active) return replace(campaigns);
 };
 
 const mainPagesHandler = ({ replace, wallet, linkdrop }) => {
@@ -76,7 +77,7 @@ const handlers = {
   [campaigns]: mainPagesHandler,
   [settings]: mainPagesHandler,
   [createCampaign]: mainPagesHandler,
-  [campaign]: campaignHandler,
+  [campaign]: mainPagesHandler // campaignHandler, TODO Enable again campaignHandler
 };
 
 export const manageNavigation = async (state, history) => {

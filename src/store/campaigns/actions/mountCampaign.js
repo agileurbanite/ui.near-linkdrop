@@ -1,13 +1,13 @@
 import { action } from 'easy-peasy';
-import { getCampaignName } from '../../../ui/utils/formatCampaignData';
 import { campaignTypes } from '../../../config/campaignStatus';
+import { getCampaignName } from '../../../ui/utils/formatCampaignData';
 
 export const mountCampaign = action((slice, payload) => {
   const { campaignId, metadata, balance, keys, keyStats, pagination } = payload;
 
   slice.campaign = {
     campaignId,
-    type: campaignTypes.near,
+    type: campaignTypes.near.type,
     internalCampaignId: metadata.campaignId,
     name: getCampaignName(campaignId),
     balance,

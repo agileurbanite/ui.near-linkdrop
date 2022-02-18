@@ -1,11 +1,11 @@
-import { useHistory } from 'react-router-dom';
 import { Divider, Typography } from '@material-ui/core';
 import cn from 'classnames';
-import { campaignStatus } from '../../../../../../config/campaignStatus';
-import { ResumeAction } from './ResumeAction/ResumeAction';
-import { getTotalAmount, getDate, getCampaignName } from '../../../../../utils/formatCampaignData';
+import { useHistory } from 'react-router-dom';
+import { campaignStatus, campaignTypes } from '../../../../../../config/campaignStatus';
 import { getRoute } from '../../../../../../config/routes';
+import { getCampaignName, getDate, getTotalAmount } from '../../../../../utils/formatCampaignData';
 import { useStyles } from './Campaign.styles';
+import { ResumeAction } from './ResumeAction/ResumeAction';
 
 export const Campaign = ({ campaign }) => {
   const { campaignId, keysStats, tokensPerKey, createdAt, status, type } = campaign;
@@ -14,7 +14,7 @@ export const Campaign = ({ campaign }) => {
 
   const { push } = useHistory();
   const classes = useStyles({ isUncompleted });
-  const Icon = type.icon
+  const Icon = campaignTypes[type].icon;
 
   const goToCampaign = () => {
     if (isUncompleted) return;

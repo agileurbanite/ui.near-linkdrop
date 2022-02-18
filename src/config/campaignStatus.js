@@ -10,11 +10,11 @@ export const campaignStatus = {
 
 export const campaignTypes = {
   nft: {
-    campaignType: 'nft',
+    type: 'nft',
     icon: NftIcon,
   },
   near: {
-    campaignType: 'near',
+    type: 'near',
     icon: NearIcon,
   },
 };

@@ -1,16 +1,26 @@
 import { keyStores } from 'near-api-js';
-import { terraGas } from '../../../../helpers/terraGas';
-import { getNftCollectionContract } from '../../../../helpers/getContracts';
-import { createGenerateKeyV2 } from '../../../helpers/createGenerateKeyV2';
 import { getNear } from '../../../../general/helpers/getNearPack';
+import { getNftCollectionContract } from '../../../../helpers/getContracts';
 import { setKeyToKeyStore } from '../../../../helpers/setKeyToKeyStore';
+import { terraGas } from '../../../../helpers/terraGas';
+import { createGetCampaignKeys } from '../../../helpers/keys/createGetCampaignKeys';
+
+// We don't want to show 100% but 99% on the progress bar
+const getProgressPercentage = (index, total) => Math.min(Math.trunc((index / total) * 100), 99);
 
 // TODO Think about how we can speed up transfer process
-async function* createGenerator(tokens, mnemonic, connection, walletAccountId, campaignId) {
-  const generateKey = createGenerateKeyV2(mnemonic, campaignId);
+async function* createGenerator(
+  tokens,
+  mnemonic,
+  connection,
+  walletAccountId,
+  campaignId,
+  createdAt,
+) {
+  const generateKey = createGetCampaignKeys(mnemonic, campaignId, createdAt);
 
-  for (let i = 0; i < tokens.length; i += 1) {
-    const [collectionId, tokenId] = tokens[i];
+  for (let i = 1; i <= tokens.length; i += 1) {
+    const [collectionId, tokenId] = tokens[i - 1];
     const collection = getNftCollectionContract(connection, walletAccountId, collectionId);
     const { publicKey } = generateKey(i);
 
@@ -23,17 +33,20 @@ async function* createGenerator(tokens, mnemonic, connection, walletAccountId, c
       gas: terraGas(40),
       amount: 1,
     });
-    // We return key order (like 1, 2, 3)
-    yield i + 1;
+
+    yield i;
   }
 }
 
-const getProgressPercentage = (order, total) => Math.min(Math.trunc((order / total) * 100), 99);
-
-export const transferNfts = async (state, tokens, campaignId, setProgress, walletFullAccessKey) => {
-  const walletAccountId = state.general.user.wallet.accountId;
-  const mnemonic = state.general.user.linkdrop.mnemonic;
-
+export const transferNfts = async (
+  tokens,
+  campaignId,
+  createdAt,
+  setProgress,
+  walletAccountId,
+  walletFullAccessKey,
+  mnemonic,
+) => {
   const keyStore = new keyStores.InMemoryKeyStore();
   await setKeyToKeyStore(keyStore, walletAccountId, walletFullAccessKey.secretKey);
   const near = await getNear(keyStore);
@@ -45,10 +58,11 @@ export const transferNfts = async (state, tokens, campaignId, setProgress, walle
       near.connection,
       walletAccountId,
       campaignId,
+      createdAt,
     );
 
-    for await (const order of generator) {
-      setProgress(getProgressPercentage(order, tokens.length));
+    for await (const index of generator) {
+      setProgress(getProgressPercentage(index, tokens.length));
     }
   } catch (e) {
     /* eslint-disable no-console */

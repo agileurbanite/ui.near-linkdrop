@@ -1,13 +1,14 @@
-import { parseSeedPhrase } from 'near-seed-phrase';
+/* eslint-disable */
 import BN from 'bn.js';
-import { KeyPair } from 'near-api-js';
 import { thunk } from 'easy-peasy';
+import { KeyPair } from 'near-api-js';
+import { parseSeedPhrase } from 'near-seed-phrase';
 import { modals } from '../../../config/modals';
 import { nearConfig } from '../../../config/nearConfig';
-import { getUserContract, getCampaignContract } from '../../helpers/getContracts';
 import { getRoute } from '../../../config/routes';
-import { getKeysFromMnemonic } from '../helpers/getKeysFromMnemonic';
+import { getCampaignContract, getUserContract } from '../../helpers/getContracts';
 import { getPagesRange, getPagination } from '../helpers/getPagination';
+import { getKeysFromMnemonic } from '../helpers/keys/getKeysFromMnemonic';
 
 const createAddKeysIterator = ({
   totalKeys,
@@ -55,6 +56,8 @@ export const onFinishCampaignCreation = thunk(
     const campaignAccessKey = parseSeedPhrase(mnemonic);
     const user = getUserContract(state, linkdropUserId);
 
+    // TODO Fix it - deprecated since user v2.0.0
+    return;
     await user.create_near_campaign({
       args: {
         name: campaignName,

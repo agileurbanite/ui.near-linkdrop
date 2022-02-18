@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useStoreActions } from 'easy-peasy';
 import { CircularProgress } from '@material-ui/core';
 import { ScheduleOutlined } from '@material-ui/icons';
-import { useStyles } from './Progress.styles';
+import { useStoreActions } from 'easy-peasy';
+import { useEffect, useState } from 'react';
 import { campaignTypes } from '../../../../../../../config/campaignStatus';
+import { useStyles } from './Progress.styles';
 
 export const Progress = ({ campaignId, onFinishDeleting, campaignType }) => {
   const onDeleteNearCampaign = useStoreActions((actions) => actions.campaigns.onDeleteNearCampaign);
@@ -12,9 +12,13 @@ export const Progress = ({ campaignId, onFinishDeleting, campaignType }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    campaignType === campaignTypes.near &&
+    // TODO Refactor and move
+    if (campaignType === campaignTypes.near.type) {
       onDeleteNearCampaign({ campaignId, onFinishDeleting, setProgress });
-    campaignType === campaignTypes.nft && onDeleteNftCampaign({ onFinishDeleting });
+    }
+    if (campaignType === campaignTypes.nft.type) {
+      onDeleteNftCampaign({ onFinishDeleting });
+    }
   }, []);
 
   return (

@@ -1,34 +1,46 @@
-import { useStoreActions } from 'easy-peasy';
-import { useForm } from 'react-hook-form';
 import { Button } from '@material-ui/core';
+import { useStoreActions } from 'easy-peasy';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { TextField } from '../general/TextField/TextField';
 import { useJss } from './ClaimPage.jss';
 
+const statuses = {
+  init: 'init',
+  success: 'success',
+  error: 'error',
+};
+
 export const ClaimPage = () => {
+  const [status, setStatus] = useState(statuses.init);
   const onClaimNFT = useStoreActions((a) => a.campaigns.onClaimNFT);
   const jss = useJss();
-  const { handleSubmit, control } = useForm({
-    defaultValues: {
-      campaignId: 'abc2.eclipseer.linkdrop.testnet',
-      beneficiaryId: 'eclipseeer2.testnet',
-      secretKey: 'ed25519:3V5rYNwYfYsSRzuAr8jhf64D6kRwppuy9k3m8CxXQxqNHLa2dGAe162sZNUwjXJxfkGtvf8XnG42qV5MnYrJcocW',
-    },
-  });
+  const { handleSubmit, control } = useForm();
 
+  const onSuccessfulClaim = () => setStatus(statuses.success);
 
-  const onClick = handleSubmit((values) => {
-    onClaimNFT(values);
+  const onClick = handleSubmit(({ beneficiaryId }) => {
+    onClaimNFT({ beneficiaryId, onSuccessfulClaim });
   });
 
   return (
     <div className={jss.container}>
       ClaimPage
-      <TextField control={control} name="beneficiaryId" label="Beneficiary Id" variant="outlined" />
-      <TextField control={control} name="campaignId" label="Campaign Id" variant="outlined" />
-      <TextField control={control} name="secretKey" label="Secret Key" variant="outlined" />
-      <Button variant="contained" onClick={onClick}>
-        Claim NFT
-      </Button>
+      {status === statuses.init && (
+        <>
+          <TextField
+            control={control}
+            name="beneficiaryId"
+            label="Beneficiary Id"
+            variant="outlined"
+            className={jss.input}
+          />
+          <Button variant="contained" onClick={onClick}>
+            Claim NFT
+          </Button>
+        </>
+      )}
+      {status === statuses.success && <div>You have successfully claimed your NFT</div>}
     </div>
   );
 };
