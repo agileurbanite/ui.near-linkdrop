@@ -7,11 +7,30 @@ import {
   transfer,
 } from 'near-api-js/lib/transaction';
 import { PublicKey } from 'near-api-js/lib/utils';
+import { getUserContract } from '../../../../helpers/getContracts';
 import { setKeyToKeyStore } from '../../../../helpers/setKeyToKeyStore';
 import { terraGas } from '../../../../helpers/terraGas';
-import { getUserContract } from '../../../../helpers/getContracts';
 
-export const createAccount = async (state, near, linkdrop, campaignId, deposit) => {
+const getCollectionsWhitelist = (tokens) =>
+  Array.from(
+    tokens.reduce((acc, [collectionId]) => {
+      acc.add(collectionId);
+      return acc;
+    }, new Set()),
+  );
+
+const getRedirectUrl = (linkRedirectUrl) =>
+  linkRedirectUrl.length > 0 ? linkRedirectUrl : undefined;
+
+export const createAccount = async (
+  state,
+  near,
+  linkdrop,
+  campaignId,
+  deposit,
+  linkRedirectUrl,
+  tokens,
+) => {
   try {
     const userAccount = await near.account(linkdrop.accountId);
     const wasm = await fetch('wasm/nft_campaign.wasm')
@@ -23,7 +42,16 @@ export const createAccount = async (state, near, linkdrop, campaignId, deposit) 
       transfer(deposit),
       addKey(PublicKey.from(linkdrop.publicKey), fullAccessKey()),
       deployContract(wasm),
-      functionCall('new', {}, terraGas(30), 0),
+      functionCall(
+        'new',
+        {
+          total: tokens.length,
+          collections_whitelist: getCollectionsWhitelist(tokens),
+          redirect_url: getRedirectUrl(linkRedirectUrl),
+        },
+        terraGas(50),
+        0,
+      ),
     ]);
 
     await getUserContract(state, linkdrop.accountId).add_campaign_to_list({

@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core';
-import { campaignStatus } from '../../../../../../../config/campaignStatus';
 
 const styles = () => ({
   container: {
@@ -10,7 +9,8 @@ const styles = () => ({
     fontSize: 14,
     fontWeight: 500,
     lineHeight: '20px',
-    color: ({ status }) => (status === campaignStatus.active ? '#3D5AFE' : '#E0203C'),
+    color: '#3D5AFE',
+    textTransform: 'capitalize',
   },
   section: {
     display: 'flex',

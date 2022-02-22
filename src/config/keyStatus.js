@@ -4,3 +4,9 @@ export const keyStatus = {
   claimed: 'Claimed',
   refunded: 'Refunded',
 };
+
+export const nftKeyStatus = {
+  active: 'active',
+  claimed: 'claimed',
+  refunded: 'canceled',
+};

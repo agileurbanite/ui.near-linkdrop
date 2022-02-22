@@ -11,9 +11,7 @@ export const setNftCampaign = action((slice, payload) => {
     name: getCampaignName(campaignId),
     balance,
     createdAt: nanoToMilli(metadata.createdAt),
-    keysStats: metadata.dropStats || { // TODO fix this
-      total: 1,
-    },
+    keysStats: metadata.dropsStats,
     status: metadata.status,
     pagination,
     qr: {
