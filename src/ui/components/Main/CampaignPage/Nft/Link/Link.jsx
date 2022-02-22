@@ -1,4 +1,4 @@
-import { keyStatus } from '../../../../../../config/keyStatus';
+import { nftKeyStatus } from '../../../../../../config/keyStatus';
 import { nearConfig } from '../../../../../../config/nearConfig';
 import { CopyToClipboard } from '../../../../general/CopyToClipboard/CopyToClipboard';
 import { Nft } from '../../general/Actions/Nft/Nft';
@@ -14,7 +14,7 @@ export const Link = ({
   walletUserId,
 }) => {
   const classes = useStyles();
-  const isActive = status === keyStatus.active;
+  const isActive = status === nftKeyStatus.active;
   const link = nearConfig.getClaimNftLink(sk, campaignId);
 
   return (

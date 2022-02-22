@@ -8,6 +8,13 @@ export const campaignStatus = {
   deletion: 'Deletion',
 };
 
+export const nftCampaignStatus = {
+  dropCreation: 'dropCreation',
+  active: 'active',
+  completed: 'completed',
+  deletion: 'deletion',
+};
+
 export const campaignTypes = {
   nft: {
     type: 'nft',

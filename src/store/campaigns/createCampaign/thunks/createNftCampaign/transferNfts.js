@@ -30,7 +30,7 @@ async function* createGenerator(
         receiver_id: campaignId,
         msg: publicKey,
       },
-      gas: terraGas(40),
+      gas: terraGas(50),
       amount: 1,
     });
 
@@ -52,6 +52,7 @@ export const transferNfts = async (
   const near = await getNear(keyStore);
 
   try {
+    // TODO change campaign status
     const generator = createGenerator(
       tokens,
       mnemonic,

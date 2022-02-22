@@ -19,12 +19,8 @@ const getNftData = (campaignId, campaign) => ({
   name: getCampaignName(campaignId),
   type: campaignTypes.nft.type,
   createdAt: nanoToMilli(campaign.createdAt),
-  tokensPerKey: '1000000000000000000000000000',
-  keysStats: {
-    total: 1,
-    claimed: 0,
-  },
-  status: 'Active',
+  keysStats: campaign.dropsStats,
+  status: campaign.status,
 });
 
 const getCampaignData = (campaignId, campaign) => {

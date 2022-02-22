@@ -14,8 +14,7 @@ export const mountNftCampaign = async ({
 }) => {
   const pagination = getPagination({
     page: paginationConfig.startPage,
-    // total: metadata.keysStats.total,
-    total: 1,
+    total: metadata.dropsStats.total,
     elementsPerPage: paginationConfig.linksPerPage,
   });
 

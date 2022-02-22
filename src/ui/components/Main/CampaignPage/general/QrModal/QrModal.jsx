@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { useStoreActions, useStoreState } from 'easy-peasy';
 import { Button, Modal, Paper } from '@material-ui/core';
+import { useStoreActions, useStoreState } from 'easy-peasy';
+import { useState } from 'react';
 import QRCode from 'react-qr-code';
-import { useStyles } from './QrModal.styles';
-import { ArrowButton } from './ArrowButton/ArrowButton';
 import { useViewport } from '../../../../../providers/Viewport';
+import { ArrowButton } from './ArrowButton/ArrowButton';
+import { useStyles } from './QrModal.styles';
 
 export const QrModal = ({ qr }) => {
   const { isOpen, order, link } = qr;
-  const onClose = useStoreActions((actions) => actions.campaigns.closeQrModal);
+  const closeQrModal = useStoreActions((actions) => actions.campaigns.closeQrModal);
   const total = useStoreState((actions) => actions.campaigns.campaign.pagination.total);
   const onLoadNextQr = useStoreActions((actions) => actions.campaigns.onLoadNextQr);
   const onLoadPrevQr = useStoreActions((actions) => actions.campaigns.onLoadPrevQr);
@@ -23,6 +23,7 @@ export const QrModal = ({ qr }) => {
       hideLoader: () => setLoader(null),
     });
   };
+
   const next = () => {
     onLoadNextQr({
       order,
@@ -31,8 +32,10 @@ export const QrModal = ({ qr }) => {
     });
   };
 
+  const closeModal = () => closeQrModal();
+
   return (
-    <Modal open={isOpen} onClose={onClose} className={classes.modal}>
+    <Modal open={isOpen} onClose={closeModal} className={classes.modal}>
       <Paper className={classes.container}>
         <h2 className={classes.header}>
           Link <span>#{order}</span>
@@ -58,7 +61,7 @@ export const QrModal = ({ qr }) => {
         />
 
         <div className={classes.buttonWrapper}>
-          <Button className={classes.button} onClick={onClose}>
+          <Button className={classes.button} onClick={closeModal}>
             Close
           </Button>
         </div>

@@ -15,11 +15,12 @@ export const createNftCampaign = thunk(async (_, payload, { getStoreState, getSt
   const mnemonic = state.general.user.linkdrop.mnemonic;
   const actions = getStoreActions();
 
-  const { campaignName, deposit, tokens, walletFullAccessKey } = state.general.temporary;
+  const { campaignName, deposit, tokens, linkRedirectUrl, walletFullAccessKey } =
+    state.general.temporary;
   const campaignId = `${campaignName}.${linkdrop.accountId}`;
 
   try {
-    await createAccount(state, near, linkdrop, campaignId, deposit);
+    await createAccount(state, near, linkdrop, campaignId, deposit, linkRedirectUrl, tokens);
     const { createdAt } = await getCampaignMetadata(near.connection, campaignId);
 
     await transferNfts(
