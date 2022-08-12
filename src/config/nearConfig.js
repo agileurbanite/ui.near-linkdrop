@@ -2,7 +2,7 @@ const testnet = {
   networkId: 'testnet',
   nodeUrl: 'https://rpc.testnet.near.org',
   walletUrl: 'https://testnet.mynearwallet.com',
-  helperUrl: 'https://helper.testnet.near.org',
+  helperUrl: 'https://testnet-api.kitwallet.app',
   explorerUrl: 'https://explorer.testnet.near.org',
   accounts: {
     linkdrop: 'linkdrop.testnet',
@@ -15,7 +15,7 @@ const mainnet = {
   networkId: 'mainnet',
   nodeUrl: 'https://rpc.mainnet.near.org',
   walletUrl: 'https://app.mynearwallet.com',
-  helperUrl: 'https://helper.mainnet.near.org',
+  helperUrl: 'https://api.kitwallet.app',
   explorerUrl: 'https://explorer.near.org',
   accounts: {
     linkdrop: 'linkdropv1.near',
